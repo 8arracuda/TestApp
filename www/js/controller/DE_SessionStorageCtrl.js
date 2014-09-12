@@ -22,6 +22,5 @@ sdApp.controller('DE_SessionStorageCtrl', function ($scope, $rootScope) {
 
 
     $scope.enableTab_einzelwerte();
-    $scope.$apply();
 
 });

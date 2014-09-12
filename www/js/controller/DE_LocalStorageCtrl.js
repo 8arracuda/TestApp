@@ -23,5 +23,4 @@ sdApp.controller('DE_LocalStorageCtrl', function ($scope, $rootScope) {
 
 
     $scope.enableTab_einzelwerte();
-    $scope.$apply();
 });
