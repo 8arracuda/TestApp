@@ -1,0 +1,26 @@
+<div content-for="title">
+    <span>{{ stringForTitle }}</span>
+</div>
+
+<div content-for="navbarAction">
+    <div class="btn btn-navbar">
+        <i class="fa fa-plus" ng-click="foo()"></i><a ng-click="foo()">{{ stringForRightButton }}</a>
+    </div>
+</div>
+
+
+<h3>What does your browser support?</h3>
+<div class="list-group">
+    <div ng-repeat="t in techniques">
+        <li class="list-group-item" ng-class="{'list-group-item-success': t.support}">
+            {{ t.name }}
+        </li>
+    </div>
+
+    <!--<li ng-show="Modernizr.localstorage" class="list-group-item list-group-item-success">-->
+    <!--LocalStorage-->
+    <!--</li>-->
+    <!--<li ng-show="!Modernizr.localstorage" class="list-group-item list-group-item-danger">-->
+    <!--LocalStorage-->
+    <!--</li>-->
+</div>

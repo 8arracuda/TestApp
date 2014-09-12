@@ -1,0 +1,76 @@
+.overlay {
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+.list-group-item {
+    overflow-x: hidden;
+
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+
+}
+
+/*.list-group {*/
+    /*padding-bottom: 30px;*/
+/*}*/
+
+.btn {
+    padding: 12px;
+}
+.scrollable-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.list-group-platformTests > a.list-group-item  {
+    background-color: #B7EDFF;
+}
+
+.list-group-platformTests > a.list-group-item.active  {
+    background-color: #61C4FF;
+}
+
+.list-group-performanceTests > a.list-group-item  {
+    background-color: #FF9689;
+}
+
+.list-group-performanceTests > a.list-group-item.active  {
+    background-color: #FF7159;
+}
+
+.list-group-demonstrator > a.list-group-item  {
+    background-color: #9ed878;
+}
+
+.list-group-demonstrator > a.list-group-item.active  {
+    background-color: #75B244;
+}
+
+#mainSidebar > div > div > div.btn-group > a.btn.btn-default.active {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+
+#mainSidebar > div > div > div.btn-group > a.btn.btn-default {
+    background-color: #999999;
+
+}
+
+
+
+/*https://stackoverflow.com/questions/3058866/how-to-force-a-line-break-in-a-loooooong-word-in-a-div*/
