@@ -1,4 +1,5 @@
-sdApp.controller('PL_WebSqlCtrl', function ($scope) {
+sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
 
+    $rootScope.section = 'PL';
 
 });

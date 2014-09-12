@@ -1,4 +1,6 @@
-sdApp.controller('PE_IndexedDBCtrl', function ($scope) {
+sdApp.controller('PE_IndexedDBCtrl', function ($scope, $rootScope) {
+
+    $rootScope.section = 'PE';
 
     $scope.customers = []
 

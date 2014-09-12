@@ -80,8 +80,20 @@
     border-width:  0px;
 }
 
-body > div.app.has-navbar-top > div.navbar.navbar-app.navbar-absolute-top {
-
+body > div.app.has-navbar-top > div.navbar.navbar-app.navbar-absolute-top.navbar-plattformTests {
+    background-color: #B7EDFF;
 }
+
+body > div.app.has-navbar-top > div.navbar.navbar-app.navbar-absolute-top.navbar-performanceTests {
+    background-color: #FF9689;
+}
+
+body > div.app.has-navbar-top > div.navbar.navbar-app.navbar-absolute-top.navbar-demonstration {
+    background-color: #9ed878;
+}
+
+
+
+
 
 /*https://stackoverflow.com/questions/3058866/how-to-force-a-line-break-in-a-loooooong-word-in-a-div*/

@@ -41,7 +41,7 @@
 
 <div ng-controller="SidebarController" class="sidebar sidebar-left" toggleable parent-active-class="sidebar-left-in"
      id="mainSidebar">
-    <h1 class="app-name">Test-App {{ foo }}</h1>
+    <h1 class="app-name">Test-App</h1>
 
     <div class="scrollable">
         <div class="scrollable-content">
@@ -125,8 +125,9 @@
 
 
 <div class="app">
-    <div class="navbar navbar-app navbar-absolute-top">
-
+    <div ng-controller="NavbarController" class="navbar navbar-app navbar-absolute-top"
+         ng-class="{'navbar-plattformTests': section=='PL', 'navbar-performanceTests': section=='PE', 'navbar-demonstration': section=='DE'}">
+        <!--<div ng-controller="NavbarController" class="navbar navbar-app navbar-absolute-top">-->
 
         <div class="navbar-brand navbar-brand-center" yield-to="title">
             <span>PG12</span>
@@ -192,6 +193,7 @@
 <script type="text/javascript" src="js/controller/techSupport.js"></script>
 
 <script type="text/javascript" src="js/controller/SidebarController.js"></script>
+<script type="text/javascript" src="js/controller/NavbarController.js"></script>
 
 <script type="text/javascript">
     app.initialize();

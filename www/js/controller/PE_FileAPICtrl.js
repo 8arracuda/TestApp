@@ -1,4 +1,5 @@
-sdApp.controller('PE_FileAPICtrl', function ($scope) {
+sdApp.controller('PE_FileAPICtrl', function ($scope, $rootScope) {
 
+    $rootScope.section = 'PE';
 
 });

@@ -1,4 +1,7 @@
-sdApp.controller('PE_LocalStorageCtrl', function ($scope) {
+sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
+
+    $rootScope.section='PE';
+
 
     $scope.enableTab_Actions = function () {
         $scope.tab = 1;
@@ -46,7 +49,6 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope) {
         alert(JSON.stringify($scope.localStorage));
     };
 
-
     $scope.saveOneItem = function () {
         localStorage.setItem('test', 'foo');
         alert('variable test set to foo');
@@ -75,7 +77,6 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope) {
             localStorage.removeItem(('test' + i));
 
         }
-
     };
 
     $scope.perf_store1000Items = function () {

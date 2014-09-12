@@ -64,4 +64,5 @@ sdApp.controller('SidebarController', function ($scope, techSupport) {
             support: ts.indexedDB}
     ];
 
+
 });
