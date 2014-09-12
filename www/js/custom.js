@@ -15,7 +15,10 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'PL_sessionStorage.html',
             controller: 'PL_SessionStorageCtrl'
         }).
-
+        when('/PL_localStorage', {
+            templateUrl: 'PL_localStorage.html',
+            controller: 'PL_LocalStorageCtrl'
+        }).
         when('/PE_localStorage', {
             templateUrl: 'PE_localStorage.html',
             controller: 'PE_LocalStorageCtrl'
@@ -110,7 +113,6 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'directoryVariables.html',
             controller: 'DirectoryVariablesCtrl'
         }).
-
 
         otherwise({
             redirectTo: '/overview'

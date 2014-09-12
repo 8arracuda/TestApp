@@ -36,11 +36,11 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
-.list-group-platformTests > a.list-group-item  {
+.list-group-plattformTests > a.list-group-item  {
     background-color: #B7EDFF;
 }
 
-.list-group-platformTests > a.list-group-item.active  {
+.list-group-plattformTests > a.list-group-item.active  {
     background-color: #61C4FF;
 }
 
@@ -52,11 +52,11 @@
     background-color: #FF7159;
 }
 
-.list-group-demonstrator > a.list-group-item  {
+.list-group-demonstration > a.list-group-item  {
     background-color: #9ed878;
 }
 
-.list-group-demonstrator > a.list-group-item.active  {
+.list-group-demonstration > a.list-group-item.active  {
     background-color: #75B244;
 }
 
@@ -65,12 +65,23 @@
     color: #000000;
 }
 
-
-#mainSidebar > div > div > div.btn-group > a.btn.btn-default {
-    background-color: #999999;
-
+#mainSidebar > div > div > div.btn-group > a.btn.btn-default.btn-plattformTests.active, a.btn.btn-default.btn-plattformTests {
+    background-color: #B7EDFF;
+    border-width:  0px;
 }
 
+#mainSidebar > div > div > div.btn-group > a.btn.btn-default.btn-performanceTests.active, a.btn.btn-default.btn-performanceTests {
+    background-color: #FF9689;
+    border-width:  0px;
+}
 
+#mainSidebar > div > div > div.btn-group > a.btn.btn-default.btn-demonstration.active, a.btn.btn-default.btn-demonstration {
+    background-color: #9ed878;
+    border-width:  0px;
+}
+
+body > div.app.has-navbar-top > div.navbar.navbar-app.navbar-absolute-top {
+
+}
 
 /*https://stackoverflow.com/questions/3058866/how-to-force-a-line-break-in-a-loooooong-word-in-a-div*/
