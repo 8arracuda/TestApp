@@ -1,3 +1,5 @@
-sdApp.controller('PE_PGSQLiteCtrl', function ($scope) {
+sdApp.controller('PE_PGSQLiteCtrl', function ($scope, $rootScope) {
+
+    $rootScope.section = 'PE';
 
 });

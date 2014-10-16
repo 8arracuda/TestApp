@@ -1,4 +1,7 @@
-sdApp.controller('DE_IndexedDBCtrl', function ($scope) {
+sdApp.controller('DE_IndexedDBCtrl', function ($scope, $rootScope) {
+
+    $rootScope.section = 'DE';
+
 
     $scope.enableTab_einzelwerte = function () {
         $scope.tab = 1;
@@ -19,6 +22,5 @@ sdApp.controller('DE_IndexedDBCtrl', function ($scope) {
     };
 
     $scope.enableTab_einzelwerte();
-    $scope.$apply();
 
 });

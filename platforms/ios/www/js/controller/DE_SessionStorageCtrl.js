@@ -1,4 +1,6 @@
-sdApp.controller('DE_SessionStorageCtrl', function ($scope) {
+sdApp.controller('DE_SessionStorageCtrl', function ($scope, $rootScope) {
+
+    $rootScope.section='DE';
 
     $scope.enableTab_einzelwerte = function () {
         $scope.tab = 1;
@@ -20,6 +22,5 @@ sdApp.controller('DE_SessionStorageCtrl', function ($scope) {
 
 
     $scope.enableTab_einzelwerte();
-    $scope.$apply();
 
 });

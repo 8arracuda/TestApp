@@ -1,31 +1,69 @@
 <div content-for="title">
-    <span>PL WebSQL</span>
+    <span>{{ stringForTitle }}</span>
 </div>
 
 <div content-for="navbarAction">
     <div class="btn btn-navbar">
-        <i class="fa fa-plus"></i>WebSQL
+        <i class="fa fa-plus"></i>{{ stringForRightButton }}
     </div>
 </div>
 
-<div ng-show="databaseIsEmpty==true">database is empty</div>
-<div ng-show="databaseIsEmpty==false">database is not empty</div>
+<div class="scrollable">
+    <div class="scrollable-content">
 
-<a class="btn btn-primary" ng-click="initWebSQL()">init</a>
-<a class="btn btn-primary" ng-click="testWebSQL()">test</a>
-<a class="btn btn-primary" ng-click="deleteWebSQL()">delete</a>
-<a class="btn btn-primary" ng-click="demo()">demo</a>
-<a class="btn btn-primary" ng-click="demo2()">demo2</a>
-<a class="btn btn-primary" ng-click="check()">check</a>
-<a class="btn btn-primary" ng-click="wipeDatabase()">delete all</a>
+        <div class="btn-group justified nav-tabs">
+            <a class="btn btn-default"
+               target="webSql_einzelwerte"
+               toggle="on"
+               ng-click="enableTab_einzelwerte()"
+               active-class="active">Einzelwerte
+            </a>
 
-<br>
-<br>
-<a class="btn btn-primary" ng-click="addRow()">add row</a>
+            <a class="btn btn-default"
+               target="webSql_strDaten"
+               toggle="on"
+               ng-click="enableTab_strDaten()"
+               active-class="active">str Daten
+            </a>
 
-<br>
-<input ng-model="inputString" type="text">
+            <a class="btn btn-default"
+               target="webSql_mediendaten"
+               toggle="on"
+               ng-click="enableTab_mediendaten()"
+               active-class="active">Mediendaten
+            </a>
+        </div>
 
-<div ng-repeat="row in resultArray">
-    {{ row.id }} - {{ row.created }} - {{ row.log}}
+        <div class="tab-content">
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 1}"
+                 default="active"
+                 id="webSql_einzelwerte"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"DE_webSql_einzelwerte.html"'></div>
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 2}"
+                 id="webSql_strDaten"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"DE_webSql_strDaten.html"'></div>
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 3}"
+                 id="webSql_mediendaten"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"DE_webSql_mediendaten.html"'></div>
+            </div>
+
+        </div>
+    </div>
 </div>

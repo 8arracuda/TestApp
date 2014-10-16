@@ -1,4 +1,7 @@
-sdApp.controller('DE_LocalStorageCtrl', function ($scope) {
+sdApp.controller('DE_LocalStorageCtrl', function ($scope, $rootScope) {
+
+    $rootScope.section='DE';
+
 
     $scope.enableTab_einzelwerte = function () {
         $scope.tab = 1;
@@ -20,5 +23,4 @@ sdApp.controller('DE_LocalStorageCtrl', function ($scope) {
 
 
     $scope.enableTab_einzelwerte();
-    $scope.$apply();
 });

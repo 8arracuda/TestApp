@@ -41,7 +41,7 @@
 
 <div ng-controller="SidebarController" class="sidebar sidebar-left" toggleable parent-active-class="sidebar-left-in"
      id="mainSidebar">
-    <h1 class="app-name">Test-App {{ foo }}</h1>
+    <h1 class="app-name">Test-App</h1>
 
     <div class="scrollable">
         <div class="scrollable-content">
@@ -72,6 +72,8 @@
                 </a>
             </div>
 
+            <!--TODO: LocalStorageTab unbenennen!-->
+
             <div class="tab-content">
 
                 <div class="tab-pane"
@@ -87,10 +89,6 @@
                                 <i class="fa fa-chevron-right pull-right" ng-show="{{t.support}}"></i><i
                                         class="fa pull-right" ng-hide="{{t.support}}">not supported</i></a>
                         </div>
-                        <!--<a class="list-group-item" href="#/PL_sessionStorage">Test 1: SessionStorage<i-->
-                                <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                        <!--<a class="list-group-item" href="#/PL_localStorage">Test 2: LocalStorage<i-->
-                                <!--class="fa fa-chevron-right pull-right"></i></a>-->
                     </div>
                 </div>
 
@@ -107,22 +105,6 @@
                                 <i class="fa fa-chevron-right pull-right" ng-show="{{t.support}}"></i><i
                                         class="fa pull-right" ng-hide="{{t.support}}">not supported</i></a>
                         </div>
-                       <!-- <a class="list-group-item" href="#/overview">Overview<i
-                                class="fa fa-chevron-right pull-right"></i></a>
-                        <a class="list-group-item" href="#/PE_sessionStorage">SessionStorage<i
-                                class="fa fa-chevron-right pull-right"></i></a>
-                        <a class="list-group-item" href="#/PE_localStorage">LocalStorage<i
-                                class="fa fa-chevron-right pull-right"></i></a>
-                        <a class="list-group-item" href="#/PE_indexedDB">
-                            &lt;!&ndash;<div ng-show=""&ndash;&gt;
-                            Indexed DB
-                            <i class="fa fa-chevron-right pull-right"></i>
-                        </a>
-                        <a class="list-group-item" href="#/PE_webSql">Web SQL<i
-                                class="fa fa-chevron-right pull-right"></i></a>
-                        <a class="list-group-item" href="#/PE_PGSQLite">PG SQLite <i
-                                class="fa fa-chevron-right pull-right"></i></a>-->
-
                     </div>
                 </div>
 
@@ -137,30 +119,6 @@
                             <i class="fa fa-chevron-right pull-right" ng-show="{{t.support}}"></i><i
                                     class="fa pull-right" ng-hide="{{t.support}}">not supported</i></a>
                     </div>
-                    <!--</div>-->
-                    <!--<a class="list-group-item" href="#/overview">Overview<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/DE_sessionStorage">SessionStorage<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/DE_localStorage">LocalStorage<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/DE_indexedDB">Indexed DB<i class="fa fa-chevron-right pull-right" ng-show="techniques.indexedDB"></i><i class="fa pull-right" ng-hide="techniques.indexedDB">not supported</i></a>-->
-                    <!--<a class="list-group-item" href="#/DE_webSql">Web SQL<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/DE_PGSQLite">PG SQLite <i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/acc">(Acc)<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/cam">(Cam)<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/devOrientation">(device orientation)<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/directoryVariables">(directory variables)<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/vid">(video)<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-                    <!--<a class="list-group-item" href="#/loadImage">(loadImage)<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
                 </div>
             </div>
         </div>
@@ -169,8 +127,9 @@
 
 
 <div class="app">
-    <div class="navbar navbar-app navbar-absolute-top">
-
+    <div ng-controller="NavbarController" class="navbar navbar-app navbar-absolute-top"
+         ng-class="{'navbar-plattformTests': section=='PL', 'navbar-performanceTests': section=='PE', 'navbar-demonstration': section=='DE'}">
+        <!--<div ng-controller="NavbarController" class="navbar navbar-app navbar-absolute-top">-->
 
         <div class="navbar-brand navbar-brand-center" yield-to="title">
             <span>PG12</span>
@@ -236,6 +195,7 @@
 <script type="text/javascript" src="js/controller/techSupport.js"></script>
 
 <script type="text/javascript" src="js/controller/SidebarController.js"></script>
+<script type="text/javascript" src="js/controller/NavbarController.js"></script>
 
 <script type="text/javascript">
     app.initialize();
