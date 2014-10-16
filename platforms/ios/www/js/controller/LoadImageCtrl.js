@@ -7,7 +7,6 @@ sdApp.controller('LoadImageCtrl', function ($scope, $http) {
             success(function (imageData) {
                 console.log("LoadImage_pg success");
 
-
                 alert(imageData);
                 document.getElementById("imagePlaceholder").src = imageData;
 

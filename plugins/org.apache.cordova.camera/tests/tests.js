@@ -85,7 +85,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     var pageStartTime = +new Date();
 
     //default camera options
-    var camQualityDefault = ['quality value', 50];
+    var camQualityDefault = ['50', 50];
     var camDestinationTypeDefault = ['FILE_URI', 1];
     var camPictureSourceTypeDefault = ['CAMERA', 1];
     var camAllowEditDefault = ['allowEdit', false];
@@ -141,12 +141,12 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     function getPictureWin(data) {
         setPicture(data);
         // TODO: Fix resolveLocalFileSystemURI to work with native-uri.
-        if (pictureUrl.indexOf('file:') == 0 || pictureUrl.indexOf('content:') == 0) {
+        if (pictureUrl.indexOf('file:') == 0 || pictureUrl.indexOf('content:') == 0 || pictureUrl.indexOf('ms-appdata:') === 0) {
             resolveLocalFileSystemURI(data, function (e) {
                 fileEntry = e;
                 logCallback('resolveLocalFileSystemURI()', true)(e.toURL());
             }, logCallback('resolveLocalFileSystemURI()', false));
-        } else if (pictureUrl.indexOf('data:image/jpeg;base64' == 0)) {
+        } else if (pictureUrl.indexOf('data:image/jpeg;base64') == 0) {
             // do nothing
         } else {
             var path = pictureUrl.replace(/^file:\/\/(localhost)?/, '').replace(/%20/g, ' ');
@@ -241,10 +241,28 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     function copyImage() {
         var onFileSystemReceived = function (fileSystem) {
             var destDirEntry = fileSystem.root;
+            var origName = fileEntry.name;
 
             // Test FileEntry API here.
             fileEntry.copyTo(destDirEntry, 'copied_file.png', logCallback('FileEntry.copyTo', true), logCallback('FileEntry.copyTo', false));
             fileEntry.moveTo(destDirEntry, 'moved_file.png', logCallback('FileEntry.moveTo', true), logCallback('FileEntry.moveTo', false));
+
+            //cleanup
+            //rename moved file back to original name so other tests can reference image
+            resolveLocalFileSystemURI(destDirEntry.nativeURL+'moved_file.png', function(fileEntry) {
+                fileEntry.moveTo(destDirEntry, origName, logCallback('FileEntry.moveTo', true), logCallback('FileEntry.moveTo', false));
+                console.log('Cleanup: successfully renamed file back to original name');
+            }, function () {
+                console.log('Cleanup: failed to rename file back to original name');
+            });
+
+            //remove copied file
+            resolveLocalFileSystemURI(destDirEntry.nativeURL+'copied_file.png', function(fileEntry) {
+                fileEntry.remove(logCallback('FileEntry.remove', true), logCallback('FileEntry.remove', false));
+                console.log('Cleanup: successfully removed copied file');
+            }, function () {
+                console.log('Cleanup: failed to remove copied file');
+            });
         };
 
         window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onFileSystemReceived, null);
@@ -392,15 +410,53 @@ exports.defineManualTests = function (contentEl, createActionButton) {
             createOptionsEl('cameraDirection', Camera.Direction) +
             '</div>',
         getpicture_div = '<div id="getpicture"></div>',
+        test_procedure = '<h4>Recommended Test Procedure</h4>' +
+            'Options not specified should be the default value' +
+            '<br>Status box should update with image and info whenever an image is taken or selected from library' +
+            '</p><div style="background:#B0C4DE;border:1px solid #FFA07A;margin:15px 6px 0px;min-width:295px;max-width:97%;padding:4px 0px 2px 10px;min-height:160px;max-height:200px;overflow:auto">' +
+            '<ol> <li>All default options. Should be able to edit once picture is taken and will be saved to library.</li>' +
+            '</p><li>sourceType=PHOTOLIBRARY<br>Should be able to see picture that was just taken in previous test and edit when selected</li>' +
+            '</p><li>sourceType=Camera<br>allowEdit=false<br>saveToPhotoAlbum=false<br>Should not be able to edit when taken and will not save to library</li>' +
+            '</p><li>encodingType=PNG<br>allowEdit=true<br>saveToPhotoAlbum=true<br>cameraDirection=FRONT<br>Should bring up front camera. Verify in status box info URL that image is encoded as PNG.</li>' +
+            '</p><li>sourceType=SAVEDPHOTOALBUM<br>mediaType=VIDEO<br>Should only be able to select a video</li>' +
+            '</p><li>sourceType=SAVEDPHOTOALBUM<br>mediaType=PICTURE<br>allowEdit=false<br>Should only be able to select a picture and not edit</li>' +
+            '</p><li>sourceType=PHOTOLIBRARY<br>mediaType=ALLMEDIA<br>allowEdit=true<br>Should be able to select pics and videos and edit picture if selected</li>' +
+            '</p><li>sourceType=CAMERA<br>targetWidth & targetHeight=50<br>allowEdit=false<br>Do Get File Metadata test below and take note of size<br>Repeat test but with width and height=800. Size should be significantly larger.</li>' +
+            '</p><li>quality=0<br>targetWidth & targetHeight=default<br>allowEdit=false<br>Do Get File Metadata test below and take note of size<br>Repeat test but with quality=80. Size should be significantly larger.</li>' +
+            '</ol></div>',
         inputs_div = '<h2>Native File Inputs</h2>' +
-            '<div>input type=file <input type="file" class="testInputTag"></div>' +
+            'For the following tests, status box should update with file selected' +
+            '</p><div>input type=file <input type="file" class="testInputTag"></div>' +
             '<div>capture=camera <input type="file" accept="image/*;capture=camera" class="testInputTag"></div>' +
             '<div>capture=camcorder <input type="file" accept="video/*;capture=camcorder" class="testInputTag"></div>' +
             '<div>capture=microphone <input type="file" accept="audio/*;capture=microphone" class="testInputTag"></div>',
         actions_div = '<h2>Actions</h2>' +
-            '<div id="actions"></div>';
+            'For the following tests, ensure that an image is set in status box' +
+            '</p><div id="metadata"></div>' +
+            'Expected result: Get metadata about file selected.<br>Status box will show, along with the metadata, "Call to FileEntry.getMetadata success, Call to FileEntry.setMetadata success, Call to FileEntry.getParent success"' +
+            '</p><div id="reader"></div>' +
+            'Expected result: Read contents of file.<br>Status box will show "Got file: {some metadata}, FileReader.readAsDataURL() - length = someNumber"' +
+            '</p><div id="copy"></div>' +
+            'Expected result: Copy image to new location and move file to different location.<br>Status box will show "Call to FileEntry.copyTo success:{some metadata}, Call to FileEntry.moveTo success:{some metadata}"' +
+            '</p><div id="write"></div>' +
+            'Expected result: Write image to library.<br>Status box will show "Call to FileWriter.write success:{some metadata}, Call to FileWriter.truncate success:{some metadata}"' +
+            '</p><div id="upload"></div>' +
+            'Expected result: Upload image to server.<br>Status box may print out progress. Once finished will show "upload complete"' +
+            '</p><div id="draw_canvas"></div>' +
+            'Expected result: Display image using canvas.<br>Image will be displayed in status box under "canvas:"' +
+            '</p><div id="remove"></div>' +
+            'Expected result: Remove image from library.<br>Status box will show "FileEntry.remove success:["OK"]';
 
-    contentEl.innerHTML = info_div + options_div + getpicture_div + inputs_div + actions_div;
+    // We need to wrap this code due to Windows security restrictions
+    // see http://msdn.microsoft.com/en-us/library/windows/apps/hh465380.aspx#differences for details
+    if (window.MSApp && window.MSApp.execUnsafeLocalFunction) {
+        MSApp.execUnsafeLocalFunction(function() {
+            contentEl.innerHTML = info_div + options_div + getpicture_div + test_procedure + inputs_div + actions_div;
+        });
+    } else {
+        contentEl.innerHTML = info_div + options_div + getpicture_div + test_procedure + inputs_div + actions_div;
+    }
+
     var elements = document.getElementsByClassName("testInputTag");
     var listener = function (e) {
         testInputTag(e.target);
@@ -420,29 +476,29 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
     createActionButton('Get File Metadata', function () {
         getFileInfo();
-    }, 'actions');
+    }, 'metadata');
 
     createActionButton('Read with FileReader', function () {
         readFile();
-    }, 'actions');
+    }, 'reader');
 
     createActionButton('Copy Image', function () {
         copyImage();
-    }, 'actions');
+    }, 'copy');
 
     createActionButton('Write Image', function () {
         writeImage();
-    }, 'actions');
+    }, 'write');
 
     createActionButton('Upload Image', function () {
         uploadImage();
-    }, 'actions');
+    }, 'upload');
 
     createActionButton('Draw Using Canvas', function () {
         displayImageUsingCanvas();
-    }, 'actions');
+    }, 'draw_canvas');
 
     createActionButton('Remove Image', function () {
         removeImage();
-    }, 'actions');
+    }, 'remove');
 };
