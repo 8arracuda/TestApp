@@ -134,9 +134,10 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
             localStorage.removeItem('table1_' + i + '_city');
             localStorage.removeItem('table1_' + i + '_email');
 
-            alert('deleted Items referenced to table1 from LocalStorage');
 
         }
+            alert('deleted Items referenced to table1 from LocalStorage');
+        localStorage.removeItem('table1_numberOfAddresses');
 
     }
 

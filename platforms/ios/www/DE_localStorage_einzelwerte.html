@@ -4,19 +4,35 @@
     <div class="panel">
 
         <h2 class="panel-title">
-            Key
+            Store a key-value pair with LocalStorage
         </h2>
 
-        <input ng-model="key" type="text"/><br>
+        <!--Key:<br>-->
+
+        <label  class="control-label col-xs-4">Key</label>
+        <!--<label  class="control-label col-xs-4">Value</label>-->
+        <!--<label  class="control-label col-xs-3 col-sm-2 col-lg-1">Key</label>-->
+        <input class="col-xs-8" ng-model="keyToSave" type="text"/><br>
+
+        <!--Value:<br>-->
+        <label class="control-label col-xs-4">Value</label>
+        <input class="col-xs-8" ng-model="valueToSave" type="text"/><br>
+
+        <a class="btn btn-primary" ng-click="saveEinzelwerte()">save</a>
+        <a class="btn btn-danger" ng-click="removeKeyFromLocalStorage()">delete key</a>
 
         <h2 class="panel-title">
-            Value
+            Check what's saved?
         </h2>
-        <input ng-model="value" type="text"/><br>
+        Key:<br>
+        <input ng-model="keyToLoad" type="text"/><br>
+
+        Key "{{ keyLoaded }}" has value "{{ valueLoadedFromLocalStorage }}"<br>
+        <!--Key "{{ key }}" has value "{{ localStorage.key }}"<br>-->
+
+        <a class="btn btn-default" ng-click="updateEinzelwerteView()">update</a>
+
     </div>
-
-    <a class="btn btn-primary" ng-click="saveEinzelwerte()">save</a>
-
 
 </div>
 
