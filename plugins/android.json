@@ -32,6 +32,16 @@
                         }
                     ]
                 }
+            },
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<preference name=\"Fullscreen\" value=\"true\" />",
+                            "count": 1
+                        }
+                    ]
+                }
             }
         }
     },
@@ -43,6 +53,9 @@
             "PACKAGE_NAME": "de.msteiner.PG12"
         },
         "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "de.msteiner.TestApp"
+        },
+        "de.appplant.cordova.plugin.hidden-statusbar-overlay": {
             "PACKAGE_NAME": "de.msteiner.TestApp"
         }
     },

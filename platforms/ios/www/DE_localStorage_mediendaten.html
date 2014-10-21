@@ -1,19 +1,33 @@
-<!--<img src="/res/logo_brs.jpg" id="logo_brs2"><br>-->
-
-<a class="btn btn-primary" ng-click="image_prev()"><-</a>
-<img src="{{ images[currentImage] }}"><br>
-<a class="btn btn-primary" ng-click="image_next()">-></a><br>
-
-<!--TODO Das mit Modulo funktioniert noch nicht so wie es soll  - Problem mit negativen Zahlen -->
-
-<!--<select name="logo" size="3" ng-repeat="image in images">-->
-<!--<option value="{{ image }}" ng-selected>{{ image }}</option>-->
-<!--</select>-->
-
-<a ng-click="saveImageToLocalStorage()" class="btn btn-primary">save image to LS</a><br>
+<div ng-controller="DE_LocalStorageMediendatenCtrl">
 
 
-<br>
-Loaded from LocalStorage:<br>
-<a ng-click="loadImageFromLocalStorage()" class="btn btn-primary">load image from LS</a><br>
-        <img id="imagePlaceholder">
+    <div class="panel">
+
+        <h2 class="panel-title">
+            Select an image
+        </h2>
+
+        <a class="btn btn-primary" ng-click="image_prev()"><-</a>
+        <img src="{{ images[currentImage] }}"><br>
+        <a class="btn btn-primary" ng-click="image_next()">-></a><br>
+
+
+        <h2 class="panel-title">
+            Actions
+        </h2>
+
+
+        <a ng-click="saveImageToLocalStorage()" class="btn btn-primary">save image to LS</a><br>
+        <a ng-click="deleteImageFromLocalStorage()" class="btn btn-danger">delete from LS</a><br>
+        <a ng-click="showImageInLocalStorage()" class="btn btn-primary">show Image in LS</a><br>
+
+
+        <h2 class="panel-title">
+            Loaded from LocalStorage:
+        </h2>
+        <a ng-click="loadImageFromLocalStorage()" class="btn btn-primary">load image from LS</a><br>
+        <img id="imagePlaceholder"><br>
+
+
+    </div>
+</div>

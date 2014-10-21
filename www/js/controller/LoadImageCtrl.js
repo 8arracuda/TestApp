@@ -52,5 +52,4 @@ sdApp.controller('LoadImageCtrl', function ($scope, $http) {
     }
     console.log('end loadBase64Image');
 
-
 });

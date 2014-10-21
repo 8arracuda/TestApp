@@ -187,6 +187,13 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
+    },
+    {
+        "file": "plugins/de.appplant.cordova.plugin.hidden-statusbar-overlay/www/hidden-statusbar-overlay.js",
+        "id": "de.appplant.cordova.plugin.hidden-statusbar-overlay.HiddenStatusbarOverlay",
+        "clobbers": [
+            "plugin.statusbarOverlay"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -194,7 +201,8 @@ module.exports.metadata =
 {
     "org.apache.cordova.device-motion": "0.2.10-dev",
     "org.apache.cordova.file": "1.3.0",
-    "org.apache.cordova.camera": "0.3.2"
+    "org.apache.cordova.camera": "0.3.2",
+    "de.appplant.cordova.plugin.hidden-statusbar-overlay": "1.2.0"
 }
 // BOTTOM OF METADATA
 });

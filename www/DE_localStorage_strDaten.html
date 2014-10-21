@@ -1,1 +1,134 @@
-PL_localStorage_strDaten
+<div ng-controller="DE_LocalStorageStrDatenCtrl">
+
+    <div class="panel" bs-panel>
+
+        <h2 class="panel-title">
+            Dataset: {{ selectedDataset }} (size: {{ data.length }})
+        </h2>
+        <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change Dataset</a>
+
+        <h2 class="panel-title">
+            How many addresses?
+        </h2>
+
+        <a ng-click="$parent.numberOfRows=$parent.numberOfRows-10" class="btn btn-default">-10</a>
+        <a ng-click="$parent.numberOfRows=$parent.numberOfRows-1" class="btn btn-default">-1</a>
+        <b>{{ $parent.numberOfRows }}</b>
+        <a ng-click="$parent.numberOfRows=$parent.numberOfRows+1" class="btn btn-default">+1</a>
+        <a ng-click="$parent.numberOfRows=$parent.numberOfRows+10" class="btn btn-default">+10</a>
+
+
+        <h2 class="panel-title">
+            Actions
+        </h2>
+        <a ng-click="createTable()" class="btn btn-primary">create Table</a>
+        <a class="btn btn-primary" ng-click="startJSONImport()">startJSONImport</a>
+
+        <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()">saveTableToLocalStorage</a>
+        <a class="btn btn-primary" ng-click="loadTable1FromLocalStorage()">loadTable1FromLocalStorage</a>
+        <a class="btn btn-warning" ng-click="deleteTable1FromLocalStorage()">deleteTable1FromLocalStorage</a>
+
+
+        <h2 class="panel-title">
+            Table Original - ({{ tableOriginal.length }} addresses)
+        </h2>
+    <table style="width:100%">
+        <thead>
+        <tr>
+            <td>
+                <b>First Name</b>
+            </td>
+            <td>
+                <b>Last Name</b>
+            </td>
+            <td>
+                <b>Street</b>
+            </td>
+            <td>
+                <b>...</b>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in tableOriginal">
+            <td>
+                {{ row[0] }}
+            </td>
+            <td>
+                {{ row[1] }}
+            </td>
+            <td>
+                {{ row[2] }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+        <h2 class="panel-title">
+            Table - loaded from LocalStorage ({{ tableFromLocalStorage.length }} addresses)
+        </h2>
+
+        <table style="width:100%">
+            <thead>
+            <tr>
+                <td>
+                    <b>First Name</b>
+                </td>
+                <td>
+                    <b>Last Name</b>
+                </td>
+                <td>
+                    <b>Street</b>
+                </td>
+                <td>
+                    <b>...</b>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in tableFromLocalStorage">
+                <td>
+                    {{ row[0] }}
+                </td>
+                <td>
+                    {{ row[1] }}
+                </td>
+                <td>
+                    {{ row[2] }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div overlay="datasetSelectionOverlay">
+        <div class="scrollable">
+            <div class="scrollable-content">
+
+                <h4 class="overlay-title">Select a dataset</h4>
+
+                <p toggle="off" bubble target="datasetSelectionOverlay">
+                    <span class="btn btn-primary">close</span>
+                </p>
+
+                <div class="list-group">
+                    <div ng-repeat="dataset in datasets">
+
+                        <li class="list-group-item">
+                            <div ng-show="dataset == $parent.selectedDataset">(selected)</div>
+                            <a ng-click="$parent.selectedDataset = dataset">{{ dataset }}</a>
+                        </li>
+
+                    </div>
+                </div>
+
+                <p toggle="off" bubble target="datasetSelectionOverlay">
+                    <span class="btn btn-primary">close</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

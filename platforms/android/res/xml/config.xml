@@ -17,4 +17,5 @@
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
+    <preference name="Fullscreen" value="true" />
 </widget>

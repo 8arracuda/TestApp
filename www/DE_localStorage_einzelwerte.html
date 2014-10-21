@@ -1,14 +1,22 @@
-Key:<input ng-model="$parent.key" type="text"/><br>
-Value:<input ng-model="$parent.value" type="text"/><br>
+<div ng-controller="DE_LocalStorageEinzelwerteCtrl">
 
-<a class="btn btn-primary" ng-click="saveEinzelwerte()">save</a>
+    <!--<div class="panel" bs-panel>-->
+    <div class="panel">
 
+        <h2 class="panel-title">
+            Key
+        </h2>
 
+        <input ng-model="key" type="text"/><br>
 
+        <h2 class="panel-title">
+            Value
+        </h2>
+        <input ng-model="value" type="text"/><br>
 
+    <a class="btn btn-primary" ng-click="saveEinzelwerte()">save</a>
 
+    </div>
 
-
-
-
+</div>
 
