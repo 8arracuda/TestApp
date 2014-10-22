@@ -1,0 +1,36 @@
+<div ng-controller="DE_WebSqlEinzelwerteCtrl">
+
+    <div class="panel">
+
+        <h2 class="panel-title">
+            store values
+        </h2>
+
+        <input
+                bs-form-control
+
+                type="text"
+                ng-model="keyToSave"
+                label="Key"
+                label-class="col-xs-3 col-sm-2 col-lg-1"
+                class="col-xs-9 col-sm-10 col-lg-11"
+                placeholder="Key"
+                />
+
+        <input
+                bs-form-control
+
+                type="text"
+                ng-model="valueToSave"
+                label="Value"
+                label-class="col-xs-3 col-sm-2 col-lg-1"
+                class="col-xs-9 col-sm-10 col-lg-11"
+                placeholder="Value"
+                />
+
+        <button class="btn btn-primary" ng-click="saveEinzelwerte()">save</button>
+
+    </div>
+
+</div>
+
