@@ -23,7 +23,7 @@ sdApp.controller('DE_LocalStorageEinzelwerteCtrl', function ($scope) {
     }
 
     $scope.removeKeyFromLocalStorage = function() {
-        localStorage.removeItem($scope.key);
+        localStorage.removeItem($scope.keyToRemove);
     }
 
 

@@ -22,7 +22,7 @@
                 bs-form-control
 
                 type="text"
-                ng-model="ValueToSave"
+                ng-model="valueToSave"
                 label="Value"
                 label-class="col-xs-3 col-sm-2 col-lg-1"
                 class="col-xs-9 col-sm-10 col-lg-11"
@@ -31,7 +31,7 @@
 
 
         <a class="btn btn-primary" ng-click="saveEinzelwerte()">save</a>
-        <a class="btn btn-danger" ng-click="removeKeyFromLocalStorage()">delete key</a>
+
 
         <h2 class="panel-title">
             Check what's saved?
@@ -49,9 +49,23 @@
                 />
 
         Key "{{ keyLoaded }}" has value "{{ valueLoadedFromLocalStorage }}"<br>
-        <!--Key "{{ key }}" has value "{{ localStorage.key }}"<br>-->
+        <a class="btn btn-primary" ng-click="updateEinzelwerteView()">update</a>
 
-        <a class="btn btn-default" ng-click="updateEinzelwerteView()">update</a>
+        <h2 class="panel-title">
+            Remove a key
+        </h2>
+
+        <input
+                bs-form-control
+
+                type="text"
+                ng-model="keyToRemove"
+                label="Key"
+                label-class="col-xs-3 col-sm-2 col-lg-1"
+                class="col-xs-9 col-sm-10 col-lg-11"
+                placeholder="Key"
+                />
+        <a class="btn btn-danger" ng-click="removeKeyFromLocalStorage()">delete key</a>
 
     </div>
 

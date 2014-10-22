@@ -1,6 +1,5 @@
 <div ng-controller="DE_LocalStorageMediendatenCtrl">
 
-
     <div class="panel">
 
         <h2 class="panel-title">
@@ -8,26 +7,28 @@
         </h2>
 
         <a class="btn btn-primary" ng-click="image_prev()"><-</a>
-        <img src="{{ images[currentImage] }}"><br>
+        <img src="{{ images[currentImage] }}">
         <a class="btn btn-primary" ng-click="image_next()">-></a><br>
-
 
         <h2 class="panel-title">
             Actions
         </h2>
 
+        <a ng-click="saveImageToLocalStorage()" class="btn btn-primary">save image to LS</a>
+        <a ng-click="deleteImageFromLocalStorage()" class="btn btn-danger">delete from LS</a>
 
-        <a ng-click="saveImageToLocalStorage()" class="btn btn-primary">save image to LS</a><br>
-        <a ng-click="deleteImageFromLocalStorage()" class="btn btn-danger">delete from LS</a><br>
-        <a ng-click="showImageInLocalStorage()" class="btn btn-primary">show Image in LS</a><br>
+        <h2 class="panel-title">
+            Image loaded from LocalStorage:
+        </h2>
+        <img id="imagePlaceholder">
+        <a class="btn btn-default" ng-click="loadImageFromLocalStorage()">update</a>
+        <!--<a ng-click="loadImageFromLocalStorage()" class="btn btn-primary">load image from LS</a>-->
 
 
         <h2 class="panel-title">
-            Loaded from LocalStorage:
+            Show the string that represents the image
         </h2>
-        <a ng-click="loadImageFromLocalStorage()" class="btn btn-primary">load image from LS</a><br>
-        <img id="imagePlaceholder"><br>
-
+        <a ng-click="showImageInLocalStorage()" class="btn btn-primary">show Image in LS</a>
 
     </div>
 </div>

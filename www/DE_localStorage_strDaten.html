@@ -6,6 +6,7 @@
             Dataset: {{ selectedDataset }} (size: {{ data.length }})
         </h2>
         <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change Dataset</a>
+        <a class="btn btn-primary" ng-click="startJSONImport()">startJSONImport</a>
 
         <h2 class="panel-title">
             How many addresses?
@@ -22,7 +23,7 @@
             Actions
         </h2>
         <a ng-click="createTable()" class="btn btn-primary">create Table</a>
-        <a class="btn btn-primary" ng-click="startJSONImport()">startJSONImport</a>
+
 
         <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()">saveTableToLocalStorage</a>
         <a class="btn btn-primary" ng-click="loadTable1FromLocalStorage()">loadTable1FromLocalStorage</a>
@@ -32,37 +33,31 @@
         <h2 class="panel-title">
             Table Original - ({{ tableOriginal.length }} addresses)
         </h2>
-    <table style="width:100%">
-        <thead>
-        <tr>
-            <td>
-                <b>First Name</b>
-            </td>
-            <td>
-                <b>Last Name</b>
-            </td>
-            <td>
-                <b>Street</b>
-            </td>
-            <td>
-                <b>...</b>
-            </td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="row in tableOriginal">
-            <td>
-                {{ row[0] }}
-            </td>
-            <td>
-                {{ row[1] }}
-            </td>
-            <td>
-                {{ row[2] }}
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <table style="width:100%">
+            <thead>
+            <tr>
+                <td>
+                    <b>First Name</b>
+                </td>
+                <td>
+                    <b>Last Name</b>
+                </td>
+                <td>
+                    <b>...</b>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in tableOriginal">
+                <td>
+                    {{ row[0] }}
+                </td>
+                <td>
+                    {{ row[1] }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
         <h2 class="panel-title">
             Table - loaded from LocalStorage ({{ tableFromLocalStorage.length }} addresses)
@@ -78,9 +73,6 @@
                     <b>Last Name</b>
                 </td>
                 <td>
-                    <b>Street</b>
-                </td>
-                <td>
                     <b>...</b>
                 </td>
             </tr>
@@ -92,9 +84,6 @@
                 </td>
                 <td>
                     {{ row[1] }}
-                </td>
-                <td>
-                    {{ row[2] }}
                 </td>
             </tr>
             </tbody>

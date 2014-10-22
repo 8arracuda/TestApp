@@ -3,6 +3,10 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
     $scope.numberOfRows = 1;
 
     $scope.data = [];
+    $scope.tableOriginal = [];
+    $scope.tableFromLocalStorage = [];
+
+
 
     $scope.datasets = [
         'data01.json',
@@ -75,7 +79,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
     $scope.saveTable1ToLocalStorage = function() {
 
-        alert('will save ' + $scope.numberOfRows + ' addresses to LocalStorage' );
+        //alert('will save ' + $scope.numberOfRows + ' addresses to LocalStorage' );
 
 
         for (var i = 0; i< $scope.numberOfRows; i++) {
@@ -91,7 +95,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
         localStorage.setItem('table1_numberOfAddresses', $scope.numberOfRows);
 
-        alert('saved' + $scope.numberOfRows + 'to LocalStorage (Method 1)');
+        //alert('saved' + $scope.numberOfRows + 'to LocalStorage (Method 1)');
 
 
     }
@@ -117,7 +121,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
         }
 
-        alert($scope.tableFromLocalStorage);
+        //alert($scope.tableFromLocalStorage);
 
     }
 
@@ -136,7 +140,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
 
         }
-            alert('deleted Items referenced to table1 from LocalStorage');
+            //alert('deleted Items referenced to table1 from LocalStorage');
         localStorage.removeItem('table1_numberOfAddresses');
 
     }

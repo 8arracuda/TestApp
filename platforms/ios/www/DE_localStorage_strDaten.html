@@ -6,23 +6,26 @@
             Dataset: {{ selectedDataset }} (size: {{ data.length }})
         </h2>
         <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change Dataset</a>
+        <a class="btn btn-primary" ng-click="startJSONImport()">startJSONImport</a>
 
         <h2 class="panel-title">
             How many addresses?
         </h2>
 
-        <a ng-click="$parent.numberOfRows=$parent.numberOfRows-10" class="btn btn-default">-10</a>
-        <a ng-click="$parent.numberOfRows=$parent.numberOfRows-1" class="btn btn-default">-1</a>
-        <b>{{ $parent.numberOfRows }}</b>
-        <a ng-click="$parent.numberOfRows=$parent.numberOfRows+1" class="btn btn-default">+1</a>
-        <a ng-click="$parent.numberOfRows=$parent.numberOfRows+10" class="btn btn-default">+10</a>
+        <a ng-click="$parent.numberOfRows=$parent.numberOfRows-10" class="btn btn-default col-xs-2">-10</a>
+        <a ng-click="$parent.numberOfRows=$parent.numberOfRows-1" class="btn btn-default col-xs-2">-1</a>
+        <div class="col-xs-8">
+            <b>{{ $parent.numberOfRows }}</b>
+        </div>
+        <a ng-click="$parent.numberOfRows=$parent.numberOfRows+1" class="btn btn-default col-xs-2">+1</a>
+        <a ng-click="$parent.numberOfRows=$parent.numberOfRows+10" class="btn btn-default col-xs-2">+10</a>
 
 
         <h2 class="panel-title">
             Actions
         </h2>
         <a ng-click="createTable()" class="btn btn-primary">create Table</a>
-        <a class="btn btn-primary" ng-click="startJSONImport()">startJSONImport</a>
+
 
         <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()">saveTableToLocalStorage</a>
         <a class="btn btn-primary" ng-click="loadTable1FromLocalStorage()">loadTable1FromLocalStorage</a>
@@ -42,9 +45,6 @@
                 <b>Last Name</b>
             </td>
             <td>
-                <b>Street</b>
-            </td>
-            <td>
                 <b>...</b>
             </td>
         </tr>
@@ -56,9 +56,6 @@
             </td>
             <td>
                 {{ row[1] }}
-            </td>
-            <td>
-                {{ row[2] }}
             </td>
         </tr>
         </tbody>
@@ -78,9 +75,6 @@
                     <b>Last Name</b>
                 </td>
                 <td>
-                    <b>Street</b>
-                </td>
-                <td>
                     <b>...</b>
                 </td>
             </tr>
@@ -92,9 +86,6 @@
                 </td>
                 <td>
                     {{ row[1] }}
-                </td>
-                <td>
-                    {{ row[2] }}
                 </td>
             </tr>
             </tbody>
