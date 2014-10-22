@@ -1,6 +1,5 @@
 sdApp.controller('DE_LocalStorageEinzelwerteCtrl', function ($scope) {
 
-
     $scope.keyToLoad  = "a";
     $scope.keyToSave  = "a";
     $scope.valueToSave  = "b";

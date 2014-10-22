@@ -7,7 +7,6 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
     $scope.tableFromLocalStorage = [];
 
 
-
     $scope.datasets = [
         'data01.json',
         'data02.json',
@@ -35,11 +34,8 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
     }
 
 
-
-
     //kopiert und modifiziert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
-    $scope.startJSONImport = function() {
-        //var pathOfFileToRead = "res/data01.json";
+    $scope.startJSONImport = function () {
         var pathOfFileToRead = 'res/' + $scope.selectedDataset;
 
 
@@ -50,7 +46,6 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
         $scope.data = JSON.parse(contentsOfFileAsString);
 
-        //alert($scope.data.length);
         console.log('file ' + $scope.selectedDataset + "successfully loaded");
 
     }
@@ -77,12 +72,9 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
     }
 
 
-    $scope.saveTable1ToLocalStorage = function() {
+    $scope.saveTable1ToLocalStorage = function () {
 
-        //alert('will save ' + $scope.numberOfRows + ' addresses to LocalStorage' );
-
-
-        for (var i = 0; i< $scope.numberOfRows; i++) {
+        for (var i = 0; i < $scope.numberOfRows; i++) {
 
             localStorage.setItem('table1_' + i + '_firstname', $scope.data[i][0]);
             localStorage.setItem('table1_' + i + '_lastname', $scope.data[i][1]);
@@ -95,12 +87,10 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
         localStorage.setItem('table1_numberOfAddresses', $scope.numberOfRows);
 
-        //alert('saved' + $scope.numberOfRows + 'to LocalStorage (Method 1)');
-
 
     }
 
-    $scope.loadTable1FromLocalStorage = function() {
+    $scope.loadTable1FromLocalStorage = function () {
 
         numberOfRows = localStorage.getItem('table1_numberOfAddresses');
 
@@ -121,11 +111,9 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
         }
 
-        //alert($scope.tableFromLocalStorage);
-
     }
 
-    $scope.deleteTable1FromLocalStorage = function() {
+    $scope.deleteTable1FromLocalStorage = function () {
 
         numberOfRows = localStorage.getItem('table1_numberOfAddresses');
 
@@ -140,7 +128,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
 
         }
-            //alert('deleted Items referenced to table1 from LocalStorage');
+
         localStorage.removeItem('table1_numberOfAddresses');
 
     }

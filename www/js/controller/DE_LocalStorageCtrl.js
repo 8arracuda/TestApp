@@ -38,5 +38,12 @@ sdApp.controller('DE_LocalStorageCtrl', function ($scope, $rootScope) {
 
     $scope.enableTab_einzelwerte();
 
+    $scope.deleteItem = function (key) {
+        var confirmed = confirm('do you really want to delete key "' + key + '"?')
+
+        if (confirmed == true) {
+            localStorage.removeItem(key);
+        }
+    }
 
 });
