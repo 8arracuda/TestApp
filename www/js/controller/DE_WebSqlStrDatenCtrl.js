@@ -1,3 +1,3 @@
-sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope) {
+sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
 });

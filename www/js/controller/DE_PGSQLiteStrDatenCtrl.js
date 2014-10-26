@@ -1,4 +1,4 @@
-sdApp.controller('DE_PGSQLiteStrDatenCtrl', function ($scope) {
+sdApp.controller('DE_PGSQLiteStrDatenCtrl', function ($scope, $rootScope) {
 
 
 
