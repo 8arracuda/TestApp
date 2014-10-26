@@ -60,6 +60,13 @@ sdApp.controller('DE_LocalStorageMediendatenCtrl', function ($scope) {
 
 
 
+
+
+    //load image from localStorage when page is loaded
+    $scope.loadImageFromLocalStorage();
+
+
+
 //------------------------
 //------------------------
 //------------------------

@@ -2,7 +2,6 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
 
     $rootScope.section='DE';
 
-
     $scope.enableTab_einzelwerte = function () {
         $scope.tab = 1;
         $scope.stringForTitle = 'WS - Einzelwerte';
@@ -20,6 +19,21 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
         $scope.stringForTitle = 'WS Mediendaten';
         $scope.stringForRightButton = 'MED';
     };
+
+
+    //$scope.databases = [];
+    //$scope.initWebSQL();
+    //
+    //
+    //
+    //
+    //$scope.initWebSQL = function () {
+    //    console.log('initWebSQL start');
+    //    dbWebSQL = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
+    //    //dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
+    //    dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL);
+    //    console.log('initWebSQL executed');
+    //}
 
 
     $scope.enableTab_einzelwerte();

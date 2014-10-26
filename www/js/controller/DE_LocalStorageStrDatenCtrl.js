@@ -1,41 +1,8 @@
 sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
-    $scope.numberOfRows = 1;
-
-    $scope.data = [];
-    $scope.tableOriginal = [];
-    $scope.tableFromLocalStorage = [];
-
-
-    $scope.datasets = [
-        'data01.json',
-        'data02.json',
-        'data03.json',
-        'data04.json',
-        'data05.json',
-        'data06.json',
-        'data07.json',
-        'data08.json',
-        'data09.json',
-        'data10.json'
-    ];
-
-    $scope.selectedDataset = $scope.datasets[0];
-
-    $scope.createTable = function () {
-
-        $scope.tableOriginal = [];
-
-        for (var i = 0; i < $scope.numberOfRows; i++) {
-
-            $scope.tableOriginal.push($scope.data[i]);
-
-        }
-    }
-
 
     //kopiert und modifiziert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
-    $scope.startJSONImport = function () {
+    startJSONImport = function () {
         var pathOfFileToRead = 'res/' + $scope.selectedDataset;
 
 
@@ -46,7 +13,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
 
         $scope.data = JSON.parse(contentsOfFileAsString);
 
-        console.log('file ' + $scope.selectedDataset + "successfully loaded");
+        console.log('dataset ' + $scope.selectedDataset + " loaded successfully");
 
     }
 
@@ -67,12 +34,75 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
     }
 
 
+    $scope.numberOfRows = 5;
+
+    $scope.data = [];
+    $scope.tableOriginal = [];
+    $scope.tableFromLocalStorage = [];
+
+
+    $scope.datasets = [
+        'data01_small.json',
+        'data01.json',
+        'data02.json',
+        'data03.json',
+        'data04.json',
+        'data05.json',
+        'data06.json',
+        'data07.json',
+        'data08.json',
+        'data09.json',
+        'data10.json'
+    ];
+
+    $scope.selectedDataset = $scope.datasets[0];
+    startJSONImport();
+
+    $scope.decreaseNumberOfRowsBy = function (i) {
+        $scope.numberOfRows = $scope.numberOfRows - i;
+
+        if ($scope.numberOfRows < 0) {
+            $scope.numberOfRows = 0;
+        }
+    };
+
+    $scope.increaseNumberOfRowsBy = function (i) {
+        $scope.numberOfRows = $scope.numberOfRows + i;
+
+        if ($scope.numberOfRows > $scope.data.length) {
+            $scope.numberOfRows = $scope.data.length;
+        }
+    };
+
+
+
+    $scope.createTable = function () {
+
+        $scope.tableOriginal = [];
+
+        for (var i = 0; i < $scope.numberOfRows; i++) {
+
+            $scope.tableOriginal.push($scope.data[i]);
+
+        }
+    };
+
+
+    $scope.selectAndLoadDataset = function (dataset) {
+
+        $scope.selectedDataset = dataset;
+        startJSONImport();
+
+    };
+
     $scope.openDatasetSelectionOverlay = function () {
         $scope.toggle('datasetSelectionOverlay', 'on');
-    }
+    };
 
 
     $scope.saveTable1ToLocalStorage = function () {
+
+        $scope.deleteTable1FromLocalStorage();
 
         for (var i = 0; i < $scope.numberOfRows; i++) {
 
@@ -88,7 +118,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
         localStorage.setItem('table1_numberOfAddresses', $scope.numberOfRows);
 
 
-    }
+    };
 
     $scope.loadTable1FromLocalStorage = function () {
 

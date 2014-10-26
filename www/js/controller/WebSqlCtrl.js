@@ -40,7 +40,7 @@ sdApp.controller('WebSqlCtrl', function ($scope) {
     };
 
     $scope.fooCallback = function() {
-      alert('fooCallback');
+        alert('fooCallback');
     };
 
     $scope.fooErrorHandler = function() {

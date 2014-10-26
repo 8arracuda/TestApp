@@ -2,93 +2,122 @@
 
     <div class="panel" bs-panel>
 
-        <h2 class="panel-title">
-            Dataset: {{ selectedDataset }} (size: {{ data.length }})
-        </h2>
-        <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change Dataset</a>
-        <a class="btn btn-primary" ng-click="startJSONImport()">startJSONImport</a>
+        <!--<h2 class="panel-title">-->
+        <!--{{ data.length | number }} addresses loaded from Dataset {{ selectedDataset }}-->
+        <!--</h2>-->
 
+        <h2 class="panel-title">
+            loaded from Dataset<br>
+            {{ data.length | number }} addresses
+        </h2>
+
+        <div class="panel-body">
+
+
+            {{ selectedDataset }}
+
+            <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change Dataset</a>
+
+        </div>
         <h2 class="panel-title">
             How many addresses?
         </h2>
 
-        <a ng-click="$parent.numberOfRows=$parent.numberOfRows-10" class="btn btn-default">-10</a>
-        <a ng-click="$parent.numberOfRows=$parent.numberOfRows-1" class="btn btn-default">-1</a>
-        <b>{{ $parent.numberOfRows }}</b>
-        <a ng-click="$parent.numberOfRows=$parent.numberOfRows+1" class="btn btn-default">+1</a>
-        <a ng-click="$parent.numberOfRows=$parent.numberOfRows+10" class="btn btn-default">+10</a>
+        <div class="panel-body">
+            <a ng-click="decreaseNumberOfRowsBy(10)" class="btn btn-default">-10</a>
+            <a ng-click="decreaseNumberOfRowsBy(1)" class="btn btn-default">-1</a>
+            <b>{{ $parent.numberOfRows }}</b>
+            <a ng-click="increaseNumberOfRowsBy(1)" class="btn btn-default">+1</a>
+            <a ng-click="increaseNumberOfRowsBy(10)" class="btn btn-default">+10</a>
 
+            <br>
 
-        <h2 class="panel-title">
-            Actions
-        </h2>
-        <a ng-click="createTable()" class="btn btn-primary">create Table</a>
-
-
-        <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()">saveTableToLocalStorage</a>
-        <a class="btn btn-primary" ng-click="loadTable1FromLocalStorage()">loadTable1FromLocalStorage</a>
-        <a class="btn btn-danger" ng-click="deleteTable1FromLocalStorage()">deleteTable1FromLocalStorage</a>
-
+            <a ng-click="createTable()" class="btn btn-primary">create Table</a>
+        </div>
 
         <h2 class="panel-title">
-            Table Original - ({{ tableOriginal.length }} addresses)
+            Table (data from dataset)<br>
+            {{ tableOriginal.length | number }} addresses
         </h2>
-        <table style="width:100%">
-            <thead>
-            <tr>
-                <td>
-                    <b>First Name</b>
-                </td>
-                <td>
-                    <b>Last Name</b>
-                </td>
-                <td>
-                    <b>...</b>
-                </td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="row in tableOriginal">
-                <td>
-                    {{ row[0] }}
-                </td>
-                <td>
-                    {{ row[1] }}
-                </td>
-            </tr>
-            </tbody>
-        </table>
+
+        <div class="panel-body">
+
+
+            <table style="width:100%">
+                <thead>
+                <tr>
+                    <td>
+                        <b>First Name</b>
+                    </td>
+                    <td>
+                        <b>Last Name</b>
+                    </td>
+                    <td>
+                        <b>...</b>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in tableOriginal">
+                    <td>
+                        {{ row[0] }}
+                    </td>
+                    <td>
+                        {{ row[1] }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
 
         <h2 class="panel-title">
-            Table - loaded from LocalStorage ({{ tableFromLocalStorage.length }} addresses)
+            Actions on LocalStorage
         </h2>
 
-        <table style="width:100%">
-            <thead>
-            <tr>
-                <td>
-                    <b>First Name</b>
-                </td>
-                <td>
-                    <b>Last Name</b>
-                </td>
-                <td>
-                    <b>...</b>
-                </td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="row in tableFromLocalStorage">
-                <td>
-                    {{ row[0] }}
-                </td>
-                <td>
-                    {{ row[1] }}
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="panel-body">
 
+
+            <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()">saveTableToLocalStorage</a>
+            <a class="btn btn-danger" ng-click="deleteTable1FromLocalStorage()"><i class="fa fa-trash-o"></i> deleteTable1FromLocalStorage</a>
+
+        </div>
+
+        <h2 class="panel-title">
+            Table (data from LocalStorage - {{ tableFromLocalStorage.length | number }} addresses)
+        </h2>
+
+        <div class="panel-body">
+            <a class="btn btn-default" ng-click="loadTable1FromLocalStorage()">update</a><br>
+
+
+            <table style="width:100%">
+                <thead>
+                <tr>
+                    <td>
+                        <b>First Name</b>
+                    </td>
+                    <td>
+                        <b>Last Name</b>
+                    </td>
+                    <td>
+                        <b>...</b>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in tableFromLocalStorage">
+                    <td>
+                        {{ row[0] }}
+                    </td>
+                    <td>
+                        {{ row[1] }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
     </div>
 
     <div overlay="datasetSelectionOverlay">
@@ -106,7 +135,8 @@
 
                         <li class="list-group-item">
                             <div ng-show="dataset == $parent.selectedDataset">(selected)</div>
-                            <a ng-click="$parent.selectedDataset = dataset">{{ dataset }}</a>
+                            <!--<a ng-click="$parent.selectedDataset = dataset">{{ dataset }}</a>-->
+                            <a ng-click="selectAndLoadDataset(dataset)">{{ dataset }}</a>
                         </li>
 
                     </div>

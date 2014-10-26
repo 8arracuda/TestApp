@@ -1,73 +1,82 @@
 <div ng-controller="DE_LocalStorageEinzelwerteCtrl">
 
-    <!--<div class="panel" bs-panel>-->
     <div class="panel">
 
         <h2 class="panel-title">
             Store a key-value pair with LocalStorage
         </h2>
 
-        <input
-                bs-form-control
+        <div class="panel-body">
 
-                type="text"
-                ng-model="keyToSave"
-                label="Key"
-                label-class="col-xs-3 col-sm-2 col-lg-1"
-                class="col-xs-9 col-sm-10 col-lg-11"
-                placeholder="Key"
-                />
+            <input
+                    bs-form-control
 
-        <input
-                bs-form-control
+                    type="text"
+                    ng-model="keyToSave"
+                    label="Key"
+                    label-class="col-xs-3 col-sm-2 col-lg-1"
+                    class="col-xs-9 col-sm-10 col-lg-11"
+                    placeholder="Key"
+                    />
 
-                type="text"
-                ng-model="valueToSave"
-                label="Value"
-                label-class="col-xs-3 col-sm-2 col-lg-1"
-                class="col-xs-9 col-sm-10 col-lg-11"
-                placeholder="Value"
-                />
+            <input
+                    bs-form-control
 
-
-        <!--<a class="btn btn-primary" ng-click="saveEinzelwerte()">save</a>-->
-        <button class="btn btn-primary" ng-click="saveEinzelwerte()">save</button>
+                    type="text"
+                    ng-model="valueToSave"
+                    label="Value"
+                    label-class="col-xs-3 col-sm-2 col-lg-1"
+                    class="col-xs-9 col-sm-10 col-lg-11"
+                    placeholder="Value"
+                    />
 
 
+            <button class="btn btn-primary" ng-click="saveEinzelwerte()">save</button>
+
+
+        </div>
         <h2 class="panel-title">
             Check what's saved?
         </h2>
 
-        <input
-                bs-form-control
+        <div class="panel-body">
 
-                type="text"
-                ng-model="keyToLoad"
-                label="Key"
-                label-class="col-xs-3 col-sm-2 col-lg-1"
-                class="col-xs-9 col-sm-10 col-lg-11"
-                placeholder="Key"
-                />
+            <input
+                    bs-form-control
 
-        Key "{{ keyLoaded }}" has value "{{ valueLoadedFromLocalStorage }}"<br>
-        <a class="btn btn-primary" ng-click="updateEinzelwerteView()">update</a>
+                    type="text"
+                    ng-model="keyToLoad"
+                    label="Key"
+                    label-class="col-xs-3 col-sm-2 col-lg-1"
+                    class="col-xs-9 col-sm-10 col-lg-11"
+                    placeholder="Key"
+                    />
 
+            Key "{{ keyLoaded }}" has value "{{ valueLoadedFromLocalStorage }}"<br>
+            <button class="btn btn-primary" ng-click="updateEinzelwerteView()">update</button>
+
+
+        </div>
         <h2 class="panel-title">
             Remove a key
         </h2>
 
-        <input
-                bs-form-control
+        <div class="panel-body">
 
-                type="text"
-                ng-model="keyToRemove"
-                label="Key"
-                label-class="col-xs-3 col-sm-2 col-lg-1"
-                class="col-xs-9 col-sm-10 col-lg-11"
-                placeholder="Key"
-                />
-        <a class="btn btn-danger" ng-click="removeKeyFromLocalStorage()">delete key</a>
+            <input
+                    bs-form-control
 
+                    type="text"
+                    ng-model="keyToRemove"
+                    label="Key"
+                    label-class="col-xs-3 col-sm-2 col-lg-1"
+                    class="col-xs-9 col-sm-10 col-lg-11"
+                    placeholder="Key"
+                    />
+            <!--<button class="btn btn-danger" ng-click="removeKeyFromLocalStorage()"><i class="fa-trash-o"></i>delete key</button>-->
+            <a class="btn btn-danger" ng-click="removeKeyFromLocalStorage()"><i class="fa fa-trash-o"></i> delete key</a>
+
+        </div>
     </div>
 
 </div>
