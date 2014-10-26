@@ -1,122 +1,41 @@
-sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope) {
+sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
 
-    //kopiert und modifiziert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
-    startJSONImport = function () {
-        var pathOfFileToRead = 'res/' + $scope.selectedDataset;
-
-
-        var contentsOfFileAsString = FileHelper.readStringFromFileAtPath
-        (
-            pathOfFileToRead
-        );
-
-        $scope.data = JSON.parse(contentsOfFileAsString);
-
-        console.log('dataset ' + $scope.selectedDataset + " loaded successfully");
-
-    }
-
-
-//kopiert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
-    function FileHelper() {
-    }
-
-    {
-        FileHelper.readStringFromFileAtPath = function (pathOfFileToReadFrom) {
-            var request = new XMLHttpRequest();
-            request.open("GET", pathOfFileToReadFrom, false);
-            request.send(null);
-            var returnValue = request.responseText;
-
-            return returnValue;
-        }
-    }
-
-
-    $scope.numberOfRows = 5;
-
-    $scope.data = [];
-    $scope.tableOriginal = [];
-    $scope.tableFromLocalStorage = [];
-
-
-    $scope.datasets = [
-        'data01_small.json',
-        'data01.json',
-        'data02.json',
-        'data03.json',
-        'data04.json',
-        'data05.json',
-        'data06.json',
-        'data07.json',
-        'data08.json',
-        'data09.json',
-        'data10.json'
-    ];
-
-    $scope.selectedDataset = $scope.datasets[0];
-    startJSONImport();
-
-    $scope.decreaseNumberOfRowsBy = function (i) {
-        $scope.numberOfRows = $scope.numberOfRows - i;
-
-        if ($scope.numberOfRows < 0) {
-            $scope.numberOfRows = 0;
-        }
-    };
-
-    $scope.increaseNumberOfRowsBy = function (i) {
-        $scope.numberOfRows = $scope.numberOfRows + i;
-
-        if ($scope.numberOfRows > $scope.data.length) {
-            $scope.numberOfRows = $scope.data.length;
-        }
-    };
-
-
-
-    $scope.createTable = function () {
-
-        $scope.tableOriginal = [];
-
-        for (var i = 0; i < $scope.numberOfRows; i++) {
-
-            $scope.tableOriginal.push($scope.data[i]);
-
-        }
-    };
-
-
-    $scope.selectAndLoadDataset = function (dataset) {
-
-        $scope.selectedDataset = dataset;
-        startJSONImport();
-
-    };
-
-    $scope.openDatasetSelectionOverlay = function () {
-        $scope.toggle('datasetSelectionOverlay', 'on');
-    };
-
+    $scope.tableFromWebSQL = [];
 
     $scope.saveTable1ToLocalStorage = function () {
 
+        //alert('will save ' + $rootScope.tableOriginal.length + " addresses to LocalStorage");
+        alert('will save ' + $rootScope.numberOfRows + " addresses to LocalStorage");
+
         $scope.deleteTable1FromLocalStorage();
 
-        for (var i = 0; i < $scope.numberOfRows; i++) {
+        for (var i = 0; i < $rootScope.numberOfRows; i++) {
 
-            localStorage.setItem('table1_' + i + '_firstname', $scope.data[i][0]);
-            localStorage.setItem('table1_' + i + '_lastname', $scope.data[i][1]);
-            localStorage.setItem('table1_' + i + '_street', $scope.data[i][2]);
-            localStorage.setItem('table1_' + i + '_zipcode', $scope.data[i][3]);
-            localStorage.setItem('table1_' + i + '_city', $scope.data[i][4]);
-            localStorage.setItem('table1_' + i + '_email', $scope.data[i][5]);
+            //localStorage.setItem('table1_' + i + '_firstname', $scope.data[i][0]);
+            //localStorage.setItem('table1_' + i + '_lastname', $scope.data[i][1]);
+            //localStorage.setItem('table1_' + i + '_street', $scope.data[i][2]);
+            //localStorage.setItem('table1_' + i + '_zipcode', $scope.data[i][3]);
+            //localStorage.setItem('table1_' + i + '_city', $scope.data[i][4]);
+            //localStorage.setItem('table1_' + i + '_email', $scope.data[i][5]);
+
+            //localStorage.setItem('table1_' + i + '_firstname', $rootScope.data[i][0]);
+            //localStorage.setItem('table1_' + i + '_lastname', $rootScope.data[i][1]);
+            //localStorage.setItem('table1_' + i + '_street', $rootScope.data[i][2]);
+            //localStorage.setItem('table1_' + i + '_zipcode', $rootScope.data[i][3]);
+            //localStorage.setItem('table1_' + i + '_city', $rootScope.data[i][4]);
+            //localStorage.setItem('table1_' + i + '_email', $rootScope.data[i][5]);
+
+            localStorage.setItem('table1_' + i + '_firstname', $rootScope.tableOriginal[i][0]);
+            localStorage.setItem('table1_' + i + '_lastname', $rootScope.tableOriginal[i][1]);
+            localStorage.setItem('table1_' + i + '_street', $rootScope.tableOriginal[i][2]);
+            localStorage.setItem('table1_' + i + '_zipcode', $rootScope.tableOriginal[i][3]);
+            localStorage.setItem('table1_' + i + '_city', $rootScope.tableOriginal[i][4]);
+            localStorage.setItem('table1_' + i + '_email', $rootScope.tableOriginal[i][5]);
 
         }
 
-        localStorage.setItem('table1_numberOfAddresses', $scope.numberOfRows);
-
+        localStorage.setItem('table1_numberOfAddresses', $rootScope.numberOfRows);
 
     };
 
