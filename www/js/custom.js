@@ -109,6 +109,70 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
     });
 
 
+sdApp.directive('ngMediendatenImageSelector', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'MediendatenImageSelector.html'
+    }
+})
+    .controller('MediendatenImageSelectorCtrl', function ($scope, $rootScope) {
+
+        $scope.images = [
+            'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
+        ];
+
+        $scope.currentImage = 0;
+
+        $scope.image_next = function () {
+            if ($scope.currentImage == $scope.images.length - 1) {
+                $scope.currentImage = 0;
+            } else {
+                $scope.currentImage++;
+            }
+        };
+
+        $scope.image_prev = function () {
+            if ($scope.currentImage == 0) {
+                $scope.currentImage = $scope.images.length - 1;
+            } else {
+                $scope.currentImage--;
+            }
+        };
+
+    });
+
+sdApp.directive('ngMediendatenVideoSelector', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'MediendatenVideoSelector.html'
+    }
+})
+    .controller('MediendatenVideoSelectorCtrl', function ($scope, $rootScope) {
+
+        $scope.videos = [
+            'res/H264_test4_Talkingheadclipped_mp4_480x320.mp4', 'res/H264_test1_Talkinghead_mp4_480x360.mp4', 'res/mov_bbb.mp4'
+        ];
+
+        $scope.currentVideo = 0;
+
+        $scope.video_next = function () {
+            if ($scope.currentVideo == $scope.videos.length - 1) {
+                $scope.currentVideo= 0;
+            } else {
+                $scope.currentImage++;
+            }
+        };
+
+        $scope.video_prev = function () {
+            if ($scope.currentVideo == 0) {
+                $scope.currentVideo = $scope.videos.length - 1;
+            } else {
+                $scope.currentVideo--;
+            }
+        };
+
+    });
+
 sdApp.config(function ($routeProvider) {
 
     $routeProvider.

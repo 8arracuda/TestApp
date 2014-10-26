@@ -2,16 +2,8 @@
 
     <div class="panel">
 
-        <h2 class="panel-title">
-            Select an image
-        </h2>
+        <div ng-mediendaten-image-selector></div>
 
-        <div class="panel-body">
-
-            <a class="btn btn-primary" ng-click="image_prev()"><-</a>
-            <img src="{{ images[currentImage] }}">
-            <a class="btn btn-primary" ng-click="image_next()">-></a><br>
-        </div>
         <h2 class="panel-title">
             Actions
         </h2>
@@ -46,29 +38,7 @@
 
     <div class="panel">
 
-        <h2 class="panel-title">
-            Select an video ({{ currentVideo }})
-        </h2>
-
-        <div class="panel-body">
-
-            <a class="btn btn-primary" ng-click="video_prev()"><-</a>
-            <!--<video src="{{ videos[currentVideo] }}" type="video/mp4">-->
-            <!--<video src="res/H264_test4_Talkingheadclipped_mp4_480x320.mp4" type="video/mp4">-->
-
-            <!--<video width="320" height="240" controls>-->
-            <!--<source src="{{ videos[currentVideo] }}" type="video/mp4">-->
-            <!--</video>-->
-
-            <!--autoplay loop muted controls-->
-
-
-            <video ng-src="{{ videos[currentVideo] }}" width="320" height="240" loop muted controls>
-                <img src="/res/red_circle.jpg" alt="Video not available or not supported">
-            </video>
-            <a class="btn btn-primary" ng-click="video_next()">-></a><br>
-
-        </div>
+        <div ng-mediendaten-video-selector></div>
 
         <h2 class="panel-title">
             Actions

@@ -12,26 +12,12 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         for (var i = 0; i < $rootScope.numberOfRows; i++) {
 
-            //localStorage.setItem('table1_' + i + '_firstname', $scope.data[i][0]);
-            //localStorage.setItem('table1_' + i + '_lastname', $scope.data[i][1]);
-            //localStorage.setItem('table1_' + i + '_street', $scope.data[i][2]);
-            //localStorage.setItem('table1_' + i + '_zipcode', $scope.data[i][3]);
-            //localStorage.setItem('table1_' + i + '_city', $scope.data[i][4]);
-            //localStorage.setItem('table1_' + i + '_email', $scope.data[i][5]);
-
-            //localStorage.setItem('table1_' + i + '_firstname', $rootScope.data[i][0]);
-            //localStorage.setItem('table1_' + i + '_lastname', $rootScope.data[i][1]);
-            //localStorage.setItem('table1_' + i + '_street', $rootScope.data[i][2]);
-            //localStorage.setItem('table1_' + i + '_zipcode', $rootScope.data[i][3]);
-            //localStorage.setItem('table1_' + i + '_city', $rootScope.data[i][4]);
-            //localStorage.setItem('table1_' + i + '_email', $rootScope.data[i][5]);
-
-            localStorage.setItem('table1_' + i + '_firstname', $rootScope.tableOriginal[i][0]);
-            localStorage.setItem('table1_' + i + '_lastname', $rootScope.tableOriginal[i][1]);
-            localStorage.setItem('table1_' + i + '_street', $rootScope.tableOriginal[i][2]);
-            localStorage.setItem('table1_' + i + '_zipcode', $rootScope.tableOriginal[i][3]);
-            localStorage.setItem('table1_' + i + '_city', $rootScope.tableOriginal[i][4]);
-            localStorage.setItem('table1_' + i + '_email', $rootScope.tableOriginal[i][5]);
+            localStorage.setItem('table1_' + i + '_firstname', $rootScope.data[i][0]);
+            localStorage.setItem('table1_' + i + '_lastname', $rootScope.data[i][1]);
+            localStorage.setItem('table1_' + i + '_street', $rootScope.data[i][2]);
+            localStorage.setItem('table1_' + i + '_zipcode', $rootScope.data[i][3]);
+            localStorage.setItem('table1_' + i + '_city', $rootScope.data[i][4]);
+            localStorage.setItem('table1_' + i + '_email', $rootScope.data[i][5]);
 
         }
 
@@ -41,7 +27,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.loadTable1FromLocalStorage = function () {
 
-        numberOfRows = localStorage.getItem('table1_numberOfAddresses');
+        var numberOfRows = localStorage.getItem('table1_numberOfAddresses');
 
         $scope.tableFromLocalStorage = [];
 
