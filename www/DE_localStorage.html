@@ -71,6 +71,10 @@
     </div>
 </div>
 
+
+<div ng-include src="'DE_localStorage_overlay.html'"></div>
+
+
 <!--<div class="navbar navbar-app navbar-absolute-bottom">-->
     <!--<div class="btn-group justified">-->
         <!--<a ng-click="functionForRightButton()" class="btn btn-navbar"><i class="fa fa-database fa-navbar"></i> show-->
@@ -80,41 +84,3 @@
 
 
 
-
-
-<!--TODO: Das Overlay in eine seperate Datei auslagern-->
-<div overlay="myOverlay">
-    <div class="scrollable">
-        <div class="scrollable-content">
-
-            <h4 class="overlay-title">LocalStorage - saved keys (click to see the value)</h4>
-
-            <p toggle="off" bubble target="myOverlay">
-                <span class="btn btn-primary">close</span>
-            </p>
-
-            <!--<input type="search" ng-model="searchText" class="form-control" placeholder="Search..">-->
-
-            <div class="list-group">
-                <div ng-repeat="(key,value) in localStorage">
-
-                    <li class="list-group-item">
-                        <a ng-click="deleteItem(key)"><i class="fa fa-trash-o pull-right"></i></a>
-                        <b ng-click="visible = !visible">{{ key }}</b><br>
-
-                        <div ng-show="visible">{{ value }}</div>
-                    </li>
-
-                </div>
-            </div>
-
-            <p toggle="off" bubble target="myOverlay">
-                <span class="btn btn-primary">close</span>
-            </p>
-        </div>
-    </div>
-
-    LocalStorage has {{ localStorage.length }} items.<br>
-    LocalStorage has {{ $parent.localStorage.length }} items.<br>
-
-</div>
