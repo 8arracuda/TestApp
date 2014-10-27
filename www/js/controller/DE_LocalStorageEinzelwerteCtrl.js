@@ -21,11 +21,11 @@ sdApp.controller('DE_LocalStorageEinzelwerteCtrl', function ($scope) {
         $scope.localStorage = localStorage;
         $scope.keyLoaded = $scope.keyToLoad;
         $scope.valueLoadedFromLocalStorage = localStorage.getItem($scope.keyLoaded)
-    }
+    };
 
     $scope.removeKeyFromLocalStorage = function() {
         localStorage.removeItem($scope.keyToRemove);
-    }
+    };
 
 
 });

@@ -1,5 +1,5 @@
 <div content-for="title">
-    <span>{{ stringForTitle }}</span>
+    <button ng-click="openWebSQLOverlay()">test</button><span>{{ stringForTitle }}</span>
 </div>
 
 <div content-for="navbarAction">
@@ -75,9 +75,13 @@
         <div class="scrollable-content">
 
             Databases<br>
-            <div ng-repeat="database in databases">
-                {{ database }}<br>
-            </div>
+            <!--<div ng-repeat="database in databases">-->
+                <!--{{ database }}<br>-->
+                <button class="btn btn-default" ng-click="getTablesList()">getTablesList</button>
+                <div ng-repeat="row in tablesInDatabase track by $index">
+                    {{ row.tbl_name }}
+                </div>
+            <!--</div>-->
 
         </div>
     </div>

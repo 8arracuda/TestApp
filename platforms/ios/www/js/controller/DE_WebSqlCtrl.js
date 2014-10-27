@@ -1,6 +1,8 @@
 sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
 
+
     $rootScope.section='DE';
+
 
     $scope.enableTab_einzelwerte = function () {
         $scope.tab = 1;
@@ -20,7 +22,6 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
         $scope.stringForRightButton = 'MED';
     };
 
-
     //$scope.databases = [];
     //$scope.initWebSQL();
     //
@@ -34,7 +35,6 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
     //    dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL);
     //    console.log('initWebSQL executed');
     //}
-
 
     $scope.enableTab_einzelwerte();
 });

@@ -2,11 +2,16 @@
     <span>{{ stringForTitle }}</span>
 </div>
 
+<!--<div content-for="navbarAction">-->
+    <!--<div class="btn btn-navbar">-->
+        <!--<i class="fa fa-plus"></i>{{ stringForRightButton }}-->
+        <!--&lt;!&ndash;<a ng-click="functionForRightButton()"><i class="fa fa-plus"></i>{{ stringForRightButton }}</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="testFunction()"><i class="fa fa-plus"></i>{{ stringForRightButton }}</a>&ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
 <div content-for="navbarAction">
     <div class="btn btn-navbar">
-        <i class="fa fa-plus"></i>{{ stringForRightButton }}
-        <!--<a ng-click="functionForRightButton()"><i class="fa fa-plus"></i>{{ stringForRightButton }}</a>-->
-        <!--<a ng-click="testFunction()"><i class="fa fa-plus"></i>{{ stringForRightButton }}</a>-->
+        <a ng-click="functionForRightButton()"><i class="fa fa-database"></i> {{ stringForRightButton }}</a>
     </div>
 </div>
 
@@ -72,4 +77,51 @@
 
         </div>
     </div>
+</div>
+
+
+<!--TODO: Das Overlay in eine seperate Datei auslagern-->
+<div overlay="myOverlay">
+    <div class="scrollable">
+        <div class="scrollable-content">
+
+            <h4 class="overlay-title">IndexedDB</h4>
+
+            <p toggle="off" bubble target="myOverlay">
+                <span class="btn btn-primary">close</span>
+            </p>
+
+            <!--<input type="search" ng-model="searchText" class="form-control" placeholder="Search..">-->
+
+
+            <button class="btn btn-default" ng-click="listObjectStores()">listObjectStores</button>
+            <div class="list-group">
+                <div ng-repeat="objectStore in objectStores">
+                    <li class="list-group-item">
+                        {{ objectStore }}
+                    </li>
+                </div>
+            </div>
+            <!--<div class="list-group">-->
+            <!--<div ng-repeat="(key,value) in localStorage">-->
+
+            <!--<li class="list-group-item">-->
+            <!--<a ng-click="deleteItem(key)"><i class="fa fa-trash-o pull-right"></i></a>-->
+            <!--<b ng-click="visible = !visible">{{ key }}</b><br>-->
+
+            <!--<div ng-show="visible">{{ value }}</div>-->
+            <!--</li>-->
+
+            <!--</div>-->
+            <!--</div>-->
+
+            <p toggle="off" bubble target="myOverlay">
+                <span class="btn btn-primary">close</span>
+            </p>
+        </div>
+    </div>
+
+    LocalStorage has {{ localStorage.length }} items.<br>
+    LocalStorage has {{ $parent.localStorage.length }} items.<br>
+
 </div>

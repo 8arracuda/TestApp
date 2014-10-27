@@ -1,3 +1,7 @@
+a.list-group-item.ng-binding.ng-scope.active {
+    border-color:  #ffffff;
+}
+
 .overlay {
     -ms-word-break: break-all;
     word-break: break-all;

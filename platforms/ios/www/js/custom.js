@@ -1,5 +1,178 @@
 var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory"]);
 
+
+//    sdApp.controller('firstDirectiveController', ['$scope', function($scope) {
+//    $scope.testVar = 'foobar';
+//}])
+sdApp.directive('ngStrDatenDatasetLoader', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'strDatenDatasetLoader.html'
+    }
+})
+    .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope) {
+
+        $scope.datasets = [
+            'data01_small.json',
+            'data01.json',
+            'data02.json',
+            'data03.json',
+            'data04.json',
+            'data05.json',
+            'data06.json',
+            'data07.json',
+            'data08.json',
+            'data09.json',
+            'data10.json'
+        ];
+
+        $rootScope.numberOfRows = 5;
+
+        $rootScope.data = [];
+        $rootScope.tableOriginal = [];
+
+        //kopiert und modifiziert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
+        startJSONImport = function () {
+            var pathOfFileToRead = 'res/' + $scope.selectedDataset;
+
+            var contentsOfFileAsString = FileHelper.readStringFromFileAtPath
+            (
+                pathOfFileToRead
+            );
+
+            $rootScope.data = JSON.parse(contentsOfFileAsString);
+
+            console.log('dataset ' + $scope.selectedDataset + " loaded successfully");
+
+        };
+
+
+        $scope.selectAndLoadDataset = function (dataset) {
+
+            $scope.selectedDataset = dataset;
+            startJSONImport();
+
+        };
+
+        //kopiert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
+        function FileHelper() {
+        }
+
+        {
+            FileHelper.readStringFromFileAtPath = function (pathOfFileToReadFrom) {
+                var request = new XMLHttpRequest();
+                request.open("GET", pathOfFileToReadFrom, false);
+                request.send(null);
+                var returnValue = request.responseText;
+
+                return returnValue;
+            }
+        }
+
+        $scope.selectedDataset = $scope.datasets[0];
+        startJSONImport();
+
+        $scope.openDatasetSelectionOverlay = function () {
+            $scope.toggle('datasetSelectionOverlay', 'on');
+        };
+
+        $scope.createTable = function () {
+
+            $rootScope.tableOriginal = [];
+
+            for (var i = 0; i < $rootScope.numberOfRows; i++) {
+
+                $rootScope.tableOriginal.push($rootScope.data[i]);
+
+            }
+        };
+
+        $scope.test = function () {
+            alert('test');
+        }
+
+        $scope.decreaseNumberOfRowsBy = function (i) {
+            $rootScope.numberOfRows = $rootScope.numberOfRows - i;
+
+            if ($rootScope.numberOfRows < 0) {
+                $rootScope.numberOfRows = 0;
+            }
+        };
+
+        $scope.increaseNumberOfRowsBy = function (i) {
+            $rootScope.numberOfRows = $rootScope.numberOfRows + i;
+
+            if ($rootScope.numberOfRows > $rootScope.data.length) {
+                $rootScope.numberOfRows = $rootScope.data.length;
+            }
+        };
+    });
+
+
+sdApp.directive('ngMediendatenImageSelector', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'MediendatenImageSelector.html'
+    }
+})
+    .controller('MediendatenImageSelectorCtrl', function ($scope, $rootScope) {
+
+        $scope.images = [
+            'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
+        ];
+
+        $scope.currentImage = 0;
+
+        $scope.image_next = function () {
+            if ($scope.currentImage == $scope.images.length - 1) {
+                $scope.currentImage = 0;
+            } else {
+                $scope.currentImage++;
+            }
+        };
+
+        $scope.image_prev = function () {
+            if ($scope.currentImage == 0) {
+                $scope.currentImage = $scope.images.length - 1;
+            } else {
+                $scope.currentImage--;
+            }
+        };
+
+    });
+
+sdApp.directive('ngMediendatenVideoSelector', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'MediendatenVideoSelector.html'
+    }
+})
+    .controller('MediendatenVideoSelectorCtrl', function ($scope, $rootScope) {
+
+        $scope.videos = [
+            'res/H264_test4_Talkingheadclipped_mp4_480x320.mp4', 'res/H264_test1_Talkinghead_mp4_480x360.mp4', 'res/mov_bbb.mp4'
+        ];
+
+        $scope.currentVideo = 0;
+
+        $scope.video_next = function () {
+            if ($scope.currentVideo == $scope.videos.length - 1) {
+                $scope.currentVideo= 0;
+            } else {
+                $scope.currentImage++;
+            }
+        };
+
+        $scope.video_prev = function () {
+            if ($scope.currentVideo == 0) {
+                $scope.currentVideo = $scope.videos.length - 1;
+            } else {
+                $scope.currentVideo--;
+            }
+        };
+
+    });
+
 sdApp.config(function ($routeProvider) {
 
     $routeProvider.

@@ -31,7 +31,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
     var dbWebSQL;
     $scope.inputString = "";
 
-   $scope.getTablesList = function () {
+    $scope.getTablesList = function () {
 
         $scope.tablesInDatabase = [];
 
@@ -39,7 +39,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
             tx.executeSql('SELECT * FROM sqlite_master WHERE type="table"', [], function (transaction, results) {
 
-                for (var j=0; j<results.rows.length; j++) {
+                for (var j = 0; j < results.rows.length; j++) {
                     var row = results.rows.item(j);
                     $scope.tablesInDatabase.push(row);
                 }
@@ -56,7 +56,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
     }
 
-    $scope.getAllValues= function () {
+    $scope.getAllValues = function () {
 
         console.log('getAllValues start');
         $scope.data = [];
@@ -66,7 +66,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
             tx.executeSql('SELECT * FROM einzelwerte', [], function (transaction, results) {
 
-                for (var j=0; j<results.rows.length; j++) {
+                for (var j = 0; j < results.rows.length; j++) {
                     var row = results.rows.item(j);
                     $scope.data.push(row);
                     //alert(row['keyName']);
@@ -187,7 +187,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
         }
         console.log('gotResults_Check executed');
 
-    }
+    };
 
     $scope.gotResults = function (tx, results) {
 
@@ -210,6 +210,51 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
         $scope.$apply();
 
         console.log('gotResults executed');
-    }
+    };
+
+    $scope.updateEinzelwerteView = function () {
+
+        $scope.keyLoaded = $scope.keyToLoad;
+
+        dbWebSQL.transaction(function (tx) {
+
+            tx.executeSql("SELECT * FROM einzelwerte WHERE keyName = ?", [$scope.keyToLoad], function (transaction, results) {
+
+
+                $scope.valuesLoadedFromWebSQL = [];
+
+                for (var j = 0; j < results.rows.length; j++) {
+                    $scope.valuesLoadedFromWebSQL.push(results.rows.item(j));
+
+                }
+
+                $scope.$apply();
+
+            }, function (t, e) {
+                // couldn't read database
+                alert("couldn't read database (" + e.message + ")");
+            });
+
+        });
+
+    };
+
+    $scope.removeKeyFromWebSQL = function () {
+
+        dbWebSQL.transaction(function (tx) {
+
+            tx.executeSql('DELETE FROM einzelwerte WHERE keyName = ?', [$scope.keyToLoad], function (transaction, results) {
+
+                console.log('deleted rows with key: ' + $scope.keyToLoad);
+
+            }, function (t, e) {
+                // couldn't read database
+                alert("couldn't read database (" + e.message + ")");
+            });
+
+        });
+
+
+    };
 
 });
