@@ -30,4 +30,8 @@ sdApp.controller('DE_IndexedDBCtrl', function ($scope, $rootScope) {
 
     $scope.enableTab_einzelwerte();
 
+
+
+    //Functions for the Overlay
+
 });

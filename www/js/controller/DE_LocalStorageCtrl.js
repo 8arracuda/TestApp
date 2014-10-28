@@ -30,9 +30,13 @@ sdApp.controller('DE_LocalStorageCtrl', function ($scope, $rootScope) {
     };
 
 
-    showLocalStorage = function () {
-        $rootScope.toggle('myOverlay', 'on');
-    };
+
+
+    //Functions for the Overlay
+
+    //showLocalStorage = function () {
+    //    $rootScope.toggle('myOverlay', 'on');
+    //};
 
 
     $scope.enableTab_einzelwerte();

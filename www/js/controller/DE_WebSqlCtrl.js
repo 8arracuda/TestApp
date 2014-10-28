@@ -1,8 +1,6 @@
 sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
 
-
     $rootScope.section='DE';
-
 
     //<für alle Tabs>
     $scope.stringForRightButton = 'show keys';
@@ -29,6 +27,7 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
         //$scope.stringForRightButton = 'MED';
     };
 
+
     //$scope.databases = [];
     //$scope.initWebSQL();
     //
@@ -44,4 +43,63 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
     //}
 
     $scope.enableTab_einzelwerte();
+
+    //Functions for the Overlay
+
+    $scope.initWebSQL = function () {
+        console.log('initWebSQL start');
+        dbWebSQL = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
+        //dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
+        dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL);
+        console.log('initWebSQL executed');
+        $scope.databaseOpened = true;
+    };
+
+    $scope.setupWebSQL = function (tx) {
+        console.log('setupWebSQL start');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS strDaten(id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, street TEXT, city TEXT, zipcode TEXT, email TEXT)');
+        console.log('setupWebSQL executed');
+    };
+
+    $scope.errorHandlerWebSQL = function (e) {
+        console.log('errorHandlerWebSQL start');
+        alert(e.message);
+        console.log(e.message);
+        console.log('errorHandlerWebSQL executed');
+    };
+
+    $scope.showContentOfTableStrDaten = function() {
+
+
+        console.log('getAllValues start');
+        $scope.data = [];
+        tables = [];
+
+        dbWebSQL.transaction(function (tx) {
+
+            tx.executeSql('SELECT * FROM strDaten', [], function (transaction, results) {
+
+
+                $scope.dataForOverlay = [];
+                for (var j = 0; j < results.rows.length; j++) {
+                    var row = results.rows.item(j);
+                    $scope.dataForOverlay.push(row);
+                }
+
+                alert(JSON.stringify($scope.dataForOverlay));
+
+                $scope.$apply();
+
+            }, function (t, e) {
+                // couldn't read database
+                //span.textContent = '(unknown: ' + e.message + ')';
+                alert("couldn't read database");
+            });
+
+
+        });
+
+    };
+
+
 });

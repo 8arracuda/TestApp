@@ -5,6 +5,8 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";
 
+
+
     $scope.saveEinzelwerte = function () {
 
         if (dbWebSQL == null) {

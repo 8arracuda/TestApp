@@ -8,8 +8,38 @@
                 <span class="btn btn-primary">close</span>
             </p>
 
-            <!--<input type="search" ng-model="searchText" class="form-control" placeholder="Search..">-->
+            <button class="btn btn-primary" ng-click="showContentOfTableStrDaten()">showContentOfTableStrDaten</button>
 
+            <table style="width:100%">
+                <thead>
+                <tr>
+                    <td>
+                        <b>id</b>
+                    </td>
+                    <td>
+                        <b>First Name</b>
+                    </td>
+                    <td>
+                        <b>Last Name</b>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in dataForOverlay">
+                    <td>
+                        {{ row.id }}
+                    </td>
+                    <td>
+                        {{ row.firstName }}
+                    </td>
+                    <td>
+                        {{ row.lastName }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!--<input type="search" ng-model="searchText" class="form-control" placeholder="Search..">-->
 
             <button class="btn btn-default" ng-click="listObjectStores()">listObjectStores</button>
             <div class="list-group">
