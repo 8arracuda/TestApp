@@ -3,12 +3,12 @@
     <div class="panel">
 
         <h2 class="panel-title">
-            store values
+            database connection
         </h2>
 
         <div class="panel-body">
+            <button class="btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
             <button class="btn btn-primary" ng-click="initWebSQL()">init/open database</button>
-
         </div>
 
         <h2 class="panel-title">
@@ -16,7 +16,7 @@
         </h2>
 
         <div class="panel-body">
-            DB is empty: {{databaseIsEmpty }} <br>
+
             <input
                     bs-form-control
 
@@ -38,9 +38,11 @@
                     class="col-xs-9 col-sm-10 col-lg-11"
                     placeholder="Value"
                     />
-        </div>
 
         <button class="btn btn-primary" ng-click="saveEinzelwerte()">save</button>
+
+        </div>
+
 
         <h2 class="panel-title">
             Check what's saved?

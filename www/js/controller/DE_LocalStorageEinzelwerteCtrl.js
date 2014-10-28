@@ -4,8 +4,6 @@ sdApp.controller('DE_LocalStorageEinzelwerteCtrl', function ($scope) {
     $scope.keyToSave  = "a";
     $scope.valueToSave  = "b";
 
-
-
     $scope.saveEinzelwerte = function () {
         if ($scope.keyToSave  == '' || $scope.valueToSave == '') {
             alert('You need to enter a key and a value');

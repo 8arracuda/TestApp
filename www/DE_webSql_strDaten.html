@@ -2,12 +2,16 @@
 
     <div class="panel" bs-panel>
 
+        <h2 class="panel-title">
+            database connection
+        </h2>
 
-            <div ng-str-daten-dataset-loader></div>
+        <div class="panel-body">
+            <button class="disabled btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
+            <button class="btn btn-primary" ng-click="initWebSQL()">init/open database</button>
+        </div>
 
-
-
-
+        <div ng-str-daten-dataset-loader></div>
 
         <h2 class="panel-title">
             Table (data from WebSQL - {{ tableFromWebSQL.length | number }} addresses)
@@ -15,7 +19,6 @@
 
         <div class="panel-body">
             <a class="btn btn-default" ng-click="loadTable1FromWebSQL()">update</a><br>
-
 
             <table style="width:100%">
                 <thead>
@@ -44,6 +47,19 @@
             </table>
 
         </div>
+
+
+        <h2 class="panel-title">
+            Actions on WebSQL
+        </h2>
+
+        <div class="panel-body">
+            <button class="btn btn-primary" ng-click="saveTable1ToWebSQL()">saveTable1ToWebSQL</button>
+        </div>
+
+
+
+
     </div>
 
 </div>

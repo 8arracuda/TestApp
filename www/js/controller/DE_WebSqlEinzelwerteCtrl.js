@@ -1,6 +1,6 @@
 sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
-
+    $scope.databaseOpened =  false;
     $scope.keyToLoad = "a";
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";
@@ -54,7 +54,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
             //alert('tables:' + JSON.stringify(tables));
         });
 
-    }
+    };
 
     $scope.getAllValues = function () {
 
@@ -83,7 +83,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
         });
 
         //$scope.$apply();
-    }
+    };
 
 
     $scope.initWebSQL = function () {
@@ -92,7 +92,8 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
         //dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
-    }
+        $scope.databaseOpened = true;
+    };
 
     $scope.setupWebSQL = function (tx) {
         console.log('setupWebSQL start');
@@ -143,7 +144,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
         });
         console.log('testWebSQL executed');
-    }
+    };
 
 
     $scope.check = function () {
@@ -176,7 +177,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
             tx.executeSql('DROP TABLE einzelwerte', [], $scope.gotResults_Check, $scope.errorHandlerWebSQL);
         });
 
-    }
+    };
 
     $scope.gotResults_Check = function (tx, results) {
         console.log('gotResults_Check started');

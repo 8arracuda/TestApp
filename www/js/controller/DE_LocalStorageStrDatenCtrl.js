@@ -46,7 +46,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         }
 
-    }
+    };
 
     $scope.deleteTable1FromLocalStorage = function () {
 
