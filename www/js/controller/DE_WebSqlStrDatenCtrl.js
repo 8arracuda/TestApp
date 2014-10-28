@@ -6,15 +6,15 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
         console.log('initWebSQL start');
         dbWebSQL = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
         //dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-        dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL);
+        dbWebSQL.transaction($scope.createTableStrDaten, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
     };
 
-    $scope.setupWebSQL = function (tx) {
-        console.log('setupWebSQL start');
+    $scope.createTableStrDaten = function (tx) {
+        console.log('createTableStrDaten start');
         tx.executeSql('CREATE TABLE IF NOT EXISTS strDaten(id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, street TEXT, city TEXT, zipcode TEXT, email TEXT)');
-        console.log('setupWebSQL executed');
+        console.log('createTableStrDaten executed');
     };
 
     $scope.errorHandlerWebSQL = function (e) {

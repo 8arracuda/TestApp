@@ -5,8 +5,6 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";
 
-
-
     $scope.saveEinzelwerte = function () {
 
         if (dbWebSQL == null) {
@@ -25,7 +23,10 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
         dbWebSQL.transaction(function (tx) {
 
             tx.executeSql("INSERT INTO einzelwerte(keyName, value) VALUES(?,?)", [$scope.keyToSave, $scope.valueToSave]);
-        }, $scope.fooErrorHandler);
+        }, function errorHandler(transaction, error) {
+            alert("Error : " + transaction.message);
+            alert("Error : " + error.message);
+        });
 
         console.log('addRow executed');
     };
@@ -77,7 +78,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
             }, function (t, e) {
                 // couldn't read database
-                //span.textContent = '(unknown: ' + e.message + ')';
+
                 alert("couldn't read database");
             });
 
@@ -87,20 +88,19 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
         //$scope.$apply();
     };
 
-
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
         dbWebSQL = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
         //dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-        dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL);
+        dbWebSQL.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
     };
 
-    $scope.setupWebSQL = function (tx) {
-        console.log('setupWebSQL start');
+    $scope.createTableEinzelwerte = function (tx) {
+        console.log('createTableEinzelwerte start');
         tx.executeSql('CREATE TABLE IF NOT EXISTS einzelwerte(id INTEGER PRIMARY KEY AUTOINCREMENT, keyName TEXT, value TEXT)');
-        console.log('setupWebSQL executed');
+        console.log('createTableEinzelwerte executed');
     };
 
     $scope.errorHandlerWebSQL = function (e) {
@@ -119,14 +119,6 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
         }, $scope.errorHandlerWebSQL, function () {
             console.log('error occured in dbReadyWebSQL')
         });
-    };
-
-    $scope.fooCallback = function () {
-        alert('fooCallback');
-    };
-
-    $scope.fooErrorHandler = function () {
-        alert('fooErrorHandler');
     };
 
     $scope.deleteWebSQL = function () {
