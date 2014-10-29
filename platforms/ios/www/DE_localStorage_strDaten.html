@@ -1,59 +1,141 @@
 <div ng-controller="DE_LocalStorageStrDatenCtrl">
 
-
     <div class="panel" bs-panel>
-
-
 
         <div ng-str-daten-dataset-loader></div>
 
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading" toggle target="collapseStrDatenOne">
+                    <h4 class="panel-title">
+                        Save addresses to LocalStorage (Method 1)
+                    </h4>
+                </div>
+                <div id="collapseStrDatenOne" toggleable active-class="in" exclusion-group="accordion1"
+                     class="panel-collapse collapse">
+                    <div class="panel-body">
 
+                        <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()">save</a>
+                        <a class="btn btn-danger" ng-click="deleteTable1FromLocalStorage()"><i
+                                class="fa fa-trash-o"></i> delete</a>
 
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" toggle target="collapseStrDatenTwo">
+                    <h4 class="panel-title">
+                        Save addresses to LocalStorage (Method 2)
+                    </h4>
+                </div>
+                <div id="collapseStrDatenTwo" toggleable active-class="in" exclusion-group="accordion1"
+                     class="panel-collapse collapse">
+                    <div class="panel-body">
 
-        <div class="panel-body">
+                        <a class="btn btn-primary" ng-click="saveTable2ToLocalStorage()">save</a>
+                        <a class="btn btn-danger" ng-click="deleteTable2FromLocalStorage()"><i
+                                class="fa fa-trash-o"></i> delete</a>
 
+                    </div>
+                </div>
+            </div>
 
-            <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()">saveTableToLocalStorage</a>
-            <a class="btn btn-danger" ng-click="deleteTable1FromLocalStorage()"><i class="fa fa-trash-o"></i> deleteTable1FromLocalStorage</a>
+            <div class="panel panel-default">
+                <div class="panel-heading" toggle target="collapseStrDatenThree">
+                    <h4 class="panel-title">
+                        Table loaded from LocalStorage ({{ tableFromLocalStorage.length | number }} addresses)
+                    </h4>
+                </div>
+                <!--</div>-->
+                <div id="collapseStrDatenThree" toggleable active-class="in" exclusion-group="accordion1"
+                     class="panel-collapse collapse">
+                    <div class="panel-body">
 
+                        <!--  Table loaded from LocalStorage-->
+
+                        <a class="btn btn-default" ng-click="loadTable1FromLocalStorage()">update (Method 1)</a>
+                        <a class="btn btn-default" ng-click="loadTable2FromLocalStorage()">update (Method 2)</a>
+
+                        <table style="width:100%">
+                            <thead>
+                            <tr>
+                                <td>
+                                    <b>First Name</b>
+                                </td>
+                                <td>
+                                    <b>Last Name</b>
+                                </td>
+                                <td>
+                                    <b>...</b>
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="row in tableFromLocalStorage">
+                                <td>
+                                    {{ row[0] }}
+                                </td>
+                                <td>
+                                    {{ row[1] }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <h2 class="panel-title">
-            Table (data from LocalStorage - {{ tableFromLocalStorage.length | number }} addresses)
-        </h2>
-
-        <div class="panel-body">
-            <a class="btn btn-default" ng-click="loadTable1FromLocalStorage()">update</a><br>
-
-
-            <table style="width:100%">
-                <thead>
-                <tr>
-                    <td>
-                        <b>First Name</b>
-                    </td>
-                    <td>
-                        <b>Last Name</b>
-                    </td>
-                    <td>
-                        <b>...</b>
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="row in tableFromLocalStorage">
-                    <td>
-                        {{ row[0] }}
-                    </td>
-                    <td>
-                        {{ row[1] }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
     </div>
+
+
+    <!--<div class="panel-body">-->
+
+    <!--<a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()">saveTable1ToLocalStorage</a>-->
+    <!--<a class="btn btn-danger" ng-click="deleteTable1FromLocalStorage()"><i class="fa fa-trash-o"></i> deleteTable1FromLocalStorage</a>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<a class="btn btn-primary" ng-click="saveTable2ToLocalStorage()">saveTable2ToLocalStorage</a>-->
+    <!--<a class="btn btn-danger" ng-click="deleteTable2FromLocalStorage()"><i class="fa fa-trash-o"></i> deleteTable2FromLocalStorage</a>-->
+
+    <!--</div>-->
+
+    <!--<h2 class="panel-title">-->
+    <!--Table (data from LocalStorage - {{ tableFromLocalStorage.length | number }} addresses)-->
+    <!--</h2>-->
+
+    <!--<div class="panel-body">-->
+    <!--<a class="btn btn-default" ng-click="loadTable1FromLocalStorage()">update1</a><br>-->
+    <!--<a class="btn btn-default" ng-click="loadTable2FromLocalStorage()">update2</a><br>-->
+
+    <!--<table style="width:100%">-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<td>-->
+    <!--<b>First Name</b>-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--<b>Last Name</b>-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--<b>...</b>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr ng-repeat="row in tableFromLocalStorage">-->
+    <!--<td>-->
+    <!--{{ row[0] }}-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--{{ row[1] }}-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+
+    <!--</div>-->
+    <!--</div>-->
 
     <div overlay="datasetSelectionOverlay">
         <div class="scrollable">

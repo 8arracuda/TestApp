@@ -1,77 +1,81 @@
 <div ng-controller="strDatenDatasetLoaderCtrl">
 
-<!--<b>Just A Test</b>-->
-<!--<a href="" class="btn btn-danger">dangerous Button ({{ testVar }})</a>-->
+    <div class="panel-group" id="accordionStrDatenDataSetLoader">
+        <div class="panel panel-default">
+            <div class="panel-heading" toggle target="collapseOne">
+                <h4 class="panel-title">
+                    {{ data.length | number }} addresses loaded from dataset {{ selectedDataset }}
+                </h4>
+            </div>
+            <div id="collapseOne" toggleable active-class="in" exclusion-group="accordion1"
+                 class="panel-collapse collapse">
+                <div class="panel-body">
 
-<!--<b>Just A Test</b>-->
+                    <!--select dataset-->
+                    <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change Dataset</a>
 
-<h2 class="panel-title">
-    loaded from Dataset<br>
-    {{ data.length | number }} addresses
-</h2>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" toggle target="collapseTwo">
+                <h4 class="panel-title">
+                    Table with data from dataset ({{ tableOriginal.length | number }} of {{ data.length | number }} addresses)
+                </h4>
+            </div>
+            <div id="collapseTwo" toggleable active-class="in" exclusion-group="accordion1"
+                 class="panel-collapse collapse">
 
-<div class="panel-body">
+                <div class="panel-body">
 
-    {{ selectedDataset }}
 
-    <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change Dataset</a>
-    <a class="btn btn-sm btn-default" ng-click="test()">test</a>
+                    <a ng-click="decreaseNumberOfRowsBy(10)" class="btn btn-default">-10</a>
+                    <a ng-click="decreaseNumberOfRowsBy(1)" class="btn btn-default">-1</a>
+                    <b>{{ numberOfRows }}</b>
+                    <!--<b>{{ $parent.numberOfRows }}</b>-->
+                    <a ng-click="increaseNumberOfRowsBy(1)" class="btn btn-default">+1</a>
+                    <a ng-click="increaseNumberOfRowsBy(10)" class="btn btn-default">+10</a>
 
-</div>
+                    <a ng-click="createTable()" class="btn btn-primary">update Table</a>
 
-    <h2 class="panel-title">
-        How many addresses?
-    </h2>
+                    <br>
 
-    <div class="panel-body">
-        <a ng-click="decreaseNumberOfRowsBy(10)" class="btn btn-default">-10</a>
-        <a ng-click="decreaseNumberOfRowsBy(1)" class="btn btn-default">-1</a>
-        <b>{{ numberOfRows }}</b>
-        <!--<b>{{ $parent.numberOfRows }}</b>-->
-        <a ng-click="increaseNumberOfRowsBy(1)" class="btn btn-default">+1</a>
-        <a ng-click="increaseNumberOfRowsBy(10)" class="btn btn-default">+10</a>
+                    <table style="width:100%">
+                        <thead>
+                        <tr>
+                            <td>
+                                <b>First Name</b>
+                            </td>
+                            <td>
+                                <b>Last Name</b>
+                            </td>
+                            <td>
+                                <b>...</b>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="row in tableOriginal">
+                            <td>
+                                {{ row[0] }}
+                            </td>
+                            <td>
+                                {{ row[1] }}
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-        <br>
 
-        <a ng-click="createTable()" class="btn btn-primary">create Table</a>
+                </div>
+            </div>
+
+
+        </div>
     </div>
 
-    <h2 class="panel-title">
-        Table (data from dataset)<br>
-        {{ tableOriginal.length | number }} addresses
-    </h2>
-
-    <div class="panel-body">
-
-        <table style="width:100%">
-            <thead>
-            <tr>
-                <td>
-                    <b>First Name</b>
-                </td>
-                <td>
-                    <b>Last Name</b>
-                </td>
-                <td>
-                    <b>...</b>
-                </td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="row in tableOriginal">
-                <td>
-                    {{ row[0] }}
-                </td>
-                <td>
-                    {{ row[1] }}
-                </td>
-                <td>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-    </div>
 
     <div overlay="datasetSelectionOverlay">
         <div class="scrollable">
@@ -105,3 +109,8 @@
 
 
 </div>
+
+
+
+
+

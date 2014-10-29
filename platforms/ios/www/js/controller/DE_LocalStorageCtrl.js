@@ -30,12 +30,16 @@ sdApp.controller('DE_LocalStorageCtrl', function ($scope, $rootScope) {
     };
 
 
-    showLocalStorage = function () {
-        $rootScope.toggle('myOverlay', 'on');
-    };
-
-
     $scope.enableTab_einzelwerte();
+
+    //Functions for the Overlay
+
+    //showLocalStorage = function () {
+    //    $rootScope.toggle('myOverlay', 'on');
+    //};
+
+
+
 
     $scope.deleteItem = function (key) {
         var answer = confirm('do you really want to delete key "' + key + '"?')

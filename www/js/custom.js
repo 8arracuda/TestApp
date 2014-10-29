@@ -46,11 +46,24 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
         };
 
+        $scope.createTable = function () {
+
+            $rootScope.tableOriginal = [];
+
+            for (var i = 0; i < $rootScope.numberOfRows; i++) {
+
+                $rootScope.tableOriginal.push($rootScope.data[i]);
+
+            }
+        };
+
 
         $scope.selectAndLoadDataset = function (dataset) {
 
             $scope.selectedDataset = dataset;
             startJSONImport();
+            $rootScope.numberOfRows = 5;
+            $scope.createTable();
 
         };
 
@@ -69,23 +82,16 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             }
         }
 
-        $scope.selectedDataset = $scope.datasets[0];
-        startJSONImport();
+        //$scope.selectedDataset = $scope.datasets[0];
+        //startJSONImport();
+        $scope.selectAndLoadDataset($scope.datasets[0]);
+
 
         $scope.openDatasetSelectionOverlay = function () {
             $scope.toggle('datasetSelectionOverlay', 'on');
         };
 
-        $scope.createTable = function () {
 
-            $rootScope.tableOriginal = [];
-
-            for (var i = 0; i < $rootScope.numberOfRows; i++) {
-
-                $rootScope.tableOriginal.push($rootScope.data[i]);
-
-            }
-        };
 
         $scope.test = function () {
             alert('test');

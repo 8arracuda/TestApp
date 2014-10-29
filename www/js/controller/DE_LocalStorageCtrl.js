@@ -30,7 +30,7 @@ sdApp.controller('DE_LocalStorageCtrl', function ($scope, $rootScope) {
     };
 
 
-
+    $scope.enableTab_einzelwerte();
 
     //Functions for the Overlay
 
@@ -39,7 +39,7 @@ sdApp.controller('DE_LocalStorageCtrl', function ($scope, $rootScope) {
     //};
 
 
-    $scope.enableTab_einzelwerte();
+
 
     $scope.deleteItem = function (key) {
         var answer = confirm('do you really want to delete key "' + key + '"?')

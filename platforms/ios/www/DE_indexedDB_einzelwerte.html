@@ -69,7 +69,6 @@
 
             <button class="btn btn-primary" ng-click="updateEinzelwerteView()">update</button>
 
-
         </div>
         <h2 class="panel-title">
             Remove a key
@@ -87,8 +86,7 @@
                     class="col-xs-9 col-sm-10 col-lg-11"
                     placeholder="Key"
                     />
-            <button class="btn btn-danger" ng-click="removeKeyFromIndexedDB()"><i class="fa-trash-o"></i>delete key
-            </button>
+            <button class="btn btn-danger" ng-click="removeKeyFromIndexedDB()"><i class="fa-trash-o"></i>delete key</button>
 
         </div>
 
@@ -106,7 +104,7 @@
         <!--<button class="btn btn-danger" ng-click="deleteTableEinzelwerte()">delete table "einzelwerte"</button>-->
         <!--<button class="btn btn-primary" ng-click="setupWebSQL()">setup WebSQL</button>-->
 
-        <br>
+
         <input ng-model="inputString" type="text">
         <br>
 
@@ -171,22 +169,23 @@
 
         </div>
 
+
         <h2 class="panel-title">
             Object Stores
         </h2>
 
         <div class="panel-body">
             <button class="btn btn-default" ng-click="listObjectStores()">listObjectStores</button>
-                <ul>
-                    <li ng-repeat="objectStore in objectStores">
-                        {{ objectStore }}
-                    </li>
-                </ul>
+            <ul>
+                <li ng-repeat="objectStore in objectStores">
+                    {{ objectStore }}
+                </li>
+            </ul>
 
 
         </div>
     </div>
-    </div>
+</div>
 
 
 
