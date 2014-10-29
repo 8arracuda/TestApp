@@ -38,7 +38,7 @@
                     class="col-xs-9 col-sm-10 col-lg-11"
                     placeholder="Value"
                     />
-            <button class="btn btn-primary" ng-click="saveEinzelwerte()">save</button>
+            <button class="btn btn-primary" ng-click="saveEinzelwerte()"><i class="fa fa-save"></i> save</button>
         </div>
 
 
@@ -67,7 +67,7 @@
                 </tr>
             </table>
 
-            <button class="btn btn-primary" ng-click="updateEinzelwerteView()">update</button>
+            <button class="btn btn-primary" ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update</button>
 
         </div>
         <h2 class="panel-title">
@@ -86,7 +86,7 @@
                     class="col-xs-9 col-sm-10 col-lg-11"
                     placeholder="Key"
                     />
-            <button class="btn btn-danger" ng-click="removeKeyFromIndexedDB()"><i class="fa-trash-o"></i>delete key</button>
+            <button class="btn btn-danger" ng-click="removeKeyFromIndexedDB()"><i class="fa fa-trash-o"></i> delete key</button>
 
         </div>
 
@@ -127,7 +127,7 @@
 
         <div class="panel-body">
 
-            <button class="btn btn-default" ng-click="getAllValues()">update</button>
+            <button class="btn btn-default" ng-click="getAllValues()"><i class="fa fa-refresh"></i> update</button>
 
             <div ng-repeat="row in data track by $index">
                 {{ row.id }} - {{ row.keyName }} - {{ row.value }}

@@ -10,8 +10,9 @@
 
         <div class="panel-body">
 
-            <a ng-click="saveImageToLocalStorage()" class="btn btn-primary">save image to LS</a>
-            <a ng-click="deleteImageFromLocalStorage()" class="btn btn-danger"><i class="fa fa-trash-o"></i> delete from LS</a>
+            <a ng-click="saveImageToLocalStorage()" class="btn btn-primary"><i class="fa fa-save"></i> save image to LS</a>
+            <a ng-click="deleteImageFromLocalStorage()" class="btn btn-danger"><i class="fa fa-trash-o"></i> delete from
+                LS</a>
 
         </div>
         <h2 class="panel-title">
@@ -20,7 +21,7 @@
 
         <div class="panel-body">
             <img id="imagePlaceholder">
-            <a class="btn btn-default" ng-click="loadImageFromLocalStorage()">update</a>
+            <a class="btn btn-default" ng-click="loadImageFromLocalStorage()"><i class="fa fa-refresh"></i> update</a>
 
             <!--<a ng-click="loadImageFromLocalStorage()" class="btn btn-primary">load image from LS</a>-->
 
@@ -47,29 +48,34 @@
 
         <div class="panel-body">
 
-            <a ng-click="saveVideoToLocalStorage()" class="btn btn-primary">save video to LS</a>
-            <a ng-click="deleteVideoFromLocalStorage()" class="btn btn-danger"><i class="fa fa-trash-o"></i> delete from LS</a>
+            <a ng-click="saveVideoToLocalStorage()" class="btn btn-primary"><i class="fa fa-save"></i>save video to
+                LS</a>
+            <a ng-click="deleteVideoFromLocalStorage()" class="btn btn-danger"><i class="fa fa-trash-o"></i> delete from
+                LS</a>
 
-            <h2 class="panel-title">
-                Video loaded from LocalStorage:
-            </h2>
+        </div>
+        <h2 class="panel-title">
+            Video loaded from LocalStorage:
+        </h2>
+
+        <div class="panel-body">
             <video width="320" height="240" controls muted>
                 <source id="videoPlaceholder" type="video/mp4">
             </video>
             <a class="btn btn-default" ng-click="loadVideoFromLocalStorage()">update</a>
             <!--<a ng-click="loadVideoFromLocalStorage()" class="btn btn-primary">load video from LS</a>-->
-
         </div>
+    </div>
 
-        <h2 class="panel-title">
-            Show the string that represents the video
-        </h2>
+    <h2 class="panel-title">
+        Show the string that represents the video
+    </h2>
 
-        <div class="panel-body">
+    <div class="panel-body">
 
-            <a ng-click="showVideoInLocalStorage()" class="btn btn-primary">show Video in LS</a>
-
-        </div>
+        <a ng-click="showVideoInLocalStorage()" class="btn btn-primary">show Video in LS</a>
 
     </div>
+
+</div>
 </div>
