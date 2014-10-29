@@ -9,13 +9,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading" toggle target="collapseStrDatenOne">
                     <h4 class="panel-title">
-                        Save addresses to LocalStorage (Method 1)
+                        Save addresses to LocalStorage (method 1)
                     </h4>
                 </div>
                 <div id="collapseStrDatenOne" toggleable active-class="in" exclusion-group="accordion1"
                      class="panel-collapse collapse">
                     <div class="panel-body">
-
+                        Every property (firstName, lastName, ...) is saved into seperated key.<br>
                         <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()"><i
                                 class="fa fa-save"></i> save</a>
                         <a class="btn btn-danger" ng-click="deleteTable1FromLocalStorage()"><i
@@ -28,13 +28,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading" toggle target="collapseStrDatenTwo">
                     <h4 class="panel-title">
-                        Save addresses to LocalStorage (Method 2)
+                        Save addresses to LocalStorage (method 2)
                     </h4>
                 </div>
                 <div id="collapseStrDatenTwo" toggleable active-class="in" exclusion-group="accordion1"
                      class="panel-collapse collapse">
                     <div class="panel-body">
-
+                        The whole table is stored into a key named "table1_JSON"<br>
                         <a class="btn btn-primary" ng-click="saveTable2ToLocalStorage()"><i
                                 class="fa fa-save"></i> save</a>
                         <a class="btn btn-danger" ng-click="deleteTable2FromLocalStorage()"><i
@@ -54,8 +54,8 @@
                      class="panel-collapse collapse">
                     <div class="panel-body">
 
-                        <a class="btn btn-default" ng-click="loadTable1FromLocalStorage()"><i class="fa fa-refresh"></i> update with Method 1</a>
-                        <a class="btn btn-default" ng-click="loadTable2FromLocalStorage()"><i class="fa fa-refresh"></i> update with Method 2</a>
+                        <a class="btn btn-default" ng-click="loadTable1FromLocalStorage()"><i class="fa fa-refresh"></i> update (method 1)</a>
+                        <a class="btn btn-default" ng-click="loadTable2FromLocalStorage()"><i class="fa fa-refresh"></i> update (method 2)</a>
 
                         <table style="width:100%" ng-show="tableFromLocalStorage.length > 0">
                             <thead>

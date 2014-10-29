@@ -4,6 +4,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
     $scope.keyToLoad = "a";
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";
+    $scope.keyToRemove = "";
 
     $scope.saveEinzelwerte = function () {
 

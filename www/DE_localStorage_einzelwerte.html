@@ -33,7 +33,6 @@
 
             <button class="btn btn-primary" ng-click="saveEinzelwerte()"><i class="fa fa-save"></i> save</button>
 
-
         </div>
         <h2 class="panel-title">
             Check what's saved?
@@ -55,7 +54,6 @@
             Key "{{ keyLoaded }}" has value "{{ valueLoadedFromLocalStorage }}"<br>
             <button class="btn btn-primary" ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update</button>
 
-
         </div>
         <h2 class="panel-title">
             Remove a key
@@ -73,7 +71,7 @@
                     class="col-xs-9 col-sm-10 col-lg-11"
                     placeholder="Key"
                     />
-            <button class="btn btn-danger" ng-click="removeKeyFromLocalStorage()"><i class="fa fa-trash-o"></i> delete key
+            <button class="btn btn-danger" ng-class="{disabled: keyToRemove.length==0}" ng-click="removeKeyFromLocalStorage()"><i class="fa fa-trash-o"></i> delete key
             </button>
 
         </div>
