@@ -123,25 +123,26 @@ sdApp.directive('ngMediendatenImageSelector', function () {
 })
     .controller('MediendatenImageSelectorCtrl', function ($scope, $rootScope) {
 
-        $scope.images = [
+        $rootScope.images = [
             'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
         ];
 
-        $scope.currentImage = 0;
+        //$scope.currentImage = 0;
+        $rootScope.currentImage = 0;
 
         $scope.image_next = function () {
-            if ($scope.currentImage == $scope.images.length - 1) {
-                $scope.currentImage = 0;
+            if ($rootScope.currentImage == $rootScope.images.length - 1) {
+                $rootScope.currentImage = 0;
             } else {
-                $scope.currentImage++;
+                $rootScope.currentImage++;
             }
         };
 
         $scope.image_prev = function () {
-            if ($scope.currentImage == 0) {
-                $scope.currentImage = $scope.images.length - 1;
+            if ($rootScope.currentImage == 0) {
+                $rootScope.currentImage = $rootScope.images.length - 1;
             } else {
-                $scope.currentImage--;
+                $rootScope.currentImage--;
             }
         };
 
@@ -155,25 +156,25 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
 })
     .controller('MediendatenVideoSelectorCtrl', function ($scope, $rootScope) {
 
-        $scope.videos = [
+        $rootScope.videos = [
             'res/H264_test4_Talkingheadclipped_mp4_480x320.mp4', 'res/H264_test1_Talkinghead_mp4_480x360.mp4', 'res/mov_bbb.mp4'
         ];
 
-        $scope.currentVideo = 0;
+        $rootScope.currentVideo = 0;
 
         $scope.video_next = function () {
-            if ($scope.currentVideo == $scope.videos.length - 1) {
-                $scope.currentVideo= 0;
+            if ($rootScope.currentVideo == $rootScope.videos.length - 1) {
+                $rootScope.currentVideo= 0;
             } else {
-                $scope.currentImage++;
+                $rootScope.currentImage++;
             }
         };
 
         $scope.video_prev = function () {
-            if ($scope.currentVideo == 0) {
-                $scope.currentVideo = $scope.videos.length - 1;
+            if ($rootScope.currentVideo == 0) {
+                $rootScope.currentVideo = $rootScope.videos.length - 1;
             } else {
-                $scope.currentVideo--;
+                $rootScope.currentVideo--;
             }
         };
 

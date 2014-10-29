@@ -1,4 +1,4 @@
-sdApp.controller('DE_LocalStorageMediendatenCtrl', function ($scope) {
+sdApp.controller('DE_LocalStorageMediendatenCtrl', function ($scope, $rootScope) {
 
     //$scope.images = [
     //    'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
@@ -34,6 +34,15 @@ sdApp.controller('DE_LocalStorageMediendatenCtrl', function ($scope) {
         document.getElementById("imagePlaceholder").src = imageData;
 
     };
+
+
+    $scope.foo = function () {
+      alert('foo');
+      alert($rootScope.currentImage);
+      alert($rootScope.images[$rootScope.currentImage]);
+    };
+
+
 
     //Funktion übernommen von http://forums.mozillazine.org/viewtopic.php?f=19&t=856865
     function convertImageToBase64Format(imageURI, aType) {
