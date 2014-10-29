@@ -34,4 +34,32 @@ sdApp.controller('DE_IndexedDBCtrl', function ($scope, $rootScope) {
 
     //Functions for the Overlay
 
+    $scope.dbName = "PG12xp";
+    $scope.dbVersion = "2";
+
+    $scope.dbName = "TestAppDatabase";
+    $scope.dbVersion = "1";
+
+    $scope.listObjectStores = function () {
+
+        console.log('function listObjectStores() called');
+        var request = window.indexedDB.open($scope.dbName, $scope.dbVersion);
+
+        request.onerror = function (event) {
+            console.error('request.onerror');
+            alert("Database error: " + event.target.errorCode);
+            // Machen Sie etwas mit request.errorCode!
+        };
+        request.onsuccess = function (event) {
+            console.log('request.onsuccess');
+            db = request.result;
+
+            $scope.objectStores = db.objectStoreNames;
+
+            $scope.$apply();
+
+        };
+
+    };
+
 });

@@ -8,10 +8,12 @@
                 <span class="btn btn-primary">close</span>
             </p>
 
+
+
             <!--<input type="search" ng-model="searchText" class="form-control" placeholder="Search..">-->
 
 
-            <button class="btn btn-default" ng-click="listObjectStores()">listObjectStores</button>
+            <button class="btn btn-default" ng-click="listObjectStores()">listObjectStores</button> (for {{ dbName }} (Version {{ dbVersion }})
             <div class="list-group">
                 <div ng-repeat="objectStore in objectStores">
                     <li class="list-group-item">

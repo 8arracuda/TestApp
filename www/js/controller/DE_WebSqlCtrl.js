@@ -27,7 +27,6 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
         //$scope.stringForRightButton = 'MED';
     };
 
-
     //$scope.databases = [];
     //$scope.initWebSQL();
     //
@@ -68,8 +67,9 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
         console.log('errorHandlerWebSQL executed');
     };
 
-    $scope.showContentOfTableStrDaten = function() {
 
+    //for StrDaten
+    $scope.showContentOfTableStrDaten = function() {
 
         console.log('getAllValues start');
         $scope.data = [];
@@ -79,14 +79,13 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
 
             tx.executeSql('SELECT * FROM strDaten', [], function (transaction, results) {
 
-
-                $scope.dataForOverlay = [];
+                $scope.dataForOverlayStrDaten = [];
                 for (var j = 0; j < results.rows.length; j++) {
                     var row = results.rows.item(j);
-                    $scope.dataForOverlay.push(row);
+                    $scope.dataForOverlayStrDaten.push(row);
                 }
 
-                alert(JSON.stringify($scope.dataForOverlay));
+                alert(JSON.stringify($scope.dataForOverlayStrDaten));
 
                 $scope.$apply();
 
@@ -96,10 +95,153 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
                 alert("couldn't read database");
             });
 
+        });
+
+    };
+
+    $scope.deleteContentOfTableStrDaten = function() {
+
+        dbWebSQL.transaction(function (tx) {
+
+            tx.executeSql('DELETE FROM strDaten', [], function (transaction, results) {
+
+                //$scope.dataForOverlay = [];
+                //for (var j = 0; j < results.rows.length; j++) {
+                //    var row = results.rows.item(j);
+                //    $scope.dataForOverlay.push(row);
+                //}
+
+                //alert(JSON.stringify($scope.dataForOverlay));
+                alert('all deleted from table -strDaten-');
+
+                //$scope.$apply();
+
+            }, function (t, e) {
+                // couldn't read database
+                //span.textContent = '(unknown: ' + e.message + ')';
+                alert("couldn't read database");
+            });
 
         });
 
     };
 
+
+
+    //for Einzelwerte
+    $scope.showContentOfTableEinzelwerte = function() {
+
+        console.log('getAllValues start');
+        $scope.data = [];
+        tables = [];
+
+        dbWebSQL.transaction(function (tx) {
+
+            tx.executeSql('SELECT * FROM einzelwerte', [], function (transaction, results) {
+
+                $scope.dataForOverlayEinzelwerte = [];
+                for (var j = 0; j < results.rows.length; j++) {
+                    var row = results.rows.item(j);
+                    $scope.dataForOverlayEinzelwerte.push(row);
+                }
+
+                //alert(JSON.stringify($scope.dataForOverlay));
+
+                $scope.$apply();
+
+            }, function (t, e) {
+                // couldn't read database
+                //span.textContent = '(unknown: ' + e.message + ')';
+                alert("couldn't read database");
+            });
+
+        });
+
+    };
+
+    $scope.deleteContentOfTableEinzelwerte = function() {
+
+        dbWebSQL.transaction(function (tx) {
+
+            tx.executeSql('DELETE FROM einzelwerte', [], function (transaction, results) {
+
+                //$scope.dataForOverlay = [];
+                //for (var j = 0; j < results.rows.length; j++) {
+                //    var row = results.rows.item(j);
+                //    $scope.dataForOverlay.push(row);
+                //}
+
+                //alert(JSON.stringify($scope.dataForOverlay));
+                alert('all deleted from table -einzelwerte-');
+
+                //$scope.$apply();
+
+            }, function (t, e) {
+                // couldn't read database
+                //span.textContent = '(unknown: ' + e.message + ')';
+                alert("couldn't read database");
+            });
+
+        });
+
+    };
+
+    //for Mediendaten
+    $scope.showContentOfTableMediendaten = function() {
+
+        console.log('getAllValues start');
+        $scope.data = [];
+        tables = [];
+
+        dbWebSQL.transaction(function (tx) {
+
+            tx.executeSql('SELECT * FROM mediendaten', [], function (transaction, results) {
+
+                $scope.dataForOverlayMediendaten= [];
+                for (var j = 0; j < results.rows.length; j++) {
+                    var row = results.rows.item(j);
+                    $scope.dataForOverlayMediendaten.push(row);
+                }
+
+                //alert(JSON.stringify($scope.dataForOverlay));
+
+                $scope.$apply();
+
+            }, function (t, e) {
+                // couldn't read database
+                //span.textContent = '(unknown: ' + e.message + ')';
+                alert("couldn't read database");
+            });
+
+        });
+
+    };
+
+    $scope.deleteContentOfTableMediendaten= function() {
+
+        dbWebSQL.transaction(function (tx) {
+
+            tx.executeSql('DELETE FROM mediendaten', [], function (transaction, results) {
+
+                //$scope.dataForOverlay = [];
+                //for (var j = 0; j < results.rows.length; j++) {
+                //    var row = results.rows.item(j);
+                //    $scope.dataForOverlay.push(row);
+                //}
+
+                //alert(JSON.stringify($scope.dataForOverlay));
+                alert('all deleted from table -mediendaten-');
+
+                //$scope.$apply();
+
+            }, function (t, e) {
+                // couldn't read database
+                //span.textContent = '(unknown: ' + e.message + ')';
+                alert("couldn't read database");
+            });
+
+        });
+
+    };
 
 });
