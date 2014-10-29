@@ -16,7 +16,8 @@
                      class="panel-collapse collapse">
                     <div class="panel-body">
 
-                        <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()">save</a>
+                        <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()"><i
+                                class="fa fa-save"></i> save</a>
                         <a class="btn btn-danger" ng-click="deleteTable1FromLocalStorage()"><i
                                 class="fa fa-trash-o"></i> delete</a>
 
@@ -34,7 +35,8 @@
                      class="panel-collapse collapse">
                     <div class="panel-body">
 
-                        <a class="btn btn-primary" ng-click="saveTable2ToLocalStorage()">save</a>
+                        <a class="btn btn-primary" ng-click="saveTable2ToLocalStorage()"><i
+                                class="fa fa-save"></i> save</a>
                         <a class="btn btn-danger" ng-click="deleteTable2FromLocalStorage()"><i
                                 class="fa fa-trash-o"></i> delete</a>
 
@@ -52,8 +54,11 @@
                      class="panel-collapse collapse">
                     <div class="panel-body">
 
-                        <a class="btn btn-default" ng-click="loadTable1FromLocalStorage()">update (Method 1)</a>
-                        <a class="btn btn-default" ng-click="loadTable2FromLocalStorage()">update (Method 2)</a>
+
+
+
+                        <a class="btn btn-default" ng-click="loadTable1FromLocalStorage()"><i class="fa fa-refresh"></i> update with Method 1</a>
+                        <a class="btn btn-default" ng-click="loadTable2FromLocalStorage()"><i class="fa fa-refresh"></i> update with Method 2</a>
 
                         <table style="width:100%" ng-show="tableFromLocalStorage.length > 0">
                             <thead>

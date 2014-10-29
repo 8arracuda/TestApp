@@ -1,9 +1,5 @@
 var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory"]);
 
-
-//    sdApp.controller('firstDirectiveController', ['$scope', function($scope) {
-//    $scope.testVar = 'foobar';
-//}])
 sdApp.directive('ngStrDatenDatasetLoader', function () {
     return {
         restrict: 'A',
@@ -57,7 +53,6 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             }
         };
 
-
         $scope.selectAndLoadDataset = function (dataset) {
 
             $scope.selectedDataset = dataset;
@@ -82,8 +77,6 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             }
         }
 
-        //$scope.selectedDataset = $scope.datasets[0];
-        //startJSONImport();
         $scope.selectAndLoadDataset($scope.datasets[0]);
 
 
@@ -95,7 +88,7 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
         $scope.test = function () {
             alert('test');
-        }
+        };
 
         $scope.decreaseNumberOfRowsBy = function (i) {
             $rootScope.numberOfRows = $rootScope.numberOfRows - i;

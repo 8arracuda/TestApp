@@ -12,7 +12,7 @@
                 <div class="panel-body">
 
                     <!--select dataset-->
-                    <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change Dataset</a>
+                    <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change dataset</a>
 
                 </div>
             </div>
@@ -28,7 +28,7 @@
 
                 <div class="panel-body">
 
-
+Number of addresses:<br>
                     <a ng-click="decreaseNumberOfRowsBy(10)" class="btn btn-default">-10</a>
                     <a ng-click="decreaseNumberOfRowsBy(1)" class="btn btn-default">-1</a>
                     <b>{{ numberOfRows }}</b>
@@ -40,7 +40,7 @@
 
                     <br>
 
-                    <table style="width:100%" ng-show="tableOriginal.length > 0">
+                    <table style="width:100%">
                         <thead>
                         <tr>
                             <td>
@@ -68,10 +68,8 @@
                         </tbody>
                     </table>
 
-
                 </div>
             </div>
-
 
         </div>
     </div>
@@ -92,7 +90,6 @@
 
                         <li class="list-group-item">
                             <div ng-show="dataset == $parent.selectedDataset">(selected)</div>
-                            <!--<a ng-click="$parent.selectedDataset = dataset">{{ dataset }}</a>-->
                             <a ng-click="selectAndLoadDataset(dataset)">{{ dataset }}</a>
                         </li>
 

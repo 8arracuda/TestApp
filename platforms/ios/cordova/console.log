@@ -1013,3 +1013,28 @@ You could find it at the following address https://developer.apple.com/icloud/do
 
   ]
 ]
+2014-10-29 13:14:52.465 Test-App[38715:1277596] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/FE5D328A-8897-4EB0-AD06-79A5648430CA/data/Containers/Data/Application/89551C3B-5591-4A17-B74C-2D52ADCEDD2B/Library/Cookies/Cookies.binarycookies
+2014-10-29 13:14:52.491 Test-App[38715:1277596] Multi-tasking -> Device: YES, App: YES
+2014-10-29 13:14:52.497 Test-App[38715:1277596] Unlimited access to network resources
+2014-10-29 13:14:52.543 Test-App[38715:1277596] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-10-29 13:14:52.903 Test-App[38715:1277596] CDVPlugin class CDVFile (pluginName: file) does not exist.
+2014-10-29 13:14:52.903 Test-App[38715:1277596] [CDVTimer][file] 0.162005ms
+2014-10-29 13:14:52.903 Test-App[38715:1277596] [CDVTimer][TotalPluginStartup] 0.331044ms
+2014-10-29 13:14:53.729 Test-App[38715:1277596] Resetting plugins due to page load.
+2014-10-29 13:14:54.588 Test-App[38715:1277596] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/FE5D328A-8897-4EB0-AD06-79A5648430CA/data/Containers/Bundle/Application/ACAEA3E9-B81C-4096-85C2-96A8265D8F11/Test-App.app/www/index.html#/overview
+2014-10-29 13:14:54.636 Test-App[38715:1277596] CDVPlugin class CDVFile (pluginName: File) does not exist.
+2014-10-29 13:14:54.637 Test-App[38715:1277596] ERROR: Plugin 'File' not found, or is not a CDVPlugin. Check your plugin mapping in config.xml.
+2014-10-29 13:14:54.637 Test-App[38715:1277596] -[CDVCommandQueue executePending] [Line 158] FAILED pluginJSON = [
+  "File62064537",
+  "File",
+  "requestAllPaths",
+  [
+
+  ]
+]
