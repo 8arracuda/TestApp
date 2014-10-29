@@ -4,27 +4,36 @@ sdApp.controller('DE_WebSqlCtrl', function ($scope, $rootScope) {
 
     //<für alle Tabs>
     $scope.stringForRightButton = 'show keys';
-    $scope.functionForRightButton = function () {
-        $rootScope.toggle('myOverlay', 'on');
-    };
+    //$scope.functionForRightButton = function () {
+    //    $rootScope.toggle('myOverlay', 'on');
+    //};
     //</für alle Tabs>
 
     $scope.enableTab_einzelwerte = function () {
         $scope.tab = 1;
         $scope.stringForTitle = 'WS - Einzelwerte';
         //$scope.stringForRightButton = 'EZW';
+        $scope.functionForRightButton = function () {
+            $rootScope.toggle('Overlay_WebSQL_Einzelwerte', 'on');
+        };
     };
 
     $scope.enableTab_strDaten = function () {
         $scope.tab = 2;
         $scope.stringForTitle = 'WS - strDaten';
         //$scope.stringForRightButton = 'STR';
+        $scope.functionForRightButton = function () {
+            $rootScope.toggle('Overlay_WebSQL_strDaten', 'on');
+        };
     };
 
     $scope.enableTab_mediendaten = function () {
         $scope.tab = 3;
         $scope.stringForTitle = 'WS Mediendaten';
         //$scope.stringForRightButton = 'MED';
+        $scope.functionForRightButton = function () {
+            $rootScope.toggle('Overlay_WebSQL_Mediendaten', 'on');
+        };
     };
 
     //$scope.databases = [];
