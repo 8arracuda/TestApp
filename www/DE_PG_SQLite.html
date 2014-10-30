@@ -30,6 +30,7 @@
 <!--<i class="fa fa-plus"></i>{{ stringForRightButton }}-->
 <!--</div>-->
 <!--</div>-->
+
 <div content-for="navbarAction">
     <div class="btn btn-navbar">
         <a ng-click="functionForRightButton()"><i class="fa fa-database"></i> {{ stringForRightButton }}</a>
@@ -41,21 +42,21 @@
 
         <div class="btn-group justified nav-tabs">
             <a class="btn btn-default"
-               target="webSql_einzelwerte"
+               target="PG_SQLite_einzelwerte"
                toggle="on"
                ng-click="enableTab_einzelwerte()"
                active-class="active">Einzelwerte
             </a>
 
             <a class="btn btn-default"
-               target="webSql_strDaten"
+               target="PG_SQLite_strDaten"
                toggle="on"
                ng-click="enableTab_strDaten()"
                active-class="active">str Daten
             </a>
 
             <a class="btn btn-default"
-               target="webSql_mediendaten"
+               target="PG_SQLite_mediendaten"
                toggle="on"
                ng-click="enableTab_mediendaten()"
                active-class="active">Mediendaten
@@ -68,34 +69,33 @@
                  toggleable
                  ng-class="{active: tab == 1}"
                  default="active"
-                 id="webSql_einzelwerte"
+                 id="PG_SQLite_einzelwerte"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_webSql_einzelwerte.html"'></div>
+                <div ng-include src='"DE_PG_SQLite_einzelwerte.html"'></div>
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 2}"
-                 id="webSql_strDaten"
+                 id="PG_SQLite_strDaten"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_webSql_strDaten.html"'></div>
+                <div ng-include src='"DE_PG_SQLite_strDaten.html"'></div>
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 3}"
-                 id="webSql_mediendaten"
+                 id="PG_SQLite_mediendaten"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_webSql_mediendaten.html"'></div>
+                <div ng-include src='"DE_PG_SQLite_mediendaten.html"'></div>
             </div>
 
         </div>
     </div>
 </div>
-
 
 <!--TODO: Das Overlay in eine seperate Datei auslagern-->
 <div overlay="myOverlay">
@@ -113,9 +113,7 @@
 
         </div>
     </div>
-
 </div>
-
 
 <div ng-include src="'DE_PG_SQLite_overlay_einzelwerte.html'"></div>
 <div ng-include src="'DE_PG_SQLite_overlay_strDaten.html'"></div>

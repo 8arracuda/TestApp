@@ -21,7 +21,7 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
         //$scope.stringForTitle = 'WS - Einzelwerte';
         //$scope.stringForRightButton = 'EZW';
         $scope.functionForRightButton = function () {
-            $rootScope.toggle('Overlay_WebSQL_Einzelwerte', 'on');
+            $rootScope.toggle('Overlay_PG_SQLite_Einzelwerte', 'on');
         };
     };
 
@@ -30,7 +30,7 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
         //$scope.stringForTitle = 'WS - strDaten';
         //$scope.stringForRightButton = 'STR';
         $scope.functionForRightButton = function () {
-            $rootScope.toggle('Overlay_WebSQL_strDaten', 'on');
+            $rootScope.toggle('Overlay_PG_SQLite_strDaten', 'on');
         };
     };
 
@@ -39,7 +39,7 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
         //$scope.stringForTitle = 'WS Mediendaten';
         //$scope.stringForRightButton = 'MED';
         $scope.functionForRightButton = function () {
-            $rootScope.toggle('Overlay_WebSQL_Mediendaten', 'on');
+            $rootScope.toggle('Overlay_PG_SQLite_Mediendaten', 'on');
         };
     };
 
@@ -63,7 +63,8 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
-        dbWebSQL = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
+        //dbWebSQL = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
+        dbWebSQL = window.sqlitePlugin.openDatabase({name: "my.db"});
         //dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
@@ -141,7 +142,6 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
         });
 
     };
-
 
     //for StrDaten
     $scope.showContentOfTableStrDaten = function () {

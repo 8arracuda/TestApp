@@ -26,4 +26,7 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="orientation" value="portrait" />
+    <feature name="SQLitePlugin">
+        <param name="android-package" value="org.pgsqlite.SQLitePlugin" />
+    </feature>
 </widget>
