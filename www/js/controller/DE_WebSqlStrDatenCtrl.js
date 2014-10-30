@@ -33,17 +33,22 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
         } else {
 
             //alert('will save ' + $rootScope.tableOriginal.length + " addresses to LocalStorage");
-            alert('will save ' + $rootScope.numberOfRows + " addresses to WebSQL");
+            //alert('will save ' + $rootScope.numberOfRows + " addresses to WebSQL");
 
             console.log('saveTable1ToWebSQL start');
-            i = 0;
-            alert(JSON.stringify($rootScope.data[i]));
+            //i = 0;
+            //alert(JSON.stringify($rootScope.data[i]));
+
+
+
             dbWebSQL.transaction(function (tx) {
                 //tx.executeSql("INSERT INTO strDaten(firstName, lastName, street, city, zipcode, email) VALUES(?,?,?,?,?)", [$rootScope.data[i][0], $rootScope.data[i][1], $rootScope.data[i][2], $rootScope.data[i][3], $rootScope.data[i][4], $rootScope.data[i][5] ]);
                 i =/**/ 0;
                 for (var i = 0; i < $rootScope.numberOfRows; i++) {
                     tx.executeSql("INSERT INTO strDaten(firstName, lastName, street, city, zipcode, email) VALUES(?,?,?,?,?,?)", [$rootScope.data[i][0], $rootScope.data[i][1], $rootScope.data[i][2], $rootScope.data[i][3], $rootScope.data[i][4], $rootScope.data[i][5]]);
                 }
+
+                alert($rootScope.numberOfRows + ' addresses saved in WebSQL database -strDaten-.')
             //}, $scope.fooErrorHandler);
             }, function errorHandler(transaction, error) {
                 alert("Error : " + transaction.message);
