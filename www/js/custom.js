@@ -3,7 +3,7 @@ var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSuppor
 sdApp.directive('ngStrDatenDatasetLoader', function () {
     return {
         restrict: 'A',
-        templateUrl: 'strDatenDatasetLoader.html'
+        templateUrl: 'customAngularDirectives/StrDatenDatasetLoader.html'
     }
 })
     .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope) {
@@ -126,7 +126,7 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 sdApp.directive('ngMediendatenImageSelector', function () {
     return {
         restrict: 'A',
-        templateUrl: 'MediendatenImageSelector.html'
+        templateUrl: 'customAngularDirectives/MediendatenImageSelector.html'
     }
 })
     .controller('MediendatenImageSelectorCtrl', function ($scope, $rootScope) {
@@ -159,7 +159,7 @@ sdApp.directive('ngMediendatenImageSelector', function () {
 sdApp.directive('ngMediendatenVideoSelector', function () {
     return {
         restrict: 'A',
-        templateUrl: 'MediendatenVideoSelector.html'
+        templateUrl: 'customAngularDirectives/MediendatenVideoSelector.html'
     }
 })
     .controller('MediendatenVideoSelectorCtrl', function ($scope, $rootScope) {
