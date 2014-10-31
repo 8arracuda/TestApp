@@ -1,4 +1,4 @@
-var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory"]);
+var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "ngAnimate"]);
 
 sdApp.directive('ngStrDatenDatasetLoader', function () {
     return {
@@ -51,6 +51,20 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
                 $rootScope.tableOriginal.push($rootScope.data[i]);
 
             }
+
+            //set animation
+            //color changes for 1.5 seconds and then changes back
+
+            if (animationsEnabled) {
+
+                $scope.myCssVar = 'wasUpdated';
+
+                setTimeout(function () {
+                    $scope.myCssVar = '';
+                    $scope.$apply();
+                }, 1500);
+
+            };
         };
 
         $scope.selectAndLoadDataset = function (dataset) {
@@ -59,6 +73,8 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             startJSONImport();
             $rootScope.numberOfRows = 5;
             $scope.createTable();
+            animationsEnabled = true;
+
 
         };
 
@@ -77,13 +93,14 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             }
         }
 
+        var animationsEnabled = false;
         $scope.selectAndLoadDataset($scope.datasets[0]);
+
 
 
         $scope.openDatasetSelectionOverlay = function () {
             $scope.toggle('datasetSelectionOverlay', 'on');
         };
-
 
 
         $scope.test = function () {
@@ -157,7 +174,7 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
 
         $scope.video_next = function () {
             if ($rootScope.currentVideo == $rootScope.videos.length - 1) {
-                $rootScope.currentVideo= 0;
+                $rootScope.currentVideo = 0;
             } else {
                 $rootScope.currentImage++;
             }

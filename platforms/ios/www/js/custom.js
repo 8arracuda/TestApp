@@ -1,4 +1,4 @@
-var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory"]);
+var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "ngAnimate"]);
 
 sdApp.directive('ngStrDatenDatasetLoader', function () {
     return {

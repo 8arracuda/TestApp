@@ -33,7 +33,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading" toggle target="collapseOne">
                     <h4 class="panel-title">
-                        source-table [{{ tableOriginal.length | number }} addresses]
+                        <!--source-table [{{ tableOriginal.length | number }} addresses]-->
+                        <div ng-class="myCssVar">source-table  [{{ tableOriginal.length | number }} addresses]</div>
                     </h4>
                 </div>
                 <div id="collapseOne" toggleable active-class="in" exclusion-group="accordion1" default="active"
