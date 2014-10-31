@@ -64,6 +64,9 @@ sdApp.controller('SidebarController', function ($scope, techSupport) {
             support: ts.indexedDB},
         {labelText: 'SQLite Plugin',
             linkURL: 'DE_PGSQLite',
+            support: true},
+        {labelText: 'File API',
+            linkURL: 'DE_fileAPI',
             support: true}
     ];
 
