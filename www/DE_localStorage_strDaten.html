@@ -62,7 +62,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading" toggle target="collapseStrDatenThree">
                     <h4 class="panel-title">
-                        Table loaded from LocalStorage ({{ tableFromLocalStorage.length | number }} addresses)
+                        <!--Table loaded from LocalStorage ({{ tableFromLocalStorage.length | number }} addresses)-->
+                        <div ng-class="cssVarForDestinationTable">Table loaded from LocalStorage ({{ tableFromLocalStorage.length | number }} addresses)</div>
+
                     </h4>
                 </div>
                 <div id="collapseStrDatenThree" toggleable active-class="in"

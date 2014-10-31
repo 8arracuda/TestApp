@@ -49,6 +49,15 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         }
 
+
+        $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
+
+        setTimeout(function () {
+            $scope.cssVarForDestinationTable = '';
+            $scope.$apply();
+        }, 1500);
+
+
     };
 
     $scope.deleteTable1FromLocalStorage = function () {
@@ -95,6 +104,13 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
         $scope.tableFromLocalStorage = [];
         var tableFromLocalStorage = localStorage.getItem('table1_JSON');
         $scope.tableFromLocalStorage = JSON.parse(tableFromLocalStorage);
+
+        $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
+
+        setTimeout(function () {
+            $scope.cssVarForDestinationTable = '';
+            $scope.$apply();
+        }, 1500);
 
     };
 

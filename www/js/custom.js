@@ -57,10 +57,10 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
             if (animationsEnabled) {
 
-                $scope.myCssVar = 'wasUpdated';
+                $scope.cssVarForSourceTable = 'sourceTableWasUpdated';
 
                 setTimeout(function () {
-                    $scope.myCssVar = '';
+                    $scope.cssVarForSourceTable = '';
                     $scope.$apply();
                 }, 1500);
 
@@ -74,7 +74,6 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             $rootScope.numberOfRows = 5;
             $scope.createTable();
             animationsEnabled = true;
-
 
         };
 
@@ -93,15 +92,14 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             }
         }
 
+        //variable is set to false, to avoid animation after loading the page
         var animationsEnabled = false;
+
         $scope.selectAndLoadDataset($scope.datasets[0]);
-
-
 
         $scope.openDatasetSelectionOverlay = function () {
             $scope.toggle('datasetSelectionOverlay', 'on');
         };
-
 
         $scope.test = function () {
             alert('test');
