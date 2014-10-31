@@ -1,86 +1,78 @@
 <div ng-controller="strDatenDatasetLoaderCtrl">
 
-    <div class="panel-group" id="accordionStrDatenDataSetLoader">
-        <div class="panel panel-default">
-            <div class="panel-heading" toggle target="collapseOne">
-                <h4 class="panel-title">
-                    select data for source-table
-                </h4>
-            </div>
+    <div class="panel">
 
-            <div id="collapseOne" toggleable active-class="in"
-                 class="panel-collapse collapse">
-                <h4 class="panel-heading">
-                    dataset:
-                </h4>
+        <h4 class="panel-title">
+            dataset:
+        </h4>
 
-                <div class="panel-body">
-                    {{ selectedDataset }} [{{ data.length | number }} addresses]<br>
-                    <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change dataset</a><br>
+        <div class="panel-body">
+            {{ selectedDataset }} [{{ data.length | number }} addresses]<br>
+            <a class="btn btn-sm btn-default" ng-click="openDatasetSelectionOverlay()">change dataset</a><br>
 
+        </div>
+        <h4 class="panel-title">
+            amount of addresses:
+        </h4>
+
+        <div class="panel-body">
+            <a ng-click="decreaseNumberOfRowsBy(10)" class="btn btn-default">-10</a>
+            <a ng-click="decreaseNumberOfRowsBy(1)" class="btn btn-default">-1</a>
+            <b>{{ numberOfRows }}</b>
+            <a ng-click="increaseNumberOfRowsBy(1)" class="btn btn-default">+1</a>
+            <a ng-click="increaseNumberOfRowsBy(10)" class="btn btn-default">+10</a>
+
+            <a ng-click="createTable()" class="btn btn-primary">update Table</a>
+        </div>
+
+        <!--<h4 class="panel-title">-->
+        <!--source-table [{{ tableOriginal.length | number }} addresses]-->
+        <!--</h4>-->
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading" toggle target="collapseOne">
+                    <h4 class="panel-title">
+                        source-table [{{ tableOriginal.length | number }} addresses]
+                    </h4>
                 </div>
-
-                <h4 class="panel-heading">
-                    amount of addresses:
-                </h4>
-
-                <div class="panel-body">
-                    <a ng-click="decreaseNumberOfRowsBy(10)" class="btn btn-default">-10</a>
-                    <a ng-click="decreaseNumberOfRowsBy(1)" class="btn btn-default">-1</a>
-                    <b>{{ numberOfRows }}</b>
-                    <a ng-click="increaseNumberOfRowsBy(1)" class="btn btn-default">+1</a>
-                    <a ng-click="increaseNumberOfRowsBy(10)" class="btn btn-default">+10</a>
-
-                    <a ng-click="createTable()" class="btn btn-primary">update Table</a>
+                <div id="collapseOne" toggleable active-class="in" exclusion-group="accordion1" default="active"
+                     class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table style="width:100%">
+                            <thead>
+                            <tr>
+                                <td>
+                                    <b>First Name</b>
+                                </td>
+                                <td>
+                                    <b>Last Name</b>
+                                </td>
+                                <td>
+                                    <b>...</b>
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="row in tableOriginal">
+                                <td>
+                                    {{ row[0] }}
+                                </td>
+                                <td>
+                                    {{ row[1] }}
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" toggle target="collapseTwo">
-                <h4 class="panel-title">
-                    source-table [{{ tableOriginal.length | number }} addresses]
-                </h4>
 
-            </div>
-            <div id="collapseTwo" toggleable active-class="in"
-                 class="panel-collapse collapse">
 
-                <div class="panel-body">
-
-                    <table style="width:100%">
-                        <thead>
-                        <tr>
-                            <td>
-                                <b>First Name</b>
-                            </td>
-                            <td>
-                                <b>Last Name</b>
-                            </td>
-                            <td>
-                                <b>...</b>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="row in tableOriginal">
-                            <td>
-                                {{ row[0] }}
-                            </td>
-                            <td>
-                                {{ row[1] }}
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-
-        </div>
     </div>
-
 
     <div overlay="datasetSelectionOverlay">
         <div class="scrollable">
