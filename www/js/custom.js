@@ -243,9 +243,9 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'DE_webSql.html',
             controller: 'DE_WebSqlCtrl'
         }).
-        when('/DE_fileAPI', {
-            templateUrl: 'DE_fileAPI.html',
-            controller: 'DE_FileAPICtrl'
+        when('/DE_PG_fileAPI', {
+            templateUrl: 'DE_PG_fileAPI.html',
+            controller: 'DE_PG_FileAPICtrl'
         }).
         when('/DE_PGSQLite', {
             templateUrl: 'DE_PG_SQLite.html',

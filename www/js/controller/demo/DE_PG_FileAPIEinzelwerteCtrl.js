@@ -43,6 +43,26 @@ sdApp.controller('DE_PG_FileAPIEinzelwerteCtrl', function ($scope, $rootScope) {
         window.requestFileSystem(window.PERSISTENT, 5*1024*1024 , onInitFs, errorHandler);
     };
 
+
+    $scope.createFile = function() {
+
+        window.requestFileSystem(window.PERSISTENT, 5*1024*1024 , onInitFs2, errorHandler);
+
+
+    };
+
+    function onInitFs2(fs) {
+
+        fs.root.getFile('log.txt', {create: true, exclusive: true}, function(fileEntry) {
+
+            // fileEntry.isFile === true
+            // fileEntry.name == 'log.txt'
+            // fileEntry.fullPath == '/log.txt'
+
+        }, errorHandler);
+
+    }
+
     function onInitFs(fs) {
         console.log('Opened file system: ' + fs.name);
     }
