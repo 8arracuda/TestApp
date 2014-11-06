@@ -203,7 +203,7 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.hidden-statusbar-overlay": "1.2.0",
     "org.apache.cordova.camera": "0.3.2",
     "org.apache.cordova.device-motion": "0.2.10-dev",
-    "org.apache.cordova.file": "1.3.0"
+    "org.apache.cordova.file": "1.3.1"
 }
 // BOTTOM OF METADATA
 });

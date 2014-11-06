@@ -1,6 +1,13 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/com.brodysoft.sqlitePlugin/www/SQLitePlugin.js",
+        "id": "com.brodysoft.sqlitePlugin.SQLitePlugin",
+        "clobbers": [
+            "SQLitePlugin"
+        ]
+    },
+    {
         "file": "plugins/de.appplant.cordova.plugin.hidden-statusbar-overlay/www/hidden-statusbar-overlay.js",
         "id": "de.appplant.cordova.plugin.hidden-statusbar-overlay.HiddenStatusbarOverlay",
         "clobbers": [
@@ -194,23 +201,16 @@ module.exports = [
             "cordova"
         ],
         "runs": true
-    },
-    {
-        "file": "plugins/com.brodysoft.sqlitePlugin/www/SQLitePlugin.js",
-        "id": "com.brodysoft.sqlitePlugin.SQLitePlugin",
-        "clobbers": [
-            "SQLitePlugin"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "com.brodysoft.sqlitePlugin": "1.0.3",
     "de.appplant.cordova.plugin.hidden-statusbar-overlay": "1.2.0",
     "org.apache.cordova.camera": "0.3.2",
     "org.apache.cordova.device-motion": "0.2.10-dev",
-    "org.apache.cordova.file": "1.3.1",
-    "com.brodysoft.sqlitePlugin": "1.0.3"
+    "org.apache.cordova.file": "1.3.1"
 }
 // BOTTOM OF METADATA
 });

@@ -1,10 +1,10 @@
-sdApp.controller('DE_FileAPICtrl', function ($scope, $rootScope) {
+sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
         $rootScope.section = 'DE';
 
         //<für alle Tabs>
         $scope.stringForRightButton = 'show keys';
-        $scope.stringForTitle = 'File API';
+        $scope.stringForTitle = 'File API-Plugin';
         $scope.functionForRightButton = function () {
             $rootScope.toggle('myOverlay', 'on');
         };
