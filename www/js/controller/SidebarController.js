@@ -64,10 +64,10 @@ sdApp.controller('SidebarController', function ($scope, techSupport) {
             support: ts.indexedDB},
         {labelText: 'SQLite Plugin',
             linkURL: 'DE_PGSQLite',
-            support: true},
+            support: ts.sqlitePlugin},
         {labelText: 'File API',
             linkURL: 'DE_fileAPI',
-            support: true}
+            support: ts.fileAPI_fullSupport}
     ];
 
 });

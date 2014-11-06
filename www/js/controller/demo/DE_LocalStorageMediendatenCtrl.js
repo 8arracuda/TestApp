@@ -35,14 +35,11 @@ sdApp.controller('DE_LocalStorageMediendatenCtrl', function ($scope, $rootScope)
 
     };
 
-
     $scope.foo = function () {
       alert('foo');
       alert($rootScope.currentImage);
       alert($rootScope.images[$rootScope.currentImage]);
     };
-
-
 
     //Funktion übernommen von http://forums.mozillazine.org/viewtopic.php?f=19&t=856865
     function convertImageToBase64Format(imageURI, aType) {
@@ -68,7 +65,6 @@ sdApp.controller('DE_LocalStorageMediendatenCtrl', function ($scope, $rootScope)
 
 
 
-
     //load image from localStorage when page is loaded
     $scope.loadImageFromLocalStorage();
 
@@ -78,8 +74,8 @@ sdApp.controller('DE_LocalStorageMediendatenCtrl', function ($scope, $rootScope)
 //------------------------
 //------------------------
 //------------------------
-
-
+//
+//
     $scope.videos = [
         'res/H264_test4_Talkingheadclipped_mp4_480x320.mp4', 'res/H264_test1_Talkinghead_mp4_480x360.mp4', 'res/mov_bbb.mp4'
     ];

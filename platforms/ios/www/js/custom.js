@@ -3,7 +3,7 @@ var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSuppor
 sdApp.directive('ngStrDatenDatasetLoader', function () {
     return {
         restrict: 'A',
-        templateUrl: 'strDatenDatasetLoader.html'
+        templateUrl: 'customAngularDirectives/StrDatenDatasetLoader.html'
     }
 })
     .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope) {
@@ -51,6 +51,20 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
                 $rootScope.tableOriginal.push($rootScope.data[i]);
 
             }
+
+            //set animation
+            //color changes for 1.5 seconds and then changes back
+            if (animationsEnabled) {
+
+                $scope.cssVarForSourceTable = 'sourceTableWasUpdated';
+
+                setTimeout(function () {
+                    $scope.cssVarForSourceTable = '';
+                    $scope.$apply();
+                }, 1500);
+
+            }
+            ;
         };
 
         $scope.selectAndLoadDataset = function (dataset) {
@@ -59,6 +73,7 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             startJSONImport();
             $rootScope.numberOfRows = 5;
             $scope.createTable();
+            animationsEnabled = true;
 
         };
 
@@ -77,14 +92,14 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             }
         }
 
-        $scope.selectAndLoadDataset($scope.datasets[0]);
+        //variable is set to false, to avoid animation after loading the page
+        var animationsEnabled = false;
 
+        $scope.selectAndLoadDataset($scope.datasets[0]);
 
         $scope.openDatasetSelectionOverlay = function () {
             $scope.toggle('datasetSelectionOverlay', 'on');
         };
-
-
 
         $scope.test = function () {
             alert('test');
@@ -111,7 +126,7 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 sdApp.directive('ngMediendatenImageSelector', function () {
     return {
         restrict: 'A',
-        templateUrl: 'MediendatenImageSelector.html'
+        templateUrl: 'customAngularDirectives/MediendatenImageSelector.html'
     }
 })
     .controller('MediendatenImageSelectorCtrl', function ($scope, $rootScope) {
@@ -144,7 +159,7 @@ sdApp.directive('ngMediendatenImageSelector', function () {
 sdApp.directive('ngMediendatenVideoSelector', function () {
     return {
         restrict: 'A',
-        templateUrl: 'MediendatenVideoSelector.html'
+        templateUrl: 'customAngularDirectives/MediendatenVideoSelector.html'
     }
 })
     .controller('MediendatenVideoSelectorCtrl', function ($scope, $rootScope) {
@@ -157,7 +172,7 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
 
         $scope.video_next = function () {
             if ($rootScope.currentVideo == $rootScope.videos.length - 1) {
-                $rootScope.currentVideo= 0;
+                $rootScope.currentVideo = 0;
             } else {
                 $rootScope.currentImage++;
             }
@@ -229,8 +244,8 @@ sdApp.config(function ($routeProvider) {
             controller: 'DE_WebSqlCtrl'
         }).
         when('/DE_fileAPI', {
-            templateUrl: 'PD_fileAPI.html',
-            controller: 'PD_FileAPICtrl'
+            templateUrl: 'DE_fileAPI.html',
+            controller: 'DE_FileAPICtrl'
         }).
         when('/DE_PGSQLite', {
             templateUrl: 'DE_PG_SQLite.html',

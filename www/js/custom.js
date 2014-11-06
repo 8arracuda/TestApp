@@ -54,7 +54,6 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
             //set animation
             //color changes for 1.5 seconds and then changes back
-
             if (animationsEnabled) {
 
                 $scope.cssVarForSourceTable = 'sourceTableWasUpdated';
@@ -64,7 +63,8 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
                     $scope.$apply();
                 }, 1500);
 
-            };
+            }
+            ;
         };
 
         $scope.selectAndLoadDataset = function (dataset) {

@@ -21,6 +21,63 @@ angular.module('techSupportFactory', [])
                     techniques.camera = false;
                 }
 
+                if (window.sqlitePlugin) {
+                    techniques.sqlitePlugin = true;
+                } else {
+                    techniques.sqlitePlugin = false;
+                }
+
+                if (window.FileReader) {
+                    techniques.fileReader = true;
+                } else {
+                    techniques.fileReader = false;
+                }
+
+                if (window.FileList) {
+                    techniques.fileList = true;
+                } else {
+                    techniques.fileList = false;
+                }
+
+                if (window.File) {
+                    techniques.file = true;
+                } else {
+                    techniques.file = false;
+                }
+
+                if (window.Blob) {
+                    techniques.blob = true;
+                } else {
+                    techniques.blob = false;
+                }
+
+                //taken from http://www.html5rocks.com/de/tutorials/file/dndfiles/
+                if (window.File && window.FileReader && window.FileList && window.Blob) {
+                    techniques.fileAPI_fullSupport = true;
+                } else {
+                    techniques.fileAPI_fullSupport = false;
+                }
+
+                if (window.FileWriter) {
+                    techniques.fileWriter = true;
+                } else {
+                    techniques.fileWriter= false;
+                }
+
+
+                if (window.webkitRequestFileSystem) {
+                    techniques.webkitRequestFileSystem = true;
+                } else {
+                    techniques.webkitRequestFileSystem= false;
+                }
+
+                if (window.requestFileSystem) {
+                    techniques.requestFileSystem = true;
+                } else {
+                    techniques.requestFileSystem= false;
+                }
+
+
 //                var tech = {};
 //                tech.name = 'LocalStorage';
 //                tech.support = Modernizr.localstorage;
