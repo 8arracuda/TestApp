@@ -36,26 +36,13 @@ var app = {
         //app.receivedEvent('deviceready');
         console.log('onDeviceReady');
 
+
+        //"enable" AngularJS
         var htmlElement = document.getElementsByTagName("html")[0];
         angular.bootstrap(htmlElement, ['sdApp']);
-        alert('onDeviceReady');
-        //angular.bootstrap(document, ['sdApp']);
-        //angular.bootstrap(document, ['sdApp']);
 
-
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function (id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
     }
+
 
 };
 

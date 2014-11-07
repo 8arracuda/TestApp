@@ -1,6 +1,5 @@
 sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
-    $scope.tableFromWebSQL = [];
     $scope.tableFromLocalStorage = [];
 
     //Method1: As seperate key/value pairs

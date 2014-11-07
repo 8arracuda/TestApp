@@ -13,21 +13,21 @@
 
         <div class="btn-group justified nav-tabs">
             <a class="btn btn-default"
-               target="localStorage_einzelwerte"
+               target="PG_FileAPI_einzelwerte"
                toggle="on"
                ng-click="enableTab_einzelwerte()"
                active-class="active">Einzelwerte
             </a>
 
             <a class="btn btn-default"
-               target="localStorage_strDaten"
+               target="PG_FileAPI_strDaten"
                toggle="on"
                ng-click="enableTab_strDaten()"
                active-class="active">str Daten
             </a>
 
             <a class="btn btn-default"
-               target="localStorage_mediendaten"
+               target="PG_FileAPI_mediendaten"
                toggle="on"
                ng-click="enableTab_mediendaten()"
                active-class="active">Mediendaten
@@ -41,7 +41,7 @@
                  toggleable
                  ng-class="{active: tab == 1}"
                  default="active"
-                 id="localStorage_einzelwerte"
+                 id="PG_FileAPI_einzelwerte"
                  exclusion-group="myTabs">
 
                 <div ng-include src='"DE_PG_fileAPI_einzelwerte.html"'></div>
@@ -51,7 +51,7 @@
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 2}"
-                 id="localStorage_strDaten"
+                 id="PG_FileAPI_strDaten"
                  exclusion-group="myTabs">
 
                 <div ng-include src='"DE_PG_fileAPI_strDaten.html"'></div>
@@ -61,7 +61,7 @@
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 3}"
-                 id="localStorage_mediendaten"
+                 id="PG_FileAPI_mediendaten"
                  exclusion-group="myTabs">
 
                 <div ng-include src='"DE_PG_fileAPI_mediendaten.html"'></div>
