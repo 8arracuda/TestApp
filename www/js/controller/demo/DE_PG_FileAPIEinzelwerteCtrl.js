@@ -146,6 +146,7 @@ sdApp.controller('DE_PG_FileAPIEinzelwerteCtrl', function ($scope, $rootScope) {
         switch (e.code) {
             case FileError.QUOTA_EXCEEDED_ERR:
                 msg = 'QUOTA_EXCEEDED_ERR';
+                alert('QUOTA_EXCEEDED_ERR');
                 break;
             case FileError.NOT_FOUND_ERR:
                 msg = 'NOT_FOUND_ERR(1)';
@@ -174,6 +175,7 @@ sdApp.controller('DE_PG_FileAPIEinzelwerteCtrl', function ($scope, $rootScope) {
         switch (e.code) {
             case FileError.QUOTA_EXCEEDED_ERR:
                 msg = 'QUOTA_EXCEEDED_ERR';
+                alert('QUOTA_EXCEEDED_ERR');
                 break;
             case FileError.NOT_FOUND_ERR:
                 msg = 'NOT_FOUND_ERR(2)';

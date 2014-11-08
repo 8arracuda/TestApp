@@ -76,14 +76,15 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
                         $scope.tableFromPGFileAPI = [];
                         $scope.tableFromPGFileAPI = JSON.parse(this.result);
 
-                        $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
-
-                        $scope.$apply();
-
-                        setTimeout(function () {
-                            $scope.cssVarForDestinationTable = '';
-                            $scope.$apply();
-                        }, 1500);
+                        //$scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
+                        //
+                        //$scope.$apply();
+                        //
+                        //setTimeout(function () {
+                        //    $scope.cssVarForDestinationTable = '';
+                        //    $scope.$apply();
+                        //}, 1500);
+                        highlightDestinationTableTitle();
 
                     };
 
@@ -125,6 +126,7 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
         switch (e.code) {
             case FileError.QUOTA_EXCEEDED_ERR:
                 msg = 'QUOTA_EXCEEDED_ERR';
+                alert('QUOTA_EXCEEDED_ERR');
                 break;
             case FileError.NOT_FOUND_ERR:
                 msg = 'NOT_FOUND_ERR';
@@ -145,6 +147,17 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
         ;
 
         console.log('Error: ' + msg);
+    }
+
+    function highlightDestinationTableTitle() {
+        $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
+
+        $scope.$apply();
+
+        setTimeout(function () {
+            $scope.cssVarForDestinationTable = '';
+            $scope.$apply();
+        }, 1500);
     }
 
     function errorHandler2(e) {
@@ -153,20 +166,14 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
         switch (e.code) {
             case FileError.QUOTA_EXCEEDED_ERR:
                 msg = 'QUOTA_EXCEEDED_ERR';
+                alert('QUOTA_EXCEEDED_ERR');
+
                 break;
             case FileError.NOT_FOUND_ERR:
                 msg = 'NOT_FOUND_ERR';
                 $scope.tableFromPGFileAPI = [];
 
-                $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
-                //TODO In Methode auslagern
-
-                $scope.$apply();
-
-                setTimeout(function () {
-                    $scope.cssVarForDestinationTable = '';
-                    $scope.$apply();
-                }, 1500);
+                highlightDestinationTableTitle();
 
                 break;
             case FileError.SECURITY_ERR:
@@ -186,6 +193,5 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
 
         console.log('Error: ' + msg);
     }
-
 
 });

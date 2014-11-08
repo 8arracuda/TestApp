@@ -1,0 +1,34 @@
+<div overlay="myOverlay">
+    <div class="scrollable">
+        <div class="scrollable-content">
+
+            <h4 class="overlay-title">PG File API- saved files (click to see the value)</h4>
+
+            <p toggle="off" bubble target="myOverlay">
+                <span class="btn btn-primary">close</span>
+            </p>
+
+            <a class="btn btn-primary" ng-click="showFiles()">showFiles</a>
+
+            <div class="list-group">
+                <div ng-repeat="file in filelist">
+
+                    <li class="list-group-item">
+                        <a ng-click="deleteItem(key)"><i class="fa fa-trash-o pull-right"></i></a>
+                        <b ng-click="visible = !visible">{{ file }}</b><br>
+
+                        <div ng-show="visible">{{ value }}</div>
+                    </li>
+
+                </div>
+            </div>
+
+            <!--{{ localStorage.length | number }} keys are stored in LocalStorage.<br>-->
+
+            <p toggle="off" bubble target="myOverlay">
+                <span class="btn btn-primary">close</span>
+            </p>
+        </div>
+    </div>
+
+</div>

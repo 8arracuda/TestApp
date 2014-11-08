@@ -296,6 +296,7 @@ sdApp.config(function ($routeProvider) {
             controller: 'DirectoryVariablesCtrl'
         }).
         otherwise({
-            redirectTo: '/overview'
+            //redirectTo: '/overview'
+            redirectTo: '/DE_PG_fileAPI'
         });
 });

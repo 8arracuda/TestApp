@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
 var app = {
     // Application Constructor
     initialize: function () {
@@ -41,11 +43,22 @@ var app = {
         var htmlElement = document.getElementsByTagName("html")[0];
         angular.bootstrap(htmlElement, ['sdApp']);
 
+
     }
 
 
 };
 
+
+//For debugging in Chrome
+if (navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36') {
+
+    setTimeout(function () {
+        var htmlElement = document.getElementsByTagName("html")[0];
+        angular.bootstrap(htmlElement, ['sdApp']);
+    }, 2000);
+
+}
 
 
 
