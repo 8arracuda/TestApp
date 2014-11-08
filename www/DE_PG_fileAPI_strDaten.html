@@ -83,7 +83,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="row in tableFromPGFileAPI">
+                        <tr ng-repeat="row in tableFromPGFileAPI track by $index">
                             <td>
                                 {{ row[0] }}
                             </td>

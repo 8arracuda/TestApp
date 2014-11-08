@@ -2,9 +2,202 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.tableFromPGFileAPI = [];
 
-    const filenameForMethod1 = 'table1.txt';
+    const filenameForMethod1 = 'table1';
+    const filenameForMethod1NumberOfRows = 'table1_numberOfRows.txt';
     const filenameForMethod2 = 'table2.txt';
 
+
+    $scope.saveTable1ToPGFileAPI = function () {
+
+
+        ////write files; one file per row in sourceTable
+        //for (var i = 0; i < $rootScope.numberOfRows; i++) {
+        //    filename = filenameForMethod1 + '_' + i + '.txt';
+        //    window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+        //        function (fs) {
+        //
+        //            //var filename = filenameForMethod1;
+        //
+        //            fs.root.getFile(filename, {create: true}, function (fileEntry) {
+        //
+        //                fileEntry.isFile === true;
+        //                fileEntry.name == filename;
+        //                fileEntry.fullPath == '/' + filename;
+        //
+        //                fileEntry.createWriter(function (fileWriter) {
+        //
+        //                    fileWriter.onwriteend = function (e) {
+        //                        console.log(fileEntry.name + ' writen successfully.');
+        //                        //alert('filename:' + fileEntry.name + " url:" + fileEntry.toURL());
+        //                    };
+        //
+        //                    fileWriter.onerror = function (e) {
+        //                        console.log('Write failed: ' + e.toString());
+        //                    };
+        //
+        //                    //overwrites the file from the beginning
+        //                    fileWriter.seek(0);
+        //                    fileWriter.write(JSON.stringify($rootScope.data[i]));
+        //                    //alert('table has been saved');
+        //
+        //                }, errorHandler);
+        //
+        //            }, errorHandler);
+        //        },
+        //        errorHandler
+        //    );
+        //}
+
+        //write files; one file per row in sourceTable
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+            function (fs) {
+
+                for (var i = 0; i < $rootScope.numberOfRows; i++) {
+                    //var filename = filenameForMethod1;
+
+                    var filename = filenameForMethod1 + '_' + i + '.txt';
+                    fs.root.getFile(filename, {create: true}, function (fileEntry) {
+
+                        //fileEntry.isFile === true;
+                        //fileEntry.name == filename;
+                        //fileEntry.fullPath == '/' + filename;
+
+                        fileEntry.createWriter(function (fileWriter) {
+
+                            fileWriter.onwriteend = function (e) {
+                                console.log(fileEntry.name + ' writen successfully.');
+                                //alert('filename:' + fileEntry.name + " url:" + fileEntry.toURL());
+                            };
+
+                            fileWriter.onerror = function (e) {
+                                console.log('Write failed: ' + e.toString());
+                            };
+
+                            //overwrites the file from the beginning
+                            fileWriter.seek(0);
+                            fileWriter.write(JSON.stringify($rootScope.data[i]));
+                            //alert('table has been saved');
+
+                        }, errorHandler);
+
+                    }, errorHandler);
+                }
+            },
+            errorHandler
+        );
+
+
+        //write numberOfRows to file "table1_numberOfRows"
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+            function (fs) {
+
+                filename = filenameForMethod1NumberOfRows;
+                fs.root.getFile(filename, {create: true}, function (fileEntry) {
+
+                    fileEntry.isFile === true;
+                    fileEntry.name == filename;
+                    fileEntry.fullPath == '/' + filename;
+
+                    fileEntry.createWriter(function (fileWriter) {
+
+                        fileWriter.onwriteend = function (e) {
+                            console.log(fileEntry.name + ' writen successfully.');
+                            //alert('filename:' + fileEntry.name + " url:" + fileEntry.toURL());
+                        };
+
+                        fileWriter.onerror = function (e) {
+                            console.log('Write failed: ' + e.toString());
+                        };
+
+                        //overwrites the file from the beginning
+                        fileWriter.seek(0);
+                        fileWriter.write(JSON.stringify($rootScope.numberOfRows));
+                        //alert('table has been saved');
+
+                    }, errorHandler);
+
+                }, errorHandler);
+
+            },
+            errorHandler
+        );
+
+    };
+
+    $scope.loadTable1FromPGFileAPI = function () {
+
+        var numberOfRows;
+
+        function readNumberOfRows(fs) {
+
+
+            //read NumberOfRows
+            //var filename = filenameForMethod1NumberOfRows;
+            fs.root.getFile(filenameForMethod1NumberOfRows, {}, function (fileEntry) {
+
+                // Get a File object representing the file,
+                // then use FileReader to read its contents.
+                fileEntry.file(function (file) {
+                    var reader = new FileReader();
+
+                    reader.onloadend = function (e) {
+
+
+                        //$scope.tableFromPGFileAPI = [];
+                        //$scope.tableFromPGFileAPI = JSON.parse(this.result);
+                        //alert(numberOfRows);
+                        //highlightDestinationTableTitle();
+
+
+                        numberOfRows = this.result;
+
+                        alert('numberOfRows:' + numberOfRows + ' - starting loop');
+
+                        for (var i = 0; i < numberOfRows; i++) {
+
+                            filename = filenameForMethod1 + '_' + i + '.txt';
+
+                            fs.root.getFile(filename, {}, function (fileEntry) {
+
+                                // Get a File object representing the file,
+                                // then use FileReader to read its contents.
+                                fileEntry.file(function (file) {
+                                    var reader = new FileReader();
+
+                                    reader.onloadend = function (e) {
+
+                                        if (i == 0) {
+                                            alert(this.result);
+                                        }
+
+                                        //numberOfRows = this.result;
+                                        var address = JSON.parse(this.result);
+
+                                        $scope.tableFromPGFileAPI.push(address);
+                                        $scope.$apply();
+                                    };
+
+                                    reader.readAsText(file);
+                                }, errorHandler);
+
+                            }, errorHandler);
+
+                        }
+
+                    };
+
+                    reader.readAsText(file);
+                }, errorHandler);
+
+            }, errorHandler2);
+        };
+
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, readNumberOfRows, errorHandler);
+
+
+        //window.requestFileSystem(window.PERSISTENT, 1024 * 1024, readNumberOfRows, errorHandler);
+
+    };
 
     $scope.saveTable2ToPGFileAPI = function () {
 
@@ -32,7 +225,7 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
                             console.log('Write failed: ' + e.toString());
                         };
 
-
+                        //saves a subset of $rootScope.data to tableToSave
                         var tableToSave = [];
                         for (var i = 0; i < $rootScope.numberOfRows; i++) {
 
@@ -43,6 +236,7 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
                         //overwrites the file from the beginning
                         fileWriter.seek(0);
                         fileWriter.write(JSON.stringify(tableToSave));
+
                         alert('table has been saved');
 
                     }, errorHandler);
@@ -76,14 +270,6 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
                         $scope.tableFromPGFileAPI = [];
                         $scope.tableFromPGFileAPI = JSON.parse(this.result);
 
-                        //$scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
-                        //
-                        //$scope.$apply();
-                        //
-                        //setTimeout(function () {
-                        //    $scope.cssVarForDestinationTable = '';
-                        //    $scope.$apply();
-                        //}, 1500);
                         highlightDestinationTableTitle();
 
                     };
