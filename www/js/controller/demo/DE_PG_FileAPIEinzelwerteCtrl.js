@@ -71,7 +71,7 @@ sdApp.controller('DE_PG_FileAPIEinzelwerteCtrl', function ($scope, $rootScope) {
                         $scope.keyLoaded = $scope.keyToLoad;
                         $scope.valueLoadedFromPGFileAPI = this.result;
                         updateEinzelwerteViewString();
-                        //$scope.$apply();
+
                     };
 
                     reader.readAsText(file);

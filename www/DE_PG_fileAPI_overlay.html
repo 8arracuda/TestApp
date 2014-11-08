@@ -15,15 +15,20 @@
 
                     <li class="list-group-item">
                         <a ng-click="deleteItem(key)"><i class="fa fa-trash-o pull-right"></i></a>
-                        <b ng-click="visible = !visible">{{ file }}</b><br>
+                        <!--<b ng-click="visible = !visible">{{ file.name }}</b><br>-->
 
-                        <div ng-show="visible">{{ value }}</div>
+                        <!--<div ng-show="visible">{{ file.value }}</div>-->
+
+                        <b ng-click="visible = !visible; loadFileContent($index)">{{ file.name }}</b><br>
+
+                        <div ng-show="visible">{{ file.value }}</div>
                     </li>
 
                 </div>
             </div>
 
-            <!--{{ localStorage.length | number }} keys are stored in LocalStorage.<br>-->
+            {{ filelist.length | number }} files in this directory.<br>
+            documentsDirectory: {{ documentsDirectory }}
 
             <p toggle="off" bubble target="myOverlay">
                 <span class="btn btn-primary">close</span>

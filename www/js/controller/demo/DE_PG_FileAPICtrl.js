@@ -1,12 +1,14 @@
 sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
     $rootScope.section = 'DE';
+    //$scope.filelist = [];
 
     //<für alle Tabs>
     $scope.stringForRightButton = 'show files';
     $scope.stringForTitle = 'File API-Plugin';
     $scope.functionForRightButton = function () {
         $rootScope.toggle('myOverlay', 'on');
+        showFiles();
     };
     //</für alle Tabs>
 
@@ -32,10 +34,11 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
     //Functions for the Overlay
 
+    $scope.documentsDirectory = cordova.file.documentsDirectory;
 
-    $scope.showFiles = function () {
+    function showFiles() {
 
-       $scope.filelist = [];
+        $scope.filelist = [];
 
         function toArray(list) {
             return Array.prototype.slice.call(list || [], 0);
@@ -49,12 +52,12 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
             entries.forEach(function (entry, i) {
 
                 if (entry.isDirectory) {
-                    $scope.filelist.push(entry.name + '[DIR]');
-                    console.log('added ' + entry.name + '[DIR] to filelist-array.');
+                    var fileListEntry = {name: entry.name + '[DIR]', value: ""};
                 } else {
-                    $scope.filelist.push(entry.name);
-                    console.log('added ' + entry.name + ' to filelist-array.');
+                    var fileListEntry = {name: entry.name, value: ""};
                 }
+                $scope.filelist.push(fileListEntry);
+                console.log('added ' + fileListEntry.name + ' to filelist-array.');
                 $scope.$apply();
 
                 //var img = entry.isDirectory ? '<img src="folder-icon.gif">' :
@@ -91,6 +94,35 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
     };
+
+    $scope.loadFileContent = function(index) {
+        filename = $scope.filelist[index].name;
+
+        function onInitFs8(fs) {
+
+            fs.root.getFile(filename, {}, function (fileEntry) {
+
+                // Get a File object representing the file,
+                // then use FileReader to read its contents.
+                fileEntry.file(function (file) {
+                    var reader = new FileReader();
+
+                    reader.onloadend = function (e) {
+
+                        $scope.filelist[index].value = this.result;
+                        $scope.$apply();
+                    };
+
+                    reader.readAsText(file);
+                }, errorHandler);
+
+            }, errorHandler);
+        };
+
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs8, errorHandler);
+
+
+    }
 
     function errorHandler(e) {
         var msg = '';
