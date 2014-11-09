@@ -49,7 +49,6 @@ var app = {
 
 };
 
-
 //TODO For debugging in Chrome (remove at the end)
 if (navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/600.1.25 (KHTML, like Gecko) Version/8.0 Safari/600.1.25' || navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36') {
 
@@ -59,7 +58,3 @@ if (navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWeb
     }, 2000);
 
 }
-
-
-
-
