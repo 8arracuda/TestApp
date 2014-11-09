@@ -34,7 +34,11 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
     //Functions for the Overlay
 
-    $scope.documentsDirectory = cordova.file.documentsDirectory;
+
+    //TODO For debugging in Chrome (remove at the end)
+    if (!navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36') {
+        $scope.documentsDirectory = cordova.file.documentsDirectory;
+    }
 
     function showFiles() {
 

@@ -1,6 +1,6 @@
 sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
 
-    $rootScope.section='PE';
+    $rootScope.section = 'PE';
 
 
     $scope.enableTab_Actions = function () {
@@ -39,11 +39,21 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
         $scope.stringForRightButton = 'LST2';
     }
 
+
+    $scope.stringWithResults = '';
     $scope.localStorage = [];
     $scope.localStorage = localStorage;
 
     $scope.myOverlayTitle = 'title';
     $scope.myOverlayText = 'text';
+
+    var numberOfTests = 8;
+    $scope.results = [];
+    for (var i = 0; i < 8; i++) {
+
+        var result = {finished: false, time: -1};
+        $scope.results.push(result);
+    }
 
     $scope.test = function () {
         alert(JSON.stringify($scope.localStorage));
@@ -81,29 +91,6 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
         }
     };
 
-    $scope.perf_store1000Items = function () {
-
-        console.log('perf_store1000Items started');
-
-        var start = new Date().getTime();
-
-        for (i = 0; i < 1000; ++i) {
-
-            localStorage.setItem(('test' + i), 'test' + i);
-
-        }
-
-        var end = new Date().getTime();
-        var time = end - start;
-        alert('Execution time: ' + time);
-
-        for (i = 0; i < 1000; ++i) {
-
-            localStorage.removeItem(('test' + i));
-
-        }
-
-    };
 
     $scope.perf_store10times1000 = function () {
 
@@ -168,6 +155,104 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
     };
 
     $scope.enableTab_Actions();
+
+
+    $scope.startPerformanceTest = function () {
+        $scope.stringWithResults = 'result';
+
+        $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
+
+        //$scope.testProgress = .0;
+        //
+        //setTimeout(function () {
+        //    $scope.testProgress = .1;
+        //    $scope.$apply();
+        //}, 500);
+        //
+        //setTimeout(function () {
+        //    $scope.testProgress = .2;
+        //    $scope.$apply();
+        //}, 1000);
+        //
+        //setTimeout(function () {
+        //    $scope.testProgress = .3;
+        //    $scope.$apply();
+        //}, 1500);
+        //
+        //setTimeout(function () {
+        //    $scope.testProgress = 1;
+        //    $scope.$apply();
+        //}, 2000);
+
+        //$scope.stringWithResults = 'Store 1000 Items:' + $scope.perf_store1000Items() + ' ms <br>';
+        //$scope.stringWithResults = $scope.stringWithResults + 'Store 1000 Items:' + $scope.perf_store1000Items() + ' ms <br>';
+        //  $scope.stringWithResults = $scope.stringWithResults + 'Store 1000 Items:' + $scope.perf_store1000Items() + ' ms <br>';
+
+        for (var i = 0; i < numberOfTests; i++) {
+
+            //$scope.results[i].time = $scope.perf_store1000Items();
+
+            $scope.results[i].time = $scope.perf_storeItems(1000);
+            $scope.results[i].finished = true;
+            $scope.testProgress = 1 / numberOfTests;
+            //$scope.$apply();
+            ///$scope.$apply();
+
+
+        }
+
+
+
+    };
+
+
+    $scope.perf_storeItems = function (amount) {
+        //console.log('perf_storeItems(' + amount + ') started');
+
+        var timeStart = new Date().getTime();
+
+        for (i = 0; i < amount; ++i) {
+            localStorage.setItem(('test' + i), 'test' + i);
+        }
+
+        var timeEnd = new Date().getTime();
+        var timeDiff = timeEnd - timeStart;
+
+        for (i = 0; i < amount; ++i) {
+            localStorage.removeItem(('test' + i));
+        }
+        //console.log('perf_storeItems(' + amount + ') started');
+
+        return timeDiff;
+
+    };
+
+    $scope.perf_store1000Items = function () {
+
+        console.log('perf_store1000Items started');
+
+        var timeStart = new Date().getTime();
+
+        for (i = 0; i < 1000; ++i) {
+
+            localStorage.setItem(('test' + i), 'test' + i);
+
+        }
+
+        var timeEnd = new Date().getTime();
+        var timeDiff = timeEnd - timeStart;
+        //alert('Execution time: ' + timeDiff);
+
+
+        for (i = 0; i < 1000; ++i) {
+
+            localStorage.removeItem(('test' + i));
+
+        }
+
+        return timeDiff;
+
+    };
 
 
 });

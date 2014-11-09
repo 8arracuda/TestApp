@@ -305,7 +305,6 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
 
     };
 
-
     function errorHandler(e) {
         var msg = '';
 
