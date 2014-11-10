@@ -188,8 +188,9 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
 
     });
 
-//Code von http://www.stephenpauladams.com/articles/angularjs-cordova-windows-phone-quirk/
-//Damit Links in Windows Phone funktionieren
+//Code take from http://www.stephenpauladams.com/articles/angularjs-cordova-windows-phone-quirk/
+//it makes links work in Windows Phone
+//Without this Windows Phone want's to search for an appropiate app for that link.
 sdApp.config( [
     '$compileProvider',
     function( $compileProvider )

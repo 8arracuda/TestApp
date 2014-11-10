@@ -17,56 +17,29 @@
 <!--</div>-->
 <!--</div>-->
 
-<div class="btn-group">
-    <a class="btn btn-default"
-       target="LSList"
-       toggle="on"
-       ng-click="tab = 1"
-       active-class="active">List
-    </a>
 
-    <a class="btn btn-default"
-       target="LSActions"
-       toggle="on"
-       ng-click="tab = 2"
-       active-class="active">Actions
-    </a>
+<div class="panel">
+    <div class="panel-heading">
 
-</div>
-
-<div class="tab-content">
-    <div class="tab-pane"
-         toggleable
-         ng-class="{active: tab == 1}"
-         default="active"
-         id="LSList"
-         exclusion-group="myTabs2">
-
-            <div class="scrollable-content">
-                <div class="list-group">
-                    <div class="list-group-item" ng-repeat="(key, value) in localStorage">
-                        {{ key }} - {{ value }} <br>
-                    </div>
-                </div>
-        </div>
     </div>
+    <div class="panel-body">
 
-    <div class="tab-pane"
-         toggleable
-         ng-class="{active: tab == 2}"
-         default="active"
-         id="LSActions"
-         exclusion-group="myTabs2">
-        Actions
+
+        <a class="btn btn-primary" ng-click="findLimit1()">
+            findLimit1
+        </a>
+        <a class="btn btn-primary" ng-click="findLimit2()">
+            findLimit2
+        </a>
+        <a class="btn btn-primary" ng-click="findLimit3()">
+            findLimit3
+        </a>
+        <a class="btn btn-primary" ng-click="findLimit4()">
+            findLimit4
+        </a>
     </div>
 </div>
 
-<div class="navbar navbar-app navbar-absolute-bottom">
-    <div class="btn-group justified">
-        <a href="" class="btn btn-navbar"><i class="fa fa-navbar"></i> 1</a>
-        <a href="" class="btn btn-navbar"><i
-                class="fa fa-navbar"></i> 2</a>
-        <a href="" class="btn btn-navbar"><i
-                class="fafa-navbar"></i> 3</a>
-    </div>
-</div>
+
+
+
