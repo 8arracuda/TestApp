@@ -5,7 +5,6 @@ sdApp.controller('DE_LocalStorageEinzelwerteCtrl', function ($scope) {
     $scope.valueToSave = "b";
     $scope.keyToRemove = "";
 
-
     $scope.saveEinzelwerte = function () {
         if ($scope.keyToSave == '' || $scope.valueToSave == '') {
             alert('You need to enter a key and a value');
@@ -19,7 +18,9 @@ sdApp.controller('DE_LocalStorageEinzelwerteCtrl', function ($scope) {
     $scope.updateEinzelwerteView = function () {
         $scope.localStorage = localStorage;
         $scope.keyLoaded = $scope.keyToLoad;
-        $scope.valueLoadedFromLocalStorage = localStorage.getItem($scope.keyLoaded)
+        //$scope.valueLoadedFromLocalStorage = localStorage.getItem($scope.keyLoaded);
+        $scope.valueLoadedFromLocalStorage = 'has value "' + $scope.valueLoadedFromLocalStorage + '"';
+
     };
 
     $scope.removeKeyFromLocalStorage = function () {
