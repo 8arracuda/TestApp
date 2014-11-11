@@ -18,7 +18,6 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
             var transaction = db.transaction([objStoreName], "readwrite");
 
-
             var objectStore = transaction.objectStore(objStoreName);
             var keyValuePair = {key: $scope.keyToSave, value: $scope.valueToSave};
             objectStore.add(keyValuePair);
@@ -92,7 +91,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
     };
 
-    $scope.removeKeyFromIndexedDB = function () {
+    $scope.removeKeyFromObjectStore= function () {
 
         var request = db.transaction([objStoreName], "readwrite")
             .objectStore(objStoreName)
@@ -143,7 +142,6 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
-            // Öffnen unserer Datenbank
             var request = window.indexedDB.open(dbName, 2);
 
             request.onerror = function (event) {
