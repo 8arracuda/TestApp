@@ -74,8 +74,8 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 //objectStore.add(keyValuePair);
 
 
-                for (var i = 0; i < $rootScope.numberOfRows; i++) {
-
+               // for (var i = 0; i < $rootScope.numberOfRows; i++) {
+                    var i =0;
                     var address = {};
 
                     address.firstName = $rootScope.data[i][0];
@@ -89,20 +89,21 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
 
                     objectStore.add(address);
-                    console.log('added an address (index: ' + i + ")");
-                }
+                  //  console.log('added an address (index: ' + i + ")");
+               // }
 
                 //console.log('added ' + $rootScope.numberOfRows + )
 
                 // Do something when all the data is added to the database.
                 transaction.oncomplete = function (event) {
-                    console.log('transaction.oncomplete');
+                    console.log('transaction.oncomplete (in saveTableToIndexedDB)');
                     alert("All done!");
                 };
 
                 transaction.onerror = function (event) {
-                    console.error('transaction.onerror');
-                    //console.error(event.error);
+                    console.error('transaction.onerror (in saveTableToIndexedDB)');
+                    console.error(event.error);
+                    console.error(transaction.error);
                     // Don't forget to handle errors!
                 };
 
