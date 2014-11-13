@@ -18,13 +18,20 @@ sdApp.controller('DE_LocalStorageEinzelwerteCtrl', function ($scope) {
     $scope.updateEinzelwerteView = function () {
         $scope.localStorage = localStorage;
         $scope.keyLoaded = $scope.keyToLoad;
-        //$scope.valueLoadedFromLocalStorage = localStorage.getItem($scope.keyLoaded);
-        $scope.valueLoadedFromLocalStorage = 'has value "' + $scope.valueLoadedFromLocalStorage + '"';
+
+        var item = localStorage.getItem($scope.keyToLoad);
+
+        if (item == null) {
+            $scope.valueLoadedFromLocalStorage = 'does not exist';
+        } else {
+            $scope.valueLoadedFromLocalStorage = 'has value "' + item + '"';
+        }
 
     };
 
     $scope.removeKeyFromLocalStorage = function () {
         localStorage.removeItem($scope.keyToRemove);
+        alert('key ' + $scope.keyToRemove + ' was removed');
     };
 
 });

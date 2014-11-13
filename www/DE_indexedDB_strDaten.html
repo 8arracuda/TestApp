@@ -18,11 +18,11 @@
         </h2>
 
         <div class="panel-body">
-            <!--<a class="btn btn-primary" ng-click="alertFoo()">alertFoo</a>-->
-            <a class="btn btn-primary" ng-click="saveTableToIndexedDB()">saveTableToIndexedDB</a>
-            <!--<a class="btn btn-primary" ng-click="clearObjectStore()">clearObjectStore</a>-->
-            <a class="btn btn-primary" ng-click="loadTableFromIndexedDB()">loadTableFromIndexedDB</a>
-            <a class="btn btn-warning" ng-click="clearObjectStore()">clearObjectStore</a>
+
+            <a ng-class="{disabled: db==null}" class="btn btn-primary" ng-click="saveTableToIndexedDB()">saveTableToIndexedDB</a>
+            <a ng-class="{disabled: db==null}" class="btn btn-primary" ng-click="loadTableFromIndexedDB()">loadTableFromIndexedDB</a>
+            <a ng-class="{disabled: db==null}" class="btn btn-warning"
+               ng-click="clearObjectStore()">clearObjectStore</a>
 
         </div>
 

@@ -3,11 +3,11 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
         const dbName = "StrDaten";
         const objStoreName = "StrDaten";
         $scope.databaseOpened = false;
-        var db;
+        $scope.db;
 
         $scope.clearObjectStore = function () {
 
-            var request = db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
+            var request = $scope.db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
 
             request.onsuccess = function (evt) {
 
@@ -29,7 +29,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 alert('You need to enter a key and a value');
             } else {
 
-                var transaction = db.transaction([objStoreName], "readwrite");
+                var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
                 var objectStore = transaction.objectStore(objStoreName);
 
@@ -63,7 +63,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
             $scope.tableFromIndexedDB = [];
 
-            var transaction = db.transaction([objStoreName], "readonly");
+            var transaction = $scope.db.transaction([objStoreName], "readonly");
 
             var objectStore = transaction.objectStore(objStoreName);
 
@@ -135,7 +135,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 };
                 request.onsuccess = function (event) {
                     console.log('request.onsuccess (in openDatabase)');
-                    db = request.result;
+                    $scope.db = request.result;
 
                     //for updating the "status-light" on the openDatabase button
                     $scope.databaseOpened = true;
@@ -146,7 +146,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                     console.log('request.onupgradeneeded start');
                     var db = event.target.result;
 
-                    var objectStore = db.createObjectStore(objStoreName, {keyPath: "lastName"});
+                    var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "lastName"});
 
                     objectStore.createIndex("lastName", "lastName", {unique: true});
 

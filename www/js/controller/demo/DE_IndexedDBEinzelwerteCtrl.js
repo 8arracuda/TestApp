@@ -7,15 +7,19 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
     $scope.keyToLoad = "a";
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";
-    var db;
-
+    $scope.keyToRemove= "";
+    $scope.db;
 
     $scope.saveEinzelwerte = function () {
+
+
+
+
         if ($scope.keyToSave == '' || $scope.valueToSave == '') {
             alert('You need to enter a key and a value');
         } else {
 
-            var transaction = db.transaction([objStoreName], "readwrite");
+            var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
             var objectStore = transaction.objectStore(objStoreName);
             var keyValuePair = {key: $scope.keyToSave, value: $scope.valueToSave};
@@ -39,7 +43,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
         $scope.keyLoaded = $scope.keyToLoad;
 
-        var transaction = db.transaction([objStoreName], "readonly");
+        var transaction = $scope.db.transaction([objStoreName], "readonly");
 
         var objectStore = transaction.objectStore(objStoreName);
         var request = objectStore.get($scope.keyToLoad);
@@ -81,7 +85,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
     $scope.removeKeyFromObjectStore = function () {
 
-        var request = db.transaction([objStoreName], "readwrite")
+        var request = $scope.db.transaction([objStoreName], "readwrite")
             .objectStore(objStoreName)
             .delete($scope.keyToRemove);
         request.onsuccess = function (event) {
@@ -106,7 +110,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
             db = request.result;
 
 
-            //$scope.objectStores = db.objectStoreNames;
+            //$scope.objectStores = $scope.db.objectStoreNames;
             $scope.$apply();
 
         };
@@ -116,7 +120,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
     $scope.clearObjectStore = function () {
 
-        var request = db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
+        var request = $scope.db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
 
         request.onsuccess = function (evt) {
 
@@ -134,7 +138,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
     };
 
-    $scope.openDatabase = function() {
+    $scope.openDatabase = function () {
         console.log('openDatabase start');
 
         //Quelle:
@@ -152,7 +156,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
             };
             request.onsuccess = function (event) {
                 console.log('request.onsuccess (in openDatabase)');
-                db = request.result;
+                $scope.db = request.result;
 
                 //for updating the "status-light" on the openDatabase button
                 $scope.databaseOpened = true;
@@ -163,7 +167,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
                 console.log('request.onupgradeneeded start');
                 var db = event.target.result;
 
-                var objectStore = db.createObjectStore(objStoreName, {keyPath: "key"});
+                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "key"});
 
                 //Column key is defined as index for the objectStore "einzelwerte"
                 objectStore.createIndex("key", "key", {unique: true});

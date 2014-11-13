@@ -13,15 +13,6 @@
 
         </div>
 
-        <!--<h2 class="panel-title">-->
-        <!--store values-->
-        <!--</h2>-->
-
-        <!--<div class="panel-body">-->
-        <!--<button class="btn btn-primary" ng-click="initWebSQL()">init/open database</button>-->
-
-        <!--</div>-->
-
         <h2 class="panel-title">
             store values
         </h2>
@@ -49,7 +40,7 @@
                     class="col-xs-9 col-sm-10 col-lg-11"
                     placeholder="Value"
                     />
-            <button class="btn btn-primary" ng-click="saveEinzelwerte()"><i class="fa fa-save"></i> save</button>
+            <button ng-class="{disabled: db==null}" class="btn btn-primary" ng-click="saveEinzelwerte()"><i class="fa fa-save"></i> save</button>
         </div>
 
         <h2 class="panel-title">
@@ -71,15 +62,7 @@
 
             "{{ keyLoaded }}" {{ valueLoadedFromIndexedDB }}
 
-            <!--<table>-->
-            <!--<tr ng-repeat="value in valuesLoadedFromIndexedDB">-->
-            <!--<td>-->
-            <!--Key "{{ keyLoaded }}" has value value "{{ valueLoadedFromIndexedDB }}"-->
-            <!--</td>-->
-            <!--</tr>-->
-            <!--</table>-->
-
-            <button class="btn btn-primary" ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update
+            <button ng-class="{disabled: db==null}" class="btn btn-primary" ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update
             </button>
 
         </div>
@@ -94,15 +77,15 @@
 
                     type="text"
                     ng-model="keyToRemove"
-                    label="Key"
+                    label="key"
                     label-class="col-xs-3 col-sm-2 col-lg-1"
                     class="col-xs-9 col-sm-10 col-lg-11"
                     placeholder="Key"
                     />
-            <button class="btn btn-danger" ng-click="removeKeyFromObjectStore()"><i class="fa fa-trash-o"></i> delete
+            <button ng-class="{disabled: (db==null || keyToRemove.length==0)}" class="btn btn-danger" ng-click="removeKeyFromObjectStore()"><i class="fa fa-trash-o"></i> delete
                 key
             </button>
-            <button class="btn btn-warning" ng-click="clearObjectStore()">clearObjectStore</button>
+            <button ng-class="{disabled: db==null}" class="btn btn-warning" ng-click="clearObjectStore()">clearObjectStore</button>
         </div>
 
         <h2 class="panel-title">
@@ -110,19 +93,13 @@
         </h2>
 
         <div class="panel-body">
-            <button class="btn btn-default" ng-click="listObjectStores()">listObjectStores</button>
+            <button ng-class="{disabled: db==null}" class="btn btn-default" ng-click="listObjectStores()">listObjectStores</button>
             <ul>
                 <li ng-repeat="objectStore in objectStores">
                     {{ objectStore }}
                 </li>
             </ul>
 
-
         </div>
     </div>
 </div>
-
-
-
-
-
