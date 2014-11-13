@@ -34,9 +34,10 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
     //Functions for the Overlay
 
-
     //TODO For debugging in Chrome (remove at the end)
-    if (!navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36') {
+    //if(!navigator.userAgent==$rootScope.userAgentForDesktopDevelopment1 || $rootScope.UserAgentForDesktopDevelopment2) {
+
+    if (!navigator.userAgent == userAgentForDesktopDevelopment1) {
         $scope.documentsDirectory = cordova.file.documentsDirectory;
     }
 
@@ -99,7 +100,7 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
     };
 
-    $scope.loadFileContent = function(index) {
+    $scope.loadFileContent = function (index) {
         filename = $scope.filelist[index].name;
 
         function onInitFs8(fs) {

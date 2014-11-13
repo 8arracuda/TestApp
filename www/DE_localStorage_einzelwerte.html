@@ -31,7 +31,7 @@
                     placeholder="Value"
                     />
 
-            <button class="btn btn-primary" ng-click="saveEinzelwerte()"><i class="fa fa-save"></i> save</button>
+            <button ng-class="{disabled: keyToSave.length==0}" class="btn btn-primary" ng-click="saveEinzelwerte()"><i class="fa fa-save"></i> save</button>
 
         </div>
         <h2 class="panel-title">
@@ -52,7 +52,7 @@
                     />
 
             "{{ keyLoaded }}" {{ valueLoadedFromLocalStorage }}<br>
-            <button class="btn btn-primary" ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update
+            <button ng-class="{disabled: keyToLoad.length==0}" class="btn btn-primary" ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update
             </button>
 
         </div>

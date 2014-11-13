@@ -8,38 +8,27 @@
     </div>
 </div>
 
-<div class="scrollable">
-    <div class="scrollable-content">
+<div class="panel">
 
+    <h2 class="panel-title">
+        database open?
+    </h2>
 
-        <a class="btn btn-primary" ng-click="openDatabase()">open Database</a>
-        <a class="btn btn-primary" ng-click="saveDatabase()">save Database</a>
-        <a class="btn btn-primary" ng-click="showList()">showList</a>
-        <a class="btn btn-primary" ng-click="showObjectStores()">showObjectStores</a>
+    <div class="panel-body">
+        <button class="btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
 
+        <button class="btn btn-primary" ng-click="openDatabase()">open database</button>
 
-        <div class="list-group">
-            <li class="list-group-item">
-                <b>ObjectStores:</b>
-            </li>
+    </div>
 
-            <div ng-repeat="(key, value) in objectStoreNames">
-                <li class="list-group-item">
-                    {{ key }} - {{ value }}
-                </li>
-            </div>
-            <li class="list-group-item">
-                <b>Data:</b>
-            </li>
+    <h2 class="panel-title">
+        actions
+    </h2>
 
-            <div ng-repeat="(key, value) in customers">
-                <li class="list-group-item">
-                    {{ key }} - {{ value }}
-                </li>
-            </div>
-        </div>
+    <div class="panel-body">
+        <button class="btn btn-primary" ng-click="  perf_store1000Items()">  perf_store1000Items</button>
+
 
     </div>
 </div>
-
 

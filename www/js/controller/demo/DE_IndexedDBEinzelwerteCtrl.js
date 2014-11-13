@@ -164,15 +164,15 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
             };
 
             request.onupgradeneeded = function (event) {
-                console.log('request.onupgradeneeded start');
-                var db = event.target.result;
+
+                $scope.db = event.target.result;
 
                 var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "key"});
 
                 //Column key is defined as index for the objectStore "einzelwerte"
                 objectStore.createIndex("key", "key", {unique: true});
 
-                console.log('request.onupgradeneeded start');
+
             }
         }
     };

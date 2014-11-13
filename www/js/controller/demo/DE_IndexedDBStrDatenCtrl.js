@@ -3,7 +3,6 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
         const dbName = "StrDaten";
         const objStoreName = "StrDaten";
         $scope.databaseOpened = false;
-        $scope.db;
 
         $scope.clearObjectStore = function () {
 
@@ -143,14 +142,14 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 };
 
                 request.onupgradeneeded = function (event) {
-                    console.log('request.onupgradeneeded start');
-                    var db = event.target.result;
+
+                    $scope.db = event.target.result;
 
                     var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "lastName"});
 
                     objectStore.createIndex("lastName", "lastName", {unique: true});
 
-                    console.log('request.onupgradeneeded start');
+
                 }
             }
         };

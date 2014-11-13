@@ -2,29 +2,21 @@ sdApp.controller('PE_IndexedDBCtrl', function ($scope, $rootScope) {
 
     $rootScope.section = 'PE';
 
-    $scope.customers = []
 
+    const dbName = "PerformanceTests";
+    const objStoreName = "PerformanceTests";
+    $scope.databaseOpened = false;
 
-    //Code von
-    //https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
 
     $scope.openDatabase = function () {
         console.log('openDatabase start');
 
-
+        //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
         if (!window.indexedDB) {
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
-            const customerData = [
-                { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
-                { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" }
-            ];
-
-            const dbName = "the_name";
-
-            // Öffnen unserer Datenbank
-            var request = window.indexedDB.open(dbName, 3);
+            var request = window.indexedDB.open(dbName, 2);
 
             request.onerror = function (event) {
                 console.error('request.onerror');
@@ -32,105 +24,93 @@ sdApp.controller('PE_IndexedDBCtrl', function ($scope, $rootScope) {
                 // Machen Sie etwas mit request.errorCode!
             };
             request.onsuccess = function (event) {
-                console.log('request.onsuccess');
-                db = request.result;
-                // Machen Sie etwas mit request.result!
+                console.log('request.onsuccess (in openDatabase)');
+                $scope.db = request.result;
+
+                //for updating the "status-light" on the openDatabase button
+                $scope.databaseOpened = true;
+                $scope.$apply();
             };
 
             request.onupgradeneeded = function (event) {
-                console.log('openDatabase start');
-                var db = event.target.result;
+                console.log('request.onupgradeneeded (in openDatabase)');
+                $scope.db = event.target.result;
 
-                // Create an objectStore to hold information about our customers. We're
-                // going to use "ssn" as our key path because it's guaranteed to be
-                // unique.
-                var objectStore = db.createObjectStore("customers", { keyPath: "ssn" });
-
-                // Create an index to search customers by name. We may have duplicates
-                // so we can't use a unique index.
-                objectStore.createIndex("name", "name", { unique: false });
-
-                // Create an index to search customers by email. We want to ensure that
-                // no two customers have the same email, so use a unique index.
-                objectStore.createIndex("email", "email", { unique: true });
-
-                // Store values in the newly created objectStore.
-                for (var i in customerData) {
-                    objectStore.add(customerData[i]);
+                //remove old objectStores if there were any
+                if (event.oldVersion < 1) {
+                    $scope.db.deleteObjectStore(objStoreName);
                 }
-                console.log('openDatabase end');
+
+                //create a new objectStore
+                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "key"});
+
+                //Column key is defined as index for the objectStore "einzelwerte"
+                objectStore.createIndex("key", "key", {unique: true});
+
             }
         }
     };
 
-    $scope.saveDatabase = function () {
+    $scope.perf_store1000Items = function () {
+        perf_storeItems(1000);
+    };
 
-        var transaction = db.transaction(["customers"], "readwrite");
-// Note: Older experimental implementations use the deprecated constant IDBTransaction.READ_WRITE instead of "readwrite".
-// In case you want to support such an implementation, you can just write:
-// var transaction = db.transaction(["customers"], IDBTransaction.READ_WRITE);
+    function perf_storeItems(amountOfData) {
 
-        // Do something when all the data is added to the database.
+        $scope.clearObjectStore();
+
+
+        var timeStart = new Date().getTime();
+        var transaction = $scope.db.transaction([objStoreName], "readwrite");
+
+        var objectStore = transaction.objectStore(objStoreName);
+
+        for (var i = 0; i < amountOfData; i++) {
+
+            //var address = {};
+            //
+            //address.firstName = $rootScope.data[i][0];
+            //address.lastName = $rootScope.data[i][1];
+            //address.street = $rootScope.data[i][2];
+            //address.zipcode = $rootScope.data[i][3];
+            //address.city = $rootScope.data[i][4];
+            //address.email = $rootScope.data[i][5];
+
+            var keyValuePair = {key: i, value: i};
+
+            objectStore.add(keyValuePair);
+        }
+
+        console.log('added ' + amountOfData + ' addresses to ObjectStore strDaten.');
+
         transaction.oncomplete = function (event) {
-            console.log('transaction.oncomplete');
-            alert("All done!");
+            console.log('transaction.oncomplete (in perf_store1000Items)');
+            var timeEnd = new Date().getTime();
+            var timeDiff = timeEnd - timeStart;
+            console.log('execution time (perf_store1000Items):' + timeDiff);
+            console.log(timeEnd + ' - ' + timeStart + ' = ' + timeDiff);
         };
 
         transaction.onerror = function (event) {
-            console.error('transaction.onerror');
-            // Don't forget to handle errors!
+            console.error('transaction.onerror (in perf_store1000Items)');
         };
 
-        var objectStore = transaction.objectStore("customers");
-        for (var i in customerData) {
-            var request = objectStore.add(customerData[i]);
-            request.onsuccess = function (event) {
-                console.log('request.onsuccess');
-                // event.target.result == customerData[i].ssn;
-            };
-            request.onerror = function (event) {
-                console.error('request.onerror');
-                // event.target.result == customerData[i].ssn;
-            };
-        }
 
     };
 
-    $scope.showList = function () {
-        alert('showList was called');
+    $scope.clearObjectStore = function () {
 
-        //$scope.customers = [];
+        var request = $scope.db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
 
-        var objectStore = db.transaction("customers").objectStore("customers");
+        request.onsuccess = function (evt) {
 
-        objectStore.openCursor().onsuccess = function (event) {
-            alert('objectStore.openCursor().onsuccess');
-            var cursor = event.target.result;
-            if (cursor) {
-                $scope.customers.push(cursor.value);
-                cursor.continue();
-            }
-            else {
-                //cusor has no more items
-                //-> notify angularJS to reload
-                $scope.$apply();
-            }
+            console.log('objectStore "' + objStoreName + '" has been cleared');
+        };
+        request.onerror = function (event) {
+            console.error("clearObjectStore:", event.target.errorCode);
+            displayActionFailure(this.error);
         };
 
     };
-
-
-    $scope.showObjectStores = function() {
-        const dbName = "the_name";
-        var request = window.indexedDB.open(dbName, 3);
-        request.onsuccess = function (event) {
-            console.log('request.onsuccess');
-            db = request.result;
-            //alert(JSON.stringify(db.objectStoreNames));
-            $scope.objectStoreNames = db.objectStoreNames;
-        };
-
-    };
-
 
 });
