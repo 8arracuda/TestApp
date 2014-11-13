@@ -1,9 +1,10 @@
 sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
-        const dbName = "strDaten";
-        const objStoreName = "strDaten";
+        const dbName = "StrDaten";
+        const objStoreName = "StrDaten";
         $scope.databaseOpened = false;
-        var db;
+        //var db;
+        openDatabase();
 
         //$scope.alertFoo = function () {
         //    alert('foo');
@@ -73,23 +74,26 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 // var keyValuePair = {key: $scope.keyToSave, value: $scope.valueToSave};
                 //objectStore.add(keyValuePair);
 
-               // for (var i = 0; i < $rootScope.numberOfRows; i++) {
-                    var i =0;
-                    var address = {};
+                // for (var i = 0; i < $rootScope.numberOfRows; i++) {
+                var i = 0;
+                var address = {};
 
-                    address.firstName = $rootScope.data[i][0];
-                    address.lastName = $rootScope.data[i][1];
-                    address.street = $rootScope.data[i][2];
-                    address.zipcode = $rootScope.data[i][3];
-                    address.city = $rootScope.data[i][4];
-                    address.email = $rootScope.data[i][5];
+                address.firstName = $rootScope.data[i][0];
+                address.lastName = $rootScope.data[i][1];
+                address.street = $rootScope.data[i][2];
+                address.zipcode = $rootScope.data[i][3];
+                address.city = $rootScope.data[i][4];
+                address.email = $rootScope.data[i][5];
 
-                    //alert(JSON.stringify(address));
+                //alert(JSON.stringify(address));
 
 
-                    objectStore.add(address);
-                  //  console.log('added an address (index: ' + i + ")");
-               // }
+                //    objectStore.add(address);
+                objectStore.put(address);
+
+
+                //  console.log('added an address (index: ' + i + ")");
+                // }
 
                 //console.log('added ' + $rootScope.numberOfRows + )
 
@@ -176,7 +180,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
             }, 1500);
         }
 
-        $scope.openDatabase = function () {
+        function openDatabase() {
             console.log('openDatabase start');
 
             //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden

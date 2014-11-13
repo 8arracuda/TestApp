@@ -8,8 +8,8 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";
 
+    openDatabase();
 
-    //TODO Error occurs, when a key already exists
     $scope.saveEinzelwerte = function () {
         if ($scope.keyToSave == '' || $scope.valueToSave == '') {
             alert('You need to enter a key and a value');
@@ -133,7 +133,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
     };
 
-    $scope.openDatabase = function () {
+    function openDatabase() {
         console.log('openDatabase start');
 
         //Quelle:
@@ -152,7 +152,6 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
             request.onsuccess = function (event) {
                 console.log('request.onsuccess (in openDatabase)');
                 db = request.result;
-
 
                 //for updating the "status-light" on the openDatabase button
                 $scope.databaseOpened = true;
