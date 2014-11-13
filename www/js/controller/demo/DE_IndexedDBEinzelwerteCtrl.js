@@ -7,8 +7,8 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
     $scope.keyToLoad = "a";
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";
+    var db;
 
-    openDatabase();
 
     $scope.saveEinzelwerte = function () {
         if ($scope.keyToSave == '' || $scope.valueToSave == '') {
@@ -79,7 +79,7 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
     };
 
-    $scope.removeKeyFromObjectStore= function () {
+    $scope.removeKeyFromObjectStore = function () {
 
         var request = db.transaction([objStoreName], "readwrite")
             .objectStore(objStoreName)
@@ -116,7 +116,6 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
     $scope.clearObjectStore = function () {
 
-
         var request = db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
 
         request.onsuccess = function (evt) {
@@ -125,15 +124,17 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
         };
         request.onerror = function (event) {
             console.error("clearObjectStore:", event.target.errorCode);
-            displayActionFailure(this.error);
+
+
+            //displayActionFailure(this.error);
         };
 
- alert('key ' + $scope.keyToRemove + ' was removed');
-        //};
+        alert('key ' + $scope.keyToRemove + ' was removed');
+
 
     };
 
-    function openDatabase() {
+    $scope.openDatabase = function() {
         console.log('openDatabase start');
 
         //Quelle:

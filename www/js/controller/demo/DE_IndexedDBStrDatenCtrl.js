@@ -3,36 +3,14 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
         const dbName = "StrDaten";
         const objStoreName = "StrDaten";
         $scope.databaseOpened = false;
-        //var db;
-        openDatabase();
-
-        //$scope.alertFoo = function () {
-        //    alert('foo');
-        //
-        //    alert('data: ' + $rootScope.data);
-        //
-        //};
-
+        var db;
 
         $scope.clearObjectStore = function () {
 
-            //console.log('clearTable start');
-            //var request = db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear;
-            //
-            //request.onsuccess = function (event) {
-            //    //alert('objectStore "' + objStoreName + '" has been cleared');
-            //    console.log('objectStore "' + objStoreName + '" has been cleared');
-            //}
-            //
-
-
-            //var store = getObjectStore(objStoreName, 'readwrite');
-            //var req = db.transaction([objStoreName], "readwrite").clear();
             var request = db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
-            //var req = store.clear();
+
             request.onsuccess = function (evt) {
-                //displayActionSuccess("Store cleared");
-                //displayPubList(store);
+
                 console.log('objectStore "' + objStoreName + '" has been cleared');
             };
             request.onerror = function (event) {
@@ -40,74 +18,42 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 displayActionFailure(this.error);
             };
 
-
-            //var request = db.transaction([objStoreName], "readwrite")
-            //    .objectStore(objStoreName)
-            //    .clear();
-            //request.onsuccess = function (event) {
-            //    // It's gone!
-            //    //alert('key ' + $scope.keyToRemove + ' was removed');
-            //    console.log('objectStore "' + objStoreName + '" has been cleared');
-            //};
-
-
-            //var request = db.transaction([objStoreName], "readwrite")
-            //    .objectStore(objStoreName)
-            //    .delete($scope.keyToRemove);
-            //request.onsuccess = function (event) {
-            //    // It's gone!
-            //    alert('key ' + $scope.keyToRemove + ' was removed');
-            //};
-
         };
 
 
         $scope.saveTableToIndexedDB = function () {
+
+            $scope.clearObjectStore();
+
             if ($scope.keyToSave == '' || $scope.valueToSave == '') {
                 alert('You need to enter a key and a value');
             } else {
 
                 var transaction = db.transaction([objStoreName], "readwrite");
 
-
                 var objectStore = transaction.objectStore(objStoreName);
-                // var keyValuePair = {key: $scope.keyToSave, value: $scope.valueToSave};
-                //objectStore.add(keyValuePair);
 
-                // for (var i = 0; i < $rootScope.numberOfRows; i++) {
-                var i = 0;
-                var address = {};
+                for (var i = 0; i < $rootScope.numberOfRows; i++) {
+                    var address = {};
 
-                address.firstName = $rootScope.data[i][0];
-                address.lastName = $rootScope.data[i][1];
-                address.street = $rootScope.data[i][2];
-                address.zipcode = $rootScope.data[i][3];
-                address.city = $rootScope.data[i][4];
-                address.email = $rootScope.data[i][5];
+                    address.firstName = $rootScope.data[i][0];
+                    address.lastName = $rootScope.data[i][1];
+                    address.street = $rootScope.data[i][2];
+                    address.zipcode = $rootScope.data[i][3];
+                    address.city = $rootScope.data[i][4];
+                    address.email = $rootScope.data[i][5];
 
-                //alert(JSON.stringify(address));
+                    objectStore.put(address);
+                }
 
+                console.log('addded ' + $rootScope.numberOfRows + ' addresses to ObjectStore strDaten.');
 
-                //    objectStore.add(address);
-                objectStore.put(address);
-
-
-                //  console.log('added an address (index: ' + i + ")");
-                // }
-
-                //console.log('added ' + $rootScope.numberOfRows + )
-
-                // Do something when all the data is added to the database.
                 transaction.oncomplete = function (event) {
                     console.log('transaction.oncomplete (in saveTableToIndexedDB)');
-                    alert("All done!");
                 };
 
                 transaction.onerror = function (event) {
                     console.error('transaction.onerror (in saveTableToIndexedDB)');
-                    console.error(event.error);
-                    console.error(transaction.error);
-                    // Don't forget to handle errors!
                 };
 
             }
@@ -121,22 +67,15 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
             var objectStore = transaction.objectStore(objStoreName);
 
-            //var request = objectStore.index('lastName').openKeyCursor();
             var request = objectStore.openCursor();
-            //var transaction = db.transaction.objectStore("some_store").index('id').openKeyCursor();
 
-            // Do something when all the data is added to the database.
             transaction.oncomplete = function (event) {
                 console.log('transaction.oncomplete');
-                alert("All done!");
-
-                //$scope.keyToLoad = $scope.keyLoaded;
 
             };
 
             transaction.onerror = function (event) {
                 console.error('transaction.onerror');
-                // Don't forget to handle errors!
             };
 
             request.onsuccess = function (event) {
@@ -155,7 +94,6 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                     address[4] = cursor.value.city;
                     address[5] = cursor.value.email;
 
-                    //alert(JSON.stringify(address));
                     $scope.tableFromIndexedDB.push(address);
 
                     cursor.continue();
@@ -180,7 +118,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
             }, 1500);
         }
 
-        function openDatabase() {
+        $scope.openDatabase = function () {
             console.log('openDatabase start');
 
             //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
@@ -201,7 +139,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
                     //for updating the "status-light" on the openDatabase button
                     $scope.databaseOpened = true;
-                    //$scope.$apply();
+                    $scope.$apply();
                 };
 
                 request.onupgradeneeded = function (event) {
@@ -212,22 +150,10 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
                     objectStore.createIndex("lastName", "lastName", {unique: true});
 
-                    //create foo-data
-                    //fooData = [];
-                    //for (var k = 0; k < 5; k++) {
-                    //    fooItem = {key: k, value: 'value is ' + k};
-                    //    fooData.push(fooItem);
-                    //}
-                    //
-                    //// Store FooData in  newly created objectStore.
-                    //for (var i in fooData) {
-                    //    objectStore.add(fooData[i]);
-                    //}
-
                     console.log('request.onupgradeneeded start');
                 }
             }
         };
     }
-)
-;
+);
+

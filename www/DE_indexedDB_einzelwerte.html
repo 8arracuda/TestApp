@@ -2,7 +2,6 @@
 
     <div class="panel">
 
-
         <h2 class="panel-title">
             database open?
         </h2>
@@ -11,9 +10,8 @@
             <button class="btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
 
             <button class="btn btn-primary" ng-click="openDatabase()">open database</button>
-            <button class="btn btn-primary" ng-click="clearObjectStore()">clearObjectStore</button>
-        </div>
 
+        </div>
 
         <!--<h2 class="panel-title">-->
         <!--store values-->
@@ -54,7 +52,6 @@
             <button class="btn btn-primary" ng-click="saveEinzelwerte()"><i class="fa fa-save"></i> save</button>
         </div>
 
-
         <h2 class="panel-title">
             Check what's saved?
         </h2>
@@ -75,14 +72,15 @@
             "{{ keyLoaded }}" {{ valueLoadedFromIndexedDB }}
 
             <!--<table>-->
-                <!--<tr ng-repeat="value in valuesLoadedFromIndexedDB">-->
-                    <!--<td>-->
-                        <!--Key "{{ keyLoaded }}" has value value "{{ valueLoadedFromIndexedDB }}"-->
-                    <!--</td>-->
-                <!--</tr>-->
+            <!--<tr ng-repeat="value in valuesLoadedFromIndexedDB">-->
+            <!--<td>-->
+            <!--Key "{{ keyLoaded }}" has value value "{{ valueLoadedFromIndexedDB }}"-->
+            <!--</td>-->
+            <!--</tr>-->
             <!--</table>-->
 
-            <button class="btn btn-primary" ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update</button>
+            <button class="btn btn-primary" ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update
+            </button>
 
         </div>
         <h2 class="panel-title">
@@ -101,8 +99,10 @@
                     class="col-xs-9 col-sm-10 col-lg-11"
                     placeholder="Key"
                     />
-            <button class="btn btn-danger" ng-click="removeKeyFromObjectStore()"><i class="fa fa-trash-o"></i> delete key</button>
-
+            <button class="btn btn-danger" ng-click="removeKeyFromObjectStore()"><i class="fa fa-trash-o"></i> delete
+                key
+            </button>
+            <button class="btn btn-warning" ng-click="clearObjectStore()">clearObjectStore</button>
         </div>
 
         <h2 class="panel-title">
