@@ -13,7 +13,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
         //};
 
 
-        $scope.clearTable = function () {
+        $scope.clearObjectStore = function () {
 
             //console.log('clearTable start');
             //var request = db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear;
@@ -27,15 +27,15 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
             //var store = getObjectStore(objStoreName, 'readwrite');
             //var req = db.transaction([objStoreName], "readwrite").clear();
-            var req = db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
+            var request = db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
             //var req = store.clear();
-            req.onsuccess = function (evt) {
+            request.onsuccess = function (evt) {
                 //displayActionSuccess("Store cleared");
                 //displayPubList(store);
                 console.log('objectStore "' + objStoreName + '" has been cleared');
             };
-            req.onerror = function (evt) {
-                console.error("clearObjectStore:", evt.target.errorCode);
+            request.onerror = function (event) {
+                console.error("clearObjectStore:", event.target.errorCode);
                 displayActionFailure(this.error);
             };
 
@@ -72,7 +72,6 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 var objectStore = transaction.objectStore(objStoreName);
                 // var keyValuePair = {key: $scope.keyToSave, value: $scope.valueToSave};
                 //objectStore.add(keyValuePair);
-
 
                // for (var i = 0; i < $rootScope.numberOfRows; i++) {
                     var i =0;
@@ -195,8 +194,8 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 request.onsuccess = function (event) {
                     console.log('request.onsuccess (in openDatabase)');
                     db = request.result;
-                    // Machen Sie etwas mit request.result!
 
+                    //for updating the "status-light" on the openDatabase button
                     $scope.databaseOpened = true;
                     //$scope.$apply();
                 };

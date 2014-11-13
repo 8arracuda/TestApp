@@ -1,13 +1,12 @@
 sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
-    const dbName = "TestAppDatabase";
-    const objStoreName = "einzelwerte";
+    const dbName = "Einzelwerte";
+    const objStoreName = "Einzelwerte";
 
     $scope.databaseOpened = false;
     $scope.keyToLoad = "a";
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";
-
 
 
     //TODO Error occurs, when a key already exists
@@ -20,18 +19,17 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
             var objectStore = transaction.objectStore(objStoreName);
             var keyValuePair = {key: $scope.keyToSave, value: $scope.valueToSave};
-            objectStore.add(keyValuePair);
+
+            //put adds or updates
+            objectStore.put(keyValuePair);
 
             // Do something when all the data is added to the database.
             transaction.oncomplete = function (event) {
-                console.log('transaction.oncomplete');
-                alert("All done!");
+                console.log('transaction.oncomplete (in saveEinzelwerte)');
             };
 
             transaction.onerror = function (event) {
-                console.error('transaction.onerror');
-                //console.error(event.error);
-                // Don't forget to handle errors!
+                console.error('transaction.onerror (in saveEinzelwerte)');
             };
 
         }
@@ -49,24 +47,22 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
         // Do something when all the data is added to the database.
         transaction.oncomplete = function (event) {
-            console.log('transaction.oncomplete');
-            alert("All done!");
+            console.log('transaction.oncomplete (in updateEinzelwerteView)');
 
             $scope.keyToLoad = $scope.keyLoaded;
         };
 
         transaction.onerror = function (event) {
-            console.error('transaction.onerror');
+            console.error('transaction.onerror (in updateEinzelwerteView)');
             // Don't forget to handle errors!
         };
 
         request.onsuccess = function (event) {
-            console.log('request.onsuccess');
+            console.log('request.onsuccess (in updateEinzelwerteView)');
 
             //if there was a result
             if (request.result) {
                 $scope.valueLoadedFromIndexedDB = 'has value "' + request.result.value + '"';
-                // event.target.result == customerData[i].ssn;
 
             } else {
                 $scope.valueLoadedFromIndexedDB = 'does not exist';
@@ -75,17 +71,9 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
             $scope.$apply();
         };
 
-        //var objectStore = transaction.objectStore("customers");
-        //var objectStore = transaction.objectStore(dbName);
-
-        //    var request = objectStore.add(customerData[i]);
-        //    request.onsuccess = function (event) {
-        //        console.log('request.onsuccess');
-        //        // event.target.result == customerData[i].ssn;
-        //    };
 
         request.onerror = function (event) {
-            console.error('request.onerror');
+            console.error('request.onerror (in updateEinzelwerteView)');
             // event.target.result == customerData[i].ssn;
         };
 
@@ -109,12 +97,12 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
         var request = window.indexedDB.open(dbName, 1);
 
         request.onerror = function (event) {
-            console.error('request.onerror');
+            console.error('request.onerror (in listObjectStores)');
             alert("Database error: " + event.target.errorCode);
             // Machen Sie etwas mit request.errorCode!
         };
         request.onsuccess = function (event) {
-            console.log('request.onsuccess');
+            console.log('request.onsuccess (in listObjectStores) ');
             db = request.result;
 
 
@@ -126,18 +114,30 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
     };
 
 
-    //old stuff
-
-    $scope.customers = [];
+    $scope.clearObjectStore = function () {
 
 
-    //Code von
-    //https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB verwenden
+        var request = db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
+
+        request.onsuccess = function (evt) {
+
+            console.log('objectStore "' + objStoreName + '" has been cleared');
+        };
+        request.onerror = function (event) {
+            console.error("clearObjectStore:", event.target.errorCode);
+            displayActionFailure(this.error);
+        };
+
+ alert('key ' + $scope.keyToRemove + ' was removed');
+        //};
+
+    };
 
     $scope.openDatabase = function () {
         console.log('openDatabase start');
 
-        //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
+        //Quelle:
+        // https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
         if (!window.indexedDB) {
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
@@ -145,17 +145,18 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
             var request = window.indexedDB.open(dbName, 2);
 
             request.onerror = function (event) {
-                console.error('request.onerror');
+                console.error('request.onerror (in openDatabase)');
                 alert("Database error: " + event.target.errorCode);
                 // Machen Sie etwas mit request.errorCode!
             };
             request.onsuccess = function (event) {
-                console.log('request.onsuccess');
+                console.log('request.onsuccess (in openDatabase)');
                 db = request.result;
-                // Machen Sie etwas mit request.result!
 
+
+                //for updating the "status-light" on the openDatabase button
                 $scope.databaseOpened = true;
-                //$scope.$apply();
+                $scope.$apply();
             };
 
             request.onupgradeneeded = function (event) {
@@ -164,95 +165,12 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
                 var objectStore = db.createObjectStore(objStoreName, {keyPath: "key"});
 
+                //Column key is defined as index for the objectStore "einzelwerte"
                 objectStore.createIndex("key", "key", {unique: true});
-
-                //create foo-data
-                fooData = [];
-                for (var k = 0; k < 5; k++) {
-                    fooItem = {key: k, value: 'value is ' + k};
-                    fooData.push(fooItem);
-                }
-
-                // Store FooData in  newly created objectStore.
-                for (var i in fooData) {
-                    objectStore.add(fooData[i]);
-                }
 
                 console.log('request.onupgradeneeded start');
             }
         }
     };
-
-//    $scope.saveDatabase = function () {
-//
-//        //var transaction = db.transaction(["customers"], "readwrite");
-//        var transaction = db.transaction([dbName], "readwrite");
-//// Note: Older experimental implementations use the deprecated constant IDBTransaction.READ_WRITE instead of "readwrite".
-//// In case you want to support such an implementation, you can just write:
-//// var transaction = db.transaction(["customers"], IDBTransaction.READ_WRITE);
-//
-//        // Do something when all the data is added to the database.
-//        transaction.oncomplete = function (event) {
-//            console.log('transaction.oncomplete');
-//            alert("All done!");
-//        };
-//
-//        transaction.onerror = function (event) {
-//            console.error('transaction.onerror');
-//            // Don't forget to handle errors!
-//        };
-//
-//
-//        //var objectStore = transaction.objectStore("customers");
-//        var objectStore = transaction.objectStore(dbName);
-//        for (var i in customerData) {
-//            var request = objectStore.add(customerData[i]);
-//            request.onsuccess = function (event) {
-//                console.log('request.onsuccess');
-//                // event.target.result == customerData[i].ssn;
-//            };
-//            request.onerror = function (event) {
-//                console.error('request.onerror');
-//                // event.target.result == customerData[i].ssn;
-//            };
-//        }
-//
-//    };
-//
-//    $scope.showList = function () {
-//        alert('showList was called');
-//
-//        //$scope.customers = [];
-//
-//        //var objectStore = db.transaction("customers").objectStore("customers");
-//        var objectStore = db.transaction(dbName).objectStore("customers");
-//
-//        objectStore.openCursor().onsuccess = function (event) {
-//            alert('objectStore.openCursor().onsuccess');
-//            var cursor = event.target.result;
-//            if (cursor) {
-//                $scope.customers.push(cursor.value);
-//                cursor.continue();
-//            }
-//            else {
-//                //cusor has no more items
-//                //-> notify angularJS to reload
-//                //$scope.$apply();
-//            }
-//        };
-//
-//    };
-//
-//
-//    $scope.showObjectStores = function () {
-//        var request = window.indexedDB.open(dbName, 1);
-//        request.onsuccess = function (event) {
-//            console.log('request.onsuccess');
-//            db = request.result;
-//            //alert(JSON.stringify(db.objectStoreNames));
-//            $scope.objectStoreNames = db.objectStoreNames;
-//        };
-//
-//    };
 
 });

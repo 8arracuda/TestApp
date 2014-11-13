@@ -38,14 +38,11 @@ var app = {
         //app.receivedEvent('deviceready');
         console.log('onDeviceReady');
 
-
         //"enable" AngularJS
         var htmlElement = document.getElementsByTagName("html")[0];
         angular.bootstrap(htmlElement, ['sdApp']);
 
-
     }
-
 
 };
 
