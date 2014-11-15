@@ -2,9 +2,12 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.databaseOpened = false;
 
+    const dbName = "strDaten";
+    const dbVersion = "1.0";
+
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
-        $scope.db = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
+        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         $scope.db.transaction($scope.createTableStrDaten, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
@@ -24,7 +27,7 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
         console.log('errorHandlerWebSQL executed');
     };
 
-    $scope.initWebSQL();
+    //$scope.initWebSQL();
 
     $scope.saveTable1ToWebSQL = function () {
 
@@ -43,7 +46,7 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
             $scope.db.transaction(function (tx) {
                 //tx.executeSql("INSERT INTO strDaten(firstName, lastName, street, city, zipcode, email) VALUES(?,?,?,?,?)", [$rootScope.data[i][0], $rootScope.data[i][1], $rootScope.data[i][2], $rootScope.data[i][3], $rootScope.data[i][4], $rootScope.data[i][5] ]);
-                i =/**/ 0;
+
                 for (var i = 0; i < $rootScope.numberOfRows; i++) {
                     tx.executeSql("INSERT INTO strDaten(firstName, lastName, street, city, zipcode, email) VALUES(?,?,?,?,?,?)", [$rootScope.data[i][0], $rootScope.data[i][1], $rootScope.data[i][2], $rootScope.data[i][3], $rootScope.data[i][4], $rootScope.data[i][5]]);
                 }
@@ -74,20 +77,20 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
     };
 
-    $scope.fooErrorHandler = function () {
-        alert('fooErrorHandler');
-    };
+    //$scope.fooErrorHandler = function () {
+    //    alert('fooErrorHandler');
+    //};
 
 
-    $scope.dbReadyWebSQL = function () {
-        console.log('dbReadyWebSQL start');
-        $scope.db.transaction(function (tx) {
-
-            tx.executeSql("INSERT INTO einzelwerte(keyName, value) VALUES(?, ?)", [$scope.keyToSave, $scope.valueToSave]);
-            console.log('dbReadyWebSQL executed');
-        }, $scope.errorHandlerWebSQL, function () {
-            console.log('error occured in dbReadyWebSQL')
-        });
-    };
+    //$scope.dbReadyWebSQL = function () {
+    //    console.log('dbReadyWebSQL start');
+    //    $scope.db.transaction(function (tx) {
+    //
+    //        tx.executeSql("INSERT INTO einzelwerte(keyName, value) VALUES(?, ?)", [$scope.keyToSave, $scope.valueToSave]);
+    //        console.log('dbReadyWebSQL executed');
+    //    }, $scope.errorHandlerWebSQL, function () {
+    //        console.log('error occured in dbReadyWebSQL')
+    //    });
+    //};
 
 });

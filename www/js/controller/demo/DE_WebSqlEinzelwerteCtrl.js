@@ -86,14 +86,14 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
     //    //$scope.$apply();
     //};
 
-    //$scope.initWebSQL = function () {
-    //    console.log('initWebSQL start');
-    //    $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
-    //    //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-    //    $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
-    //    console.log('initWebSQL executed');
-    //    $scope.databaseOpened = true;
-    //};
+    $scope.initWebSQL = function () {
+        console.log('initWebSQL start');
+        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
+        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
+        $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
+        console.log('initWebSQL executed');
+        $scope.databaseOpened = true;
+    };
 
     $scope.createTableEinzelwerte = function (tx) {
         console.log('createTableEinzelwerte start');
