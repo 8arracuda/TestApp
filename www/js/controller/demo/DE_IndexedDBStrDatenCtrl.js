@@ -38,12 +38,15 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 for (var i = 0; i < $rootScope.numberOfRows; i++) {
                     var address = {};
 
-                    address.firstName = $rootScope.data[i][0];
-                    address.lastName = $rootScope.data[i][1];
-                    address.street = $rootScope.data[i][2];
-                    address.zipcode = $rootScope.data[i][3];
-                    address.city = $rootScope.data[i][4];
-                    address.email = $rootScope.data[i][5];
+                    address.id = $rootScope.data[i][0];
+                    address.firstName = $rootScope.data[i][1];
+                    address.lastName = $rootScope.data[i][2];
+                    address.street = $rootScope.data[i][3];
+                    address.zipcode = $rootScope.data[i][4];
+                    address.city = $rootScope.data[i][5];
+                    address.email = $rootScope.data[i][6];
+                    address.randomNumber1 = $rootScope.data[i][7];
+                    address.randomNumber2 = $rootScope.data[i][8];
 
                     objectStore.put(address);
                 }
@@ -89,12 +92,15 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
                     var address = [];
 
-                    address[0] = cursor.value.firstName;
-                    address[1] = cursor.value.lastName;
-                    address[2] = cursor.value.street;
-                    address[3] = cursor.value.zipcode;
-                    address[4] = cursor.value.city;
-                    address[5] = cursor.value.email;
+                    address[0] = cursor.value.id;
+                    address[1] = cursor.value.firstName;
+                    address[2] = cursor.value.lastName;
+                    address[3] = cursor.value.street;
+                    address[4] = cursor.value.zipcode;
+                    address[5] = cursor.value.city;
+                    address[6] = cursor.value.email;
+                    address[7] = cursor.value.randomNumber1;
+                    address[8] = cursor.value.randomNumber2;
 
                     $scope.tableFromIndexedDB.push(address);
 
@@ -116,7 +122,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                 window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
             } else {
 
-                var request = window.indexedDB.open(dbName, 1);
+                var request = window.indexedDB.open(dbName, 2);
 
                 request.onerror = function (event) {
                     console.error('request.onerror');
@@ -136,7 +142,11 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
                     $scope.db = event.target.result;
 
-                    var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "lastName"});
+                    //on update: when objectStore existed
+                    //before it needs to be deleted, before it's created again with new keys.
+                    //$scope.db.deleteObjectStore(objStoreName);
+
+                    var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "id"});
 
                     objectStore.createIndex("lastName", "lastName", {unique: true});
 
