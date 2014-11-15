@@ -19,9 +19,13 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             'data07.json',
             'data08.json',
             'data09.json',
-            'data10.json'
+            'data10.json',
+            'data01-05.json',
+            'data06-10.json',
+            'data01-10.json',
         ];
 
+        //set the default value for numberOfRows
         $rootScope.numberOfRows = 5;
 
         $rootScope.data = [];
@@ -134,8 +138,7 @@ sdApp.directive('ngMediendatenImageSelector', function () {
         $rootScope.images = [
             'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
         ];
-
-        //$scope.currentImage = 0;
+        
         $rootScope.currentImage = 0;
 
         $scope.image_next = function () {

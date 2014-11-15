@@ -3,7 +3,9 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
     const dbName = "Einzelwerte";
     const objStoreName = "Einzelwerte";
 
+    //bool value used for the staus-light in the "open database" section
     $scope.databaseOpened = false;
+
     $scope.keyToLoad = "a";
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";

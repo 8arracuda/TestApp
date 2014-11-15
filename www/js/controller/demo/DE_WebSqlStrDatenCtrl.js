@@ -1,9 +1,12 @@
 sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
+    //bool value used for the staus-light in the "open database" section
     $scope.databaseOpened = false;
 
     const dbName = "strDaten";
     const dbVersion = "1.0";
+    const tableName = "strDaten";
+
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
@@ -16,64 +19,93 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.createTableStrDaten = function (tx) {
         console.log('createTableStrDaten start');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS strDaten(id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, street TEXT, city TEXT, zipcode TEXT, email TEXT)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS strDaten(id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT)');
         console.log('createTableStrDaten executed');
     };
 
     $scope.errorHandlerWebSQL = function (e) {
         console.log('errorHandlerWebSQL start');
-        alert(e.message);
+        //alert(e.message);
         console.log(e.message);
         console.log('errorHandlerWebSQL executed');
     };
 
-    //$scope.initWebSQL();
+    $scope.loadTableFromWebSQL = function () {
+
+        $scope.tableFromWebSQL = [];
+
+
+        $scope.db.transaction(function (tx) {
+
+            console.log('SELECT * FROM strDaten');
+
+            tx.executeSql("SELECT * FROM strDaten", [], function (transaction, results) {
+
+                var length = results.rows.length;
+
+                for (var i = 0; i < length; i++) {
+
+                    var address = [];
+
+                    var addressFromResults = results.rows.item(i);
+
+                    address[0] = addressFromResults.firstName;
+                    address[1] = addressFromResults.lastName;
+                    address[2] = addressFromResults.street;
+                    address[3] = addressFromResults.zipcode;
+                    address[4] = addressFromResults.city;
+                    address[5] = addressFromResults.email;
+
+                    $scope.tableFromWebSQL.push(address);
+
+                }
+
+                highlightDestinationTableTitle();
+
+            }, function (t, e) {
+                // couldn't read database
+                alert("couldn't read database (" + e.message + ")");
+            });
+
+        });
+
+    };
+
+    function highlightDestinationTableTitle() {
+        $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
+
+        $scope.$apply();
+
+        setTimeout(function () {
+            $scope.cssVarForDestinationTable = '';
+            $scope.$apply();
+        }, 1500);
+    }
 
     $scope.saveTable1ToWebSQL = function () {
 
-        if (!$scope.databaseOpened) {
-            alert('WebSQL database needs to be opened first!');
-        } else {
+        $scope.clearTable();
 
-            //alert('will save ' + $rootScope.tableOriginal.length + " addresses to LocalStorage");
-            //alert('will save ' + $rootScope.numberOfRows + " addresses to WebSQL");
+        console.log('saveTable1ToWebSQL start');
+        //i = 0;
+        //alert(JSON.stringify($rootScope.data[i]));
 
-            console.log('saveTable1ToWebSQL start');
-            //i = 0;
-            //alert(JSON.stringify($rootScope.data[i]));
+        $scope.db.transaction(function (tx) {
+            //tx.executeSql("INSERT INTO strDaten(firstName, lastName, street, city, zipcode, email) VALUES(?,?,?,?,?)", [$rootScope.data[i][0], $rootScope.data[i][1], $rootScope.data[i][2], $rootScope.data[i][3], $rootScope.data[i][4], $rootScope.data[i][5] ]);
 
+            for (var i = 0; i < $rootScope.numberOfRows; i++) {
+                tx.executeSql("INSERT INTO strDaten(firstName, lastName, street, zipcode, city, email) VALUES(?,?,?,?,?,?)", [$rootScope.data[i][0], $rootScope.data[i][1], $rootScope.data[i][2], $rootScope.data[i][3], $rootScope.data[i][4], $rootScope.data[i][5]]);
+            }
 
-
-            $scope.db.transaction(function (tx) {
-                //tx.executeSql("INSERT INTO strDaten(firstName, lastName, street, city, zipcode, email) VALUES(?,?,?,?,?)", [$rootScope.data[i][0], $rootScope.data[i][1], $rootScope.data[i][2], $rootScope.data[i][3], $rootScope.data[i][4], $rootScope.data[i][5] ]);
-
-                for (var i = 0; i < $rootScope.numberOfRows; i++) {
-                    tx.executeSql("INSERT INTO strDaten(firstName, lastName, street, city, zipcode, email) VALUES(?,?,?,?,?,?)", [$rootScope.data[i][0], $rootScope.data[i][1], $rootScope.data[i][2], $rootScope.data[i][3], $rootScope.data[i][4], $rootScope.data[i][5]]);
-                }
-
-                alert($rootScope.numberOfRows + ' addresses saved in WebSQL database -strDaten-.')
+            alert($rootScope.numberOfRows + ' addresses saved in WebSQL database  -' + tableName + '-?');
             //}, $scope.fooErrorHandler);
-            }, function errorHandler(transaction, error) {
-                alert("Error : " + transaction.message);
-                alert("Error : " + error.message);
-            });
+        }, function errorHandler(transaction, error) {
+            alert("Error : " + transaction.message);
+            alert("Error : " + error.message);
+        });
 
-            console.log('saveTable1ToWebSQL executed');
-            //$scope.deleteTable1FromLocalStorage();
+        console.log('saveTable1ToWebSQL executed');
 
-            //for (var i = 0; i < $rootScope.numberOfRows; i++) {
-            //
-            //    localStorage.setItem('table1_' + i + '_firstname', $rootScope.data[i][0]);
-            //    localStorage.setItem('table1_' + i + '_lastname', $rootScope.data[i][1]);
-            //    localStorage.setItem('table1_' + i + '_street', $rootScope.data[i][2]);
-            //    localStorage.setItem('table1_' + i + '_zipcode', $rootScope.data[i][3]);
-            //    localStorage.setItem('table1_' + i + '_city', $rootScope.data[i][4]);
-            //    localStorage.setItem('table1_' + i + '_email', $rootScope.data[i][5]);
-            //
-            //}
-
-            //localStorage.setItem('table1_numberOfAddresses', $rootScope.numberOfRows);
-        }
 
     };
 
@@ -92,5 +124,22 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
     //        console.log('error occured in dbReadyWebSQL')
     //    });
     //};
+
+    $scope.clearTable = function () {
+
+        //var answer = confirm('Do you really want to remove all entries from the database -strDaten-?');
+
+
+        $scope.db.transaction(function (tx) {
+            tx.executeSql("DELETE FROM strDaten", [], clearedTableCallback, $scope.errorHandlerWebSQL);
+        });
+        // $scope.$apply();
+
+
+    };
+
+    function clearedTableCallback(transaction, results) {
+        console.log('Table ' + tableName + ' has been cleared');
+    }
 
 });

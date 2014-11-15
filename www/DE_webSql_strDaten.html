@@ -19,57 +19,102 @@
         </h2>
 
         <div class="panel-body">
-            <button class="btn btn-primary" ng-click="saveTable1ToWebSQL()"><i class="fa fa-save"></i>
+            <button ng-class="{disabled: db==null }" class="btn btn-primary" ng-click="saveTable1ToWebSQL()"><i class="fa fa-save"></i>
                 saveTable1ToWebSQL
             </button>
         </div>
 
-
         <h2 class="panel-title">
-            Table (data from WebSQL - {{ tableFromWebSQL.length | number }} addresses)
+            Actions on WebSQL
         </h2>
 
         <div class="panel-body">
-            <a class="btn btn-default" ng-click="loadTable1FromWebSQL()"><i class="fa fa-refresh"></i> update</a><br>
-
-            <table style="width:100%">
-                <thead>
-                <tr>
-                    <td>
-                        <b>First Name</b>
-                    </td>
-                    <td>
-                        <b>Last Name</b>
-                    </td>
-                    <td>
-                        <b>...</b>
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="row in tableFromWebSQL">
-                    <td>
-                        {{ row[0] }}
-                    </td>
-                    <td>
-                        {{ row[1] }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
+            <a ng-class="{disabled: db==null }" class="btn btn-primary" ng-click="loadTableFromWebSQL()"><i class="fa fa-refresh"></i> update</a>
+            <a ng-class="{disabled: db==null }" class="btn btn-warning" ng-click="clearTable()"><i class="fa fa-trash-o"></i>clear</a>
         </div>
 
 
-        <!--<h2 class="panel-title">-->
-        <!--Actions on WebSQL-->
-        <!--</h2>-->
+        <div class="panel-group" id="accordion">
 
-        <!--<div class="panel-body">-->
-        <!--<button class="btn btn-primary" ng-click="saveTable1ToWebSQL()"><i class="fa fa-save"></i> saveTable1ToWebSQL</button>-->
-        <!--</div>-->
+            <div class="panel panel-default">
+                <div class="panel-heading" toggle target="collapseDestinationTable">
+                    <h4 class="panel-title">
 
+                        <div ng-class="cssVarForDestinationTable">Table loaded from WebSQL ({{
+                            tableFromWebSQL.length | number }} addresses)
+                        </div>
+                    </h4>
+                </div>
+
+                <div id="collapseDestinationTable" toggleable active-class="in" default="active"
+                     class="panel-collapse collapse">
+                    <table style="width:100%" ng-show="tableFromWebSQL.length > 0">
+                        <thead>
+                        <tr>
+                            <td>
+                                <b>First Name</b>
+                            </td>
+                            <td>
+                                <b>Last Name</b>
+                            </td>
+                            <td>
+                                <b>...</b>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="row in tableFromWebSQL">
+                            <td>
+                                {{ row[0] }}
+                            </td>
+                            <td>
+                                {{ row[1] }}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!--<table style="width:100%">-->
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<td>-->
+        <!--<b>First Name</b>-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<b>Last Name</b>-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<b>...</b>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr ng-repeat="row in tableFromWebSQL">-->
+        <!--<td>-->
+        <!--{{ row[0] }}-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--{{ row[1] }}-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
 
     </div>
+
+
+    <!--<h2 class="panel-title">-->
+    <!--Actions on WebSQL-->
+    <!--</h2>-->
+
+    <!--<div class="panel-body">-->
+    <!--<button class="btn btn-primary" ng-click="saveTable1ToWebSQL()"><i class="fa fa-save"></i> saveTable1ToWebSQL</button>-->
+    <!--</div>-->
+
+
+</div>
 
 </div>

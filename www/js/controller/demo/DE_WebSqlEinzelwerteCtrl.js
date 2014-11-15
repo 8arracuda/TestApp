@@ -1,6 +1,8 @@
 sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
+    //bool value used for the staus-light in the "open database" section
     $scope.databaseOpened = false;
+
     $scope.keyToLoad = "a";
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";

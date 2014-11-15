@@ -1,8 +1,11 @@
 sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
+        //bool value used for the staus-light in the "open database" section
+        $scope.databaseOpened = false;
+
         const dbName = "StrDaten";
         const objStoreName = "StrDaten";
-        $scope.databaseOpened = false;
+
 
         $scope.clearObjectStore = function () {
 
@@ -100,7 +103,7 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
                 highlightDestinationTableTitle();
 
-                $scope.$apply();
+                //$scope.$apply();
             };
 
 
