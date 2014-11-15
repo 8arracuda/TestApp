@@ -47,6 +47,7 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
     $scope.myOverlayTitle = 'title';
     $scope.myOverlayText = 'text';
 
+    //prepare results-array
     var numberOfTests = 3;
     $scope.results = [];
 
@@ -56,7 +57,6 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
         var result = -1;
         $scope.results.push(result);
     }
-
 
 
     $scope.showAlert = function () {
@@ -83,7 +83,7 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
         //loop logic from
         //https://stackoverflow.com/a/3583740/2405372
         function myLoop() {           //  create a loop function
-            setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+            setTimeout(function () {
 
                 time = $scope.perf_storeItems(10000);
 

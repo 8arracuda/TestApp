@@ -149,7 +149,6 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
                     objectStore.createIndex("lastName", "lastName", {unique: true});
 
-
                 }
             }
         };

@@ -4,9 +4,9 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
-        dbWebSQL = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
-        //dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-        dbWebSQL.transaction($scope.createTableStrDaten, $scope.errorHandlerWebSQL);
+        $scope.db = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
+        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
+        $scope.db.transaction($scope.createTableStrDaten, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
     };
@@ -41,7 +41,7 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
 
 
-            dbWebSQL.transaction(function (tx) {
+            $scope.db.transaction(function (tx) {
                 //tx.executeSql("INSERT INTO strDaten(firstName, lastName, street, city, zipcode, email) VALUES(?,?,?,?,?)", [$rootScope.data[i][0], $rootScope.data[i][1], $rootScope.data[i][2], $rootScope.data[i][3], $rootScope.data[i][4], $rootScope.data[i][5] ]);
                 i =/**/ 0;
                 for (var i = 0; i < $rootScope.numberOfRows; i++) {
@@ -81,7 +81,7 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.dbReadyWebSQL = function () {
         console.log('dbReadyWebSQL start');
-        dbWebSQL.transaction(function (tx) {
+        $scope.db.transaction(function (tx) {
 
             tx.executeSql("INSERT INTO einzelwerte(keyName, value) VALUES(?, ?)", [$scope.keyToSave, $scope.valueToSave]);
             console.log('dbReadyWebSQL executed');

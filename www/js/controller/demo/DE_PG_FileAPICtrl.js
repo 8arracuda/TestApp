@@ -37,7 +37,7 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
     //TODO For debugging in Chrome (remove at the end)
     //if(!navigator.userAgent==$rootScope.userAgentForDesktopDevelopment1 || $rootScope.UserAgentForDesktopDevelopment2) {
 
-    if (!navigator.userAgent == userAgentForDesktopDevelopment1) {
+    if (navigator.userAgent==userAgentForDesktopDevelopment1 || navigator.userAgent==userAgentForDesktopDevelopment2) {
         $scope.documentsDirectory = cordova.file.documentsDirectory;
     }
 

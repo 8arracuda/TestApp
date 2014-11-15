@@ -39,10 +39,11 @@
                     placeholder="Value"
                     />
 
-            <button class="btn btn-primary" ng-click="saveEinzelwerte()"><i class="fa fa-save"></i> save</button>
+            <button ng-class="{disabled: (db==null || keyToSave.length==0) }" class="btn btn-primary"
+                    ng-click="saveEinzelwerte()"><i class="fa fa-save"></i> save
+            </button>
 
         </div>
-
 
         <h2 class="panel-title">
             Check what's saved?
@@ -63,18 +64,20 @@
 
             <!--Key "{{ keyLoaded }}" has value "{{ valuesLoadedFromWebSQL }}"<br>-->
 
-            <table>
-                <tr ng-repeat="value in valuesLoadedFromWebSQL">
-                    <td>
+            "{{ keyLoaded }}" {{ valueLoadedFromWebSQL }}<br>
 
-                        {{ value }}
-                    </td>
-                </tr>
-            </table>
+            <!--<table>-->
+                <!--<tr ng-repeat="value in valuesLoadedFromWebSQL">-->
+                    <!--<td>-->
 
+                        <!--{{ value }}-->
+                    <!--</td>-->
+                <!--</tr>-->
+            <!--</table>-->
 
-            <button class="btn btn-default" ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update</button>
-
+            <button ng-class="{disabled: (db==null || keyToLoad.length==0)}" class="btn btn-primary"
+                    ng-click="updateEinzelwerteView()"><i class="fa fa-refresh"></i> update
+            </button>
 
         </div>
         <h2 class="panel-title">
@@ -93,10 +96,17 @@
                     class="col-xs-9 col-sm-10 col-lg-11"
                     placeholder="Key"
                     />
-            <button class="btn btn-danger" ng-class="{disabled: keyToRemove.length==0}" ng-click="removeKeyFromWebSQL()"><i class="fa fa-trash-o"></i>delete key
+            <button ng-class="{disabled: (db==null || keyToRemove.length==0)}" class="btn btn-danger"
+                    ng-click="removeKeyFromWebSQL()"><i class="fa fa-trash-o"></i>delete key
             </button>
+        </div>
 
 
+        <h2 class="panel-title">
+            Other Actions
+        </h2>
+
+        <div class="panel-body">
             <div ng-show="databaseIsEmpty==true">database is empty</div>
             <div ng-show="databaseIsEmpty==false">database is not empty</div>
 
@@ -107,15 +117,17 @@
             <button class="btn btn-primary" ng-click="demo2()">demo2</button>
             <button class="btn btn-primary" ng-click="check()">check</button>
             <button class="btn btn-danger" ng-click="wipeDatabase()"><i class="fa fa-trash-o"></i> delete all</button>
-            <button class="btn btn-danger" ng-click="deleteTableEinzelwerte()"><i class="fa fa-trash-o"></i> delete table "einzelwerte"</button>
+            <button class="btn btn-danger" ng-click="deleteTableEinzelwerte()"><i class="fa fa-trash-o"></i> delete
+                table "einzelwerte"
+            </button>
             <button class="btn btn-primary" ng-click="setupWebSQL()">setup WebSQL</button>
 
             <br>
             <input ng-model="inputString" type="text">
             <br>
 
-
         </div>
+
 
         <h2 class="panel-title">
             Table1 (Tables in Database)
