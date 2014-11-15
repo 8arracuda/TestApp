@@ -146,7 +146,7 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
                         //$scope.tableFromPGFileAPI = [];
                         //$scope.tableFromPGFileAPI = JSON.parse(this.result);
                         //alert(numberOfRows);
-                        //highlightDestinationTableTitle();
+                        //highlightDestinationTableTitle($scope);
 
 
                         numberOfRows = this.result;
@@ -270,7 +270,7 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
                         $scope.tableFromPGFileAPI = [];
                         $scope.tableFromPGFileAPI = JSON.parse(this.result);
 
-                        highlightDestinationTableTitle();
+                        highlightDestinationTableTitle($scope);
 
                     };
 
@@ -334,17 +334,6 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
         console.log('Error: ' + msg);
     }
 
-    function highlightDestinationTableTitle() {
-        $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
-
-        $scope.$apply();
-
-        setTimeout(function () {
-            $scope.cssVarForDestinationTable = '';
-            $scope.$apply();
-        }, 1500);
-    }
-
     function errorHandler2(e) {
         var msg = '';
 
@@ -358,7 +347,7 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
                 msg = 'NOT_FOUND_ERR';
                 $scope.tableFromPGFileAPI = [];
 
-                highlightDestinationTableTitle();
+                highlightDestinationTableTitle($scope);
 
                 break;
             case FileError.SECURITY_ERR:

@@ -101,24 +101,12 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
                     cursor.continue();
                 }
 
-                highlightDestinationTableTitle();
+                highlightDestinationTableTitle($scope);
 
-                //$scope.$apply();
             };
 
 
         };
-
-        function highlightDestinationTableTitle() {
-            $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
-
-            $scope.$apply();
-
-            setTimeout(function () {
-                $scope.cssVarForDestinationTable = '';
-                $scope.$apply();
-            }, 1500);
-        }
 
         $scope.openDatabase = function () {
             console.log('openDatabase start');

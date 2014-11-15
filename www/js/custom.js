@@ -1,5 +1,25 @@
 var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "ngAnimate"]);
 
+function highlightSourceTableTitle(scope) {
+    scope.cssVarForSourceTable = 'sourceTableWasUpdated';
+    scope.$apply();
+
+    setTimeout(function () {
+        scope.cssVarForSourceTable = '';
+        scope.$apply();
+    }, 1500);
+}
+
+function highlightDestinationTableTitle(scope) {
+    scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
+    scope.$apply();
+
+    setTimeout(function () {
+        scope.cssVarForDestinationTable = '';
+        scope.$apply();
+    }, 1500);
+}
+
 sdApp.directive('ngStrDatenDatasetLoader', function () {
     return {
         restrict: 'A',
@@ -58,17 +78,20 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
             //set animation
             //color changes for 1.5 seconds and then changes back
+
             if (animationsEnabled) {
-
-                $scope.cssVarForSourceTable = 'sourceTableWasUpdated';
-
-                setTimeout(function () {
-                    $scope.cssVarForSourceTable = '';
-                    $scope.$apply();
-                }, 1500);
-
+                highlightSourceTableTitle($scope);
             }
-            ;
+            //
+            //    $scope.cssVarForSourceTable = 'sourceTableWasUpdated';
+            //
+            //    setTimeout(function () {
+            //        $scope.cssVarForSourceTable = '';
+            //        $scope.$apply();
+            //    }, 1500);
+            //
+            //}
+            //;
         };
 
         $scope.selectAndLoadDataset = function (dataset) {

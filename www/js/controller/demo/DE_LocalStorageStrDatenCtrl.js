@@ -48,7 +48,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         }
 
-        highlightDestinationTableTitle();
+        highlightDestinationTableTitle($scope);
 
     };
 
@@ -98,7 +98,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
         var tableFromLocalStorage = localStorage.getItem('table1_JSON');
         $scope.tableFromLocalStorage = JSON.parse(tableFromLocalStorage);
 
-        highlightDestinationTableTitle();
+        highlightDestinationTableTitle($scope);
 
     };
 
@@ -109,16 +109,5 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
         alert('deleted all addresses from LocalStorage (method 2).');
 
     };
-
-    function highlightDestinationTableTitle() {
-        $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
-
-        $scope.$apply();
-
-        setTimeout(function () {
-            $scope.cssVarForDestinationTable = '';
-            $scope.$apply();
-        }, 1500);
-    }
 
 });

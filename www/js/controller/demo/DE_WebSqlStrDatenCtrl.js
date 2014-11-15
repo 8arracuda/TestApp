@@ -60,7 +60,7 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
                 }
 
-                highlightDestinationTableTitle();
+                highlightDestinationTableTitle($scope);
 
             }, function (t, e) {
                 // couldn't read database
@@ -70,17 +70,6 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
         });
 
     };
-
-    function highlightDestinationTableTitle() {
-        $scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
-
-        $scope.$apply();
-
-        setTimeout(function () {
-            $scope.cssVarForDestinationTable = '';
-            $scope.$apply();
-        }, 1500);
-    }
 
     $scope.saveTable1ToWebSQL = function () {
 
