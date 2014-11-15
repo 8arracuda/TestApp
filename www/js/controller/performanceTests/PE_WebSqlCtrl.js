@@ -17,7 +17,8 @@ sdApp.controller('PE_WebSqlCtrl', function ($scope, $rootScope) {
 
     $scope.createTableStrDaten = function (tx) {
         console.log('createTableStrDaten start');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS performance_tests(id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT)');
+       // tx.executeSql('CREATE TABLE IF NOT EXISTS performance_tests(id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS performance_tests(id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT, randomNumber1 INTEGER, randomNumber2 INTEGER)');
         console.log('createTableStrDaten executed');
     };
 
@@ -37,8 +38,8 @@ sdApp.controller('PE_WebSqlCtrl', function ($scope, $rootScope) {
         $scope.db.transaction(function (tx) {
 
 
-
-            tx.executeSql("INSERT INTO performance_tests(keyName, value) VALUES(?,?)", [$scope.keyToSave, $scope.valueToSave]);
+//TODO needs to be changed - new dataset format
+            //tx.executeSql("INSERT INTO performance_tests(keyName, value) VALUES(?,?)", [$scope.keyToSave, $scope.valueToSave]);
         }, function errorHandler(transaction, error) {
             alert("Error : " + transaction.message);
             //alert("Error : " + error.message);
