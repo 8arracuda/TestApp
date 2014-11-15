@@ -62,46 +62,38 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
     };
 
-    $scope.getAllValues = function () {
+    //$scope.getAllValues = function () {
+    //
+    //    console.log('getAllValues start');
+    //    $scope.data = [];
+    //    tables = [];
+    //
+    //    $scope.db.transaction(function (tx) {
+    //
+    //        tx.executeSql('SELECT * FROM einzelwerte', [], function (transaction, results) {
+    //
+    //$scope.$apply();
+    //
+    //        }, function (t, e) {
+    //            // couldn't read database
+    //
+    //            alert("couldn't read database");
+    //        });
+    //
+    //
+    //    });
+    //
+    //    //$scope.$apply();
+    //};
 
-        console.log('getAllValues start');
-        $scope.data = [];
-        tables = [];
-
-        $scope.db.transaction(function (tx) {
-
-            tx.executeSql('SELECT * FROM einzelwerte', [], function (transaction, results) {
-
-                //for (var j = 0; j < results.rows.length; j++) {
-                //    var row = results.rows.item(j);
-                //    $scope.data.push(row);
-                //    //alert(row['keyName']);
-                //}
-
-
-
-                $scope.$apply();
-
-            }, function (t, e) {
-                // couldn't read database
-
-                alert("couldn't read database");
-            });
-
-
-        });
-
-        //$scope.$apply();
-    };
-
-    $scope.initWebSQL = function () {
-        console.log('initWebSQL start');
-        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
-        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-        $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
-        console.log('initWebSQL executed');
-        $scope.databaseOpened = true;
-    };
+    //$scope.initWebSQL = function () {
+    //    console.log('initWebSQL start');
+    //    $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
+    //    //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
+    //    $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
+    //    console.log('initWebSQL executed');
+    //    $scope.databaseOpened = true;
+    //};
 
     $scope.createTableEinzelwerte = function (tx) {
         console.log('createTableEinzelwerte start');
