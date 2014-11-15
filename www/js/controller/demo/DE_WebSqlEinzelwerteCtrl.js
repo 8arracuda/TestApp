@@ -13,10 +13,6 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
     $scope.saveEinzelwerte = function () {
 
-        if ($scope.db == null) {
-            alert('Database needs to be opened first.');
-        }
-
         console.log('addRow start');
 //        $scope.db.transaction(function (tx) {
 //            var msg = $scope.inputString;
@@ -36,6 +32,8 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
         console.log('addRow executed');
     };
+
+
 
     $scope.inputString = "";
 

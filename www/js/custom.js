@@ -34,15 +34,15 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             'data02.json',
             'data03.json',
             'data04.json',
-            'data05.json',
-            'data06.json',
-            'data07.json',
-            'data08.json',
-            'data09.json',
-            'data10.json',
-            'data01-05.json',
-            'data06-10.json',
-            'data01-10.json',
+            'data05.json'
+            //'data06.json',
+            //'data07.json',
+            //'data08.json',
+            //'data09.json',
+            //'data10.json',
+            //'data01-05.json',
+            //'data06-10.json',
+            //'data01-10.json'
         ];
 
         //set the default value for numberOfRows
@@ -51,9 +51,10 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
         $rootScope.data = [];
         $rootScope.tableOriginal = [];
 
-        //kopiert und modifiziert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
+        //copied and modified from
+        // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
         startJSONImport = function () {
-            var pathOfFileToRead = 'res/' + $scope.selectedDataset;
+            var pathOfFileToRead = 'res/data/' + $scope.selectedDataset;
 
             var contentsOfFileAsString = FileHelper.readStringFromFileAtPath
             (
@@ -104,7 +105,8 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
         };
 
-        //kopiert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
+        //copied from
+        // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
         function FileHelper() {
         }
 

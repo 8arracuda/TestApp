@@ -12,12 +12,15 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         for (var i = 0; i < $rootScope.numberOfRows; i++) {
 
-            localStorage.setItem('table1_' + i + '_firstname', $rootScope.data[i][0]);
-            localStorage.setItem('table1_' + i + '_lastname', $rootScope.data[i][1]);
-            localStorage.setItem('table1_' + i + '_street', $rootScope.data[i][2]);
-            localStorage.setItem('table1_' + i + '_zipcode', $rootScope.data[i][3]);
-            localStorage.setItem('table1_' + i + '_city', $rootScope.data[i][4]);
-            localStorage.setItem('table1_' + i + '_email', $rootScope.data[i][5]);
+            localStorage.setItem('table1_' + i + '_id', $rootScope.data[i][0]);
+            localStorage.setItem('table1_' + i + '_firstname', $rootScope.data[i][1]);
+            localStorage.setItem('table1_' + i + '_lastname', $rootScope.data[i][2]);
+            localStorage.setItem('table1_' + i + '_street', $rootScope.data[i][3]);
+            localStorage.setItem('table1_' + i + '_zipcode', $rootScope.data[i][4]);
+            localStorage.setItem('table1_' + i + '_city', $rootScope.data[i][5]);
+            localStorage.setItem('table1_' + i + '_email', $rootScope.data[i][6]);
+            localStorage.setItem('table1_' + i + '_randomNumber1', $rootScope.data[i][7]);
+            localStorage.setItem('table1_' + i + '_randomNumber2', $rootScope.data[i][8]);
 
         }
 
@@ -37,12 +40,15 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
             var address = [];
 
-            address[0] = localStorage.getItem('table1_' + i + '_firstname');
-            address[1] = localStorage.getItem('table1_' + i + '_lastname');
-            address[2] = localStorage.getItem('table1_' + i + '_street');
-            address[3] = localStorage.getItem('table1_' + i + '_zipcode');
-            address[4] = localStorage.getItem('table1_' + i + '_city');
-            address[5] = localStorage.getItem('table1_' + i + '_email');
+            address[0] = localStorage.getItem('table1_' + i + '_id');
+            address[1] = localStorage.getItem('table1_' + i + '_firstname');
+            address[2] = localStorage.getItem('table1_' + i + '_lastname');
+            address[3] = localStorage.getItem('table1_' + i + '_street');
+            address[4] = localStorage.getItem('table1_' + i + '_zipcode');
+            address[5] = localStorage.getItem('table1_' + i + '_city');
+            address[6] = localStorage.getItem('table1_' + i + '_email');
+            address[7] = localStorage.getItem('table1_' + i + '_randomNumber1');
+            address[8] = localStorage.getItem('table1_' + i + '_randomNumber2');
 
             $scope.tableFromLocalStorage.push(address);
 
@@ -59,12 +65,15 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         for (var i = 0; i < numberOfRows; i++) {
 
+            localStorage.removeItem('table1_' + i + '_id');
             localStorage.removeItem('table1_' + i + '_firstname');
             localStorage.removeItem('table1_' + i + '_lastname');
             localStorage.removeItem('table1_' + i + '_street');
             localStorage.removeItem('table1_' + i + '_zipcode');
             localStorage.removeItem('table1_' + i + '_city');
             localStorage.removeItem('table1_' + i + '_email');
+            localStorage.removeItem('table1_' + i + '_randomNumber1');
+            localStorage.removeItem('table1_' + i + '_randomNumber2');
 
         }
 

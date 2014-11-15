@@ -8,24 +8,50 @@
     </div>
 </div>
 
-<div ng-show="databaseIsEmpty==true">database is empty</div>
-<div ng-show="databaseIsEmpty==false">database is not empty</div>
+<!--<div class="scrollable">-->
+<!--<div class="scrollable-content">-->
 
-<a class="btn btn-primary" ng-click="initWebSQL()">init</a>
-<a class="btn btn-primary" ng-click="testWebSQL()">test</a>
-<a class="btn btn-primary" ng-click="deleteWebSQL()">delete</a>
-<a class="btn btn-primary" ng-click="demo()">demo</a>
-<a class="btn btn-primary" ng-click="demo2()">demo2</a>
-<a class="btn btn-primary" ng-click="check()">check</a>
-<a class="btn btn-primary" ng-click="wipeDatabase()">delete all</a>
+<div class="panel">
+    <h2 class="panel-title">
+        database connection
+    </h2>
 
-<br>
-<br>
-<a class="btn btn-primary" ng-click="addRow()">add row</a>
+    <div class="panel-body">
+        <button class="btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
+        <button class="btn btn-primary" ng-click="initWebSQL()">init/open database</button>
+    </div>
 
-<br>
-<input ng-model="inputString" type="text">
+    <h2 class="panel-title">
+        Setup Performance-Test
+    </h2>
 
-<div ng-repeat="row in resultArray">
-    {{ row.id }} - {{ row.created }} - {{ row.log}}
+    <div class="panel-body">
+
+        <button ng-click="startPerformanceTest()" class="btn btn-primary">start Performance-Test</button>
+
+    </div>
+
+    <h2 class="panel-title">
+        Results
+    </h2>
+
+    <div class="panel-body">
+
+        {{ stringWithResults }}<br>
+
+        <br>
+
+        <div class="list-group">
+            <div ng-repeat="result in results track by $index">
+
+                <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
+                    {{ result }}
+                </li>
+
+            </div>
+        </div>
+
+    </div>
 </div>
+<!--</div>-->
+<!--</div>-->
