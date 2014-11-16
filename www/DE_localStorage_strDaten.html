@@ -34,7 +34,7 @@
 
         <div class="panel-body">
 
-            The whole table is stored into a key named "table1_JSON"<br>
+            Every row data-item (address) is stored in a key-value pair.<br>
             <a class="btn btn-primary" ng-click="saveTable2ToLocalStorage()"><i
                     class="fa fa-save"></i> save</a>
 
@@ -43,6 +43,25 @@
                 load</a>
 
             <a class="btn btn-danger" ng-click="deleteTable2FromLocalStorage()"><i
+                    class="fa fa-trash-o"></i> delete</a>
+
+        </div>
+
+        <h4 class="panel-title">
+            method3:
+        </h4>
+
+        <div class="panel-body">
+
+            The whole table is stored into a key named "table1_JSON"<br>
+            <a class="btn btn-primary" ng-click="saveTable3ToLocalStorage()"><i
+                    class="fa fa-save"></i> save</a>
+
+            <a class="btn btn-primary" ng-click="loadTable3FromLocalStorage()"><i
+                    class="fa fa-refresh"></i>
+                load</a>
+
+            <a class="btn btn-danger" ng-click="deleteTable3FromLocalStorage()"><i
                     class="fa fa-trash-o"></i> delete</a>
 
         </div>
