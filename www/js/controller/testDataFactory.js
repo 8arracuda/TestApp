@@ -4,7 +4,9 @@ angular.module('testDataFactory', [])
             testData: function () {
 
                 //Filehelper function is defined in custom.js
-                var contentsOfFileAsString = FileHelper.readStringFromFileAtPath('res/data/data01+02.json');
+                //TODO: Change before real tests are done!!!
+               // var contentsOfFileAsString = FileHelper.readStringFromFileAtPath('res/data/data01+02.json');
+                var contentsOfFileAsString = FileHelper.readStringFromFileAtPath('res/data/data01_first500.json');
 
                 return JSON.parse(contentsOfFileAsString);
 

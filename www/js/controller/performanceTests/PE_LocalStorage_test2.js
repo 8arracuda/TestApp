@@ -1,116 +1,82 @@
 sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope, testDataFactory) {
 
 
+    var iteration = 1;
+
     var data;
 
-    //prepare results-array
-    var numberOfTests = 3;
     $scope.results = [];
-
-    for (var i = 0; i < numberOfTests; i++) {
-        //
-        //    var result = {finished: false, time: -1};
-        var result = -1;
-        $scope.results.push(result);
-    }
 
     $scope.descriptionText1 = 'Read performance test';
     $scope.headlineText = 'Perf Test 2';
 
-    $scope.startPerformanceTest = function () {
-        $scope.stringWithResults = 'result';
 
-        var time;
+    $scope.loadAddressIds = function () {
 
-        myLoop();
-        var i = 0;
-        //loop logic from
-        //https://stackoverflow.com/a/3583740/2405372
-        function myLoop() {           //  create a loop function
-            setTimeout(function () {
-
-                time = $scope.perf_storeItems(10000);
-
-                //$scope.stringWithResults = $scope.stringWithResults + ', ' + time;
-                //$scope.testProgress = i + ' / ' + numberOfTests + ' (in Progress)';
-
-                $scope.results[i] = 'Iteration ' + i + ': ' + time + 'ms';
-                $scope.$apply();
-
-                i++;                     //  increment the counter
-                if (i < numberOfTests) {            //  if the counter < 10, call the loop function
-                    myLoop();             //  ..  again which will trigger another
-                }                        //  ..  setTimeout()
-            }, 1000)
-        }
-
-    };
-
-    $scope.perf_storeItems = function (amountOfData) {
-        console.log('perf_storeItems(' + amountOfData + ') started');
+        var addressIdsToLoad = [13, 18, 21, 35, 44, 46, 48, 49, 54, 71, 72, 74, 76, 79, 83, 86, 90, 92, 94, 100, 102, 104, 105, 110, 113, 115, 116, 118, 119, 120, 129, 130, 131, 132, 141, 142, 152, 155, 156, 166, 168, 170, 175, 176, 179, 186, 197, 212, 216, 220, 224, 226, 227, 229, 235, 237, 247, 252, 258, 260, 262, 268, 270, 276, 280, 282, 294, 296, 298, 299, 302, 309, 313, 318, 319, 322, 324, 326, 336, 337, 338, 342, 344, 345, 347, 360, 368, 371, 377, 379, 383, 384, 393, 396, 398, 400, 401, 409, 415, 419, 423, 429, 437, 456, 463, 465, 468, 483, 489, 492, 499];
 
         var timeStart = new Date().getTime();
+        for (var i = 0; i < addressIdsToLoad.length; i++) {
 
-        for (i = 0; i < amountOfData; ++i) {
-            localStorage.setItem(('test' + i), 'test' + i);
+            localStorage.getItem('address' + addressIdsToLoad[i]);
+            if (i < 10) {
+                console.log(localStorage.getItem('address' + addressIdsToLoad[i]));
+            }
+
         }
-
         var timeEnd = new Date().getTime();
 
-        for (i = 0; i < amountOfData; ++i) {
-            localStorage.removeItem(('test' + i));
-        }
+        var time = timeEnd - timeStart;
+        $scope.results.push('iteration ' + iteration + ': ' + time + ' ms');
+        $scope.$apply();
 
-        var timeDiff = timeEnd - timeStart;
+        iteration++;
 
-
-        return timeDiff;
     };
 
-    $scope.loadData = function () {
+    function loadData() {
 
         data = testDataFactory.testData();
 
-        //alert(data);
-
     };
 
-
-    $scope.saveData = function () {
+    function saveAddressData() {
 
         if (data == null) {
-            alert('no data loaded');
+            alert('error: no data loaded');
+            console.error('no data loaded (in saveAddressData)');
         } else {
 
             //Same logic as in DE_LocalStorage_strDaten Test-Method 2
 
-                console.log('start loop');
-                console.log(data[2].id);
-                console.log(data[2][0]);
+            for (var i = 0; i < data.length; i++) {
 
-                for (var i = 0; i < data.length; i++) {
+                //Set the Id as key
+                //Address with key 42 is saved with key -address42-
+                localStorage.setItem('address' + data[i][0], JSON.stringify(data[i]));
 
-                    //Set the Id as key
-                    //Address with key 42 is saved with key -address42-
-                    localStorage.setItem('address' + data[i][0], JSON.stringify(data[i]));
+            }
 
-                }
+            localStorage.setItem('numberOfAddresses', data.length);
 
-                console.log(localStorage.getItem('address39999'));
-
-                localStorage.setItem('numberOfAddresses', data.length);
-
-                console.log('saved ' + data.length + ' addresses.');
+            console.log('saved ' + data.length + ' addresses.');
 
         }
 
-
     };
 
-    $scope.clearLocalStorage = function () {
+    function clearLocalStorage() {
 
         localStorage.clear();
 
     }
+
+    $scope.prepare = function () {
+
+        clearLocalStorage();
+        loadData();
+        saveAddressData();
+
+    };
 
 });
