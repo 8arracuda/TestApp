@@ -1,7 +1,7 @@
 sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope, testDataFactory) {
 
 
-
+    var data;
 
     //prepare results-array
     var numberOfTests = 3;
@@ -69,10 +69,48 @@ sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope, test
 
     $scope.loadData = function () {
 
-        var data = testDataFactory.testData();
+        data = testDataFactory.testData();
 
-        alert(data);
+        //alert(data);
 
     };
+
+
+    $scope.saveData = function () {
+
+        if (data == null) {
+            alert('no data loaded');
+        } else {
+
+            //Same logic as in DE_LocalStorage_strDaten Test-Method 2
+
+                console.log('start loop');
+                console.log(data[2].id);
+                console.log(data[2][0]);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    //Set the Id as key
+                    //Address with key 42 is saved with key -address42-
+                    localStorage.setItem('address' + data[i][0], JSON.stringify(data[i]));
+
+                }
+
+                console.log(localStorage.getItem('address39999'));
+
+                localStorage.setItem('numberOfAddresses', data.length);
+
+                console.log('saved ' + data.length + ' addresses.');
+
+        }
+
+
+    };
+
+    $scope.clearLocalStorage = function () {
+
+        localStorage.clear();
+
+    }
 
 });

@@ -1,5 +1,8 @@
 sdApp.controller('DE_PG_FileAPIEinzelwerteCtrl', function ($scope, $rootScope) {
 
+    //TODO KeyToSave wird nicht von der Eingabe übernommen
+    //scope Problem
+
     $scope.keyToLoad = "a";
     $scope.keyToSave = "a";
     $scope.valueToSave = "b";

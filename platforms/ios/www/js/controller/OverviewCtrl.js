@@ -1,9 +1,9 @@
-sdApp.controller('OverviewCtrl', function ($scope, techSupport) {
+sdApp.controller('OverviewCtrl', function ($scope, techSupportFactory) {
 
     $scope.stringForTitle = 'Overview';
     $scope.stringForRightButton = 'OVV';
 
-    $scope.techniques = techSupport.techSupport();
+    $scope.techniques = techSupportFactory.techSupport();
 
 
 });

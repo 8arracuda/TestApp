@@ -82,7 +82,6 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
     };
 
-
     //Method2: Every row data-item (address) is stored in a key-value pair
 
     $scope.saveTable2ToLocalStorage = function () {

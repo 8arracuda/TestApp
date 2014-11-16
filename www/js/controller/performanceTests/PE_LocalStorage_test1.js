@@ -2,7 +2,6 @@ sdApp.controller('PE_LocalStorage_Test1Ctrl', function ($scope, $rootScope) {
 
     //prepare results-array
 
-
     $scope.results = [];
     var numberOfIterations = 3;
     for (var i = 0; i < numberOfIterations; i++) {
