@@ -25,7 +25,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         localStorage.setItem('table1_numberOfAddresses', $rootScope.numberOfRows);
 
-        alert('saved ' + $rootScope.numberOfRows + ' addresses (method 1).');
+        console.log('saved ' + $rootScope.numberOfRows + ' addresses (method 1).');
 
     };
 
@@ -60,7 +60,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.deleteTable1FromLocalStorage = function () {
 
-        numberOfRows = localStorage.getItem('table1_numberOfAddresses');
+        var numberOfRows = localStorage.getItem('table1_numberOfAddresses');
 
         for (var i = 0; i < numberOfRows; i++) {
 
@@ -78,7 +78,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         localStorage.removeItem('table1_numberOfAddresses');
 
-        alert('deleted all addresses from LocalStorage (method 1).');
+        console.log('deleted all addresses from LocalStorage (method 1).');
 
     };
 
@@ -134,6 +134,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
     };
 
+
     //Method3: As JSON-String with JSON.stringify
 
     $scope.saveTable3ToLocalStorage = function () {
@@ -150,7 +151,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         localStorage.setItem('table1_JSON', JSON.stringify(tableToSave));
 
-        alert('saved ' + $rootScope.numberOfRows + ' addresses (method 3).');
+        console.log('saved ' + $rootScope.numberOfRows + ' addresses (method 3).');
 
     };
 
@@ -168,7 +169,7 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
         localStorage.removeItem('table1_JSON');
 
-        alert('deleted all addresses from LocalStorage (method 3).');
+        console.log('deleted all addresses from LocalStorage (method 3).');
 
     };
 

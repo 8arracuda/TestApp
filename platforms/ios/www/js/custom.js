@@ -1,5 +1,25 @@
 var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "ngAnimate"]);
 
+function highlightSourceTableTitle(scope) {
+    scope.cssVarForSourceTable = 'sourceTableWasUpdated';
+    scope.$apply();
+
+    setTimeout(function () {
+        scope.cssVarForSourceTable = '';
+        scope.$apply();
+    }, 1500);
+}
+
+function highlightDestinationTableTitle(scope) {
+    scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
+    scope.$apply();
+
+    setTimeout(function () {
+        scope.cssVarForDestinationTable = '';
+        scope.$apply();
+    }, 1500);
+}
+
 sdApp.directive('ngStrDatenDatasetLoader', function () {
     return {
         restrict: 'A',
@@ -14,22 +34,27 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             'data02.json',
             'data03.json',
             'data04.json',
-            'data05.json',
-            'data06.json',
-            'data07.json',
-            'data08.json',
-            'data09.json',
-            'data10.json'
+            'data05.json'
+            //'data06.json',
+            //'data07.json',
+            //'data08.json',
+            //'data09.json',
+            //'data10.json',
+            //'data01-05.json',
+            //'data06-10.json',
+            //'data01-10.json'
         ];
 
+        //set the default value for numberOfRows
         $rootScope.numberOfRows = 5;
 
         $rootScope.data = [];
         $rootScope.tableOriginal = [];
 
-        //kopiert und modifiziert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
+        //copied and modified from
+        // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
         startJSONImport = function () {
-            var pathOfFileToRead = 'res/' + $scope.selectedDataset;
+            var pathOfFileToRead = 'res/data/' + $scope.selectedDataset;
 
             var contentsOfFileAsString = FileHelper.readStringFromFileAtPath
             (
@@ -54,17 +79,20 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
             //set animation
             //color changes for 1.5 seconds and then changes back
+
             if (animationsEnabled) {
-
-                $scope.cssVarForSourceTable = 'sourceTableWasUpdated';
-
-                setTimeout(function () {
-                    $scope.cssVarForSourceTable = '';
-                    $scope.$apply();
-                }, 1500);
-
+                highlightSourceTableTitle($scope);
             }
-            ;
+            //
+            //    $scope.cssVarForSourceTable = 'sourceTableWasUpdated';
+            //
+            //    setTimeout(function () {
+            //        $scope.cssVarForSourceTable = '';
+            //        $scope.$apply();
+            //    }, 1500);
+            //
+            //}
+            //;
         };
 
         $scope.selectAndLoadDataset = function (dataset) {
@@ -77,7 +105,8 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
         };
 
-        //kopiert von http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
+        //copied from
+        // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
         function FileHelper() {
         }
 
@@ -134,8 +163,7 @@ sdApp.directive('ngMediendatenImageSelector', function () {
         $rootScope.images = [
             'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
         ];
-
-        //$scope.currentImage = 0;
+        
         $rootScope.currentImage = 0;
 
         $scope.image_next = function () {
