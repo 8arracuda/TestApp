@@ -1,4 +1,20 @@
-var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "ngAnimate"]);
+var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "testDataFactory", "ngAnimate"]);
+
+//copied from
+// http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
+function FileHelper() {
+
+}
+{
+    FileHelper.readStringFromFileAtPath = function (pathOfFileToReadFrom) {
+        var request = new XMLHttpRequest();
+        request.open("GET", pathOfFileToReadFrom, false);
+        request.send(null);
+        var returnValue = request.responseText;
+
+        return returnValue;
+    }
+}
 
 function highlightSourceTableTitle(scope) {
     scope.cssVarForSourceTable = 'sourceTableWasUpdated';
@@ -26,7 +42,7 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
         templateUrl: 'customAngularDirectives/StrDatenDatasetLoader.html'
     }
 })
-    .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope) {
+    .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope, testDataFactory) {
 
         $scope.datasets = [
             'data01_small.json',
@@ -34,7 +50,8 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             'data02.json',
             'data03.json',
             'data04.json',
-            'data05.json'
+            'data05.json',
+            'data01+02.json'
             //'data06.json',
             //'data07.json',
             //'data08.json',
@@ -55,13 +72,7 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
         // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
         startJSONImport = function () {
             var pathOfFileToRead = 'res/data/' + $scope.selectedDataset;
-
-            var contentsOfFileAsString = FileHelper.readStringFromFileAtPath
-            (
-                pathOfFileToRead
-            );
-
-            $rootScope.data = JSON.parse(contentsOfFileAsString);
+            $rootScope.data = testDataFactory.getDataFromFile(pathOfFileToRead);
 
             console.log('dataset ' + $scope.selectedDataset + " loaded successfully");
 
@@ -83,16 +94,7 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             if (animationsEnabled) {
                 highlightSourceTableTitle($scope);
             }
-            //
-            //    $scope.cssVarForSourceTable = 'sourceTableWasUpdated';
-            //
-            //    setTimeout(function () {
-            //        $scope.cssVarForSourceTable = '';
-            //        $scope.$apply();
-            //    }, 1500);
-            //
-            //}
-            //;
+
         };
 
         $scope.selectAndLoadDataset = function (dataset) {
@@ -104,22 +106,6 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             animationsEnabled = true;
 
         };
-
-        //copied from
-        // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
-        function FileHelper() {
-        }
-
-        {
-            FileHelper.readStringFromFileAtPath = function (pathOfFileToReadFrom) {
-                var request = new XMLHttpRequest();
-                request.open("GET", pathOfFileToReadFrom, false);
-                request.send(null);
-                var returnValue = request.responseText;
-
-                return returnValue;
-            }
-        }
 
         //variable is set to false, to avoid animation after loading the page
         var animationsEnabled = false;
@@ -163,7 +149,7 @@ sdApp.directive('ngMediendatenImageSelector', function () {
         $rootScope.images = [
             'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
         ];
-        
+
         $rootScope.currentImage = 0;
 
         $scope.image_next = function () {
@@ -219,10 +205,9 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
 //Code take from http://www.stephenpauladams.com/articles/angularjs-cordova-windows-phone-quirk/
 //it makes links work in Windows Phone
 //Without this Windows Phone want's to search for an appropiate app for that link.
-sdApp.config( [
+sdApp.config([
     '$compileProvider',
-    function( $compileProvider )
-    {
+    function ($compileProvider) {
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
         // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }

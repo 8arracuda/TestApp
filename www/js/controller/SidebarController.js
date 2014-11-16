@@ -1,6 +1,6 @@
-sdApp.controller('SidebarController', function ($scope, techSupport) {
+sdApp.controller('SidebarController', function ($scope, techSupportFactory) {
 
-    ts = techSupport.techSupport();
+    ts = techSupportFactory.techSupport();
 
     $scope.techniques = ts;
 

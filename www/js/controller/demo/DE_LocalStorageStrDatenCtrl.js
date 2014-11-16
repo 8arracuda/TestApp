@@ -87,7 +87,6 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.saveTable2ToLocalStorage = function () {
 
-
         //delete old data first
         $scope.deleteTable2FromLocalStorage();
 
@@ -104,6 +103,8 @@ sdApp.controller('DE_LocalStorageStrDatenCtrl', function ($scope, $rootScope) {
     };
 
     $scope.loadTable2FromLocalStorage = function () {
+
+        $scope.tableFromLocalStorage = [];
 
         var numberOfRows = localStorage.getItem('table1_numberOfAddresses_method2');
 

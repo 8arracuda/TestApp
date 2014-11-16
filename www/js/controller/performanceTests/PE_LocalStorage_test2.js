@@ -1,4 +1,6 @@
-sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope) {
+sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope, testDataFactory) {
+
+
 
 
     //prepare results-array
@@ -12,8 +14,8 @@ sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope) {
         $scope.results.push(result);
     }
 
-    $scope.descriptionText1 = 'Description of the 2nd test';
-    $scope.headlineText = 'headlineText2';
+    $scope.descriptionText1 = 'Read performance test';
+    $scope.headlineText = 'Perf Test 2';
 
     $scope.startPerformanceTest = function () {
         $scope.stringWithResults = 'result';
@@ -63,6 +65,14 @@ sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope) {
 
 
         return timeDiff;
+    };
+
+    $scope.loadData = function () {
+
+        var data = testDataFactory.testData();
+
+        alert(data);
+
     };
 
 });

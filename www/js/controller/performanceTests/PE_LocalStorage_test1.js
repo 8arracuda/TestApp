@@ -1,18 +1,19 @@
 sdApp.controller('PE_LocalStorage_Test1Ctrl', function ($scope, $rootScope) {
 
     //prepare results-array
-    var numberOfTests = 3;
-    $scope.results = [];
 
-    for (var i = 0; i < numberOfTests; i++) {
+
+    $scope.results = [];
+    var numberOfIterations = 3;
+    for (var i = 0; i < numberOfIterations; i++) {
         //
         //    var result = {finished: false, time: -1};
         var result = -1;
         $scope.results.push(result);
     }
 
-
-    $scope.descriptionText1 = 'Stores 3x 10.000 items';
+    var amountOfData = 10000;
+    $scope.descriptionText1 = 'Stores ' + numberOfIterations + 'x ' + amountOfData + ' items';
     $scope.headlineText = 'headlineText1';
 
     $scope.startPerformanceTest = function () {
@@ -27,7 +28,7 @@ sdApp.controller('PE_LocalStorage_Test1Ctrl', function ($scope, $rootScope) {
         function myLoop() {           //  create a loop function
             setTimeout(function () {
 
-                time = $scope.perf_storeItems(10000);
+                time = $scope.perf_storeItems(amountOfData);
 
                 //$scope.stringWithResults = $scope.stringWithResults + ', ' + time;
                 //$scope.testProgress = i + ' / ' + numberOfTests + ' (in Progress)';
@@ -36,7 +37,7 @@ sdApp.controller('PE_LocalStorage_Test1Ctrl', function ($scope, $rootScope) {
                 $scope.$apply();
 
                 i++;                     //  increment the counter
-                if (i < numberOfTests) {            //  if the counter < 10, call the loop function
+                if (i < numberOfIterations) {            //  if the counter < 10, call the loop function
                     myLoop();             //  ..  again which will trigger another
                 }                        //  ..  setTimeout()
             }, 1000)
@@ -60,7 +61,6 @@ sdApp.controller('PE_LocalStorage_Test1Ctrl', function ($scope, $rootScope) {
         }
 
         var timeDiff = timeEnd - timeStart;
-
 
         return timeDiff;
     };

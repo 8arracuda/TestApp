@@ -1,5 +1,5 @@
 angular.module('techSupportFactory', [])
-    .factory('techSupport', function () {
+    .factory('techSupportFactory', function () {
         return {
             techSupport: function () {
                 var techniques = [];
@@ -61,20 +61,20 @@ angular.module('techSupportFactory', [])
                 if (window.FileWriter) {
                     techniques.fileWriter = true;
                 } else {
-                    techniques.fileWriter= false;
+                    techniques.fileWriter = false;
                 }
 
 
                 if (window.webkitRequestFileSystem) {
                     techniques.webkitRequestFileSystem = true;
                 } else {
-                    techniques.webkitRequestFileSystem= false;
+                    techniques.webkitRequestFileSystem = false;
                 }
 
                 if (window.requestFileSystem) {
                     techniques.requestFileSystem = true;
                 } else {
-                    techniques.requestFileSystem= false;
+                    techniques.requestFileSystem = false;
                 }
 
 
@@ -137,7 +137,7 @@ angular.module('techSupportFactory', [])
                 function hasGetUserMedia() {
                     // Note: Opera builds are unprefixed.
                     return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                        navigator.mozGetUserMedia || navigator.msGetUserMedia);
+                    navigator.mozGetUserMedia || navigator.msGetUserMedia);
                 }
 
 
