@@ -50,8 +50,10 @@ sdApp.controller('PE_WebSql_Test1Ctrl', function ($scope, $rootScope) {
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-
-                    tx.executeSql("INSERT INTO PE_Test1(keyName, value) VALUES(?,?)", [i, i]);
+                    //console.log('saving ' + i + ' for key ' + i);
+                    //tx.executeSql("INSERT INTO PE_Test1(keyName, value) VALUES(?,?)", [i, i]);
+                    tx.executeSql("INSERT INTO PE_Test1(keyName, value) VALUES(?,?)", ['' + i, '' + i]);
+                    //console.log('saved ' + i + ' for key ' + i);
 
                 }
             }, function errorHandler(transaction, error) {

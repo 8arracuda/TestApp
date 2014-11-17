@@ -19,6 +19,13 @@ angular.module('testDataFactory', [])
 
                 return JSON.parse(contentsOfFileAsString);
 
+            },
+
+            getStringFromFile: function (filename) {
+
+                //Filehelper function is defined in custom.js
+                return FileHelper.readStringFromFileAtPath(filename);
+
             }
         };
     });

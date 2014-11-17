@@ -1,67 +1,48 @@
-sdApp.controller('PE_LocalStorage_Test3Ctrl', function ($scope, $rootScope) {
+sdApp.controller('PE_LocalStorage_Test3Ctrl', function ($scope, $rootScope, testDataFactory) {
+
+    var iteration = 1;
 
     //prepare results-array
-    var numberOfTests = 3;
+    $scope.testInProgress = false;
     $scope.results = [];
 
-    for (var i = 0; i < numberOfTests; i++) {
-        //
-        //    var result = {finished: false, time: -1};
-        var result = -1;
-        $scope.results.push(result);
+    $scope.isPrepared = false;
+
+    $scope.testDecription = 'Saving long strings (dataset strings)';
+    $scope.headlineText = 'Perf Test 3';
+
+    $scope.prepare = function () {
+        localStorage.clear();
+        $scope.isPrepared = true;
     }
 
-    $scope.descriptionText1 = 'Description of the 3rd test';
-    $scope.headlineText = 'headlineText3';
-
     $scope.startPerformanceTest = function () {
-        $scope.stringWithResults = 'result';
 
-        var time;
+        var datasetFiles = [
+            'res/data/data01.json',
+            'res/data/data02.json',
+            'res/data/data03.json',
+            'res/data/data05.json'
+        ];
 
-        myLoop();
-        var i = 0;
-        //loop logic from
-        //https://stackoverflow.com/a/3583740/2405372
-        function myLoop() {           //  create a loop function
-            setTimeout(function () {
+        var timeDiffSum = 0;
 
-                time = $scope.perf_storeItems(10000);
+        for (var i = 0; i < 2; i++) {
 
-                //$scope.stringWithResults = $scope.stringWithResults + ', ' + time;
-                //$scope.testProgress = i + ' / ' + numberOfTests + ' (in Progress)';
+            var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
 
-                $scope.results[i] = 'Iteration ' + i + ': ' + time + 'ms';
-                $scope.$apply();
+            var timeStart = new Date().getTime();
+            localStorage.setItem('dataset_' + i, datasetString);
+            timeDiffSum = +new Date().getTime() - timeStart;
+            console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
 
-                i++;                     //  increment the counter
-                if (i < numberOfTests) {            //  if the counter < 10, call the loop function
-                    myLoop();             //  ..  again which will trigger another
-                }                        //  ..  setTimeout()
-            }, 1000)
         }
 
-    };
+        $scope.results.push('Iteration ' + iteration + ': ' + timeDiffSum + ' ms');
+        $scope.testInProgress = false;
+        $scope.isPrepared = false;
+        $scope.$apply();
+        iteration++;
 
-    $scope.perf_storeItems = function (amountOfData) {
-        console.log('perf_storeItems(' + amountOfData + ') started');
-
-        var timeStart = new Date().getTime();
-
-        for (i = 0; i < amountOfData; ++i) {
-            localStorage.setItem(('test' + i), 'test' + i);
-        }
-
-        var timeEnd = new Date().getTime();
-
-        for (i = 0; i < amountOfData; ++i) {
-            localStorage.removeItem(('test' + i));
-        }
-
-        var timeDiff = timeEnd - timeStart;
-
-
-        return timeDiff;
-    };
-
+    }
 });

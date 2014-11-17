@@ -21,10 +21,6 @@ sdApp.controller('DE_PG_FileAPIEinzelwerteCtrl', function ($scope, $rootScope) {
                 var filename = getFilenameForEinzelwerte($scope.keyToSave);
                 fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
-                    //  fileEntry.isFile === true;
-                    // fileEntry.name == filename;
-                    //fileEntry.fullPath == '/' + filename;
-
                     fileEntry.createWriter(function (fileWriter) {
 
                         fileWriter.onwriteend = function (e) {
