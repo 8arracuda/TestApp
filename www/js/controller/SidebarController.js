@@ -5,72 +5,115 @@ sdApp.controller('SidebarController', function ($scope, techSupportFactory) {
     $scope.techniques = ts;
 
     $scope.sidebar_performanceTests = [
-        {labelText: 'Overview',
+        {
+            labelText: 'Overview',
             linkURL: 'overview',
-            support: true},
-        {labelText: 'SessionStorage',
+            support: true
+        },
+        {
+            labelText: 'SessionStorage',
             linkURL: 'PE_sessionStorage',
-            support: ts.sessionStorage},
-        {labelText: 'LocalStorage',
+            support: ts.sessionStorage
+        },
+        {
+            labelText: 'LocalStorage',
             linkURL: 'PE_localStorage',
-            support: ts.localStorage},
-        {labelText: 'WebSQL',
+            support: ts.localStorage
+        },
+        {
+            labelText: 'WebSQL',
             linkURL: 'PE_webSql',
-            support: ts.webSQL},
-        {labelText: 'IndexedDB',
+            support: ts.webSQL
+        },
+        {
+            labelText: 'IndexedDB',
             linkURL: 'PE_indexedDB',
-            support: ts.indexedDB},
-        {labelText: 'File API',
+            support: ts.indexedDB
+        },
+        {
+            labelText: 'File API',
             linkURL: 'PE_fileAPI',
-            support: ts.fileAPI_fullSupport},
-        {labelText: '(Acc)',
+            support: ts.fileAPI_fullSupport
+        },
+        {
+            labelText: '(Acc)',
             linkURL: 'acc',
-            support: ts.accelerometer},
-        {labelText: '(Cam)',
+            support: ts.accelerometer
+        },
+        {
+            labelText: '(Cam)',
             linkURL: 'cam',
-            support: ts.camera},
-        {labelText: '(directory variables)',
+            support: ts.camera
+        },
+        {
+            labelText: '(directory variables)',
             linkURL: 'directoryVariables',
-            support: true},
-        {labelText: '(device orientation)',
+            support: true
+        },
+        {
+            labelText: '(device orientation)',
             linkURL: 'devOrientation',
-            support: true},
-        {labelText: '(video)',
+            support: true
+        },
+        {
+            labelText: '(video)',
             linkURL: 'vid',
-            support: true},
-        {labelText: '(loadImage)',
+            support: true
+        },
+        {
+            labelText: '(loadImage)',
             linkURL: 'loadImage',
-            support: true}
+            support: true
+        }
     ];
 
+    //TODO bei FileAPI wird auf Chrome/Desktop angezeigt, dass es unterstützt wird, obwohl es nicht der Fall ist - Der Test in TechSupport muss verbessert werden
+
+
     $scope.sidebar_plattformTests = [
-        {labelText: 'SessionStorage',
+        {
+            labelText: 'SessionStorage',
             linkURL: 'PL_sessionStorage',
-            support: ts.sessionStorage},
-        {labelText: 'LocalStorage',
+            support: ts.sessionStorage
+        },
+        {
+            labelText: 'LocalStorage',
             linkURL: 'PL_localStorage',
-            support: ts.localStorage}
+            support: ts.localStorage
+        }
     ];
 
     $scope.sidebar_demonstration = [
-        {labelText: 'SessionStorage',
+        {
+            labelText: 'SessionStorage',
             linkURL: 'DE_sessionStorage',
-            support: ts.sessionStorage},
-        {labelText: 'LocalStorage',
+            support: ts.sessionStorage
+        },
+        {
+            labelText: 'LocalStorage',
             linkURL: 'DE_localStorage',
-            support: ts.localStorage},
-        {labelText: 'WebSQL',
+            support: ts.localStorage
+        },
+        {
+            labelText: 'WebSQL',
             linkURL: 'DE_webSql',
-            support: ts.webSQL},
-        {labelText: 'IndexedDB',
+            support: ts.webSQL
+        },
+        {
+            labelText: 'IndexedDB',
             linkURL: 'DE_indexedDB',
-            support: ts.indexedDB},
-        {labelText: 'SQLite Plugin',
+            support: ts.indexedDB
+        },
+        {
+            labelText: 'SQLite Plugin',
             linkURL: 'DE_PGSQLite',
-            support: ts.sqlitePlugin},
-        {labelText: 'File API',
+            support: ts.sqlitePlugin
+        },
+        {
+            labelText: 'File API',
             linkURL: 'DE_PG_fileAPI',
-            support: ts.fileAPI_fullSupport}
+            support: ts.fileAPI_fullSupport
+        }
     ];
 
 });
