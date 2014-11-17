@@ -1,4 +1,18 @@
 <div ng-controller="PE_IndexedDB_Test3Ctrl">
 
+    <div class="panel">
+        <h2 class="panel-title">
+            database open?
+        </h2>
+
+        <div class="panel-body">
+            <button class="btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
+
+            <button class="btn btn-primary" ng-click="openDatabase()">open database</button>
+
+        </div>
+
+
+    </div>
 
 </div>

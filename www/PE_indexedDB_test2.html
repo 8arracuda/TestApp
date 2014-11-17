@@ -1,4 +1,58 @@
 <div ng-controller="PE_IndexedDB_Test2Ctrl">
 
+    <div class="panel">
+        <h2 class="panel-title">
+            database open?
+        </h2>
+
+        <div class="panel-body">
+            <button class="btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
+
+            <button class="btn btn-primary" ng-click="openDatabase()">open database</button>
+
+        </div>
+
+        <div class="panel-heading">
+            <h2>Performance-Test 2</h2>
+            {{ descriptionText1 }}
+        </div>
+
+        <h2 class="panel-title">
+            Start test
+        </h2>
+
+        <div class="panel-body">
+
+            <a class="btn btn-warning" ng-show="testInProgress==true">
+                <i class="fa fa-spinner"></i> test in progress
+            </a>
+
+            <button ng-click="prepare()" class="btn btn-primary">prepare</button>
+            <button ng-click="loadAddressIds()" class="btn btn-primary">loadAddressIds</button>
+
+        </div>
+
+        <h2 class="panel-title">
+            Results
+        </h2>
+
+        <div class="panel-body">
+
+            {{ stringWithResults }}<br>
+
+            <br>
+
+            <div class="list-group">
+                <div ng-repeat="result in results track by $index">
+
+                    <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
+                        {{ result }}
+                    </li>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </div>

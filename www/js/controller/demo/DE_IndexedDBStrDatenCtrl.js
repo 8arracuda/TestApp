@@ -6,7 +6,6 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
         const dbName = "StrDaten";
         const objStoreName = "StrDaten";
 
-
         $scope.clearObjectStore = function () {
 
             var request = $scope.db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
@@ -21,7 +20,6 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
             };
 
         };
-
 
         $scope.saveTableToIndexedDB = function () {
 
@@ -111,7 +109,6 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
 
             };
 
-
         };
 
         $scope.openDatabase = function () {
@@ -155,4 +152,3 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
         };
     }
 );
-

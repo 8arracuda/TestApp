@@ -11,6 +11,7 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
     const dbName = "einzelwerte";
     const dbVersion = "1.0";
 
+
     $scope.saveEinzelwerte = function () {
 
         console.log('addRow start');

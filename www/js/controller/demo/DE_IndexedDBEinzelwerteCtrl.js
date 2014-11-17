@@ -14,9 +14,6 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
     $scope.saveEinzelwerte = function () {
 
-
-
-
         if ($scope.keyToSave == '' || $scope.valueToSave == '') {
             alert('You need to enter a key and a value');
         } else {
@@ -50,8 +47,6 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
         var objectStore = transaction.objectStore(objStoreName);
         var request = objectStore.get($scope.keyToLoad);
 
-
-        // Do something when all the data is added to the database.
         transaction.oncomplete = function (event) {
             console.log('transaction.oncomplete (in updateEinzelwerteView)');
 
@@ -60,7 +55,6 @@ sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
         transaction.onerror = function (event) {
             console.error('transaction.onerror (in updateEinzelwerteView)');
-            // Don't forget to handle errors!
         };
 
         request.onsuccess = function (event) {
