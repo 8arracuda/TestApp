@@ -1,6 +1,12 @@
 <div ng-controller="PE_IndexedDB_Test2Ctrl">
 
     <div class="panel">
+
+        <div class="panel-heading">
+            <h2>Performance-Test 2</h2>
+            {{ testDecription }}
+        </div>
+
         <h2 class="panel-title">
             database open?
         </h2>
@@ -10,11 +16,6 @@
 
             <button class="btn btn-primary" ng-click="openDatabase()">open database</button>
 
-        </div>
-
-        <div class="panel-heading">
-            <h2>Performance-Test 2</h2>
-            {{ descriptionText1 }}
         </div>
 
         <h2 class="panel-title">
@@ -27,9 +28,11 @@
                 <i class="fa fa-spinner"></i> test in progress
             </a>
 
+            <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
             <button ng-click="prepare()" class="btn btn-primary">prepare</button>
-            <button ng-click="loadAddressIds()" class="btn btn-primary">loadAddressIds</button>
-
+            <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="loadAddressIds()"
+                    class="btn btn-primary">loadAddressIds
+            </button>
         </div>
 
         <h2 class="panel-title">

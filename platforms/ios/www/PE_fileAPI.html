@@ -1,18 +1,74 @@
 <div content-for="title">
-    <span>PE File API</span>
+    <span ng-click="functionForRightButton()">{{ stringForTitle }}</span>
 </div>
 
 <div content-for="navbarAction">
     <div class="btn btn-navbar">
-        <i class="fa fa-plus"></i>FA
+        <a ng-click="functionForRightButton()"><i class="fa fa-database"></i> {{ stringForRightButton }}</a>
     </div>
 </div>
 
-<div class="list-group">
 
-    <div class="list-group">
-        <li class="list-group-item">
-            PE_File API
-        </li>
+<div class="scrollable">
+    <div class="scrollable-content">
+
+        <div class="btn-group justified nav-tabs">
+            <a class="btn btn-default"
+               target="FileAPI_1"
+               toggle="on"
+               ng-click="enableTab_1()"
+               active-class="active">1
+            </a>
+
+            <a class="btn btn-default"
+               target="FileAPI_2"
+               toggle="on"
+               ng-click="enableTab_2()"
+               active-class="active">2
+            </a>
+
+            <a class="btn btn-default"
+               target="FileAPI_3"
+               toggle="on"
+               ng-click="enableTab_3()"
+               active-class="active">3
+            </a>
+
+        </div>
+
+        <div class="tab-content">
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 1}"
+                 default="active"
+                 id="FileAPI_1"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_fileAPI_test1.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 2}"
+                 id="FileAPI_2"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_fileAPI_test2.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 3}"
+                 id="FileAPI_3"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_fileAPI_test3.html"'></div>
+
+            </div>
+
+        </div>
     </div>
 </div>

@@ -1,60 +1,73 @@
 <div content-for="title">
-    <span>PE Indexed DB</span>
+    <span ng-click="functionForRightButton()">{{ stringForTitle }}</span>
 </div>
 
 <div content-for="navbarAction">
     <div class="btn btn-navbar">
-        <i class="fa fa-plus"></i>IDB
+        <a ng-click="functionForRightButton()"><i class="fa fa-database"></i> {{ stringForRightButton }}</a>
     </div>
 </div>
 
-<div class="panel">
+<div class="scrollable">
+    <div class="scrollable-content">
 
-    <h2 class="panel-title">
-        database open?
-    </h2>
+        <div class="btn-group justified nav-tabs">
+            <a class="btn btn-default"
+               target="IndexedDB_1"
+               toggle="on"
+               ng-click="enableTab_1()"
+               active-class="active">1
+            </a>
 
-    <div class="panel-body">
-        <button class="btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
+            <a class="btn btn-default"
+               target="IndexedDB_2"
+               toggle="on"
+               ng-click="enableTab_2()"
+               active-class="active">2
+            </a>
 
-        <button class="btn btn-primary" ng-click="openDatabase()">open database</button>
+            <a class="btn btn-default"
+               target="IndexedDB_3"
+               toggle="on"
+               ng-click="enableTab_3()"
+               active-class="active">3
+            </a>
 
-    </div>
-
-    <h2 class="panel-title">
-        actions
-    </h2>
-
-    <div class="panel-body">
-
-        <button class="btn btn-primary" ng-click="  perf_store1000Items()">  perf_store1000Items</button>
-        <button ng-click="startPerformanceTest()" class="btn btn-primary">start Performance-Test</button>
-        <button ng-click="startPerformanceTest_save_onlyOne()" class="btn btn-primary">startPerformanceTest_save_onlyOne</button>
-        <button ng-click="startPerformanceTest_remove_onlyOne()" class="btn btn-primary">startPerformanceTest_remove_onlyOne</button>
-        <button ng-click="clearObjectStore()" class="btn btn-primary">clearObjectStore</button>
-
-    </div>
-
-    <h2 class="panel-title">
-        Results
-    </h2>
-
-    <div class="panel-body">
-
-        {{ stringWithResults }}<br>
-
-        <br>
-
-        <div class="list-group">
-            <div ng-repeat="result in results track by $index">
-
-                <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
-                    {{ result }}
-                </li>
-
-            </div>
         </div>
 
+        <div class="tab-content">
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 1}"
+                 default="active"
+                 id="IndexedDB_1"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_indexedDB_test1.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 2}"
+                 id="IndexedDB_2"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_indexedDB_test2.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 3}"
+                 id="IndexedDB_3"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_indexedDB_test3.html"'></div>
+
+            </div>
+
+        </div>
     </div>
 </div>
-

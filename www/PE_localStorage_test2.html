@@ -3,7 +3,7 @@
     <div class="panel">
         <div class="panel-heading">
             <h2>Performance-Test 2</h2>
-            {{ descriptionText1 }}
+            {{ testDecription }}
         </div>
 
         <h2 class="panel-title">
@@ -16,9 +16,8 @@
                 <i class="fa fa-spinner"></i> test in progress
             </a>
 
-            <button ng-click="startPerformanceTest()" class="btn btn-primary">start Performance-Test</button>
             <button ng-click="prepare()" class="btn btn-primary">prepare</button>
-            <button ng-click="loadAddressIds()" class="btn btn-primary">loadAddressIds</button>
+            <button ng-class="{disabled: !isPrepared }" ng-click="loadAddressIds()" class="btn btn-primary">loadAddressIds</button>
 
         </div>
 

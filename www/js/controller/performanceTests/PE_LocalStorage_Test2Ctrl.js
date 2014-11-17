@@ -7,7 +7,7 @@ sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope, test
 
     $scope.results = [];
 
-    $scope.descriptionText1 = 'Read performance test';
+    $scope.testDecription= 'Read test - random addresses will be loaded';
     $scope.headlineText = 'Perf Test 2';
 
     $scope.loadAddressIds = function () {
