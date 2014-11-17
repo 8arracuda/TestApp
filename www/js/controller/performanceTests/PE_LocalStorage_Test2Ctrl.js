@@ -2,6 +2,7 @@ sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope, test
 
     var iteration = 1;
     $scope.testInProgress = false;
+    $scope.isPrepared = false;
 
     var data;
 
@@ -81,7 +82,7 @@ sdApp.controller('PE_LocalStorage_Test2Ctrl', function ($scope, $rootScope, test
         clearLocalStorage();
         loadData();
         saveAddressData();
-
+        $scope.isPrepared = true;
     };
 
 });

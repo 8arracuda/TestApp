@@ -8,7 +8,7 @@ sdApp.controller('PE_LocalStorage_Test3Ctrl', function ($scope, $rootScope, test
 
     $scope.isPrepared = false;
 
-    $scope.testDecription = 'Saving long strings (dataset strings)';
+    $scope.testDecription = 'Saving long strings (dataset strings) ------ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
     $scope.headlineText = 'Perf Test 3';
 
     $scope.prepare = function () {
@@ -33,6 +33,10 @@ sdApp.controller('PE_LocalStorage_Test3Ctrl', function ($scope, $rootScope, test
 
             var timeStart = new Date().getTime();
             localStorage.setItem('dataset_' + i, datasetString);
+
+            //The time taken is calculated step by step inside the loop
+            //because the fetching of the string from the files is also taking
+            //a long time. This time is not relevant when looking at the storage-techniques!
             timeDiffSum = +new Date().getTime() - timeStart;
             console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
 
