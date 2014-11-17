@@ -12,6 +12,10 @@
 
         <div class="panel-body">
 
+            <a class="btn btn-warning" ng-show="testInProgress==true">
+                <i class="fa fa-spinner"></i> test in progress
+            </a>
+
             <button ng-click="startPerformanceTest()" class="btn btn-primary">start Performance-Test</button>
             <button ng-click="prepare()" class="btn btn-primary">prepare</button>
             <button ng-click="loadAddressIds()" class="btn btn-primary">loadAddressIds</button>
