@@ -14,7 +14,7 @@ sdApp.controller('PE_LocalStorage_Test3Ctrl', function ($scope, $rootScope, test
     $scope.prepare = function () {
         localStorage.clear();
         $scope.isPrepared = true;
-    }
+    };
 
     $scope.startPerformanceTest = function () {
 
