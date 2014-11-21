@@ -1,8 +1,8 @@
-<div ng-controller="PE_LocalStorage_Test1Ctrl">
+<div ng-controller="PE_WebSql_TestC1Ctrl">
 
     <div class="panel">
         <div class="panel-heading">
-            <h2>Performance-Test 1</h2>
+            <h2>Performance-Test C1</h2>
             {{ mainTestDecription }}<br>
 
             <div ng-show="selectedTestVariant=='Test1A' || selectedTestVariant=='' ">
@@ -25,20 +25,19 @@
             </div>
 
             <button class="btn btn-sm btn-default" ng-show="selectedTestVariant!=''" ng-click="reset()">reset this page</button>
-
         </div>
 
         <div ng-show="selectedTestVariant!=''">
 
             <h2 class="panel-title">
-                Preparation
+                database connection
             </h2>
-            <div class="panel-body">
-                {{ preparationText }}<br>
-                <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
-                <button ng-click="prepare()" class="btn btn-primary">prepare</button>
-                </div>
 
+            <div class="panel-body">
+                <button class="btn"
+                        ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
+                <button class="btn btn-primary" ng-click="initWebSQL()">init/open database</button>
+            </div>
 
             <h2 class="panel-title">
                 Start test
@@ -46,9 +45,13 @@
 
             <div class="panel-body">
 
-
-                <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest()" class="btn btn-primary">
-                    start {{ selectedTestVariant }}
+                <a class="btn btn-warning" ng-show="testInProgress==true">
+                    <i class="fa fa-spinner"></i> test in progress
+                </a>
+                <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
+                <button class="btn btn-primary" ng-click="prepare()">prepare</button>
+                <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="startPerformanceTest()"
+                        class="btn btn-primary">startPerformanceTest
                 </button>
 
             </div>
@@ -58,6 +61,10 @@
             </h2>
 
             <div class="panel-body">
+
+                {{ stringWithResults }}<br>
+
+                <br>
 
                 <div class="list-group">
                     <div ng-repeat="result in results track by $index">

@@ -1,4 +1,4 @@
-sdApp.controller('PE_WebSql_Test2Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataFactory) {
     var iteration = 1;
 
     const dbName = "PE_Test2";

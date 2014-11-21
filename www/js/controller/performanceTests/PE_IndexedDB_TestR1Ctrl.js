@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_Test2Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDataFactory) {
     var iteration = 1;
 
     //bool value used for the staus-light in the "open database" section

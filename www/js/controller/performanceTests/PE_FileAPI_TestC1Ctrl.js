@@ -1,4 +1,4 @@
-sdApp.controller('PE_FileAPI_Test1Ctrl', function ($scope, $rootScope) {
+sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope) {
     var iteration = 1;
 
     $scope.testInProgress = false;

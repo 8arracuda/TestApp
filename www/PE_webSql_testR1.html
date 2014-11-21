@@ -1,21 +1,19 @@
-<div ng-controller="PE_IndexedDB_Test2Ctrl">
+<div ng-controller="PE_WebSql_TestR1Ctrl">
 
     <div class="panel">
 
         <div class="panel-heading">
-            <h2>Performance-Test 2</h2>
+            <h2>Performance-Test R1</h2>
             {{ testDecription }}
         </div>
 
         <h2 class="panel-title">
-            database open?
+            database connection
         </h2>
 
         <div class="panel-body">
             <button class="btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
-
-            <button class="btn btn-primary" ng-click="openDatabase()">open database</button>
-
+            <button class="btn btn-primary" ng-click="initWebSQL()">init/open database</button>
         </div>
 
         <h2 class="panel-title">
@@ -27,12 +25,12 @@
             <a class="btn btn-warning" ng-show="testInProgress==true">
                 <i class="fa fa-spinner"></i> test in progress
             </a>
-
             <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
-            <button ng-click="prepare()" class="btn btn-primary">prepare</button>
-            <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="loadAddressIds()"
-                    class="btn btn-primary">loadAddressIds
+            <button class="btn btn-primary" ng-click="prepare()">prepare</button>
+            <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="startPerformanceTest()"
+                    class="btn btn-primary">startPerformanceTest
             </button>
+
         </div>
 
         <h2 class="panel-title">
