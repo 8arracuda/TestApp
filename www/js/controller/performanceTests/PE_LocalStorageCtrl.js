@@ -30,6 +30,18 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
         //$scope.stringForRightButton = 'MED';
     };
 
+    $scope.enableTab_4 = function () {
+        $scope.tab = 4;
+        //$scope.stringForTitle = 'LS Mediendaten';
+        //$scope.stringForRightButton = 'MED';
+    };
+
+    $scope.enableTab_5 = function () {
+        $scope.tab = 5;
+        //$scope.stringForTitle = 'LS Mediendaten';
+        //$scope.stringForRightButton = 'MED';
+    };
+
     $scope.enableTab_1();
 
 

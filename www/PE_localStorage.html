@@ -34,6 +34,20 @@
                active-class="active">R1
             </a>
 
+            <a class="btn btn-default"
+               target="localStorage_U1"
+               toggle="on"
+               ng-click="enableTab_4()"
+               active-class="active">U1
+            </a>
+
+            <a class="btn btn-default"
+               target="localStorage_D1"
+               toggle="on"
+               ng-click="enableTab_5()"
+               active-class="active">D1
+            </a>
+
         </div>
 
 
@@ -67,6 +81,26 @@
                  exclusion-group="myTabs">
 
                 <div ng-include src='"PE_localStorage_testR1.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 4}"
+                 id="localStorage_U1"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_localStorage_testU1.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 5}"
+                 id="localStorage_D1"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_localStorage_testD1.html"'></div>
 
             </div>
 

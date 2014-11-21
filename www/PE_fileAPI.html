@@ -33,6 +33,20 @@
                active-class="active">3
             </a>
 
+            <a class="btn btn-default"
+               target="FileAPI_U1"
+               toggle="on"
+               ng-click="enableTab_4()"
+               active-class="active">U1
+            </a>
+
+            <a class="btn btn-default"
+               target="FileAPI_D1"
+               toggle="on"
+               ng-click="enableTab_5()"
+               active-class="active">D1
+            </a>
+
         </div>
 
         <div class="tab-content">
@@ -65,6 +79,26 @@
                  exclusion-group="myTabs">
 
                 <div ng-include src='"PE_fileAPI_test3.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 4}"
+                 id="FileAPI_U1"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_fileAPI_testU1.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 5}"
+                 id="FileAPI_D1"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_fileAPI_testD1.html"'></div>
 
             </div>
 
