@@ -29,20 +29,45 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testD1a = 1000;
-    var amountOfData_testD1b = 5000;
+    var amountOfData_testR1a = 1000;
+    var amountOfData_testR1b = 5000;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
     $scope.testName1 = 'TestR1a';
-    $scope.testDecription1 = 'Stores ' + amountOfData_testD1a + ' items';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';
     $scope.testName2 = 'TestR1b';
-    $scope.testDecription2 = 'Stores ' + amountOfData_testD1b + ' items';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testR1b + ' items';
 
     $scope.results = [];
 
     $scope.isPrepared = false;
+
+
+    $scope.selectTestVariant = function (testVariant) {
+        $scope.selectedTestVariant = testVariant;
+
+        if (testVariant == 'TestR1a') {
+            amountOfData = amountOfData_testR1a;
+        } else {
+            amountOfData = amountOfData_testR1b;
+        }
+        console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
+
+    };
+
+    $scope.reset = function () {
+
+        var answer = confirm('Do you really want to reset this page. All test results will be removed!');
+
+        if (answer) {
+            iteration = 1;
+            $scope.isPrepared = false;
+            $scope.results = [];
+            $scope.selectedTestVariant = '';
+        }
+    };
 
     $scope.prepare = function () {
         console.log('prepare');
@@ -55,22 +80,22 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
 
     function saveAddressData() {
 
-            console.log('saveTable1ToWebSQL start');
+        console.log('saveTable1ToWebSQL start');
 
-            $scope.db.transaction(function (tx) {
+        $scope.db.transaction(function (tx) {
 
-                for (var i = 0; i < data.length; i++) {
-                    tx.executeSql("INSERT INTO " + tableName + "(id, firstName, lastName, street, zipcode, city, email, randomNumber1, randomNumber2) VALUES(?,?,?,?,?,?,?,?,?)", [data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6], data[i][7], data[i][8]]);
-                }
+            for (var i = 0; i < data.length; i++) {
+                tx.executeSql("INSERT INTO " + tableName + "(id, firstName, lastName, street, zipcode, city, email, randomNumber1, randomNumber2) VALUES(?,?,?,?,?,?,?,?,?)", [data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6], data[i][7], data[i][8]]);
+            }
 
-                console.log(data.length + ' addresses saved in WebSQL database  -' + tableName + '-?');
+            console.log(data.length + ' addresses saved in WebSQL database  -' + tableName + '-?');
 
-            }, function errorHandler(transaction, error) {
-                alert("Error : " + transaction.message);
-                alert("Error : " + error.message);
-            });
+        }, function errorHandler(transaction, error) {
+            alert("Error : " + transaction.message);
+            alert("Error : " + error.message);
+        });
 
-            console.log('saveTable1ToWebSQL executed');
+        console.log('saveTable1ToWebSQL executed');
 
     }
 
@@ -104,7 +129,7 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
         $scope.databaseOpened = true;
     };
 
-    $scope.createTable= function (tx) {
+    $scope.createTable = function (tx) {
         console.log('createTableStrDaten start');
         tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT, randomNumber1 INTEGER, randomNumber2 INTEGER)');
         console.log('createTableStrDaten executed');
@@ -117,7 +142,7 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
     };
 
 
-    $scope.startPerformanceTest = function() {
+    $scope.startPerformanceTest = function () {
 
         $scope.testInProgress = true;
         $scope.$apply();
@@ -133,7 +158,7 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
 
 
             for (var i = 0; i < addressIdsToLoad.length; i++) {
-           // console.log('SELECT * FROM einzelwerte WHERE keyName = ' +  addressIdsToLoad[i]);
+                // console.log('SELECT * FROM einzelwerte WHERE keyName = ' +  addressIdsToLoad[i]);
 
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
 

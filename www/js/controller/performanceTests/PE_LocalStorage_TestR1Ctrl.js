@@ -1,15 +1,52 @@
 sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, testDataFactory) {
 
-    var iteration = 1;
-    $scope.testInProgress = false;
-    $scope.isPrepared = false;
-
     var data;
 
+    var iteration = 1;
+
+    //prepare results-array
     $scope.results = [];
 
-    $scope.testDecription= 'Read test - random addresses will be loaded';
-    $scope.headlineText = 'Perf Test 2';
+    $scope.isPrepared = false;
+
+    var amountOfData;
+    var amountOfData_testR1a = 1000;
+    var amountOfData_testR1b = 5000;
+
+    $scope.selectedTestVariant = '';
+    $scope.preparationText = 'Explain what the prepare function does...';
+    $scope.mainTestDecription = 'Read test - random addresses will be loaded';
+    $scope.testName1 = 'TestR1a';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';
+    $scope.testName2 = 'TestR1b';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testR1b + ' items';
+
+
+
+    $scope.selectTestVariant = function (testVariant) {
+        $scope.selectedTestVariant = testVariant;
+
+        if (testVariant == 'TestR1a') {
+            amountOfData = amountOfData_testR1a;
+        } else {
+            amountOfData = amountOfData_testR1b;
+        }
+        console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
+
+    };
+
+    $scope.reset = function () {
+
+        var answer = confirm('Do you really want to reset this page. All test results will be removed!');
+
+        if (answer) {
+            iteration = 1;
+            $scope.isPrepared = false;
+            $scope.results = [];
+            $scope.selectedTestVariant = '';
+        }
+
+    };
 
     $scope.loadAddressIds = function () {
         $scope.testInProgress = true;

@@ -45,19 +45,6 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
 
         };
 
-
-        $scope.selectTestVariant = function (testVariant) {
-            $scope.selectedTestVariant = testVariant;
-
-            if (testVariant == 'Test1A') {
-                amountOfData = amountOfData_test1A;
-            } else {
-                amountOfData = amountOfData_test1B;
-            }
-            console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
-
-        };
-
         $scope.startPerformanceTest = function () {
 
 

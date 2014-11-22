@@ -44,6 +44,18 @@ sdApp.controller('PE_LocalStorage_TestC2Ctrl', function ($scope, $rootScope, tes
 
     };
 
+    $scope.reset = function () {
+
+        var answer = confirm('Do you really want to reset this page. All test results will be removed!');
+
+        if (answer) {
+            iteration = 1;
+            $scope.isPrepared = false;
+            $scope.results = [];
+            $scope.selectedTestVariant = '';
+        }
+
+    };
 
     $scope.prepare = function () {
         localStorage.clear();

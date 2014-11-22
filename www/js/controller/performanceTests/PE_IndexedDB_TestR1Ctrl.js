@@ -1,7 +1,6 @@
 sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDataFactory) {
     var iteration = 1;
 
-    var iteration = 1;
     const dbName = "PE_TestR1";
     const objStoreName = "PE_TestR1";
 
@@ -17,9 +16,9 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestR1';
+    $scope.testName1 = 'TestR1a';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';
-    $scope.testName2 = 'TestR1';
+    $scope.testName2 = 'TestR1b';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR1b + ' items';
 
     $scope.results = [];
@@ -33,12 +32,25 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
     $scope.selectTestVariant = function (testVariant) {
         $scope.selectedTestVariant = testVariant;
 
-        if (testVariant == 'Test1A') {
+        if (testVariant == 'TestR1a') {
             amountOfData = amountOfData_testR1a;
         } else {
             amountOfData = amountOfData_testR1b;
         }
         console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
+
+    };
+
+    $scope.reset = function () {
+
+        var answer = confirm('Do you really want to reset this page. All test results will be removed!');
+
+        if (answer) {
+            iteration = 1;
+            $scope.isPrepared = false;
+            $scope.results = [];
+            $scope.selectedTestVariant = '';
+        }
 
     };
 
