@@ -119,5 +119,13 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
         $scope.isPrepared = true;
     };
 
+    $scope.closeDatabase = function() {
+        $scope.db.close();
+        console.log('database closed');
+        $scope.isPrepared=false;
+        $scope.databaseOpened = null;
+        $scope.$apply();
+    };
+
 
 });
