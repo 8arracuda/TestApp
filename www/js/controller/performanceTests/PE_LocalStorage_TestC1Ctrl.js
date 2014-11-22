@@ -7,55 +7,28 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
         $scope.isPrepared = false;
 
         var amountOfData;
-        var amountOfData_test1A = 1000;
-        var amountOfData_test1B = 5000;
+        var amountOfData_testC1a = 1000;
+        var amountOfData_testC1b = 5000;
 
         $scope.selectedTestVariant = '';
         $scope.preparationText = 'Explain what the prepare function does...';
         $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-        $scope.testName1 = 'TestC1-xk';
-        $scope.testDecription1 = 'Stores ' + amountOfData_test1A + ' items';
-        $scope.testName2 = 'TestC1-yk';
-        $scope.testDecription2 = 'Stores ' + amountOfData_test1B + ' items';
+        $scope.testName1 = 'TestC1a';
+        $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
+        $scope.testName2 = 'TestC1b';
+        $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
 
 
 
+        $scope.selectTestVariant = function (testVariant) {
+            $scope.selectedTestVariant = testVariant;
 
-        //TODO remove at the end - Only a method to generate data - has nothing to do with the tests
-        $scope.generate = function () {
-
-            resultString = '"';
-            for (var i = 0; i < 5000; i++) {
-
-                resultString = resultString + ',"' +$scope.fillWithZeroes(40, i) + '"';
-                //resultString = resultString + ',"' + i + '"';
-
+            if (testVariant == 'TestC1a') {
+                amountOfData = amountOfData_testC1a;
+            } else {
+                amountOfData = amountOfData_testC1b;
             }
-            console.log(resultString);
-        };
-
-
-        //TODO remove at the end - Only a method to generate data - has nothing to do with the tests
-        $scope.fillWithZeroes = function (fillToLength, number) {
-
-            //for (var i = 0; i < 110; i++) {
-
-            var len = number.toString().length;
-            //console.log('i: ' + i + ' - ' + len);
-
-            var number_new = '';
-            if (len < fillToLength) {
-                var zeroesToAdd = fillToLength - len;
-
-                for (var k = 0; k < zeroesToAdd; k++) {
-                    number_new = '0' + number_new;
-                }
-                //   i_new = i_new + i;
-                //console.log(i_new);
-            }
-            return number_new + "" + number;
-
-            //}
+            console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
 
         };
 

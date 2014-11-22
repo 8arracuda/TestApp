@@ -1,6 +1,6 @@
 sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
 
-    //bool value used for the staus-light in the "open database" section
+    //bool value used for the status-light in the "open database" section
     $scope.databaseOpened = false;
 
     $scope.keyToLoad = "a";

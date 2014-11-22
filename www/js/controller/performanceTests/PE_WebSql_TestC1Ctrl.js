@@ -1,24 +1,24 @@
 sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
     var iteration = 1;
 
-    const dbName = "PE_Test1";
-    const tableName = "PE_Test1";
+    const dbName = "PE_TestC1";
+    const tableName = "PE_TestC1";
     const dbVersion = "1.0";
 
     $scope.testInProgress = false;
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_test1A = 1000;
-    var amountOfData_test1B = 5000;
+    var amountOfData_testC1a = 1000;
+    var amountOfData_testC1b = 5000;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'Test1A';
-    $scope.testDecription1 = 'Stores ' + amountOfData_test1A + ' items';
-    $scope.testName2 = 'Test1B';
-    $scope.testDecription2 = 'Stores ' + amountOfData_test1B + ' items';
+    $scope.testName1 = 'TestC1a';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
+    $scope.testName2 = 'TestC1b';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
 
 
     $scope.results = [];
@@ -41,10 +41,10 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
     $scope.selectTestVariant = function (testVariant) {
         $scope.selectedTestVariant = testVariant;
 
-        if (testVariant == 'Test1A') {
-            amountOfData = amountOfData_test1A;
+        if (testVariant == 'TestC1a') {
+            amountOfData = amountOfData_testC1a;
         } else {
-            amountOfData = amountOfData_test1B;
+            amountOfData = amountOfData_testC1b;
         }
         console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
 

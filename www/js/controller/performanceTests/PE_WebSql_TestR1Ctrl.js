@@ -1,21 +1,48 @@
 sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataFactory) {
+    //var iteration = 1;
+    //
+    //const dbName = "PE_TestR1";
+    //const tableName = "PE_TestR1";
+    //const dbVersion = "1.0";
+    //
+    ////bool value used for the status-light in the "open database" section
+    //$scope.databaseOpened = false;
+    //
+    //$scope.testDecription= 'Read test - random addresses will be loaded';
+    //
+    //$scope.isPrepared = false;
+    //
+    //$scope.testInProgress = false;
+    //
+    //$scope.results = [];
+
     var iteration = 1;
 
-    const dbName = "PE_Test2";
-    const tableName = "PE_Test2";
+    const dbName = "PE_TestR1";
+    const tableName = "PE_TestR1";
     const dbVersion = "1.0";
 
-    //bool value used for the staus-light in the "open database" section
+    //bool value used for the status-light in the "open database" section
     $scope.databaseOpened = false;
-
-    $scope.testDecription= 'Read test - random addresses will be loaded';
-
-    $scope.isPrepared = false;
 
     $scope.testInProgress = false;
 
+    //TODO Change for real tests
+    var amountOfData;
+    var amountOfData_testD1a = 1000;
+    var amountOfData_testD1b = 5000;
+
+    $scope.selectedTestVariant = '';
+    $scope.preparationText = 'Explain what the prepare function does...';
+    $scope.mainTestDecription = 'Read test - random addresses will be loaded';
+    $scope.testName1 = 'TestR1a';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testD1a + ' items';
+    $scope.testName2 = 'TestR1b';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testD1b + ' items';
+
     $scope.results = [];
 
+    $scope.isPrepared = false;
 
     $scope.prepare = function () {
         console.log('prepare');

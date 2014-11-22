@@ -1,6 +1,6 @@
 sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
-    //bool value used for the staus-light in the "open database" section
+    //bool value used for the status-light in the "open database" section
     $scope.databaseOpened = false;
 
     const dbName = "strDaten";

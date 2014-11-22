@@ -1,15 +1,49 @@
 sdApp.controller('PE_LocalStorage_TestC2Ctrl', function ($scope, $rootScope, testDataFactory) {
 
+    //var iteration = 1;
+    //
+    ////prepare results-array
+    //$scope.testInProgress = false;
+    //$scope.results = [];
+    //
+    //$scope.isPrepared = false;
+    //
+    //$scope.testDecription = 'Saving long strings (dataset strings) ------ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+    //$scope.headlineText = 'Perf Test 3';
+
     var iteration = 1;
 
     //prepare results-array
-    $scope.testInProgress = false;
     $scope.results = [];
 
     $scope.isPrepared = false;
 
-    $scope.testDecription = 'Saving long strings (dataset strings) ------ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
-    $scope.headlineText = 'Perf Test 3';
+    var amountOfData;
+    var amountOfData_testC2a = 1000;
+    var amountOfData_testC2b = 5000;
+
+    $scope.selectedTestVariant = '';
+    $scope.preparationText = 'Explain what the prepare function does...';
+    $scope.mainTestDecription = 'Saving long strings (dataset strings) ------ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+    $scope.testName1 = 'TestC2a';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testC2a + ' items';
+    $scope.testName2 = 'TestC2b';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testC2b + ' items';
+
+
+
+    $scope.selectTestVariant = function (testVariant) {
+        $scope.selectedTestVariant = testVariant;
+
+        if (testVariant == 'TestC2a') {
+            amountOfData = amountOfData_testC2a;
+        } else {
+            amountOfData = amountOfData_testC2b;
+        }
+        console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
+
+    };
+
 
     $scope.prepare = function () {
         localStorage.clear();
