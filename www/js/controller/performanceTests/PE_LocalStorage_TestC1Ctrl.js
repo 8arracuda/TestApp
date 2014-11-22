@@ -88,8 +88,6 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
         $scope.startPerformanceTest = function () {
 
 
-
-
             //Load array with data to be saved
             //var data = testDataFactory.getDataFromFile('res/0_to_5000.txt');
             //var data = testDataFactory.getDataFromFile('res/0_to_5000_4chars.txt');
@@ -121,7 +119,7 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
             localStorage.clear();
             $scope.isPrepared = true;
 
-        }
+        };
 
     }
 )

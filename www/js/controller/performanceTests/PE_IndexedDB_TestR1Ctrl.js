@@ -1,23 +1,44 @@
 sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDataFactory) {
     var iteration = 1;
 
-    //bool value used for the staus-light in the "open database" section
-    $scope.databaseOpened = false;
+    var iteration = 1;
+    const dbName = "PE_TestR1";
+    const objStoreName = "PE_TestR1";
 
+    $scope.databaseOpened = false;
+    $scope.testInProgress = false;
     $scope.isPrepared = false;
 
-    $scope.testDecription= 'Read test - random addresses will be loaded';
+    //TODO Change for real tests
+    var amountOfData;
+    var amountOfData_testR1a = 1000;
+    var amountOfData_testR1b = 5000;
 
-    const dbName = "PE_Test2";
-    const objStoreName = "PE_Test2";
-
-    var data;
+    $scope.selectedTestVariant = '';
+    $scope.preparationText = 'Explain what the prepare function does...';
+    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.testName1 = 'TestR1';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';
+    $scope.testName2 = 'TestR1';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testR1b + ' items';
 
     $scope.results = [];
 
     function loadData() {
 
         data = testDataFactory.testData();
+
+    };
+
+    $scope.selectTestVariant = function (testVariant) {
+        $scope.selectedTestVariant = testVariant;
+
+        if (testVariant == 'Test1A') {
+            amountOfData = amountOfData_testR1a;
+        } else {
+            amountOfData = amountOfData_testR1b;
+        }
+        console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
 
     };
 

@@ -22,6 +22,14 @@ sdApp.controller('PE_WebSqlCtrl', function ($scope, $rootScope) {
         $scope.tab = 3;
     };
 
+    $scope.enableTab_4 = function () {
+        $scope.tab = 4;
+    };
+
+    $scope.enableTab_5 = function () {
+        $scope.tab = 5;
+    };
+
     $scope.enableTab_1();
 
 });

@@ -13,17 +13,17 @@
 
         <div class="btn-group justified nav-tabs">
             <a class="btn btn-default"
-               target="FileAPI_1"
+               target="FileAPI_C1"
                toggle="on"
                ng-click="enableTab_1()"
-               active-class="active">1
+               active-class="active">C1
             </a>
 
             <a class="btn btn-default"
-               target="FileAPI_2"
+               target="FileAPI_R1"
                toggle="on"
                ng-click="enableTab_2()"
-               active-class="active">2
+               active-class="active">R1
             </a>
 
             <a class="btn btn-default"
@@ -31,6 +31,20 @@
                toggle="on"
                ng-click="enableTab_3()"
                active-class="active">3
+            </a>
+
+            <a class="btn btn-default"
+               target="FileAPI_U1"
+               toggle="on"
+               ng-click="enableTab_4()"
+               active-class="active">U1
+            </a>
+
+            <a class="btn btn-default"
+               target="FileAPI_D1"
+               toggle="on"
+               ng-click="enableTab_5()"
+               active-class="active">D1
             </a>
 
         </div>
@@ -41,20 +55,20 @@
                  toggleable
                  ng-class="{active: tab == 1}"
                  default="active"
-                 id="FileAPI_1"
+                 id="FileAPI_C1"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"PE_fileAPI_test1.html"'></div>
+                <div ng-include src='"PE_fileAPI_testC1.html"'></div>
 
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 2}"
-                 id="FileAPI_2"
+                 id="FileAPI_R1"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"PE_fileAPI_test2.html"'></div>
+                <div ng-include src='"PE_fileAPI_testR1.html"'></div>
 
             </div>
 
@@ -65,6 +79,26 @@
                  exclusion-group="myTabs">
 
                 <div ng-include src='"PE_fileAPI_test3.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 4}"
+                 id="FileAPI_U1"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_fileAPI_testU1.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 5}"
+                 id="FileAPI_D1"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_fileAPI_testD1.html"'></div>
 
             </div>
 

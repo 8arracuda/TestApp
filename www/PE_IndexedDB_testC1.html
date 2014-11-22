@@ -5,20 +5,20 @@
             <h2>Performance-Test C1</h2>
             {{ mainTestDecription }}<br>
 
-            <div ng-show="selectedTestVariant=='Test1A' || selectedTestVariant=='' ">
+            <div ng-show="selectedTestVariant=='TestC1a' || selectedTestVariant=='' ">
                 <button ng-hide="selectedTestVariant!=''"
                         class="btn btn-primary"
-                        ng-click="selectTestVariant('Test1A')">
+                        ng-click="selectTestVariant('TestC1a')">
                     select
                 </button>
                 <b>{{ testName1}}:</b> {{ testDecription1 }}
             </div>
             <br>
 
-            <div ng-show="selectedTestVariant=='Test1B' || selectedTestVariant=='' ">
+            <div ng-show="selectedTestVariant=='TestC1b' || selectedTestVariant=='' ">
                 <button ng-hide="selectedTestVariant!=''"
                         class="btn btn-primary"
-                        ng-click="selectTestVariant('Test1B')">
+                        ng-click="selectTestVariant('TestC1b')">
                     select
                 </button>
                 <b>{{ testName2}}:</b> {{ testDecription2 }}
