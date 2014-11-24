@@ -1,11 +1,12 @@
 sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope) {
     var iteration = 1;
 
+    var fs;
+    $scope.filelist = [];
+
     $scope.testInProgress = false;
 
-    //TODO kann nicht so bleiben! muss false sein!
-    //Löschen der vorhandenen Daten muss noch implementiert werden.
-    $scope.isPrepared = true;
+    $scope.isPrepared = false;
 
     var amountOfData;
     var amountOfData_testC1a = 1000;
@@ -38,12 +39,16 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope) {
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
 
         if (answer) {
-            iteration=1;
+            iteration = 1;
             $scope.isPrepared = false;
             $scope.results = [];
             $scope.selectedTestVariant = '';
         }
 
+    };
+
+    $scope.prepare = function () {
+        deleteAllFiles();
     };
 
     $scope.startPerformanceTest = function () {
@@ -65,6 +70,7 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope) {
                     console.log('writeFile (k= ' + k + ')')
                     if (k < amountOfData) {
                         var filename = 'key' + k + '.txt';
+                        console.log('fs.root in writeFile');
                         fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
                             fileEntry.createWriter(function (fileWriter) {
@@ -138,5 +144,85 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope) {
 
         console.log('Error: ' + msg);
     }
+
+    function deleteAllFiles() {
+
+        console.log('showfiles started');
+        $scope.filelist = [];
+        $scope.loadingInProgress = true;
+        $scope.$apply();
+
+        function toArray(list) {
+            return Array.prototype.slice.call(list || [], 0);
+        }
+
+        function listResults(entries, fs) {
+
+            $scope.loadingInProgress = true;
+            $scope.$apply();
+
+            entries.forEach(function (entry, i) {
+
+                if (!entry.isDirectory) {
+                    console.log('fs.root in listResults');
+                    console.log('entry.name:' + entry.name);
+
+                    //TODO causes problem
+                    //TypeError: undefined is not an object (evaluating 'fs.root'
+                    //why?
+                    //console.log('fs.root' + fs.root);
+
+                    //console.log('fs' + fs);
+                    var filename = entry.name;
+
+                    if (filename != '.DS_Store') {
+
+                        fs.root.getFile(filename, {create: false}, function (fileEntry) {
+                            //fs.root.getFile(filename, {create: false}, function (fileEntry) {
+
+
+                            fileEntry.remove(function () {
+                                console.log(filename + ' has been removed.');
+
+                            }, errorHandler);
+
+                        }, errorHandler);
+
+                    }
+                }
+
+            });
+            $scope.loadingInProgress = false;
+            $scope.isPrepared = true;
+            $scope.$apply();
+
+        }
+
+        function onInitFs(fs) {
+            console.log('fs.root in onInitFs');
+            var dirReader = fs.root.createReader();
+            var entries = [];
+
+            // Call the reader.readEntries() until no more results are returned.
+            var readEntries = function () {
+                dirReader.readEntries(function (results) {
+                    if (!results.length) {
+                        listResults(entries.sort(), fs);
+                    } else {
+                        entries = entries.concat(toArray(results));
+                        readEntries();
+                    }
+                }, errorHandler);
+            };
+
+            readEntries(); // Start reading dirs.
+
+        }
+
+        console.log('before');
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
+        console.log('after');
+
+    };
 
 });

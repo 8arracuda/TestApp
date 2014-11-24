@@ -1,5 +1,7 @@
 sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
+    //var fs;
+
     $rootScope.section = 'DE';
     $scope.loadingInProgress = false;
     $scope.filelist = [];
@@ -107,7 +109,7 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
     };
 
     $scope.loadFileContent = function (index) {
-        filename = $scope.filelist[index].name;
+        var filename = $scope.filelist[index].name;
 
         function getFileContent(fs) {
 
@@ -135,7 +137,7 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
     };
 
-    $scope.deleteFile = function (filename) {
+    $scope.deleteOneFile = function (filename) {
 
         if (filename.indexOf('[DIR]') != -1) {
             alert('Deletion of directories is not implemented.');

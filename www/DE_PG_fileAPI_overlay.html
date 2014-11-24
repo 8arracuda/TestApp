@@ -19,7 +19,7 @@
                 <div ng-repeat="file in filelist">
 
                     <li class="list-group-item">
-                        <a ng-click="deleteFile(file.name, true)"><i class="fa fa-trash-o pull-right"></i></a>
+                        <a ng-click="deleteOneFile(file.name, true)"><i class="fa fa-trash-o pull-right"></i></a>
 
                         <b ng-click="visible = !visible; loadFileContent($index)">{{ file.name }}</b><br>
 
