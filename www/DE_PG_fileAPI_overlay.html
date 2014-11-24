@@ -11,11 +11,15 @@
             <a class="btn btn-primary" ng-click="reloadFileList()">reloadFileList</a>
             <a class="btn btn-primary" ng-click="deleteAllFiles()">deleteAllFiles</a>
 
-            <div class="list-group">
+
+            <div ng-show="loadingInProgress==true">
+                list is loading...<br>
+                </div>
+            <div ng-hide="loadingInProgress==true" class="list-group">
                 <div ng-repeat="file in filelist">
 
                     <li class="list-group-item">
-                        <a ng-click="deleteFile(file.name)"><i class="fa fa-trash-o pull-right"></i></a>
+                        <a ng-click="deleteFile(file.name, true)"><i class="fa fa-trash-o pull-right"></i></a>
 
                         <b ng-click="visible = !visible; loadFileContent($index)">{{ file.name }}</b><br>
 
@@ -23,6 +27,7 @@
                     </li>
 
                 </div>
+            </div>
             </div>
 
             {{ filelist.length | number }} files in this directory.<br>

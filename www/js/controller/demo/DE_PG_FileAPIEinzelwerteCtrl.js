@@ -52,6 +52,7 @@ sdApp.controller('DE_PG_FileAPIEinzelwerteCtrl', function ($scope, $rootScope) {
     $scope.updateEinzelwerteView = function () {
         console.log('updateEinzelwerteView');
 
+        //TODO give it a better name!
         function onInitFs5(fs) {
 
             var filename = getFilenameForEinzelwerte($scope.keyToLoad);
@@ -65,7 +66,20 @@ sdApp.controller('DE_PG_FileAPIEinzelwerteCtrl', function ($scope, $rootScope) {
                     reader.onloadend = function (e) {
                         $scope.keyLoaded = $scope.keyToLoad;
                         $scope.valueLoadedFromPGFileAPI = this.result;
-                        updateEinzelwerteViewString();
+                        //updateEinzelwerteViewString();
+
+                        if (this.result == null) {
+                            $scope.valueLoadedFromPGFileAPI = 'does not exist';
+                        } else {
+                            $scope.valueLoadedFromPGFileAPI = 'has value "' + this.result + '"';
+                        }
+                        $scope.$apply();
+
+                        //if (item == null) {
+                        //    $scope.valueLoadedFromPGFileAPI = 'does not exist';
+                        //} else {
+                        //    $scope.valueLoadedFromPGFileAPI = 'has value "' + item + '"';
+                        //}
 
                     };
 

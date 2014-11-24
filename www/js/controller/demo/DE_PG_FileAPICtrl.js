@@ -1,6 +1,7 @@
 sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
     $rootScope.section = 'DE';
+    $scope.loadingInProgress = false;
     $scope.filelist = [];
 
     //<für alle Tabs>
@@ -39,15 +40,16 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
         $scope.documentsDirectory = cordova.file.documentsDirectory;
     }
 
-
-    $scope.reloadFileList = function() {
-     showFiles();
+    $scope.reloadFileList = function () {
+        showFiles();
     };
 
     function showFiles() {
 
         console.log('showfiles started');
         $scope.filelist = [];
+        $scope.loadingInProgress = true;
+        $scope.$apply();
 
         function toArray(list) {
             return Array.prototype.slice.call(list || [], 0);
@@ -55,9 +57,11 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
         function listResults(entries) {
 
-            if (entries.length > 100) {
-                alert('Showing ' + entries.length + ' files - This may take a while.');
-            }
+            //if (entries.length > 100) {
+            //    alert('Showing ' + entries.length + ' files - This may take a while.');
+            //}
+            $scope.loadingInProgress = true;
+            $scope.$apply();
 
             entries.forEach(function (entry, i) {
 
@@ -70,6 +74,7 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
                 $scope.filelist.push(fileListEntry);
 
             });
+            $scope.loadingInProgress = false;
             $scope.$apply();
 
         }
@@ -131,45 +136,63 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
     };
 
     $scope.deleteFile = function (filename) {
-        var answer = confirm('do you really want to delete key "' + filename + '"?')
 
-        if (answer == true) {
-            window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
-                //var filename = f
-                fs.root.getFile(filename, {create: false}, function (fileEntry) {
+        if (filename.indexOf('[DIR]') != -1) {
+            alert('Deletion of directories is not implemented.');
+        } else {
 
-                    fileEntry.remove(function () {
-                        console.log(filename + ' has been removed.');
+            answer = confirm('do you really want to delete key "' + filename + '"?');
 
-                        $scope.inProgress = false;
-                        $scope.$apply();
+            if (answer == true) {
+                window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
+
+                    fs.root.getFile(filename, {create: false}, function (fileEntry) {
+
+                        fileEntry.remove(function () {
+                            console.log(filename + ' has been removed.');
+
+                            $scope.inProgress = false;
+                            $scope.$apply();
+                            $scope.reloadFileList();
+                        }, errorHandler);
+
                     }, errorHandler);
-
                 }, errorHandler);
-            }, errorHandler);
+            }
         }
     };
 
     $scope.deleteAllFiles = function () {
 
-        if ($scope.filelist.length == 0) {
-            alert('Cannot delete files - No files found');
-        } else {
+        var answer = confirm('do you really want to delete all files? (Note that directories will not be deleted.)');
 
+        if (answer == true) {
             window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
-                var filename = $scope.filelist[0].name;
-                fs.root.getFile(filename, {create: false}, function (fileEntry) {
 
-                    fileEntry.remove(function () {
-                        console.log(filename + ' has been removed.');
+                    for (var i = 0; i < $scope.filelist.length; i++) {
 
-                        $scope.inProgress = false;
-                        $scope.$apply();
-                    }, errorHandler);
+                        //continue if it's not a directory
+                        var filename = $scope.filelist[i].name;
+                        if (filename.indexOf('[DIR]') == -1) {
 
-                }, errorHandler);
-            }, errorHandler);
+                            fs.root.getFile(filename, {create: false}, function (fileEntry) {
 
+                                fileEntry.remove(function () {
+                                    console.log(filename + ' has been removed.');
+
+                                }, errorHandler);
+
+                            }, errorHandler);
+                        }
+                    }
+                    $scope.inProgress = false;
+                    $scope.$apply();
+                    $scope.reloadFileList();
+
+                },
+                errorHandler
+            )
+            ;
         }
 
     };
@@ -197,10 +220,10 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
             default:
                 msg = 'Unknown Error';
                 break;
-        }
-        ;
+        };
 
         console.log('Error: ' + msg);
     }
 
-});
+})
+;
