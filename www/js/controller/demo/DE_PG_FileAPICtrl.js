@@ -1,7 +1,7 @@
 sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
     $rootScope.section = 'DE';
-    //$scope.filelist = [];
+    $scope.filelist = [];
 
     //<für alle Tabs>
     $scope.stringForRightButton = 'show files';
@@ -35,14 +35,18 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
     //Functions for the Overlay
 
     //TODO For debugging in Chrome (remove at the end)
-    //if(!navigator.userAgent==$rootScope.userAgentForDesktopDevelopment1 || $rootScope.UserAgentForDesktopDevelopment2) {
-
-    if (navigator.userAgent==userAgentForDesktopDevelopment1 || navigator.userAgent==userAgentForDesktopDevelopment2) {
+    if (navigator.userAgent == userAgentForDesktopDevelopment1 || navigator.userAgent == userAgentForDesktopDevelopment2) {
         $scope.documentsDirectory = cordova.file.documentsDirectory;
     }
 
+
+    $scope.reloadFileList = function() {
+     showFiles();
+    };
+
     function showFiles() {
 
+        console.log('showfiles started');
         $scope.filelist = [];
 
         function toArray(list) {
@@ -50,9 +54,10 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
         }
 
         function listResults(entries) {
-            // Document fragments can improve performance since they're only appended
-            // to the DOM once. Only one browser reflow occurs.
-            //var fragment = document.createDocumentFragment();
+
+            if (entries.length > 100) {
+                alert('Showing ' + entries.length + ' files - This may take a while.');
+            }
 
             entries.forEach(function (entry, i) {
 
@@ -61,19 +66,12 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
                 } else {
                     var fileListEntry = {name: entry.name, value: ""};
                 }
-                $scope.filelist.push(fileListEntry);
-                console.log('added ' + fileListEntry.name + ' to filelist-array.');
-                $scope.$apply();
 
-                //var img = entry.isDirectory ? '<img src="folder-icon.gif">' :
-                //    '<img src="file-icon.gif">';
-                //var li = document.createElement('li');
-                //li.innerHTML = [img, '<span>', entry.name, '</span>'].join('');
-                //fragment.appendChild(li);
+                $scope.filelist.push(fileListEntry);
 
             });
+            $scope.$apply();
 
-            // document.querySelector('#filelist').appendChild(fragment);
         }
 
         function onInitFs(fs) {
@@ -97,13 +95,16 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
         }
 
+        console.log('before');
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
+        console.log('after');
+
     };
 
     $scope.loadFileContent = function (index) {
         filename = $scope.filelist[index].name;
 
-        function onInitFs8(fs) {
+        function getFileContent(fs) {
 
             fs.root.getFile(filename, {}, function (fileEntry) {
 
@@ -124,10 +125,54 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
             }, errorHandler);
         };
 
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs8, errorHandler);
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, getFileContent, errorHandler);
 
 
-    }
+    };
+
+    $scope.deleteFile = function (filename) {
+        var answer = confirm('do you really want to delete key "' + filename + '"?')
+
+        if (answer == true) {
+            window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
+                //var filename = f
+                fs.root.getFile(filename, {create: false}, function (fileEntry) {
+
+                    fileEntry.remove(function () {
+                        console.log(filename + ' has been removed.');
+
+                        $scope.inProgress = false;
+                        $scope.$apply();
+                    }, errorHandler);
+
+                }, errorHandler);
+            }, errorHandler);
+        }
+    };
+
+    $scope.deleteAllFiles = function () {
+
+        if ($scope.filelist.length == 0) {
+            alert('Cannot delete files - No files found');
+        } else {
+
+            window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
+                var filename = $scope.filelist[0].name;
+                fs.root.getFile(filename, {create: false}, function (fileEntry) {
+
+                    fileEntry.remove(function () {
+                        console.log(filename + ' has been removed.');
+
+                        $scope.inProgress = false;
+                        $scope.$apply();
+                    }, errorHandler);
+
+                }, errorHandler);
+            }, errorHandler);
+
+        }
+
+    };
 
     function errorHandler(e) {
         var msg = '';

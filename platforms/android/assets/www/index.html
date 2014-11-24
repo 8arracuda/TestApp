@@ -18,7 +18,7 @@
     under the License.
 -->
 <!--<html ng-app="sdApp">-->
-        <html>
+<html>
 <head>
     <meta charset="utf-8"/>
     <meta name="format-detection" content="telephone=no"/>
@@ -30,9 +30,9 @@
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <link rel="stylesheet" type="text/css" href="css/overrides.css"/>
 
+    <!--TODO Am Ende entfernen-->
     <!--weinre-->
-    <script src="http://localhost:8081/target/target-script-min.js"></script>
-
+    <!--<script src="http://localhost:8081/target/target-script-min.js"></script>-->
 
     <meta name="msapplication-tap-highlight" content="no"/>
     <title>TestApp</title>
@@ -158,11 +158,16 @@
 <script type="text/javascript" src="cordova.js"></script>
 
 <script type="text/javascript" src="js/modernizr-latest.js"></script>
-<script type="text/javascript" src="js/angularJS_1.2.18/angular.min.js"></script>
-<script type="text/javascript" src="js/angularJS_1.2.18/angular-route.min.js"></script>
-<script type="text/javascript" src="js/angular-animate.js"></script>
 
+<!--Old version of AngularJS-->
+<!--TODO remove at the end-->
+<!--<script type="text/javascript" src="js/angularJS_1.2.18/angular.min.js"></script>-->
+<!--<script type="text/javascript" src="js/angularJS_1.2.18/angular-route.min.js"></script>-->
+<!--<script type="text/javascript" src="js/angular-animate.js"></script>-->
 
+<script type="text/javascript" src="js/angularJS_1.3.2/angular.min.js"></script>
+<script type="text/javascript" src="js/angularJS_1.3.2/angular-route.min.js"></script>
+<script type="text/javascript" src="js/angularJS_1.3.2/angular-animate.min.js"></script>
 
 <!--locally saved version 1.2.6  of angular.animate.js-->
 <!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-animate.js"></script>-->
@@ -207,13 +212,40 @@
 <script type="text/javascript" src="js/controller/platformTests/PL_LocalStorageCtrl.js"></script>
 <script type="text/javascript" src="js/controller/platformTests/PL_SessionStorageCtrl.js"></script>
 <script type="text/javascript" src="js/controller/platformTests/PL_IndexedDBCtrl.js"></script>
+
 <script type="text/javascript" src="js/controller/platformTests/PL_WebSqlCtrl.js"></script>
 <script type="text/javascript" src="js/controller/platformTests/PL_PGSQLiteCtrl.js"></script>
 
 <script type="text/javascript" src="js/controller/performanceTests/PE_LocalStorageCtrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_LocalStorage_TestC1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_LocalStorage_TestC2Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_LocalStorage_TestR1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_LocalStorage_TestU1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_LocalStorage_TestD1Ctrl.js"></script>
+
 <script type="text/javascript" src="js/controller/performanceTests/PE_SessionStorageCtrl.js"></script>
+
 <script type="text/javascript" src="js/controller/performanceTests/PE_IndexedDBCtrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_IndexedDB_TestC1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_IndexedDB_TestR1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_IndexedDB_Test3Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_indexedDB_TestU1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_IndexedDB_TestD1Ctrl.js"></script>
+
 <script type="text/javascript" src="js/controller/performanceTests/PE_WebSqlCtrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_WebSql_TestC1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_WebSql_TestR1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_WebSql_Test3Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_WebSql_TestU1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_WebSql_TestD1Ctrl.js"></script>
+
+<script type="text/javascript" src="js/controller/performanceTests/PE_FileAPICtrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_FileAPI_TestC1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_FileAPI_TestR1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_FileAPI_Test3Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_FileAPI_TestU1Ctrl.js"></script>
+<script type="text/javascript" src="js/controller/performanceTests/PE_FileAPI_TestD1Ctrl.js"></script>
+
 <script type="text/javascript" src="js/controller/performanceTests/PE_PGSQLiteCtrl.js"></script>
 
 <script type="text/javascript" src="js/controller/LocalStorageList2DetailCtrl.js"></script>
@@ -225,7 +257,11 @@
 <script type="text/javascript" src="js/controller/VidCtrl.js"></script>
 <script type="text/javascript" src="js/controller/LoadImageCtrl.js"></script>
 
-<script type="text/javascript" src="js/controller/techSupport.js"></script>
+<script type="text/javascript" src="js/controller/techSupportFactory.js"></script>
+<script type="text/javascript" src="js/controller/testDataFactory.js"></script>
+
+
+
 
 <script type="text/javascript" src="js/controller/SidebarController.js"></script>
 <script type="text/javascript" src="js/controller/NavbarController.js"></script>

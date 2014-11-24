@@ -48,6 +48,6 @@ sdApp.controller('DE_LocalStorageCtrl', function ($scope, $rootScope) {
         if (answer == true) {
             localStorage.removeItem(key);
         }
-    }
+    };
 
 });

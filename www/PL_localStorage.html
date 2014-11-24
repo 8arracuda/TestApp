@@ -4,7 +4,7 @@
 
 <div content-for="navbarAction">
     <div class="btn btn-navbar">
-        <i class="fa fa-plus"></i>SS
+        <i class="fa fa-plus"></i>LS
     </div>
 </div>
 
@@ -20,25 +20,118 @@
 
 <div class="panel">
     <div class="panel-heading">
+        <h2>Plattform-Test Limit</h2>
+        {{ mainTestDecription }}<br>
+
+        <div ng-show="selectedTestVariant=='TestLimit1' || selectedTestVariant=='' ">
+            <button ng-hide="selectedTestVariant!=''"
+                    class="btn btn-primary"
+                    ng-click="selectTestVariant('TestLimit1')">
+                select
+            </button>
+            <b>{{ testName1}}:</b> {{ testDecription1 }}
+        </div>
+        <br>
+
+        <div ng-show="selectedTestVariant=='TestLimitB' || selectedTestVariant=='' ">
+            <button ng-hide="selectedTestVariant!=''"
+                    class="btn btn-primary"
+                    ng-click="selectTestVariant('TestLimitB')">
+                select
+            </button>
+            <b>{{ testName2}}:</b> {{ testDecription2 }}
+        </div>
+        <br>
+
+        <div ng-show="selectedTestVariant=='TestLimitC' || selectedTestVariant=='' ">
+            <button ng-hide="selectedTestVariant!=''"
+                    class="btn btn-primary"
+                    ng-click="selectTestVariant('TestLimitC')">
+                select
+            </button>
+            <b>{{ testName3}}:</b> {{ testDecription3 }}
+        </div>
+        <br>
+
+        <div ng-show="selectedTestVariant=='TestLimitD' || selectedTestVariant=='' ">
+            <button ng-hide="selectedTestVariant!=''"
+                    class="btn btn-primary"
+                    ng-click="selectTestVariant('TestLimitD')">
+                select
+            </button>
+            <b>{{ testName4}}:</b> {{ testDecription4 }}
+        </div>
+
+        <button class="btn btn-sm btn-default" ng-show="selectedTestVariant!=''" ng-click="reset()">reset this page
+        </button>
 
     </div>
-    <div class="panel-body">
 
+    <div ng-show="selectedTestVariant!=''">
+        <h2 class="panel-title">
+            Preparation
+        </h2>
 
-        <a class="btn btn-primary" ng-click="findLimit1()">
-            findLimit1
-        </a>
-        <a class="btn btn-primary" ng-click="findLimit2()">
-            findLimit2
-        </a>
-        <a class="btn btn-primary" ng-click="findLimit3()">
-            findLimit3
-        </a>
-        <a class="btn btn-primary" ng-click="findLimit4()">
-            findLimit4
-        </a>
+        <div class="panel-body">
+            {{ preparationText }}<br>
+            <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
+            <button ng-click="prepare()" class="btn btn-primary">prepare</button>
+        </div>
+
+        <h2 class="panel-title">
+            Start test
+        </h2>
+
+        <div class="panel-body">
+
+            <!--<button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest()" class="btn btn-primary">-->
+                <!--start {{ selectedTestVariant }}-->
+            <!--</button>-->
+
+            <button class="btn btn-primary" ng-click="startPlatformTest()">
+            <i ng-show="testInProgress==true" class="fa fa-spinner spin"></i> start {{ selectedTestVariant }}
+            </button>
+            <br>
+            currentIteration {{ currentIteration | number }}
+
+        </div>
+
+        <h2 class="panel-title">
+            Results
+        </h2>
+
+        <div class="panel-body">
+
+            <div class="list-group">
+                <div ng-repeat="result in results track by $index">
+
+                    <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
+                        {{ result }}
+                    </li>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
+<!--<div class="panel-body">-->
+
+
+<!--<a class="btn btn-primary" ng-click="testLimit1()">-->
+<!--testLimit1-->
+<!--</a>-->
+<!--<a class="btn btn-primary" ng-click="testLimit2()">-->
+<!--testLimit2-->
+<!--</a>-->
+<!--<a class="btn btn-primary" ng-click="testLimit3()">-->
+<!--testLimit3-->
+<!--</a>-->
+<!--<a class="btn btn-primary" ng-click="testLimit4()">-->
+<!--testLimit4-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
 
 
 
