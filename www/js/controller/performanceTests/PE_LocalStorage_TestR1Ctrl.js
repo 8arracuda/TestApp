@@ -48,7 +48,7 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
 
     };
 
-    $scope.loadAddressIds = function () {
+    $scope.startPerformanceTest = function () {
         $scope.testInProgress = true;
         $scope.$apply();
 
@@ -120,6 +120,7 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
         loadData();
         saveAddressData();
         $scope.isPrepared = true;
+
     };
 
 });

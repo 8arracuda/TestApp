@@ -323,6 +323,7 @@ sdApp.config(function ($routeProvider) {
         otherwise({
             //redirectTo: '/overview'
             //redirectTo: '/DE_indexedDB'
-            redirectTo: '/DE_PG_fileAPI'
+            //redirectTo: '/DE_PG_fileAPI'
+            redirectTo: '/PE_fileAPI'
         });
 });

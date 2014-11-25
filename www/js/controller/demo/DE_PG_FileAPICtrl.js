@@ -59,16 +59,13 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
         function listResults(entries) {
 
-            //if (entries.length > 100) {
-            //    alert('Showing ' + entries.length + ' files - This may take a while.');
-            //}
             $scope.loadingInProgress = true;
             $scope.$apply();
 
             entries.forEach(function (entry, i) {
 
                 if (entry.isDirectory) {
-                    var fileListEntry = {name: entry.name + '[DIR]', value: ""};
+                    var fileListEntry = {name: entry.name + ' [DIR]', value: ""};
                 } else {
                     var fileListEntry = {name: entry.name, value: ""};
                 }
@@ -81,29 +78,29 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
 
         }
 
-        function onInitFs(fs) {
-
-            var dirReader = fs.root.createReader();
-            var entries = [];
-
-            // Call the reader.readEntries() until no more results are returned.
-            var readEntries = function () {
-                dirReader.readEntries(function (results) {
-                    if (!results.length) {
-                        listResults(entries.sort());
-                    } else {
-                        entries = entries.concat(toArray(results));
-                        readEntries();
-                    }
-                }, errorHandler);
-            };
-
-            readEntries(); // Start reading dirs.
-
-        }
 
         console.log('before');
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+            function (fs) {
+
+                var dirReader = fs.root.createReader();
+                var entries = [];
+
+                // Call the reader.readEntries() until no more results are returned.
+                var readEntries = function () {
+                    dirReader.readEntries(function (results) {
+                        if (!results.length) {
+                            listResults(entries.sort());
+                        } else {
+                            entries = entries.concat(toArray(results));
+                            readEntries();
+                        }
+                    }, errorHandler);
+                };
+
+                readEntries(); // Start reading dirs.
+
+            }, errorHandler);
         console.log('after');
 
     };
@@ -222,7 +219,8 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
             default:
                 msg = 'Unknown Error';
                 break;
-        };
+        }
+        ;
 
         console.log('Error: ' + msg);
     }

@@ -67,7 +67,7 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope) {
 
                 function writeFile() {
 
-                    console.log('writeFile (k= ' + k + ')')
+                    console.log('writeFile (k= ' + k + ')');
                     if (k < amountOfData) {
                         var filename = 'key' + k + '.txt';
                         console.log('fs.root in writeFile');
@@ -77,7 +77,7 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope) {
 
                                 fileWriter.onwriteend = function (e) {
 
-                                    //after write has been successful the next file can be written
+                                    //after one file has been successfully written the next file can be written
                                     k++;
                                     writeFile();
                                 };
@@ -167,19 +167,11 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope) {
                     console.log('fs.root in listResults');
                     console.log('entry.name:' + entry.name);
 
-                    //TODO causes problem
-                    //TypeError: undefined is not an object (evaluating 'fs.root'
-                    //why?
-                    //console.log('fs.root' + fs.root);
-
-                    //console.log('fs' + fs);
                     var filename = entry.name;
 
                     if (filename != '.DS_Store') {
 
                         fs.root.getFile(filename, {create: false}, function (fileEntry) {
-                            //fs.root.getFile(filename, {create: false}, function (fileEntry) {
-
 
                             fileEntry.remove(function () {
                                 console.log(filename + ' has been removed.');
@@ -221,6 +213,65 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope) {
 
         console.log('before');
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
+        console.log('after');
+
+    };
+
+    function showFiles() {
+
+        console.log('showfiles started');
+        $scope.filelist = [];
+        $scope.loadingInProgress = true;
+        $scope.$apply();
+
+        function toArray(list) {
+            return Array.prototype.slice.call(list || [], 0);
+        }
+
+        function listResults(entries) {
+
+            $scope.loadingInProgress = true;
+            $scope.$apply();
+
+            entries.forEach(function (entry, i) {
+
+                if (entry.isDirectory) {
+                    var fileListEntry = {name: entry.name + ' [DIR]', value: ""};
+                } else {
+                    var fileListEntry = {name: entry.name, value: ""};
+                }
+
+                $scope.filelist.push(fileListEntry);
+
+            });
+            $scope.loadingInProgress = false;
+            $scope.$apply();
+
+        }
+
+
+        console.log('before');
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+            function (fs) {
+
+                var dirReader = fs.root.createReader();
+                var entries = [];
+
+                // Call the reader.readEntries() until no more results are returned.
+                var readEntries = function () {
+                    dirReader.readEntries(function (results) {
+                        if (!results.length) {
+                            listResults(entries.sort());
+                        } else {
+                            entries = entries.concat(toArray(results));
+                            readEntries();
+                        }
+                    }, errorHandler);
+                };
+
+                readEntries(); // Start reading dirs.
+
+            }, errorHandler);
         console.log('after');
 
     };

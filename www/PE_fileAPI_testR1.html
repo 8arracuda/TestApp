@@ -38,9 +38,12 @@
             <div class="panel-body">
                 <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
                 <button ng-click="prepare()" class="btn btn-primary">prepare</button>
-                <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest()" class="btn btn-primary">
-                    start
-                    Performance-Test
+                <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest_variant1()" class="btn btn-primary">
+                    startPerformanceTest_variant1 (parallel)
+                </button>
+
+                <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest_variant2()" class="btn btn-primary">
+                    startPerformanceTest_variant2 (sequentiell)
                 </button>
 
             </div>

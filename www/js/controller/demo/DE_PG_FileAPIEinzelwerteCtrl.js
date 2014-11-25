@@ -52,44 +52,38 @@ sdApp.controller('DE_PG_FileAPIEinzelwerteCtrl', function ($scope, $rootScope) {
     $scope.updateEinzelwerteView = function () {
         console.log('updateEinzelwerteView');
 
-        //TODO give it a better name!
-        function onInitFs5(fs) {
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+            function (fs) {
 
-            var filename = getFilenameForEinzelwerte($scope.keyToLoad);
-            fs.root.getFile(filename, {}, function (fileEntry) {
+                var filename = getFilenameForEinzelwerte($scope.keyToLoad);
+                fs.root.getFile(filename, {}, function (fileEntry) {
 
-                // Get a File object representing the file,
-                // then use FileReader to read its contents.
-                fileEntry.file(function (file) {
-                    var reader = new FileReader();
+                    // Get a File object representing the file,
+                    // then use FileReader to read its contents.
+                    fileEntry.file(function (file) {
+                        var reader = new FileReader();
 
-                    reader.onloadend = function (e) {
-                        $scope.keyLoaded = $scope.keyToLoad;
-                        $scope.valueLoadedFromPGFileAPI = this.result;
-                        //updateEinzelwerteViewString();
+                        reader.onloadend = function (e) {
+                            $scope.keyLoaded = $scope.keyToLoad;
+                            $scope.valueLoadedFromPGFileAPI = this.result;
 
-                        if (this.result == null) {
-                            $scope.valueLoadedFromPGFileAPI = 'does not exist';
-                        } else {
-                            $scope.valueLoadedFromPGFileAPI = 'has value "' + this.result + '"';
-                        }
-                        $scope.$apply();
+                            if (this.result == null) {
+                                $scope.valueLoadedFromPGFileAPI = 'does not exist';
+                            } else {
+                                $scope.valueLoadedFromPGFileAPI = 'has value "' + this.result + '"';
+                            }
+                            $scope.$apply();
 
-                        //if (item == null) {
-                        //    $scope.valueLoadedFromPGFileAPI = 'does not exist';
-                        //} else {
-                        //    $scope.valueLoadedFromPGFileAPI = 'has value "' + item + '"';
-                        //}
+                        };
 
-                    };
+                        reader.readAsText(file);
+                    }, errorHandler);
 
-                    reader.readAsText(file);
-                }, errorHandler);
-
-            }, errorHandlerForUpdateMethod);
-        };
-
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs5, errorHandler);
+                }, errorHandlerForUpdateMethod);
+            },
+            errorHandler
+        )
+        ;
     };
 
     $scope.removeKeyFromFileAPI = function () {
