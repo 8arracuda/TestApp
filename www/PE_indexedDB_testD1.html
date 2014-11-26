@@ -49,12 +49,6 @@
             </h2>
 
             <div class="panel-body">
-
-                <a class="btn btn-warning" ng-show="testInProgress==true">
-                    <i class="fa fa-spinner"></i> test in progress
-                </a>
-
-                <br>
                 <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
                 <button ng-click="prepare()" class="btn btn-primary">prepare</button>
                 <button ng-class="{disabled: (!isPrepared || !databaseOpened)}"
