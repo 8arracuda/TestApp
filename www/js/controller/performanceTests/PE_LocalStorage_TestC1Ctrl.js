@@ -47,30 +47,39 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
 
         $scope.startPerformanceTest = function () {
 
-
-            //Load array with data to be saved
-            //var data = testDataFactory.getDataFromFile('res/0_to_5000.txt');
-            //var data = testDataFactory.getDataFromFile('res/0_to_5000_4chars.txt');
-            //var data = testDataFactory.getDataFromFile('res/0_to_5000_8chars.txt');
-            var data = testDataFactory.getDataFromFile('res/0_to_5000_40chars.txt');
-
-
-            var timeStart = new Date().getTime();
-
-            var itemToWrite;
-            for (var i = 0; i < amountOfData; ++i) {
-                itemToWrite = data[i];
-                localStorage.setItem(itemToWrite, itemToWrite);
-            }
-
-            var timeEnd = new Date().getTime();
-
-            var timeDiff = timeEnd - timeStart;
-
-            $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
-            $scope.isPrepared = false;
+            $scope.testInProgress = true;
             $scope.$apply();
-            iteration++;
+
+
+            setTimeout(function() {
+
+                //Load array with data to be saved
+                //var data = testDataFactory.getDataFromFile('res/0_to_5000.txt');
+                //var data = testDataFactory.getDataFromFile('res/0_to_5000_4chars.txt');
+                //var data = testDataFactory.getDataFromFile('res/0_to_5000_8chars.txt');
+                var data = testDataFactory.getDataFromFile('res/0_to_5000_40chars.txt');
+
+
+                var timeStart = new Date().getTime();
+
+                var itemToWrite;
+                for (var i = 0; i < amountOfData; ++i) {
+                    itemToWrite = data[i];
+                    localStorage.setItem(itemToWrite, itemToWrite);
+                }
+
+                var timeEnd = new Date().getTime();
+
+                var timeDiff = timeEnd - timeStart;
+
+                $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+                $scope.isPrepared = false;
+                $scope.testInProgress = false;
+                $scope.$apply();
+                iteration++;
+            }, 2000);
+
+
 
         };
 
