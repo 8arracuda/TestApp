@@ -1,8 +1,7 @@
-sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope) {
     var iteration = 1;
 
     var fs;
-    var data;
     $scope.filelist = [];
 
     $scope.testInProgress = false;
@@ -10,26 +9,26 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testC1a = 100;
-    var amountOfData_testC1b = 500;
+    var amountOfData_testC2a = 1000;
+    var amountOfData_testC2b = 5000;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestC1a';
-    $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
-    $scope.testName2 = 'TestC1b';
-    $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
+    $scope.testName1 = 'TestC2a';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testC2a + ' items';
+    $scope.testName2 = 'TestC2b';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testC2b + ' items';
 
     $scope.results = [];
 
     $scope.selectTestVariant = function (testVariant) {
         $scope.selectedTestVariant = testVariant;
 
-        if (testVariant == 'TestC1a') {
-            amountOfData = amountOfData_testC1a;
+        if (testVariant == 'TestC2a') {
+            amountOfData = amountOfData_testC2a;
         } else {
-            amountOfData = amountOfData_testC1b;
+            amountOfData = amountOfData_testC2b;
         }
         console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
 
@@ -48,17 +47,8 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
 
     };
 
-    function loadData() {
-
-        data = testDataFactory.testData();
-
-    }
-
     $scope.prepare = function () {
-
-        loadData();
         deleteAllFiles();
-
     };
 
     $scope.startPerformanceTest = function () {
@@ -71,16 +61,15 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
-                var i = 0;
+                var k = 0;
 
                 writeFile();
 
                 function writeFile() {
 
-                    //console.log('writeFile (k= ' + k + ')');
-                    if (i < amountOfData) {
-                        //address-id is filename
-                        var filename = data[i][0] + '.txt';
+                    console.log('writeFile (k= ' + k + ')');
+                    if (k < amountOfData) {
+                        var filename = 'key' + k + '.txt';
                         console.log('fs.root in writeFile');
                         fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
@@ -89,7 +78,7 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
                                 fileWriter.onwriteend = function (e) {
 
                                     //after one file has been successfully written the next file can be written
-                                    i++;
+                                    k++;
                                     writeFile();
                                 };
 
@@ -100,8 +89,7 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
 
                                 //overwrites the file from the beginning
                                 fileWriter.seek(0);
-                                fileWriter.write(JSON.stringify(data[i]));
-                                //fileWriter.write('' + k);
+                                fileWriter.write('' + k);
 
                             }, errorHandler);
 
@@ -202,8 +190,8 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
 
         }
 
-        console.log('before');
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
+        function onInitFs(fs) {
+            console.log('fs.root in onInitFs');
             var dirReader = fs.root.createReader();
             var entries = [];
 
@@ -221,7 +209,10 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
 
             readEntries(); // Start reading dirs.
 
-        }, errorHandler);
+        }
+
+        console.log('before');
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
         console.log('after');
 
     };

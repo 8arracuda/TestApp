@@ -30,6 +30,26 @@ sdApp.controller('PE_WebSqlCtrl', function ($scope, $rootScope) {
         $scope.tab = 5;
     };
 
+    $scope.enableTab_6 = function () {
+        $scope.tab = 6;
+    };
+
+    $scope.enableTab_7 = function () {
+        $scope.tab = 7;
+    };
+
+    $scope.enableTab_8 = function () {
+        $scope.tab = 8;
+    };
+
+    $scope.enableTab_9 = function () {
+        $scope.tab = 9;
+    };
+
+    $scope.enableTab_10 = function () {
+        $scope.tab =10;
+    };
+
     $scope.enableTab_1();
 
 });

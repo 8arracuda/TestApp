@@ -20,30 +20,37 @@
             </a>
 
             <a class="btn btn-default"
-               target="IndexedDB_R1"
+               target="IndexedDB_C2"
                toggle="on"
                ng-click="enableTab_2()"
-               active-class="active">R1
+               active-class="active">C2
             </a>
 
             <a class="btn btn-default"
-               target="IndexedDB_3"
+               target="IndexedDB_C3"
                toggle="on"
                ng-click="enableTab_3()"
-               active-class="active">3
+               active-class="active">C3
+            </a>
+
+            <a class="btn btn-default"
+               target="IndexedDB_R1"
+               toggle="on"
+               ng-click="enableTab_4()"
+               active-class="active">R1
             </a>
 
             <a class="btn btn-default"
                target="IndexedDB_U1"
                toggle="on"
-               ng-click="enableTab_4()"
+               ng-click="enableTab_5()"
                active-class="active">U1
             </a>
 
             <a class="btn btn-default"
                target="IndexedDB_D1"
                toggle="on"
-               ng-click="enableTab_5()"
+               ng-click="enableTab_6()"
                active-class="active">D1
             </a>
 
@@ -65,6 +72,30 @@
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 2}"
+                 default="active"
+                 id="IndexedDB_C2"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_indexedDB_testC2.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 3}"
+                 default="active"
+                 id="IndexedDB_C3"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_indexedDB_testC3.html"'></div>
+
+            </div>
+
+
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 4}"
                  id="IndexedDB_R1"
                  exclusion-group="myTabs">
 
@@ -74,17 +105,7 @@
 
             <div class="tab-pane"
                  toggleable
-                 ng-class="{active: tab == 3}"
-                 id="IndexedDB_3"
-                 exclusion-group="myTabs">
-
-                <div ng-include src='"PE_indexedDB_test3.html"'></div>
-
-            </div>
-
-            <div class="tab-pane"
-                 toggleable
-                 ng-class="{active: tab == 4}"
+                 ng-class="{active: tab == 5}"
                  id="IndexedDB_U1"
                  exclusion-group="myTabs">
 
@@ -94,7 +115,7 @@
 
             <div class="tab-pane"
                  toggleable
-                 ng-class="{active: tab == 5}"
+                 ng-class="{active: tab == 6}"
                  id="IndexedDB_D1"
                  exclusion-group="myTabs">
 

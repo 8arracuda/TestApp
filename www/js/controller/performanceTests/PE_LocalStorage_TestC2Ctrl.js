@@ -56,7 +56,7 @@ sdApp.controller('PE_LocalStorage_TestC2Ctrl', function ($scope, $rootScope, tes
                 var timeStart = new Date().getTime();
 
                 for (var i = 0; i < amountOfData; ++i) {
-                   // localStorage.setItem(data[i][0], JSON.stringify(data[i]));
+
                     var currentAddress = data[i];
                     localStorage.setItem(currentAddress[0] + '_id', currentAddress[0]);
                     localStorage.setItem(currentAddress[0] + '_firstname', currentAddress[1]);

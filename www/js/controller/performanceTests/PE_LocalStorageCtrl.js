@@ -48,6 +48,23 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
         //$scope.stringForRightButton = 'MED';
     };
 
+
+    $scope.enableTab_7 = function () {
+        $scope.tab = 7;
+    };
+
+    $scope.enableTab_8 = function () {
+        $scope.tab = 8;
+    };
+
+    $scope.enableTab_9 = function () {
+        $scope.tab = 9;
+    };
+
+    $scope.enableTab_10 = function () {
+        $scope.tab =10;
+    };
+
     $scope.enableTab_1();
 
 

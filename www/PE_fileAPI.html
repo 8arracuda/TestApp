@@ -27,23 +27,30 @@
             </a>
 
             <a class="btn btn-default"
-               target="FileAPI_R1"
+               target="FileAPI_C3"
                toggle="on"
                ng-click="enableTab_3()"
+               active-class="active">C3
+            </a>
+
+            <a class="btn btn-default"
+               target="FileAPI_R1"
+               toggle="on"
+               ng-click="enableTab_4()"
                active-class="active">R1
             </a>
 
             <a class="btn btn-default"
                target="FileAPI_U1"
                toggle="on"
-               ng-click="enableTab_4()"
+               ng-click="enableTab_5()"
                active-class="active">U1
             </a>
 
             <a class="btn btn-default"
                target="FileAPI_D1"
                toggle="on"
-               ng-click="enableTab_5()"
+               ng-click="enableTab_6()"
                active-class="active">D1
             </a>
 
@@ -76,6 +83,17 @@
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 3}"
+                 default="active"
+                 id="FileAPI_C3"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_fileAPI_testC3.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 4}"
                  id="FileAPI_R1"
                  exclusion-group="myTabs">
 
@@ -85,7 +103,7 @@
 
             <div class="tab-pane"
                  toggleable
-                 ng-class="{active: tab == 4}"
+                 ng-class="{active: tab == 5}"
                  id="FileAPI_U1"
                  exclusion-group="myTabs">
 
@@ -95,7 +113,7 @@
 
             <div class="tab-pane"
                  toggleable
-                 ng-class="{active: tab == 5}"
+                 ng-class="{active: tab == 6}"
                  id="FileAPI_D1"
                  exclusion-group="myTabs">
 
