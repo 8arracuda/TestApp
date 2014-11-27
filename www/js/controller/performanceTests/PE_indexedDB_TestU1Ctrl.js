@@ -105,12 +105,16 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
 
     function storeData() {
 
+        var data =
+            testDataFactory.getDataFromFile('res/0_to_5000_40chars.txt');
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            var keyValuePair = {key: i, value: i};
+            var itemToWrite = data[i];
+            //var keyValuePair = {key: i, value: i};
+            var keyValuePair = {key: itemToWrite, value: itemToWrite};
             objectStore.add(keyValuePair);
         }
 

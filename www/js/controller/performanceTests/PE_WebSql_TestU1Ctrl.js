@@ -50,4 +50,50 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
 
     };
 
+    function clearTable() {
+
+        $scope.db.transaction(function (tx) {
+            tx.executeSql("DELETE FROM PE_TestU1", [], clearedTableCallback, $scope.errorHandlerWebSQL);
+        });
+
+        function clearedTableCallback(transaction, results) {
+            console.log('Table ' + tableName + ' has been cleared');
+            $scope.isPrepared = true;
+            $scope.$apply();
+
+        }
+
+    };
+
+    $scope.initWebSQL = function () {
+        console.log('initWebSQL start');
+        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
+        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
+        $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
+        console.log('initWebSQL executed');
+        $scope.databaseOpened = true;
+    };
+
+    $scope.createTableEinzelwerte = function (tx) {
+        console.log('createTableEinzelwerte start');
+
+        //Define the structure of the database
+        tx.executeSql('CREATE TABLE IF NOT EXISTS PE_TestU1(keyName TEXT PRIMARY KEY, value TEXT)');
+        console.log('createTableEinzelwerte executed');
+    };
+
+    $scope.errorHandlerWebSQL = function (e) {
+        console.log('errorHandlerWebSQL start');
+        alert(e.message);
+        console.log(e.message);
+        console.log('errorHandlerWebSQL executed');
+    };
+
+    $scope.prepare = function () {
+        clearTable();
+
+    };
+
+
+
 });

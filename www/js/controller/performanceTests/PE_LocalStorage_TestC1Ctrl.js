@@ -2,22 +2,22 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
         var iteration = 1;
 
         //prepare results-array
+        var data;
         $scope.results = [];
 
         $scope.isPrepared = false;
 
         var amountOfData;
-        var amountOfData_testC1a = 1000;
-        var amountOfData_testC1b = 5000;
+        var amountOfData_testC1a = 100;
+        var amountOfData_testC1b = 100;
 
         $scope.selectedTestVariant = '';
-        $scope.preparationText = 'Explain what the prepare function does...';
-        $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+        $scope.preparationText = 'Clears LocalStorage and fetches addressData to be written during the test.';
+        $scope.mainTestDecription = 'In this test stores addresses to LocalStorage.';
         $scope.testName1 = 'TestC1a';
-        $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
+        $scope.testDecription1 = 'StoresStores ' + amountOfData_testC1a + ' items';
         $scope.testName2 = 'TestC1b';
         $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
-
 
 
         $scope.selectTestVariant = function (testVariant) {
@@ -45,27 +45,19 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
 
         };
 
-        $scope.startPerformanceTest = function () {
+        $scope.startPerformanceTest = function() {
 
+            console.log('method1');
             $scope.testInProgress = true;
             $scope.$apply();
 
 
-            setTimeout(function() {
-
-                //Load array with data to be saved
-                //var data = testDataFactory.getDataFromFile('res/0_to_5000.txt');
-                //var data = testDataFactory.getDataFromFile('res/0_to_5000_4chars.txt');
-                //var data = testDataFactory.getDataFromFile('res/0_to_5000_8chars.txt');
-                var data = testDataFactory.getDataFromFile('res/0_to_5000_40chars.txt');
-
+            setTimeout(function () {
 
                 var timeStart = new Date().getTime();
 
-                var itemToWrite;
                 for (var i = 0; i < amountOfData; ++i) {
-                    itemToWrite = data[i];
-                    localStorage.setItem(itemToWrite, itemToWrite);
+                    localStorage.setItem(data[i][0], JSON.stringify(data[i]));
                 }
 
                 var timeEnd = new Date().getTime();
@@ -80,12 +72,25 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
             }, 2000);
 
 
-
         };
+
+        function clearLocalStorage() {
+
+            localStorage.clear();
+
+        }
+
+        function loadData() {
+
+            data = testDataFactory.testData();
+
+        }
 
         $scope.prepare = function () {
 
-            localStorage.clear();
+            clearLocalStorage();
+            loadData();
+
             $scope.isPrepared = true;
 
         };

@@ -20,17 +20,17 @@
             </a>
 
             <a class="btn btn-default"
-               target="FileAPI_R1"
+               target="FileAPI_C2"
                toggle="on"
                ng-click="enableTab_2()"
-               active-class="active">R1
+               active-class="active">C2
             </a>
 
             <a class="btn btn-default"
-               target="FileAPI_3"
+               target="FileAPI_R1"
                toggle="on"
                ng-click="enableTab_3()"
-               active-class="active">3
+               active-class="active">R1
             </a>
 
             <a class="btn btn-default"
@@ -65,20 +65,21 @@
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 2}"
-                 id="FileAPI_R1"
+                 default="active"
+                 id="FileAPI_C2"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"PE_fileAPI_testR1.html"'></div>
+                <div ng-include src='"PE_fileAPI_testC2.html"'></div>
 
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 3}"
-                 id="FileAPI_3"
+                 id="FileAPI_R1"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"PE_fileAPI_test3.html"'></div>
+                <div ng-include src='"PE_fileAPI_testR1.html"'></div>
 
             </div>
 

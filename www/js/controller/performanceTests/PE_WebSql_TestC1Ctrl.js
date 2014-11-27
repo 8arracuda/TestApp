@@ -20,7 +20,6 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
     $scope.testName2 = 'TestC1b';
     $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
 
-
     $scope.results = [];
 
     $scope.isPrepared = false;
@@ -53,7 +52,7 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
     function clearTable() {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM PE_Test1", [], clearedTableCallback, $scope.errorHandlerWebSQL);
+            tx.executeSql("DELETE FROM PE_TestC1", [], clearedTableCallback, $scope.errorHandlerWebSQL);
         });
 
         function clearedTableCallback(transaction, results) {
@@ -84,7 +83,7 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
                 for (var i = 0; i < amountOfData; i++) {
                     //console.log('saving ' + i + ' for key ' + i);
                     //tx.executeSql("INSERT INTO PE_Test1(keyName, value) VALUES(?,?)", [i, i]);
-                    tx.executeSql("INSERT INTO PE_Test1(keyName, value) VALUES(?,?)", ['' + i, '' + i]);
+                    tx.executeSql("INSERT INTO PE_TestC1(keyName, value) VALUES(?,?)", ['' + i, '' + i]);
                     //console.log('saved ' + i + ' for key ' + i);
 
                 }
@@ -121,7 +120,7 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
         console.log('createTableEinzelwerte start');
 
         //Define the structure of the database
-        tx.executeSql('CREATE TABLE IF NOT EXISTS PE_Test1(keyName TEXT PRIMARY KEY, value TEXT)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS PE_TestC1(keyName TEXT PRIMARY KEY, value TEXT)');
         console.log('createTableEinzelwerte executed');
     };
 

@@ -1,19 +1,7 @@
-sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, testDataFactory) {
-
-    //var iteration = 1;
-    //
-    ////prepare results-array
-    //$scope.testInProgress = false;
-    //$scope.results = [];
-    //
-    //$scope.isPrepared = false;
-    //
-    //$scope.testDecription = 'Saving long strings (dataset strings) ------ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
-    //$scope.headlineText = 'Perf Test 3';
+sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope) {
 
     var iteration = 1;
 
-    //prepare results-array
     $scope.results = [];
 
     $scope.isPrepared = false;
