@@ -208,8 +208,9 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
 sdApp.config([
     '$compileProvider',
     function ($compileProvider) {
-        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
-        // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+        //$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
+
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ms-appx):/);
     }
 ]);
 

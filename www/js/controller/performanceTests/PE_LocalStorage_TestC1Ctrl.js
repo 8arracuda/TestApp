@@ -9,13 +9,13 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
 
         var amountOfData;
         var amountOfData_testC1a = 100;
-        var amountOfData_testC1b = 100;
+        var amountOfData_testC1b = 500;
 
         $scope.selectedTestVariant = '';
         $scope.preparationText = 'Clears LocalStorage and fetches addressData to be written during the test.';
         $scope.mainTestDecription = 'In this test stores addresses to LocalStorage.';
         $scope.testName1 = 'TestC1a';
-        $scope.testDecription1 = 'StoresStores ' + amountOfData_testC1a + ' items';
+        $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
         $scope.testName2 = 'TestC1b';
         $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
 

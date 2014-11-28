@@ -1,6 +1,7 @@
-sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
+sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataFactory) {
     var iteration = 1;
 
+    var data;
     const dbName = "PE_TestC1";
     const tableName = "PE_TestC1";
     const dbVersion = "1.0";
@@ -9,8 +10,8 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testC1a = 1000;
-    var amountOfData_testC1b = 5000;
+    var amountOfData_testC1a = 100;
+    var amountOfData_testC1b = 500;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -29,7 +30,7 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
 
         if (answer) {
-            iteration=1;
+            iteration = 1;
             $scope.isPrepared = false;
             $scope.results = [];
             $scope.selectedTestVariant = '';
@@ -52,7 +53,7 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
     function clearTable() {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM PE_TestC1", [], clearedTableCallback, $scope.errorHandlerWebSQL);
+            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
         });
 
         function clearedTableCallback(transaction, results) {
@@ -64,16 +65,17 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
 
     };
 
+    function loadData() {
+        data = testDataFactory.testData();
+    }
+
     $scope.prepare = function () {
+        loadData();
         clearTable();
 
     };
 
     $scope.startPerformanceTest = function () {
-        startPerformanceTest_save_onlyOne();
-    };
-
-    function startPerformanceTest_save_onlyOne() {
 
         $scope.testInProgress = true;
 
@@ -81,10 +83,9 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-                    //console.log('saving ' + i + ' for key ' + i);
-                    //tx.executeSql("INSERT INTO PE_Test1(keyName, value) VALUES(?,?)", [i, i]);
-                    tx.executeSql("INSERT INTO PE_TestC1(keyName, value) VALUES(?,?)", ['' + i, '' + i]);
-                    //console.log('saved ' + i + ' for key ' + i);
+
+                    //data[i][0] + '' because otherwise id's like 1.0, 2.0 are stored
+                    tx.executeSql("INSERT INTO " + tableName + "(id, address) VALUES(?,?)", [data[i][0] + '', JSON.stringify(data[i])]);
 
                 }
             }, function errorHandler(transaction, error) {
@@ -117,11 +118,10 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope) {
     };
 
     $scope.createTableEinzelwerte = function (tx) {
-        console.log('createTableEinzelwerte start');
 
         //Define the structure of the database
-        tx.executeSql('CREATE TABLE IF NOT EXISTS PE_TestC1(keyName TEXT PRIMARY KEY, value TEXT)');
-        console.log('createTableEinzelwerte executed');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id TEXT PRIMARY KEY, address TEXT)');
+
     };
 
     $scope.errorHandlerWebSQL = function (e) {

@@ -19,7 +19,7 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.createTableStrDaten = function (tx) {
         console.log('createTableStrDaten start');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS strDaten(id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT, randomNumber1 INTEGER, randomNumber2 INTEGER)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT, randomNumber1 INTEGER, randomNumber2 INTEGER)');
         console.log('createTableStrDaten executed');
     };
 
@@ -39,7 +39,7 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
 
             console.log('SELECT * FROM strDaten');
 
-            tx.executeSql("SELECT * FROM strDaten", [], function (transaction, results) {
+            tx.executeSql("SELECT * FROM " + tableName, [], function (transaction, results) {
 
                 var length = results.rows.length;
 

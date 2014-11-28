@@ -1,44 +1,46 @@
-<div ng-controller="PE_WebSql_TestC2Ctrl">
+<div ng-controller="PE_IndexedDB_TestR3Ctrl">
 
     <div class="panel">
         <div class="panel-heading">
-            <h2>Performance-Test C2</h2>
+            <h2>Performance-Test R3 (placeholder)</h2>
             {{ mainTestDecription }}<br>
 
-            <div ng-show="selectedTestVariant=='TestC2a' || selectedTestVariant=='' ">
+            <div ng-show="selectedTestVariant=='TestR3a' || selectedTestVariant=='' ">
                 <button ng-hide="selectedTestVariant!=''"
                         class="btn btn-primary"
-                        ng-click="selectTestVariant('TestC2a')">
+                        ng-click="selectTestVariant('TestR3a')">
                     select
                 </button>
                 <b>{{ testName1}}:</b> {{ testDecription1 }}
             </div>
             <br>
 
-            <div ng-show="selectedTestVariant=='TestC2b' || selectedTestVariant=='' ">
+            <div ng-show="selectedTestVariant=='TestR3b' || selectedTestVariant=='' ">
                 <button ng-hide="selectedTestVariant!=''"
                         class="btn btn-primary"
-                        ng-click="selectTestVariant('TestC2b')">
+                        ng-click="selectTestVariant('TestR3b')">
                     select
                 </button>
                 <b>{{ testName2}}:</b> {{ testDecription2 }}
             </div>
 
-            <button class="btn btn-sm btn-default" ng-show="selectedTestVariant!=''" ng-click="reset()">reset this
-                page
+            <button class="btn btn-sm btn-default" ng-show="selectedTestVariant!=''" ng-click="reset()">reset this page
             </button>
+
         </div>
 
         <div ng-show="selectedTestVariant!=''">
 
             <h2 class="panel-title">
-                database connection
+                database open?
             </h2>
 
             <div class="panel-body">
-                <button class="btn"
-                        ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
-                <button class="btn btn-primary" ng-click="initWebSQL()">init/open database</button>
+                <button class="btn" ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
+
+                <button class="btn btn-primary" ng-click="openDatabase()">open database</button>
+                <button class="btn btn-primary" ng-click="closeDatabase()">close database</button>
+
             </div>
 
             <h2 class="panel-title">
@@ -48,11 +50,10 @@
             <div class="panel-body">
 
                 <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
-                <button class="btn btn-primary" ng-click="prepare()">prepare</button>
-                <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="startPerformanceTest()"
-                        class="btn btn-primary">startPerformanceTest
+                <button ng-click="prepare()" class="btn btn-primary">prepare</button>
+                <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="loadAddressIds()"
+                        class="btn btn-primary">loadAddressIds
                 </button>
-
             </div>
 
             <h2 class="panel-title">
@@ -80,6 +81,5 @@
 
             </div>
         </div>
-    </div>
 
-</div>
+    </div>

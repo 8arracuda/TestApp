@@ -1,6 +1,7 @@
-sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope) {
+sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataFactory) {
     var iteration = 1;
 
+    var data;
     const dbName = "PE_TestC2";
     const tableName = "PE_TestC2";
     const dbVersion = "1.0";
@@ -9,8 +10,8 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope) {
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testC2a = 1000;
-    var amountOfData_testC2b = 5000;
+    var amountOfData_testC2a = 100;
+    var amountOfData_testC2b = 500;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -29,7 +30,7 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope) {
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
 
         if (answer) {
-            iteration=1;
+            iteration = 1;
             $scope.isPrepared = false;
             $scope.results = [];
             $scope.selectedTestVariant = '';
@@ -52,7 +53,7 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope) {
     function clearTable() {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM PE_TestC2", [], clearedTableCallback, $scope.errorHandlerWebSQL);
+            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
         });
 
         function clearedTableCallback(transaction, results) {
@@ -64,16 +65,20 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope) {
 
     };
 
+    function loadData() {
+
+        data = testDataFactory.testData();
+
+    }
+
     $scope.prepare = function () {
+        loadData();
         clearTable();
 
     };
 
-    $scope.startPerformanceTest = function () {
-        startPerformanceTest_save_onlyOne();
-    };
 
-    function startPerformanceTest_save_onlyOne() {
+    $scope.startPerformanceTest = function () {
 
         $scope.testInProgress = true;
 
@@ -81,9 +86,12 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope) {
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-                    //console.log('saving ' + i + ' for key ' + i);
-                    //tx.executeSql("INSERT INTO PE_Test1(keyName, value) VALUES(?,?)", [i, i]);
-                    tx.executeSql("INSERT INTO PE_TestC2(keyName, value) VALUES(?,?)", ['' + i, '' + i]);
+
+                    //data[i][0] + '' because otherwise id's like 1.0, 2.0 are stored
+                    //tx.executeSql("INSERT INTO PE_TestC2(id, address) VALUES(?,?)", [data[i][0] + '', JSON.stringify(data[i])]);
+                    var currentAddress = data[i];
+                    //tx.executeSql("INSERT INTO " + tableName + "(id, firstName, lastName, street, zipcode, city, email, randomNumber1, randomNumber2) VALUES(?,?,?,?,?,?,?,?,?)", [data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6], data[i][7], data[i][8]]);
+                    tx.executeSql("INSERT INTO " + tableName + "(id, firstName, lastName, street, zipcode, city, email, randomNumber1, randomNumber2) VALUES(?,?,?,?,?,?,?,?,?)", [currentAddress[0], currentAddress[1], currentAddress[2], currentAddress[3], currentAddress[4], currentAddress[5], currentAddress[6], currentAddress[7], currentAddress[8]]);
                     //console.log('saved ' + i + ' for key ' + i);
 
                 }
@@ -117,11 +125,11 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope) {
     };
 
     $scope.createTableEinzelwerte = function (tx) {
-        console.log('createTableEinzelwerte start');
 
         //Define the structure of the database
-        tx.executeSql('CREATE TABLE IF NOT EXISTS PE_TestC2(keyName TEXT PRIMARY KEY, value TEXT)');
-        console.log('createTableEinzelwerte executed');
+        //tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName +  '(id TEXT PRIMARY KEY, address TEXT)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT, randomNumber1 INTEGER, randomNumber2 INTEGER)');
+
     };
 
     $scope.errorHandlerWebSQL = function (e) {

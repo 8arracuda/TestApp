@@ -1,14 +1,17 @@
 sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, testDataFactory) {
     var iteration = 1;
 
+    var data;
+    var dataForUpdate;
+
     //prepare results-array
     $scope.results = [];
 
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testU1a = 1000;
-    var amountOfData_testU1b = 5000;
+    var amountOfData_testU1a = 100;
+    var amountOfData_testU1b = 500;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Clears LocalStorage and saves a predefined set of addresses.';
@@ -45,17 +48,11 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
 
     $scope.startPerformanceTest = function () {
 
-        //Load array with data to be saved
-        //var data = testDataFactory.getDataFromFile('res/0_to_5000.txt');
-        //var data = testDataFactory.getDataFromFile('res/0_to_5000_4chars.txt');
-        //var data = testDataFactory.getDataFromFile('res/0_to_5000_8chars.txt');
-        var data = testDataFactory.getDataFromFile('res/0_to_5000_40chars.txt');
-
         var timeStart = new Date().getTime();
 
         for (var i = 0; i < amountOfData; ++i) {
 
-            localStorage.setItem(data[i], data[amountOfData-i]);
+            localStorage.setItem(dataForUpdate[i][0], JSON.stringify(dataForUpdate[i]));
         }
 
         var timeEnd = new Date().getTime();
@@ -69,11 +66,7 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
 
     };
 
-    function loadData() {
 
-        data = testDataFactory.testData();
-
-    };
 
     function saveAddressData() {
 
@@ -87,8 +80,7 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
             for (var i = 0; i < data.length; i++) {
 
                 //Set the Id as key
-                //Address with key 42 is saved with key -address42-
-                localStorage.setItem('address' + data[i][0], JSON.stringify(data[i]));
+                localStorage.setItem(data[i][0], JSON.stringify(data[i]));
 
             }
 
@@ -106,11 +98,22 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
 
     }
 
+    function loadData() {
+
+        data = testDataFactory.testData();
+
+    };
+
+    function loadDataForUpdate() {
+        dataForUpdate = testDataFactory.testDataForUpdateTests();
+    }
+
     $scope.prepare = function () {
 
         clearLocalStorage();
         loadData();
         saveAddressData();
+        loadDataForUpdate();
         $scope.isPrepared = true;
     };
 
