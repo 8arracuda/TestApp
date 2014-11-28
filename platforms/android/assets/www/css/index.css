@@ -5,6 +5,12 @@
     /*transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;*/
 /*}*/
 
+
+.nav-tabs>.btn {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
 .sourceTableWasUpdated,
 .sourceTableWasUpdated-add.sourceTableWasUpdated-remove {
     color: red;

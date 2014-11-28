@@ -1,7 +1,7 @@
 sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataFactory) {
     var iteration = 1;
 
-    var data;
+    var dataForPreparation;
     const dbName = "PE_TestC2";
     const tableName = "PE_TestC2";
     const dbVersion = "1.0";
@@ -65,18 +65,18 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataF
 
     };
 
-    function loadData() {
+    function loadDataForPreparation() {
 
-        data = testDataFactory.testData();
+        dataForPreparation = testDataFactory.testData();
 
     }
 
     $scope.prepare = function () {
-        loadData();
+
+        loadDataForPreparation();
         clearTable();
 
     };
-
 
     $scope.startPerformanceTest = function () {
 
@@ -87,12 +87,8 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataF
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
 
-                    //data[i][0] + '' because otherwise id's like 1.0, 2.0 are stored
-                    //tx.executeSql("INSERT INTO PE_TestC2(id, address) VALUES(?,?)", [data[i][0] + '', JSON.stringify(data[i])]);
-                    var currentAddress = data[i];
-                    //tx.executeSql("INSERT INTO " + tableName + "(id, firstName, lastName, street, zipcode, city, email, randomNumber1, randomNumber2) VALUES(?,?,?,?,?,?,?,?,?)", [data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6], data[i][7], data[i][8]]);
+                    var currentAddress = dataForPreparation[i];
                     tx.executeSql("INSERT INTO " + tableName + "(id, firstName, lastName, street, zipcode, city, email, randomNumber1, randomNumber2) VALUES(?,?,?,?,?,?,?,?,?)", [currentAddress[0], currentAddress[1], currentAddress[2], currentAddress[3], currentAddress[4], currentAddress[5], currentAddress[6], currentAddress[7], currentAddress[8]]);
-                    //console.log('saved ' + i + ' for key ' + i);
 
                 }
             }, function errorHandler(transaction, error) {
@@ -112,13 +108,11 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataF
 
         console.log(amountOfData + ' items added');
 
-
     };
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
         $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
-        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
@@ -126,8 +120,6 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataF
 
     $scope.createTableEinzelwerte = function (tx) {
 
-        //Define the structure of the database
-        //tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName +  '(id TEXT PRIMARY KEY, address TEXT)');
         tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT, randomNumber1 INTEGER, randomNumber2 INTEGER)');
 
     };

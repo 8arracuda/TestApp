@@ -41,16 +41,30 @@
             </a>
 
             <a class="btn btn-default"
-               target="IndexedDB_U1"
+               target="IndexedDB_R2"
                toggle="on"
                ng-click="enableTab_5()"
+               active-class="active">R2
+            </a>
+
+            <a class="btn btn-default"
+               target="IndexedDB_R3"
+               toggle="on"
+               ng-click="enableTab_6()"
+               active-class="active">R3
+            </a>
+
+            <a class="btn btn-default"
+               target="IndexedDB_U1"
+               toggle="on"
+               ng-click="enableTab_7()"
                active-class="active">U1
             </a>
 
             <a class="btn btn-default"
                target="IndexedDB_D1"
                toggle="on"
-               ng-click="enableTab_6()"
+               ng-click="enableTab_8()"
                active-class="active">D1
             </a>
 
@@ -89,8 +103,6 @@
 
             </div>
 
-
-
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 4}"
@@ -104,6 +116,26 @@
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 5}"
+                 id="IndexedDB_R2"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_indexedDB_testR2.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 6}"
+                 id="IndexedDB_R3"
+                 exclusion-group="myTabs">
+
+                <div ng-include src='"PE_indexedDB_testR3.html"'></div>
+
+            </div>
+
+            <div class="tab-pane"
+                 toggleable
+                 ng-class="{active: tab == 7}"
                  id="IndexedDB_U1"
                  exclusion-group="myTabs">
 
@@ -113,7 +145,7 @@
 
             <div class="tab-pane"
                  toggleable
-                 ng-class="{active: tab == 6}"
+                 ng-class="{active: tab == 8}"
                  id="IndexedDB_D1"
                  exclusion-group="myTabs">
 

@@ -1,4 +1,4 @@
-sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope) {
+sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, testDataFactory) {
 
     var iteration = 1;
 

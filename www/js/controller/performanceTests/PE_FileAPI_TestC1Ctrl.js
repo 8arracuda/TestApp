@@ -73,6 +73,8 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
 
                 var i = 0;
 
+                $scope.testInProgress = true;
+                $scope.$apply();
                 writeFile();
 
                 function writeFile() {
@@ -226,63 +228,63 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
 
     };
 
-    function showFiles() {
-
-        console.log('showfiles started');
-        $scope.filelist = [];
-        $scope.loadingInProgress = true;
-        $scope.$apply();
-
-        function toArray(list) {
-            return Array.prototype.slice.call(list || [], 0);
-        }
-
-        function listResults(entries) {
-
-            $scope.loadingInProgress = true;
-            $scope.$apply();
-
-            entries.forEach(function (entry, i) {
-
-                if (entry.isDirectory) {
-                    var fileListEntry = {name: entry.name + ' [DIR]', value: ""};
-                } else {
-                    var fileListEntry = {name: entry.name, value: ""};
-                }
-
-                $scope.filelist.push(fileListEntry);
-
-            });
-            $scope.loadingInProgress = false;
-            $scope.$apply();
-
-        }
-
-
-        console.log('before');
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
-            function (fs) {
-
-                var dirReader = fs.root.createReader();
-                var entries = [];
-
-                // Call the reader.readEntries() until no more results are returned.
-                var readEntries = function () {
-                    dirReader.readEntries(function (results) {
-                        if (!results.length) {
-                            listResults(entries.sort());
-                        } else {
-                            entries = entries.concat(toArray(results));
-                            readEntries();
-                        }
-                    }, errorHandler);
-                };
-
-                readEntries(); // Start reading dirs.
-
-            }, errorHandler);
-        console.log('after');
-
-    };
+    //function showFiles() {
+    //
+    //    console.log('showfiles started');
+    //    $scope.filelist = [];
+    //    $scope.loadingInProgress = true;
+    //    $scope.$apply();
+    //
+    //    function toArray(list) {
+    //        return Array.prototype.slice.call(list || [], 0);
+    //    }
+    //
+    //    function listResults(entries) {
+    //
+    //        $scope.loadingInProgress = true;
+    //        $scope.$apply();
+    //
+    //        entries.forEach(function (entry, i) {
+    //
+    //            if (entry.isDirectory) {
+    //                var fileListEntry = {name: entry.name + ' [DIR]', value: ""};
+    //            } else {
+    //                var fileListEntry = {name: entry.name, value: ""};
+    //            }
+    //
+    //            $scope.filelist.push(fileListEntry);
+    //
+    //        });
+    //        $scope.loadingInProgress = false;
+    //        $scope.$apply();
+    //
+    //    }
+    //
+    //
+    //    console.log('before');
+    //    window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+    //        function (fs) {
+    //
+    //            var dirReader = fs.root.createReader();
+    //            var entries = [];
+    //
+    //            // Call the reader.readEntries() until no more results are returned.
+    //            var readEntries = function () {
+    //                dirReader.readEntries(function (results) {
+    //                    if (!results.length) {
+    //                        listResults(entries.sort());
+    //                    } else {
+    //                        entries = entries.concat(toArray(results));
+    //                        readEntries();
+    //                    }
+    //                }, errorHandler);
+    //            };
+    //
+    //            readEntries(); // Start reading dirs.
+    //
+    //        }, errorHandler);
+    //    console.log('after');
+    //
+    //};
 
 });

@@ -1,8 +1,8 @@
 sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, testDataFactory) {
     var iteration = 1;
 
-    var data;
     var dataForUpdate;
+    var data;
 
     //prepare results-array
     $scope.results = [];
@@ -67,7 +67,6 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
     };
 
 
-
     function saveAddressData() {
 
         if (data == null) {
@@ -102,7 +101,7 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
 
         data = testDataFactory.testData();
 
-    };
+    }
 
     function loadDataForUpdate() {
         dataForUpdate = testDataFactory.testDataForUpdateTests();
@@ -116,6 +115,8 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
         loadDataForUpdate();
         $scope.isPrepared = true;
     };
+
+
 
 })
 ;

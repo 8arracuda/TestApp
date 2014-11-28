@@ -9,7 +9,7 @@ sdApp.controller('PE_LocalStorage_TestC2Ctrl', function ($scope, $rootScope, tes
 
         var amountOfData;
         var amountOfData_testC2a = 100;
-        var amountOfData_testC2b = 100;
+        var amountOfData_testC2b = 500;
 
         $scope.selectedTestVariant = '';
         $scope.preparationText = 'Clears LocalStorage and fetches addressData to be written during the test.';
