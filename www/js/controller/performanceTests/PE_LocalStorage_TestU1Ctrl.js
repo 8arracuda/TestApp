@@ -2,7 +2,7 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
     var iteration = 1;
 
     var dataForUpdate;
-    var data;
+    var dataForPreparation;
 
     //prepare results-array
     $scope.results = [];
@@ -76,16 +76,15 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
 
             //Same logic as in DE_LocalStorage_strDaten Test-Method 2
 
-            for (var i = 0; i < data.length; i++) {
+            for (var i = 0; i < dataForPreparation.length; i++) {
 
                 //Set the Id as key
-                localStorage.setItem(data[i][0], JSON.stringify(data[i]));
+                localStorage.setItem(dataForPreparation[i][0], JSON.stringify(dataForPreparation[i]));
 
             }
 
-            localStorage.setItem('numberOfAddresses', data.length);
-
-            console.log('saved ' + data.length + ' addresses.');
+            localStorage.setItem('numberOfAddresses', dataForPreparation.length);
+            console.log('saved ' + dataForPreparation.length + ' addresses.');
 
         }
 
@@ -99,7 +98,7 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
 
     function loadDataForPreparation() {
 
-        data = testDataFactory.testData();
+        dataForPreparation = testDataFactory.testData();
 
     }
 
