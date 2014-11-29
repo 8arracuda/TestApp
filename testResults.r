@@ -32,14 +32,19 @@ SessionStorage_C1_500<-c(80,80,70,50,50,50,40,30,30,30);
 SQLitePlugin_C1_500<-c(10,40,40,40,70,70,70,70,10,30);
 
 ChromeMacbook<-data.frame(LocalStorage_C1_500,WebSQL_C1_500, IndexedDB_C1_500,FileAPI_C1_500,SessionStorage_C1_500,SQLitePlugin_C1_500);
-colnames(ChromeMacbook) <- c("LocalStorage_C1_500", "WebSQL_C1_500", "IndexedDB_C1_500", "FileAPI_C1_500","SessionStoage_C1_500","SQLitePlugin_C1_500");
+colnames(ChromeMacbook) <- c("LocalStorage C1_500", "WebSQL C1_500", "IndexedDB C1_500", "FileAPI C1_500","SessionStorage C1_500","SQLitePlugin C1_500");
 
-boxplot(Nexus4[LocalStorage_C1_500,1], ChromeMacbook[LocalStorage_C1_500,1]);
-boxplot(Nexus4[LocalStorage_C1_500,], ChromeMacbook[LocalStorage_C1_500,]);
-boxplot(Nexus4,las=2, xlab='ms', horizontal = TRUE);
+
+
+par(mar=c(8,15,4,4));
+boxplot(ChromeMacbook,main="Chrome on Macbook", las=2, xlab='ms', horizontal = TRUE);
+boxplot(Nexus4,main="Nexus 4", las=2, xlab='ms', horizontal = TRUE);
+
+#boxplot(Nexus4[LocalStorage_C1_500,1], ChromeMacbook[LocalStorage_C1_500,1]);
+#boxplot(Nexus4[LocalStorage_C1_500,], ChromeMacbook[LocalStorage_C1_500,]);
+#boxplot(Nexus4,las=2, xlab='ms', horizontal = TRUE);
 
 #boxplot(LocalStorage_C1_500, FileAPI_C1_500, WebSQL_C1_500_Nexus4);
-
 
 #boxplot(LocalStorage_C1_500, FileAPI_C1_500, WebSQL_C1_500_Nexus4);
 #boxplot(FileAPI_C1_500_IOS8Sim, FileAPI_C1_500_Nexus4);
