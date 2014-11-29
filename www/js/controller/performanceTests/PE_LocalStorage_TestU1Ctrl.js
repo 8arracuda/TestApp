@@ -97,7 +97,7 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
 
     }
 
-    function loadData() {
+    function loadDataForPreparation() {
 
         data = testDataFactory.testData();
 
@@ -110,7 +110,7 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
     $scope.prepare = function () {
 
         clearLocalStorage();
-        loadData();
+        loadDataForPreparation();
         saveAddressData();
         loadDataForUpdate();
         $scope.isPrepared = true;

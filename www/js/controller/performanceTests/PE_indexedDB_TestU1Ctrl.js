@@ -4,14 +4,17 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
     const dbName = "PE_TestU1";
     const objStoreName = "PE_TestU1";
 
+    var dataForPreparation;
+    var dataForUpdate;
+
     $scope.databaseOpened = false;
     $scope.testInProgress = false;
     $scope.isPrepared = false;
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testU1a = 1000;
-    var amountOfData_testU1b = 5000;
+    var amountOfData_testU1a = 100;
+    var amountOfData_testU1b = 500;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -65,7 +68,7 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
-            var request = window.indexedDB.open(dbName, 1);
+            var request = window.indexedDB.open(dbName, 5);
 
             request.onerror = function (event) {
                 console.error('request.onerror');
@@ -89,53 +92,66 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
                 //TODO Dieser Code funktioniert nicht! Change or delete!
                 //remove old objectStores if there were any
                 //if (event.oldVersion < 1) {
-                //    $scope.db.deleteObjectStore(objStoreName);
+                //$scope.db.deleteObjectStore(objStoreName);
                 //}
 
                 //create a new objectStore
-                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "key"});
+                var objectStore = $scope.db.createObjectStore(objStoreName, {});
 
                 //Column key is defined as index for the objectStore "einzelwerte"
-                objectStore.createIndex("key", "key", {unique: true});
+                objectStore.createIndex("id", "id", {unique: true});
 
             }
         }
     };
 
+    function saveAddressData() {
 
-    function storeData() {
+        $scope.testInProgress = true;
 
-        var data =
-            testDataFactory.getDataFromFile('res/0_to_5000_40chars.txt');
+        var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
+        console.dir(dataForPreparation);
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            var itemToWrite = data[i];
-            //var keyValuePair = {key: i, value: i};
-            var keyValuePair = {key: itemToWrite, value: itemToWrite};
-            objectStore.add(keyValuePair);
+
+            var addressToSave = dataForPreparation[i];
+            objectStore.put(addressToSave, addressToSave[0]);
+
         }
 
         transaction.oncomplete = function (event) {
-            console.log('oncomplete (storeData)');
+
             $scope.isPrepared = true;
             $scope.$apply();
+
         };
 
         transaction.onerror = function (event) {
-            console.error('transaction.onerror (in storeData)');
+            console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
+            $scope.testInProgress = false;
         };
-
     };
 
     $scope.prepare = function () {
+
+        loadDataForPreparation();
+        loadDataForUpdate();
         clearObjectStore();
-        storeData();
+        saveAddressData();
+        $scope.isPrepared = true;
 
     };
 
+    function loadDataForPreparation() {
+        dataForPreparation = testDataFactory.testData();
+    }
+
+    function loadDataForUpdate() {
+        dataForUpdate = testDataFactory.testDataForUpdateTests();
+    }
 
     $scope.startPerformanceTest = function () {
 
@@ -147,9 +163,9 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            //new values will be stored for the keys
-            var keyValuePair = {key: i, value: amountOfData-i};
-            objectStore.put(keyValuePair);
+
+            var addressToSave = dataForUpdate[i];
+            objectStore.put(addressToSave, addressToSave[0]);
         }
 
         transaction.oncomplete = function (event) {
@@ -167,7 +183,7 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
 
         transaction.onerror = function (event) {
             console.dir(event);
-            console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
+            console.error('transaction.onerror (in startPerformanceTest)');
             $scope.testInProgress = false;
         };
 

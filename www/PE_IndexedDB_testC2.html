@@ -2,7 +2,7 @@
 
     <div class="panel">
         <div class="panel-heading">
-            <h2>Performance-Test C2 (placeholder)</h2>
+            <h2>Performance-Test C2</h2>
             {{ mainTestDecription }}<br>
 
             <div ng-show="selectedTestVariant=='TestC2a' || selectedTestVariant=='' ">
@@ -54,8 +54,8 @@
                 <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
                 <button ng-click="prepare()" class="btn btn-primary">prepare</button>
                 <button ng-class="{disabled: (!isPrepared || !databaseOpened)}"
-                        ng-click="startPerformanceTest_save_onlyOne()"
-                        class="btn btn-primary">startPerformanceTest_save_onlyOne
+                        ng-click="startPerformanceTest()"
+                        class="btn btn-primary">startPerformanceTest
                 </button>
             </div>
 

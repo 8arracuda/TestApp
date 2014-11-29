@@ -160,7 +160,6 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
 
         $scope.db.transaction(function (tx) {
 
-
             for (var i = 0; i < addressIdsToLoad.length; i++) {
                 // console.log('SELECT * FROM einzelwerte WHERE keyName = ' +  addressIdsToLoad[i]);
 
