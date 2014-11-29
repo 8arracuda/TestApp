@@ -58,30 +58,8 @@
                 </button>
             </div>
 
-            <h2 class="panel-title">
-                Results
-            </h2>
+            <div ng-results-for-performance-tests></div>
 
-            <div class="panel-body">
-
-                {{ stringWithResults }}<br>
-
-                <br>
-
-                <div class="list-group">
-                    <div ng-repeat="result in results track by $index">
-
-                        <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
-                            {{ result }}
-                        </li>
-
-                    </div>
-                    <li ng-show="testInProgress==true" class="list-group-item list-group-item-warning">
-                        Test in progress
-                    </li>
-                </div>
-
-            </div>
         </div>
     </div>
 
