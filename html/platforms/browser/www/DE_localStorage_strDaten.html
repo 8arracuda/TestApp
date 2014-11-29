@@ -1,0 +1,110 @@
+<div ng-controller="DE_LocalStorageStrDatenCtrl">
+
+    <div class="panel" bs-panel>
+
+        <div ng-str-daten-dataset-loader></div>
+
+        <div class="panel-group" id="accordion" >
+
+            <div class="panel panel-default">
+                <div class="panel-heading" toggle target="collapseStrDatenOne">
+
+                    <h4 class="panel-title">
+                        Save addresses to LocalStorage (method 1)
+                    </h4>
+                </div>
+                <div id="collapseStrDatenOne" toggleable active-class="in" exclusion-group="accordion1"
+                     class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Every property (firstName, lastName, ...) is saved as seperate key/value pairs. (prefix: "table1_")<br>
+                        <a class="btn btn-primary" ng-click="saveTable1ToLocalStorage()"><i
+                                class="fa fa-save"></i> save1</a>
+                        <a class="btn btn-danger" ng-click="deleteTable1FromLocalStorage()"><i
+                                class="fa fa-trash-o"></i> delete1</a>
+
+                        The whole table is stored into a key named "table1_JSON"<br>
+                        <a class="btn btn-primary" ng-click="saveTable2ToLocalStorage()"><i
+                                class="fa fa-save"></i> save2</a>
+                        <a class="btn btn-danger" ng-click="deleteTable2FromLocalStorage()"><i
+                                class="fa fa-trash-o"></i> delete2</a>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" toggle target="collapseStrDatenThree">
+                    <h4 class="panel-title">
+                        Table loaded from LocalStorage ({{ tableFromLocalStorage.length | number }} addresses)
+                    </h4>
+                </div>
+                <div id="collapseStrDatenThree" toggleable active-class="in" exclusion-group="accordion1"
+                     class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <a class="btn btn-default" ng-click="loadTable1FromLocalStorage()"><i class="fa fa-refresh"></i> update (method 1)</a>
+                        <a class="btn btn-default" ng-click="loadTable2FromLocalStorage()"><i class="fa fa-refresh"></i> update (method 2)</a>
+
+                        <table style="width:100%" ng-show="tableFromLocalStorage.length > 0">
+                            <thead>
+                            <tr>
+                                <td>
+                                    <b>First Name</b>
+                                </td>
+                                <td>
+                                    <b>Last Name</b>
+                                </td>
+                                <td>
+                                    <b>...</b>
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="row in tableFromLocalStorage">
+                                <td>
+                                    {{ row[0] }}
+                                </td>
+                                <td>
+                                    {{ row[1] }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div overlay="datasetSelectionOverlay">
+        <div class="scrollable">
+            <div class="scrollable-content">
+
+                <h4 class="overlay-title">Select a dataset</h4>
+
+                <p toggle="off" bubble target="datasetSelectionOverlay">
+                    <span class="btn btn-primary">close</span>
+                </p>
+
+                <div class="list-group">
+                    <div ng-repeat="dataset in datasets">
+
+                        <li class="list-group-item">
+                            <div ng-show="dataset == $parent.selectedDataset">(selected)</div>
+                            <!--<a ng-click="$parent.selectedDataset = dataset">{{ dataset }}</a>-->
+                            <a ng-click="selectAndLoadDataset(dataset)">{{ dataset }}</a>
+                        </li>
+
+                    </div>
+                </div>
+
+                <p toggle="off" bubble target="datasetSelectionOverlay">
+                    <span class="btn btn-primary">close</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

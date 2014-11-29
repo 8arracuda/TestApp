@@ -1,0 +1,57 @@
+<div overlay="Overlay_WebSQL_Einzelwerte">
+    <div class="scrollable">
+        <div class="scrollable-content">
+
+            <h4 class="overlay-title">WebSQL - Einzelwerte</h4>
+
+            <p toggle="off" bubble target="Overlay_WebSQL_Einzelwerte">
+                <span class="btn btn-primary">close</span>
+            </p>
+
+            <div class="panel-body">
+
+
+                <!--for einzelwerte-->
+                <button class="btn btn-primary" ng-click="showContentOfTableEinzelwerte()">
+                    showContentOfTableEinzelwerte
+                </button>
+                <button class="btn btn-danger" ng-click="deleteContentOfTableEinzelwerte()">
+                    <i class="fa fa-trash-o"></i> deleteContentOfTableEinzelwerte
+                </button>
+
+                <table style="width:100%">
+                    <thead>
+                    <tr>
+                        <td>
+                            <b>keyName</b>
+                        </td>
+                        <td>
+                            <b>Value</b>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in dataForOverlayEinzelwerte">
+                        <td>
+                            {{ row.keyName }}
+                        </td>
+                        <td>
+                            {{ row.value }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+            <!--<input type="search" ng-model="searchText" class="form-control" placeholder="Search..">-->
+
+            <p toggle="off" bubble target="Overlay_WebSQL_Einzelwerte">
+                <span class="btn btn-primary">close</span>
+            </p>
+        </div>
+    </div>
+
+
+</div>

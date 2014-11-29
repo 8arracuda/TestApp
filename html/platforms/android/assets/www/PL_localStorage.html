@@ -1,0 +1,72 @@
+<div content-for="title">
+    <span>PL LocalStorage</span>
+</div>
+
+<div content-for="navbarAction">
+    <div class="btn btn-navbar">
+        <i class="fa fa-plus"></i>SS
+    </div>
+</div>
+
+<!--<div class="list-group">-->
+
+<!--<div class="list-group">-->
+<!--<li class="list-group-item">-->
+<!--PL_LocalStorage-->
+<!--</li>-->
+<!--</div>-->
+<!--</div>-->
+
+<div class="btn-group">
+    <a class="btn btn-default"
+       target="LSList"
+       toggle="on"
+       ng-click="tab = 1"
+       active-class="active">List
+    </a>
+
+    <a class="btn btn-default"
+       target="LSActions"
+       toggle="on"
+       ng-click="tab = 2"
+       active-class="active">Actions
+    </a>
+
+</div>
+
+<div class="tab-content">
+    <div class="tab-pane"
+         toggleable
+         ng-class="{active: tab == 1}"
+         default="active"
+         id="LSList"
+         exclusion-group="myTabs2">
+
+            <div class="scrollable-content">
+                <div class="list-group">
+                    <div class="list-group-item" ng-repeat="(key, value) in localStorage">
+                        {{ key }} - {{ value }} <br>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="tab-pane"
+         toggleable
+         ng-class="{active: tab == 2}"
+         default="active"
+         id="LSActions"
+         exclusion-group="myTabs2">
+        Actions
+    </div>
+</div>
+
+<div class="navbar navbar-app navbar-absolute-bottom">
+    <div class="btn-group justified">
+        <a href="" class="btn btn-navbar"><i class="fa fa-navbar"></i> 1</a>
+        <a href="" class="btn btn-navbar"><i
+                class="fa fa-navbar"></i> 2</a>
+        <a href="" class="btn btn-navbar"><i
+                class="fafa-navbar"></i> 3</a>
+    </div>
+</div>

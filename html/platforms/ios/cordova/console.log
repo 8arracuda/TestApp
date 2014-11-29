@@ -1,0 +1,128 @@
+2014-10-30 13:33:16.697 Test-App[67919:1509660] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/017B5354-D26F-42CB-9BB6-2B0A65610EF2/Library/Cookies/Cookies.binarycookies
+2014-10-30 13:33:17.306 Test-App[67919:1509660] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-30 13:33:17.307 Test-App[67919:1509660] Multi-tasking -> Device: YES, App: YES
+2014-10-30 13:33:17.460 Test-App[67919:1509660] Unlimited access to network resources
+2014-10-30 13:33:17.505 Test-App[67919:1509660] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-10-30 13:33:19.001 Test-App[67919:1509660] [CDVTimer][file] 50.722003ms
+2014-10-30 13:33:19.002 Test-App[67919:1509660] [CDVTimer][TotalPluginStartup] 77.019989ms
+2014-10-30 13:33:20.887 Test-App[67919:1509660] Resetting plugins due to page load.
+2014-10-30 13:33:24.975 Test-App[67919:1509660] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/DE7E7D6F-D727-4CE2-86C3-4C91D4CC4F52/Test-App.app/www/index.html#/overview
+objc[74452]: Class AXEmojiUtilities is implemented in both /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities and /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libAXSpeechManager.dylib. One of the two will be used. Which one is undefined.
+2014-10-30 15:45:12.716 Test-App[74452:70b] Cannot find executable for CFBundle 0x7b067eb0 </Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/AccessibilityBundles/CertUIFramework.axbundle> (not loaded)
+2014-10-30 15:45:12.721 Test-App[74452:70b] Cannot find executable for CFBundle 0x7b07b310 </Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/AccessibilityBundles/GeoServices.axbundle> (not loaded)
+2014-10-30 15:45:12.735 Test-App[74452:70b] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-30 15:45:12.736 Test-App[74452:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-30 15:45:12.769 Test-App[74452:70b] Unlimited access to network resources
+2014-10-30 15:45:12.772 Test-App[74452:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-10-30 15:45:13.459 Test-App[74452:70b] [CDVTimer][file] 1.728058ms
+2014-10-30 15:45:13.459 Test-App[74452:70b] [CDVTimer][TotalPluginStartup] 2.357006ms
+2014-10-30 15:45:13.842 Test-App[74452:70b] Resetting plugins due to page load.
+2014-10-30 15:45:14.832 Test-App[74452:70b] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/8DEB98B5-9F10-4F0A-9EEB-98427384D4C0/data/Applications/D70AEAF6-6FF1-46C2-8770-794B8E6A3A1A/Test-App.app/www/index.html#/overview
+objc[75373]: Class AXEmojiUtilities is implemented in both /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities and /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libAXSpeechManager.dylib. One of the two will be used. Which one is undefined.
+2014-10-30 15:58:14.163 Test-App[75373:70b] Cannot find executable for CFBundle 0x7a6636c0 </Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/AccessibilityBundles/GeoServices.axbundle> (not loaded)
+2014-10-30 15:58:14.168 Test-App[75373:70b] Cannot find executable for CFBundle 0x7a696840 </Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/AccessibilityBundles/CertUIFramework.axbundle> (not loaded)
+2014-10-30 15:58:14.182 Test-App[75373:70b] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-30 15:58:14.183 Test-App[75373:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-30 15:58:14.192 Test-App[75373:70b] Unlimited access to network resources
+2014-10-30 15:58:14.234 Test-App[75373:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-10-30 15:58:14.259 Test-App[75373:70b] [CDVTimer][file] 2.253056ms
+2014-10-30 15:58:14.259 Test-App[75373:70b] [CDVTimer][TotalPluginStartup] 2.861023ms
+2014-10-30 15:58:14.324 Test-App[75373:70b] Resetting plugins due to page load.
+2014-10-30 15:58:14.926 Test-App[75373:70b] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/8DEB98B5-9F10-4F0A-9EEB-98427384D4C0/data/Applications/D70AEAF6-6FF1-46C2-8770-794B8E6A3A1A/Test-App.app/www/index.html#/overview
+objc[76221]: Class AXEmojiUtilities is implemented in both /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities and /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libAXSpeechManager.dylib. One of the two will be used. Which one is undefined.
+2014-10-30 16:10:07.364 Test-App[76221:70b] Cannot find executable for CFBundle 0x7c0c2c60 </Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/AccessibilityBundles/CertUIFramework.axbundle> (not loaded)
+2014-10-30 16:10:07.372 Test-App[76221:70b] Cannot find executable for CFBundle 0x7c0d6b30 </Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/AccessibilityBundles/GeoServices.axbundle> (not loaded)
+2014-10-30 16:10:07.386 Test-App[76221:70b] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-30 16:10:07.387 Test-App[76221:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-30 16:10:07.394 Test-App[76221:70b] Unlimited access to network resources
+2014-10-30 16:10:07.396 Test-App[76221:70b] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-10-30 16:10:07.414 Test-App[76221:70b] [CDVTimer][file] 1.619995ms
+2014-10-30 16:10:07.415 Test-App[76221:70b] [CDVTimer][TotalPluginStartup] 2.179980ms
+2014-10-30 16:10:07.581 Test-App[76221:70b] Resetting plugins due to page load.
+2014-10-30 16:10:07.887 Test-App[76221:70b] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/8DEB98B5-9F10-4F0A-9EEB-98427384D4C0/data/Applications/D70AEAF6-6FF1-46C2-8770-794B8E6A3A1A/Test-App.app/www/index.html#/overview
+2014-10-30 16:10:14.330 Test-App[76221:70b] Detected docs path: /Users/michael/Library/Developer/CoreSimulator/Devices/8DEB98B5-9F10-4F0A-9EEB-98427384D4C0/data/Applications/D70AEAF6-6FF1-46C2-8770-794B8E6A3A1A/Documents
+2014-10-30 16:10:14.331 Test-App[76221:70b] Good news: SQLite is thread safe!
+2014-10-31 11:07:00.300 Test-App[5552:55981] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/0082EA72-0B71-493A-AF3D-5F1D445F15AE/Library/Cookies/Cookies.binarycookies
+2014-10-31 11:07:01.751 Test-App[5552:55981] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-31 11:07:01.751 Test-App[5552:55981] Multi-tasking -> Device: YES, App: YES
+2014-10-31 11:07:01.837 Test-App[5552:55981] Unlimited access to network resources
+2014-10-31 11:07:01.945 Test-App[5552:55981] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-10-31 11:07:02.964 Test-App[5552:55981] [CDVTimer][file] 47.772050ms
+2014-10-31 11:07:02.964 Test-App[5552:55981] [CDVTimer][TotalPluginStartup] 48.121989ms
+2014-10-31 11:07:03.769 Test-App[5552:55981] Resetting plugins due to page load.
+2014-10-31 11:07:07.430 Test-App[5552:55981] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/0BF63738-C13E-4786-A615-8D43F025FC72/Test-App.app/www/index.html#/overview
+2014-10-31 11:45:40.204 Test-App[7137:69604] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/4020F0B3-8976-415E-B4EF-A3EDA05B7516/Library/Cookies/Cookies.binarycookies
+2014-10-31 11:45:41.124 Test-App[7137:69604] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-31 11:45:41.125 Test-App[7137:69604] Multi-tasking -> Device: YES, App: YES
+2014-10-31 11:45:41.155 Test-App[7137:69604] Unlimited access to network resources
+2014-10-31 11:45:41.176 Test-App[7137:69604] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-10-31 11:45:41.564 Test-App[7137:69604] [CDVTimer][file] 173.243999ms
+2014-10-31 11:45:41.564 Test-App[7137:69604] [CDVTimer][TotalPluginStartup] 173.528016ms
+2014-10-31 11:45:42.890 Test-App[7137:69604] Resetting plugins due to page load.
+2014-10-31 11:45:44.323 Test-App[7137:69604] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/B3F04B35-3AC2-4C10-9605-50D0989C057F/Test-App.app/www/index.html#/overview
+2014-10-31 11:46:54.402 Test-App[7431:70736] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/E8E63A69-E0ED-4628-A7DF-9654B83230FD/Library/Cookies/Cookies.binarycookies
+2014-10-31 11:46:55.245 Test-App[7431:70736] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-31 11:46:55.246 Test-App[7431:70736] Multi-tasking -> Device: YES, App: YES
+2014-10-31 11:46:55.251 Test-App[7431:70736] Unlimited access to network resources
+2014-10-31 11:46:55.269 Test-App[7431:70736] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-10-31 11:46:55.493 Test-App[7431:70736] [CDVTimer][file] 36.787987ms
+2014-10-31 11:46:55.493 Test-App[7431:70736] [CDVTimer][TotalPluginStartup] 37.049949ms
+2014-10-31 11:46:55.995 Test-App[7431:70736] Resetting plugins due to page load.
+2014-10-31 11:46:58.567 Test-App[7431:70736] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/55C62DB0-436E-42CB-BF06-4580C4FE824E/Test-App.app/www/index.html#/overview
+2014-10-31 14:36:04.120 Test-App[15569:127579] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/BD0BD5EF-25C7-4671-B718-4BCEB50E9A96/Library/Cookies/Cookies.binarycookies
+2014-10-31 14:36:05.346 Test-App[15569:127579] Apache Cordova native platform version 3.6.3 is starting.
+2014-10-31 14:36:05.347 Test-App[15569:127579] Multi-tasking -> Device: YES, App: YES
+2014-10-31 14:36:05.370 Test-App[15569:127579] Unlimited access to network resources
+2014-10-31 14:36:05.386 Test-App[15569:127579] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-10-31 14:36:05.752 Test-App[15569:127579] [CDVTimer][file] 80.201983ms
+2014-10-31 14:36:05.753 Test-App[15569:127579] [CDVTimer][TotalPluginStartup] 80.477953ms
+2014-10-31 14:36:06.454 Test-App[15569:127579] Resetting plugins due to page load.
+2014-10-31 14:36:07.596 Test-App[15569:127579] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/D99D1737-A7D7-485B-AC56-96A79A2E88CB/Test-App.app/www/index.html#/overview

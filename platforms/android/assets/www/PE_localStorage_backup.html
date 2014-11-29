@@ -1,0 +1,91 @@
+<div content-for="title">
+    <span>{{ stringForTitle }}</span>
+</div>
+
+<div content-for="navbarAction">
+    <div class="btn btn-navbar">
+        <i class="fa fa-plus"></i>{{ stringForRightButton }}
+    </div>
+</div>
+
+
+<div class="scrollable">
+    <div class="scrollable-content">
+
+        <div class="panel">
+            <div class="panel-heading">
+                <h2>Performance-Test 1</h2>
+                {{ descriptionText1 }}
+            </div>
+
+            <h2 class="panel-title">
+                Start test
+            </h2>
+
+            <div class="panel-body">
+
+                <button ng-click="startPerformanceTest1()" class="btn btn-primary">start Performance-Test</button>
+
+            </div>
+
+            <h2 class="panel-title">
+                Results
+            </h2>
+
+            <div class="panel-body">
+
+                {{ stringWithResults }}<br>
+
+                <br>
+
+                <div class="list-group">
+                    <div ng-repeat="result in results1 track by $index">
+
+                        <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
+                            {{ result }}
+                        </li>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel-heading">
+                <h2>Performance-Test 2</h2>
+                {{ descriptionText2 }}
+            </div>
+
+            <h2 class="panel-title">
+                Start
+            </h2>
+
+            <div class="panel-body">
+
+                <button ng-click="startPerformanceTest()" class="btn btn-primary">start Performance-Test</button>
+
+            </div>
+
+            <h2 class="panel-title">
+                Results
+            </h2>
+
+            <div class="panel-body">
+
+                {{ stringWithResults }}<br>
+
+                <br>
+
+                <div class="list-group">
+                    <div ng-repeat="result in results track by $index">
+
+                        <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
+                            {{ result }}
+                        </li>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

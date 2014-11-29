@@ -1,0 +1,20 @@
+<div content-for="title">
+    <span>{{ stringForTitle }}</span>
+</div>
+
+<div content-for="navbarAction">
+    <div class="btn btn-navbar">
+        <i class="fa fa-plus"></i>{{ stringForRightButton }}
+    </div>
+</div>
+
+<div class="scrollable">
+    <div class="scrollable-content">
+
+        <button ng-click="perf_store100Items()" class="btn btn-primary">perf_store100Items</button>
+        <button ng-click="perf_store1000Items()" class="btn btn-primary">perf_store1000Items</button>
+        <button ng-click="perf_store10times1000()" class="btn btn-primary">perf_store10times1000</button>
+        <button ng-click="showAlert()" class="btn btn-primary">showAlert</button>
+
+    </div>
+</div>
