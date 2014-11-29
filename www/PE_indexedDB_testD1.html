@@ -49,11 +49,12 @@
             </h2>
 
             <div class="panel-body">
+
                 <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
                 <button ng-click="prepare()" class="btn btn-primary">prepare</button>
                 <button ng-class="{disabled: (!isPrepared || !databaseOpened)}"
-                        ng-click="startPerformanceTest_save_onlyOne()"
-                        class="btn btn-primary">startPerformanceTest_save_onlyOne
+                        ng-click="startPerformanceTest()"
+                        class="btn btn-primary">startPerformanceTest
                 </button>
             </div>
 

@@ -8,7 +8,11 @@ WebSQL_C2_500_IOS8Sim<-c(0,0,0,0,0,0,0,8,0,0);
 LS_C1_500_IOS8Sim<-c(3,3,3,3,3,3,3,2,2,2);
 FileAPI_C1_500_IOS8Sim<-c(1050, 994, 879,1159,942, 1062, 859,923, 950, 953);
 
-
+PE_IndexedDB_U1_500_ChromeMacbook<-c(48,48,49,59,50,50,47,48,51,49);
+PE_IndexedDB_C1_500_ChromeMacbook<-c(196,178,172,166,176,171,187,201,171,167);
+PE_IndexedDB_C2_500_ChromeMacbook<-c(518,433,396,486,493,489,474,479,431,515);
+PE_LocalStorage_C1_500_ChromeMacbook<-c(13,12,9,12,12,12,13,10,13,13);
+PE_LocalStorage_C2_500_ChromeMacbook<-c(173,167,153,152,163,161,156,152,166,160);
 
 IndexedDB_U1_100
 
