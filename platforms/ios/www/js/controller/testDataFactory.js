@@ -12,6 +12,17 @@ angular.module('testDataFactory', [])
 
             },
 
+            getRandomIndices: function () {
+
+                //Filehelper function is defined in custom.js
+                //TODO: Change before real tests are done!!!
+
+                var filename = 'res/data/Indices_random_500.json';
+                var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
+                return JSON.parse(contentsOfFileAsString);
+
+            },
+
             testDataForUpdateTests: function () {
                 var filename = 'res/data/data02_first500_idStartingAt0.json';
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);

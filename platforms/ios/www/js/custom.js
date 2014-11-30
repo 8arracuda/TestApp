@@ -138,6 +138,14 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
     });
 
 
+
+sdApp.directive('ngResultsForPerformanceTests', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/ResultsForPerformanceTests.html'
+    }
+});
+
 sdApp.directive('ngMediendatenImageSelector', function () {
     return {
         restrict: 'A',

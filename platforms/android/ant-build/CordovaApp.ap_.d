@@ -136,6 +136,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/css_backup/index.css \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/MediendatenImageSelector.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/MediendatenVideoSelector.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/ResultsForPerformanceTests.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StrDatenDatasetLoader.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/fonts/fontawesome-webfont.eot \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/fonts/fontawesome-webfont.svg \
@@ -324,6 +325,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data04.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data05.csv \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data05.json \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/Indices_random_500.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/sorting.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/ZufallszahlenBis500.csv \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data_old/data01-05.json \

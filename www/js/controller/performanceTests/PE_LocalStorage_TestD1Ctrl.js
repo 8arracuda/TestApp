@@ -120,6 +120,5 @@ sdApp.controller('PE_LocalStorage_TestD1Ctrl', function ($scope, $rootScope, tes
         $scope.isPrepared = true;
     };
 
-
 })
 ;

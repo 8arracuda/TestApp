@@ -1,5 +1,7 @@
 sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDataFactory) {
 
+    var data;
+
     var iteration = 1;
     const dbName = "PE_TestC2";
     const objStoreName = "PE_TestC2";
@@ -10,8 +12,8 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testC2a = 1000;
-    var amountOfData_testC2b = 5000;
+    var amountOfData_testC2a = 100;
+    var amountOfData_testC2b = 500;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -64,17 +66,19 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
-            var request = window.indexedDB.open(dbName, 1);
+            var request = window.indexedDB.open(dbName, 6);
 
             request.onerror = function (event) {
                 console.error('request.onerror');
                 alert("Database error: " + event.target.errorCode);
-                // Machen Sie etwas mit request.errorCode!
+
             };
             request.onsuccess = function (event) {
                 console.log('request.onsuccess (in openDatabase)');
                 $scope.db = request.result;
 
+
+                //TODO status light sounds not very professional....maybe change this....
                 //for updating the "status-light" on the openDatabase button
                 $scope.databaseOpened = true;
                 $scope.$apply();
@@ -82,20 +86,19 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
 
             request.onupgradeneeded = function (event) {
                 console.log('request.onupgradeneeded (in openDatabase)');
+                console.log('foo');
                 $scope.db = event.target.result;
 
 
                 //TODO Dieser Code funktioniert nicht! Change or delete!
                 //remove old objectStores if there were any
                 //if (event.oldVersion < 1) {
-                //    $scope.db.deleteObjectStore(objStoreName);
+                //$scope.db.deleteObjectStore(objStoreName);
                 //}
 
                 //create a new objectStore
-                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "key"});
+                var objectStore = $scope.db.createObjectStore(objStoreName, {});
 
-                //Column key is defined as index for the objectStore "einzelwerte"
-                objectStore.createIndex("key", "key", {unique: true});
 
             }
         }
@@ -103,22 +106,49 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
 
 
     $scope.prepare = function () {
+        loadData();
         clearObjectStore();
     };
 
+    function loadData() {
 
-    $scope.startPerformanceTest_save_onlyOne = function () {
+        data = testDataFactory.testData();
+
+    }
+
+    $scope.startPerformanceTest = function () {
 
         $scope.testInProgress = true;
 
         var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
+        console.dir(data);
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            var keyValuePair = {key: i, value: i};
-            objectStore.add(keyValuePair);
+            console.log('_' + data[i][0]);
+            //localStorage.setItem(data[i][0], JSON.stringify(data[i]));
+            //var keyValuePair = {key: i, value: i};
+
+
+            //var objectToStore = {id: data[i][0], value: data[i]};
+
+
+            var id = data[i][0];
+            objectStore.add(data[i][0], id+'_id');
+            objectStore.add(data[i][1], id+'_firstName');
+            objectStore.add(data[i][2], id+'_lastName');
+            objectStore.add(data[i][3], id+'_street');
+            objectStore.add(data[i][4], id+'_zipcode');
+            objectStore.add(data[i][5], id+'_city');
+            objectStore.add(data[i][6], id+'_email');
+            objectStore.add(data[i][7], id+'_randomNumber1');
+            objectStore.add(data[i][8], id+'_randomNumber2');
+
+
+
+            //objectStore.add(data[i], data[i][0]);
         }
 
         transaction.oncomplete = function (event) {

@@ -24,45 +24,29 @@
                 <b>{{ testName2}}:</b> {{ testDecription2 }}
             </div>
 
-            <button class="btn btn-sm btn-default" ng-show="selectedTestVariant!=''" ng-click="reset()">reset this page</button>
+            <button class="btn btn-sm btn-default" ng-show="selectedTestVariant!=''" ng-click="reset()">reset this
+                page
+            </button>
 
         </div>
 
         <div ng-show="selectedTestVariant!=''">
 
-        <h2 class="panel-title">
-            Start test
-        </h2>
+            <h2 class="panel-title">
+                Start test
+            </h2>
 
-        <div class="panel-body">
+            <div class="panel-body">
 
-            <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
-            <button ng-click="prepare()" class="btn btn-primary">prepare</button>
-            <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest()" class="btn btn-primary">startPerformanceTest</button>
+                <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
+                <button ng-click="prepare()" class="btn btn-primary">prepare</button>
+                <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest()" class="btn btn-primary">
+                    startPerformanceTest
+                </button>
 
-        </div>
-
-        <h2 class="panel-title">
-            Results
-        </h2>
-
-        <div class="panel-body">
-
-            {{ stringWithResults }}<br>
-
-            <br>
-
-            <div class="list-group">
-                <div ng-repeat="result in results track by $index">
-                    <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
-                        {{ result }}
-                    </li>
-                </div>
-                <li ng-show="testInProgress==true" class="list-group-item list-group-item-warning">
-                    Test in progress
-                </li>
             </div>
 
+            <div ng-results-for-performance-tests></div>
         </div>
     </div>
 </div>

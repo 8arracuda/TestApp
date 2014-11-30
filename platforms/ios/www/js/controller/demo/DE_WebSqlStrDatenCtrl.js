@@ -6,6 +6,7 @@ sdApp.controller('DE_WebSqlStrDatenCtrl', function ($scope, $rootScope) {
     const dbName = "strDaten";
     const dbVersion = "1.0";
     const tableName = "strDaten";
+    //TODO Change 3rd Parameter in openDatabase to databaseDescription
 
 
     $scope.initWebSQL = function () {

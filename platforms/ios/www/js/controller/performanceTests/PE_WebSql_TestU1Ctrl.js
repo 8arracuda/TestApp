@@ -2,6 +2,9 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
 
     var iteration = 1;
 
+    var dataForPreparation;
+    var dataForUpdate;
+
     const dbName = "PE_TestU1";
     const tableName = "PE_TestU1";
     const dbVersion = "1.0";
@@ -10,8 +13,8 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testU1a = 1000;
-    var amountOfData_testU1b = 5000;
+    var amountOfData_testU1a = 100;
+    var amountOfData_testU1b = 500;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -30,7 +33,7 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
 
         if (answer) {
-            iteration=1;
+            iteration = 1;
             $scope.isPrepared = false;
             $scope.results = [];
             $scope.selectedTestVariant = '';
@@ -53,7 +56,7 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
     function clearTable() {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM PE_TestU1", [], clearedTableCallback, $scope.errorHandlerWebSQL);
+            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
         });
 
         function clearedTableCallback(transaction, results) {
@@ -62,24 +65,24 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
             $scope.$apply();
 
         }
-
     };
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
         $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-        $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
+        $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
+        //TODO rename all CreateTableEinzelwerte / CreateTableMediendaten method names to createTable!
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
     };
 
-    $scope.createTableEinzelwerte = function (tx) {
-        console.log('createTableEinzelwerte start');
+    $scope.createTable = function (tx) {
+        console.log('createTable start');
 
         //Define the structure of the database
-        tx.executeSql('CREATE TABLE IF NOT EXISTS PE_TestU1(keyName TEXT PRIMARY KEY, value TEXT)');
-        console.log('createTableEinzelwerte executed');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id TEXT PRIMARY KEY, address TEXT)');
+        console.log('createTable executed');
     };
 
     $scope.errorHandlerWebSQL = function (e) {
@@ -89,11 +92,78 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
         console.log('errorHandlerWebSQL executed');
     };
 
-    $scope.prepare = function () {
-        clearTable();
+    //$scope.prepare = function () {
+    //    clearTable();
+    //
+    //};
+
+    function saveAddressData() {
+        $scope.db.transaction(function (tx) {
+                for (var i = 0; i < amountOfData; i++) {
+
+                    //data[i][0] + '' because otherwise id's like 1.0, 2.0 are stored
+                    tx.executeSql("INSERT INTO " + tableName + "(id, address) VALUES(?,?)", [dataForPreparation[i][0] + '', JSON.stringify(dataForPreparation[i])]);
+
+                }
+            }, function errorHandler(transaction, error) {
+                console.log("Error : " + transaction.message);
+                //console.log("Error : " + error.message);
+            }
+        );
+
+    }
+
+    $scope.startPerformanceTest = function () {
+
+        $scope.testInProgress = true;
+
+
+        var timeStart = new Date().getTime();
+        $scope.db.transaction(function (tx) {
+                for (var i = 0; i < amountOfData; i++) {
+
+                    tx.executeSql("UPDATE " + tableName + " SET address = ? WHERE id = ?", [JSON.stringify(dataForUpdate[i]), dataForUpdate[i][0] + '']);
+
+                }
+            }, function errorHandler(transaction, error) {
+                console.log("Error : " + transaction.message);
+                console.log("Error : " + error.message);
+            }
+        );
+
+        var timeEnd = new Date().getTime();
+
+        var timeDiff = timeEnd - timeStart;
+        $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+        $scope.testInProgress = false;
+        $scope.isPrepared = false;
+        iteration++;
+        $scope.$apply();
+
+        console.log(amountOfData + ' items updated');
 
     };
 
+
+    $scope.prepare = function () {
+
+        clearTable();
+        loadDataForPreparation();
+        console.dir(dataForPreparation);
+        saveAddressData();
+        loadDataForUpdate();
+        $scope.isPrepared = true;
+    };
+
+    function loadDataForPreparation() {
+
+        dataForPreparation = testDataFactory.testData();
+
+    }
+
+    function loadDataForUpdate() {
+        dataForUpdate = testDataFactory.testDataForUpdateTests();
+    }
 
 
 });

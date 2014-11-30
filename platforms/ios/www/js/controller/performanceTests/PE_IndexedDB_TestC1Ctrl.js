@@ -86,7 +86,6 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
 
             request.onupgradeneeded = function (event) {
                 console.log('request.onupgradeneeded (in openDatabase)');
-                console.log('foo');
                 $scope.db = event.target.result;
 
 

@@ -57,7 +57,8 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
                 var timeStart = new Date().getTime();
 
                 for (var i = 0; i < amountOfData; ++i) {
-                    localStorage.setItem(data[i][0], JSON.stringify(data[i]));
+                    var addressToSave = data[i];
+                    localStorage.setItem(addressToSave[0], JSON.stringify(addressToSave));
                 }
 
                 var timeEnd = new Date().getTime();
@@ -90,7 +91,6 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
 
             clearLocalStorage();
             loadData();
-
             $scope.isPrepared = true;
 
         };

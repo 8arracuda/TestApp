@@ -46,6 +46,13 @@ var app = {
 
 };
 
+////code copied from https://stackoverflow.com/questions/15266671/angular-ng-repeat-in-reverse
+//app.filter('reverse', function() {
+//    return function(items) {
+//        return items.slice().reverse();
+//    };
+//});
+
 //TODO For debugging in Chrome (remove at the end)
 //if (navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36' || navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36') {
 
