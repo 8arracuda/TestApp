@@ -139,6 +139,28 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
 
 
+
+sdApp.directive('ngPrepareSectionForTests', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/PrepareSectionForTests.html'
+    }
+});
+
+sdApp.directive('ngOpenDatabaseSectionWebsql', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/OpenDatabaseSectionWebsql.html'
+    }
+});
+
+sdApp.directive('ngOpenDatabaseSection', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/OpenDatabaseSection.html'
+    }
+});
+
 sdApp.directive('ngResultsForPerformanceTests', function () {
     return {
         restrict: 'A',
@@ -236,6 +258,10 @@ sdApp.config(function ($routeProvider) {
         when('/PL_localStorage', {
             templateUrl: 'PL_localStorage.html',
             controller: 'PL_LocalStorageCtrl'
+        }).
+        when('/PL_webSQL', {
+            templateUrl: 'PL_webSQL.html',
+            controller: 'PL_WebSqlCtrl'
         }).
         when('/PE_localStorage', {
             templateUrl: 'PE_localStorage.html',

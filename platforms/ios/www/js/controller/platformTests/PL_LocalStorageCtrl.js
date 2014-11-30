@@ -21,13 +21,13 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
     $scope.testDecription4 = 'foo4';
 
     $scope.testA_keyPrexix = "";
-    $scope.testA_value = "Z";
+    $scope.testA_value = "A";
     $scope.testB_keyPrexix = "";
-    $scope.testB_value = "ZZ";
+    $scope.testB_value = "ABCDEFGHIJ";
     $scope.testC_keyPrexix = "THISISAVERYVERYVERYVERYLONGKEY";
-    $scope.testC_value = "Z";
+    $scope.testC_value = "A";
     $scope.testD_keyPrexix = "THISISAVERYVERYVERYVERYLONGKEY";
-    $scope.testD_value = "ZZ";
+    $scope.testD_value = "ABCDEFGHIJ";
 
     var keyPrefix;
     var value;
@@ -35,6 +35,8 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
     $scope.prepare = function () {
         localStorage.clear();
         $scope.isPrepared = true;
+        $scope.currentIteration='';
+        $scope.$apply();
     };
 
 
@@ -89,81 +91,21 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
 
         }
 
-        //console.log('selected:' + $scope.keyPrefix + ' and ' + $scope.value);
         console.log('selected:' + keyPrefix + ' and ' + value);
-
-        //if (testVariant == 'TestC1a') {
-        //amountOfData = amountOfData_testC1a;
-        //} else {
-        //amountOfData = amountOfData_testC1b;
-        //}
-        //   console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
 
     };
 
-    //$scope.startPlatformTest = function () {
-    //
-    //    //var answer = confirm('This test will delete all entries in LocalStorage. Do you want to continue?');
-    //
-    //    //if (answer) {
-    //
-    //    $scope.testInProgress = true;
-    //    $scope.currentIteration = 0;
-    //    $scope.$apply();
-    //
-    //
-    //    //delay the execution for one second to allow the ui to update
-    //    setTimeout(function () {
-    //
-    //        try {
-    //
-    //
-    //            var interval = setInterval(function(){
-    //                $scope.currentIteration = i;
-    //                $scope.$apply();
-    //            }, 1000);
-    //
-    //            for (var i = 0; true; i++) {
-    //
-    //                localStorage.setItem(keyPrefix + i, value);
-    //
-    //            }
-    //
-    //            clearInterval(interval);
-    //
-    //        } catch (e) {
-    //            if (e.name === 'QuotaExceededError') {
-    //                console.log('error is QuotaExceededError');
-    //            }
-    //
-    //            //  alert(functionName + ': Quota Exceeded Error at:' + i);
-    //            //console.log(e);
-    //            //alert(e);
-    //            //console.log(JSON.stringify(e));
-    //            //alert(JSON.stringify(e));
-    //            $scope.result = 'exception at ' + i;
-    //            $scope.testInProgress = false;
-    //            $scope.$apply();
-    //
-    //        }
-    //
-    //        //removes everything that was saved, to avoid further slowdowns
-    //        localStorage.clear();
-    //        //}
-    //
-    //    }, 1000);
-    //
-    //
-    //};
 
     $scope.startPlatformTest = function () {
 
-        //function nextLoop(startIndex) {
+
+        //the function writes x-items to LocalStorage.
+        //after x-items the UI will be updated to show some progress for the user
+        //after that the function will continue
+        //It will continue until it reaches max quota.
+
         function nextLoop() {
 
-            //var startIndex = parseInt(start);
-            //var startIndex = parseInt(startIndex);
-            //console.log('called nextLoop(' + startIndex + ')');
             console.log('called nextLoop(' + $scope.currentIteration + ')');
             var limit = 100000;
             try {
@@ -172,19 +114,13 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
                 var i = $scope.currentIteration;
                 for (; i < ($scope.currentIteration + limit); i++) {
 
-                    localStorage.setItem(keyPrefix + '' + i, value);
+                    localStorage.setItem(keyPrefix + '' + fillWithZeroes(10,i), value);
 
-                    if (i==(parseInt($scope.currentIteration)+limit-1)) {
-                        console.log('i:' + i);
-                    }
                 }
-                //console.log('startIndex:' + startIndex);
+
                 $scope.currentIteration = (parseInt($scope.currentIteration) + limit);
-                console.log('currentIteration (after loop):' + $scope.currentIteration);
-                //console.log('currentIteration:' + $scope.currentIteration);
 
-                //$scope.currentIteration = parseInt($scope.currentIteration) + parseInt(limit);
-
+                //without the timeouts the $apply function is not working for updating the UI
                 setTimeout(
                     function () {
                         //to update the UI - gives the user an update about the progress as the test progresses
@@ -192,9 +128,6 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
                         setTimeout(
                             nextLoop(parseInt($scope.currentIteration)), 500);
                     }, 1000);
-
-
-                //nextLoop(parseInt($scope.currentIteration));
 
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {
@@ -208,165 +141,31 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
                 $scope.testInProgress = false;
                 $scope.$apply();
 
-
             }
 
-
         };
+
+        //start the test
         $scope.currentIteration = 0;
-        //var start = 0;
-        //nextLoop(parseInt(start));
         nextLoop();
-
-        //while(true) {
-        //    i++;
-        //
-        //
-        //    if (i%10000==0) {
-        //        $scope.currentIteration = i;
-        //        $scope.$apply();
-        //    }
-        //    if (i>10000000) {
-        //        break;
-        //    }
-        //}
-        //alert('finished');
-
-
-        //var answer = confirm('This test will delete all entries in LocalStorage. Do you want to continue?');
-
-        //if (answer) {
-
-        /* $scope.testInProgress = true;
-         $scope.currentIteration = 0;
-         $scope.$apply();
-         var i;
-
-
-         $scope.currentIteration = 0;
-         var interval = setInterval(function () {
-         // loopTestLimit($scope.currentIteration);
-         $scope.currentIteration = $scope.currentIteration + 50000;
-         $scope.$apply();
-
-
-         //if ($scope.currentIteration > 400000) {
-         //    clearInterval(interval);
-         //}
-
-         }, 2000);
-
-         try {
-
-
-         for (var i = startIndex; iterations; i++) {
-         localStorage.setItem(keyPrefix + startIndex, value);
-         console.log('1:' + keyPrefix + startIndex + ' 2:' + value);
-         if (i = 1000) {
-         break;
-         }
-         }
-
-         } catch (e) {
-         if (e.name === 'QuotaExceededError') {
-         console.log('error is QuotaExceededError');
-         clearInterval(interval);
-         }
-
-         $scope.result = 'exception at ' + $scope.currentIteration;
-         $scope.testInProgress = false;
-         $scope.$apply();
-
-         }*/
-
-
-        //delay the execution for one second to allow the ui to update
-        //setTimeout(function () {
-
-        //function loopTestLimit(startIndex, iterations) {
-        //    for (var i = startIndex; iterations; i++) {
-        //        localStorage.setItem(keyPrefix + startIndex, value);
-        //        console.log('1:' + keyPrefix + startIndex + ' 2:' + value);
-        //        if (i = 1000) {
-        //            break;
-        //        }
-        //    }
-        //
-        //}
-
-
-        //$scope.currentIteration = 0;
-        //try {
-        //
-        //    var interval = setInterval(function () {
-        //        loopTestLimit($scope.currentIteration);
-        //        $scope.currentIteration = $scope.currentIteration + 50000;
-        //        $scope.$apply();
-        //
-        //
-        //
-        //        //if ($scope.currentIteration > 400000) {
-        //        //    clearInterval(interval);
-        //        //}
-        //
-        //    }, 2000);
-        //
-        //} catch (e) {
-        //    if (e.name === 'QuotaExceededError') {
-        //        console.log('error is QuotaExceededError');
-        //    }
-        //
-        //    //  alert(functionName + ': Quota Exceeded Error at:' + i);
-        //    //console.log(e);
-        //    //alert(e);
-        //    //console.log(JSON.stringify(e));
-        //    //alert(JSON.stringify(e));
-        //    $scope.result = 'exception at ' + $scope.currentIteration;
-        //    $scope.testInProgress = false;
-        //    $scope.$apply();
-        //
-        //}
-
-        //removes everything that was saved, to avoid further slowdowns
-        //localStorage.clear();
-        //}
-
-        //}, 1000
-        //)
-        ;
-
 
     };
 
-//$scope.testLimit1 = function () {
-//    //Key-Prefix: ""
-//    //Value: ZZ
-//    saveKeys("testLimit1", "", "Z");
-//
-//
-//};
-//
-//$scope.testLimit2 = function () {
-//    //Key-Prefix: ""
-//    //Value: ZZ
-//    saveKeys("testLimit2", "", "ZZ");
-//
-//};
-//
-//$scope.testLimit3 = function () {
-//    //Key-Prefix: "THISISAVERYVERYVERYVERYLONGKEY"
-//    //Value: Z
-//    saveKeys("testLimit3", "THISISAVERYVERYVERYVERYLONGKEY", "Z");
-//
-//};
-//
-//$scope.testLimit4 = function () {
-//    //Key-Prefix: "THISISAVERYVERYVERYVERYLONGKEY"
-//    //Value: ZZ
-//    saveKeys("testLimit4", "THISISAVERYVERYVERYVERYLONGKEY", "ZZ");
-//
-//};
+    function fillWithZeroes(fillToLength, number) {
 
+        var len = number.toString().length;
+
+        var number_new = '';
+        if (len < fillToLength) {
+            var zeroesToAdd = fillToLength - len;
+
+            for (var k = 0; k < zeroesToAdd; k++) {
+                number_new = '0' + number_new;
+            }
+        }
+        return number_new + "" + number;
+
+    };
 
 })
 ;

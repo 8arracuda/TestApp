@@ -237,6 +237,10 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'PL_localStorage.html',
             controller: 'PL_LocalStorageCtrl'
         }).
+        when('/PL_webSQL', {
+            templateUrl: 'PL_webSQL.html',
+            controller: 'PL_WebSqlCtrl'
+        }).
         when('/PE_localStorage', {
             templateUrl: 'PE_localStorage.html',
             controller: 'PE_LocalStorageCtrl'

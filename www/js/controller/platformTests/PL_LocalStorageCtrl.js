@@ -21,13 +21,13 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
     $scope.testDecription4 = 'foo4';
 
     $scope.testA_keyPrexix = "";
-    $scope.testA_value = "Z";
+    $scope.testA_value = "A";
     $scope.testB_keyPrexix = "";
-    $scope.testB_value = "ZZ";
+    $scope.testB_value = "ABCDEFGHIJ";
     $scope.testC_keyPrexix = "THISISAVERYVERYVERYVERYLONGKEY";
-    $scope.testC_value = "Z";
+    $scope.testC_value = "A";
     $scope.testD_keyPrexix = "THISISAVERYVERYVERYVERYLONGKEY";
-    $scope.testD_value = "ZZ";
+    $scope.testD_value = "ABCDEFGHIJ";
 
     var keyPrefix;
     var value;
@@ -35,6 +35,8 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
     $scope.prepare = function () {
         localStorage.clear();
         $scope.isPrepared = true;
+        $scope.currentIteration='';
+        $scope.$apply();
     };
 
 
@@ -112,10 +114,8 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
                 var i = $scope.currentIteration;
                 for (; i < ($scope.currentIteration + limit); i++) {
 
-                    localStorage.setItem(keyPrefix + '' + i, value);
+                    localStorage.setItem(keyPrefix + '' + fillWithZeroes(10,i), value);
 
-                    if (i==(parseInt($scope.currentIteration)+limit-1)) {
-                    }
                 }
 
                 $scope.currentIteration = (parseInt($scope.currentIteration) + limit);
@@ -148,6 +148,22 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
         //start the test
         $scope.currentIteration = 0;
         nextLoop();
+
+    };
+
+    function fillWithZeroes(fillToLength, number) {
+
+        var len = number.toString().length;
+
+        var number_new = '';
+        if (len < fillToLength) {
+            var zeroesToAdd = fillToLength - len;
+
+            for (var k = 0; k < zeroesToAdd; k++) {
+                number_new = '0' + number_new;
+            }
+        }
+        return number_new + "" + number;
 
     };
 

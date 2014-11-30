@@ -80,6 +80,11 @@ sdApp.controller('SidebarController', function ($scope, techSupportFactory) {
             labelText: 'LocalStorage',
             linkURL: 'PL_localStorage',
             support: ts.localStorage
+        },
+        {
+            labelText: 'WebSQL',
+            linkURL: 'PL_webSQL',
+            support: ts.webSQL
         }
     ];
 
