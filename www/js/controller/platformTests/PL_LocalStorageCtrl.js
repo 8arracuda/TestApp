@@ -35,7 +35,7 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
     $scope.prepare = function () {
         localStorage.clear();
         $scope.isPrepared = true;
-        $scope.currentIteration='';
+        $scope.currentIteration = '';
         $scope.$apply();
     };
 
@@ -114,7 +114,7 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
                 var i = $scope.currentIteration;
                 for (; i < ($scope.currentIteration + limit); i++) {
 
-                    localStorage.setItem(keyPrefix + '' + fillWithZeroes(10,i), value);
+                    localStorage.setItem(keyPrefix + '' + fillWithZeroes(10, i), value);
 
                 }
 
@@ -151,6 +151,7 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
 
     };
 
+    //TODO extract this to a factory or service
     function fillWithZeroes(fillToLength, number) {
 
         var len = number.toString().length;
