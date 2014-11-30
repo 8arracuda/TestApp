@@ -6,13 +6,38 @@ sdApp.controller('OverviewCtrl', function ($scope, techSupportFactory) {
     $scope.techniques = techSupportFactory.techSupport();
 
 
+    $scope.generateRandomNumbersArray = function () {
+
+        var resultsArray = [];
+
+        var limit = 500;
+        var i = 0;
+        var resultString = '';
+        while (resultsArray.length < limit) {
+            var randomNumber = Math.round(Math.random() * limit);
+            i++;
+            if (resultsArray.indexOf(randomNumber) == -1) {
+                resultsArray.push(randomNumber);
+                resultString = resultString + ',' + randomNumber;
+            }
+        }
+
+        console.log(resultString);
+
+        //R code to confirm that the function works correct
+        //foo<-c(    --numbers here---     )
+        //foo2<-sort(foo, decreasing = FALSE)
+        //barplot(foo2);
+
+    };
+
     //TODO remove at the end - Only a method to generate data - has nothing to do with the tests
     $scope.generate = function () {
 
         resultString = '"';
         for (var i = 0; i < 5000; i++) {
 
-            resultString = resultString + ',"' +$scope.fillWithZeroes(40, i) + '"';
+            resultString = resultString + ',"' + $scope.fillWithZeroes(40, i) + '"';
             //resultString = resultString + ',"' + i + '"';
 
         }

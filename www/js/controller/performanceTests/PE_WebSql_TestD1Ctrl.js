@@ -70,7 +70,6 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
         $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
-        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
         //TODO rename all CreateTableEinzelwerte / CreateTableMediendaten method names to createTable!
         console.log('initWebSQL executed');
@@ -92,11 +91,6 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
         console.log('errorHandlerWebSQL executed');
     };
 
-    //$scope.prepare = function () {
-    //    clearTable();
-    //
-    //};
-
     function saveAddressData() {
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
@@ -116,7 +110,6 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
     $scope.startPerformanceTest = function () {
 
         $scope.testInProgress = true;
-
 
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
@@ -149,7 +142,6 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
 
         clearTable();
         loadDataForPreparation();
-        console.dir(dataForPreparation);
         saveAddressData();
         loadDataForUpdate();
         $scope.isPrepared = true;
