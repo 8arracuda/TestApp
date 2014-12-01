@@ -1,4 +1,4 @@
-sdApp.controller('PE_FileAPI_TestD1Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_FileAPI_TestD1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
 
     var iteration = 1;
 
@@ -9,8 +9,8 @@ sdApp.controller('PE_FileAPI_TestD1Ctrl', function ($scope, $rootScope, testData
     $scope.isPrepared = true;
 
     var amountOfData;
-    var amountOfData_testD1a = 1000;
-    var amountOfData_testD1b = 5000;
+    var amountOfData_testD1a = PE_ParameterFactory.amountOfData_testD1a;
+    var amountOfData_testD1b = PE_ParameterFactory.amountOfData_testD1b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';

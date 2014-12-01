@@ -1,4 +1,4 @@
-var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "testDataFactory", "ngAnimate"]);
+var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "testDataFactory", "PE_ParameterFactory", "ngAnimate"]);
 
 //copied from
 // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/

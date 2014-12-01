@@ -10,8 +10,8 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testU1a = 100;
-    var amountOfData_testU1b = 500;
+    var amountOfData_testU1a = PE_ParameterFactory.amountOfData_testU1a;
+    var amountOfData_testU1b = PE_ParameterFactory.amountOfData_testU1b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Clears LocalStorage and saves a predefined set of addresses.';

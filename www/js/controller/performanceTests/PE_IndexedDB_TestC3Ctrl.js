@@ -8,12 +8,9 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
     $scope.testInProgress = false;
     $scope.isPrepared = false;
 
-    //TODO Change for real tests
     var amountOfData;
     var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a;
     var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b;
-    //var amountOfData_testC3b = PE_Para
-    //meterFactory.amountOfData_testC3b();
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -42,7 +39,7 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
 
         if (answer) {
-            iteration=1;
+            iteration = 1;
             $scope.isPrepared = false;
             $scope.results = [];
             $scope.selectedTestVariant = '';
@@ -50,10 +47,10 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
 
     };
 
-    $scope.closeDatabase = function() {
+    $scope.closeDatabase = function () {
         $scope.db.close();
         console.log('database closed');
-        $scope.isPrepared=false;
+        $scope.isPrepared = false;
         $scope.databaseOpened = null;
         $scope.$apply();
     };
@@ -66,7 +63,7 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
-            var request = window.indexedDB.open(dbName, 1);
+            var request = window.indexedDB.open(dbName, 2);
 
             request.onerror = function (event) {
                 console.error('request.onerror');
@@ -94,10 +91,11 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
                 //}
 
                 //create a new objectStore
-                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "key"});
+                //var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "key"});
+                var objectStore = $scope.db.createObjectStore(objStoreName, {});
 
                 //Column key is defined as index for the objectStore "einzelwerte"
-                objectStore.createIndex("key", "key", {unique: true});
+                //objectStore.createIndex("key", "key", {unique: true});
 
             }
         }
@@ -109,26 +107,35 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
     };
 
 
-    $scope.startPerformanceTest_save_onlyOne = function () {
+    $scope.startPerformanceTest = function () {
+
+        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
+
+        var timeDiffSum = 0;
 
         $scope.testInProgress = true;
 
         var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
+
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            var keyValuePair = {key: i, value: i};
-            objectStore.add(keyValuePair);
+
+            var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+            var timeStart = new Date().getTime();
+            objectStore.add(datasetString, 'dataset_' + i);
+            timeDiffSum = +(new Date().getTime() - timeStart);
+
         }
 
         transaction.oncomplete = function (event) {
-            var timeEnd = new Date().getTime();
+            //var timeEnd = new Date().getTime();
 
-            var timeDiff = timeEnd - timeStart;
+            //var timeDiff = timeEnd - timeStart;
 
-            $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+            $scope.results.push('iteration ' + iteration + ': ' + timeDiffSum + ' ms');
             iteration++;
             $scope.testInProgress = false;
             $scope.isPrepared = false;
@@ -140,7 +147,41 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
             console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
             $scope.testInProgress = false;
         };
+
     };
+
+    //$scope.startPerformanceTest_save_onlyOne = function () {
+    //
+    //    $scope.testInProgress = true;
+    //
+    //    var timeStart = new Date().getTime();
+    //    var transaction = $scope.db.transaction([objStoreName], "readwrite");
+    //
+    //    var objectStore = transaction.objectStore(objStoreName);
+    //
+    //    for (var i = 0; i < amountOfData; i++) {
+    //        var keyValuePair = {key: i, value: i};
+    //        objectStore.add(keyValuePair);
+    //    }
+    //
+    //    transaction.oncomplete = function (event) {
+    //        var timeEnd = new Date().getTime();
+    //
+    //        var timeDiff = timeEnd - timeStart;
+    //
+    //        $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+    //        iteration++;
+    //        $scope.testInProgress = false;
+    //        $scope.isPrepared = false;
+    //        $scope.$apply();
+    //
+    //    };
+    //
+    //    transaction.onerror = function (event) {
+    //        console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
+    //        $scope.testInProgress = false;
+    //    };
+    //};
 
     function clearObjectStore() {
 

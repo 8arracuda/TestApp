@@ -1,4 +1,4 @@
-sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
 
     var iteration = 1;
 
@@ -7,16 +7,16 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testC3a = 4;
-    var amountOfData_testC3b = 12;
+    var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a();
+    var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b();
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Explain what the prepare function does...';
+    $scope.preparationText = 'Prepare clears all data in LocalStorage.';
     $scope.mainTestDecription = 'Saving long strings (dataset strings)';
     $scope.testName1 = 'TestC3a';
-    $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' items';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' times 5,000 addresses.';
     $scope.testName2 = 'TestC3b';
-    $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' items';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' times 5,000 addresses.';
 
 
     $scope.selectTestVariant = function (testVariant) {

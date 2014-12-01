@@ -29,8 +29,8 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testR2a = 100;
-    var amountOfData_testR2b = 500;
+    var amountOfData_testR2a = PE_ParameterFactory.amountOfData_testR2a;
+    var amountOfData_testR2b = PE_ParameterFactory.amountOfData_testR2b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';

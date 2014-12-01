@@ -10,8 +10,8 @@ sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDa
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testR3a = 1000;
-    var amountOfData_testR3b = 5000;
+    var amountOfData_testR3a = PE_ParameterFactory.amountOfData_testR3a;
+    var amountOfData_testR3b = PE_ParameterFactory.amountOfData_testR3b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
