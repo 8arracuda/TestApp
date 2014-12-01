@@ -123,7 +123,7 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
                                 default:
                                     filename = 'address' + id + '_randomNumber2.txt';
                                     dataToWrite = data[i][8];
-                                    //TODO dataToWrite is not correctly written!
+                                    //TODO dataToWrite is not correctly written!!
 
                             }
                             //console.log('filename: ' + filename);
