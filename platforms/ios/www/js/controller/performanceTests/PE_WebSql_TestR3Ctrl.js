@@ -1,4 +1,4 @@
-sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
     //var iteration = 1;
     //
     //const dbName = "PE_TestR3";
@@ -29,8 +29,8 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testR3a = 100;
-    var amountOfData_testR3b = 500;
+    var amountOfData_testR3a = PE_ParameterFactory.amountOfData_testR3a;
+    var amountOfData_testR3b = PE_ParameterFactory.amountOfData_testR3b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';

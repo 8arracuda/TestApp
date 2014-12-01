@@ -8,7 +8,6 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
     $scope.testInProgress = false;
     $scope.isPrepared = false;
 
-    //TODO Change for real tests
     var amountOfData;
     var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a;
     var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b;
@@ -119,17 +118,15 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
         var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
-        //console.dir(data);
+
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            //console.log('_' + data[i][0]);
 
-            //var objectToStore = {id: data[i][0], value: data[i]};
             var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
             var timeStart = new Date().getTime();
             objectStore.add(datasetString, 'dataset_' + i);
-            timeDiffSum = +new Date().getTime() - timeStart;
+            timeDiffSum = +(new Date().getTime() - timeStart);
 
         }
 

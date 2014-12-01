@@ -132,7 +132,6 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
 
     $scope.createTable = function (tx) {
         console.log('createTable start');
-        //tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT, randomNumber1 INTEGER, randomNumbeR1 INTEGER)');
         tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id INTEGER PRIMARY KEY, address TEXT)');
         console.log('createTable executed');
     };
@@ -159,7 +158,7 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
         var timeStart = new Date().getTime();
         var onSuccessCounter = 0;
 
-        $scope.keyLoaded = $scope.keyToLoad;
+        //$scope.keyLoaded = $scope.keyToLoad;
 
         $scope.db.transaction(function (tx) {
 

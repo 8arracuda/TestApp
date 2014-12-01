@@ -7,8 +7,8 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a();
-    var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b();
+    var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a;
+    var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Prepare clears all data in LocalStorage.';

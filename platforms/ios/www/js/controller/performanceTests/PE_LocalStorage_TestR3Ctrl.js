@@ -1,4 +1,4 @@
-sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
 
     var data;
 
@@ -10,8 +10,8 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testR3a = 1000;
-    var amountOfData_testR3b = 5000;
+    var amountOfData_testR3a = PE_ParameterFactory.amountOfData_testR3a;
+    var amountOfData_testR3b = PE_ParameterFactory.amountOfData_testR3b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -52,22 +52,11 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
         $scope.testInProgress = true;
         $scope.$apply();
 
-        var addressIdsToLoad = testDataFactory.getRandomIndices();
-
-        if (addressIdsToLoad.length<amountOfData) {
-            alert('Warning: Too few address Ids defined. The test will produce wrong results!');
-        }
-
         var timeStart = new Date().getTime();
-        for (var i = 0; i < addressIdsToLoad.length; i++) {
+        for (var i = 0; i < amountOfData; i++) {
 
-            localStorage.getItem('address' + addressIdsToLoad[i]);
-
-            //output to verify the results
-            //if (i < 10) {
-            //    console.log(localStorage.getItem('address' + addressIdsToLoad[i]));
-            //}
-
+            localStorage.getItem('dataset_' + i);
+            
         }
 
         var timeEnd = new Date().getTime();
@@ -81,48 +70,35 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
 
     };
 
-    function loadData() {
-
-        data = testDataFactory.testData();
-
-    };
-
     function saveAddressData() {
 
-        if (data == null) {
-            alert('error: no data loaded');
-            console.error('no data loaded (in saveAddressData)');
-        } else {
+        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
 
-            //Same logic as in DE_LocalStorage_strDaten Test-Method 2
+        for (var i = 0; i < amountOfData; i++) {
 
-            for (var i = 0; i < data.length; i++) {
+            var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
 
-                //Set the Id as key
-                //Address with key 42 is saved with key -address42-
-                localStorage.setItem('address' + data[i][0], JSON.stringify(data[i]));
-
+            try {
+                localStorage.setItem('dataset_' + i, datasetString);
+                console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
+            } catch (e) {
+                if (e.name === 'QuotaExceededError') {
+                    alert('quota exceeded when writing dataset_' + i + '. The results for this test cannot be used!');
+                    break;
+                }
             }
-
-            localStorage.setItem('numberOfAddresses', data.length);
-
-            console.log('saved ' + data.length + ' addresses.');
-
         }
-
     };
 
     function clearLocalStorage() {
 
         localStorage.clear();
 
-
     }
 
     $scope.prepare = function () {
 
         clearLocalStorage();
-        loadData();
         saveAddressData();
         $scope.isPrepared = true;
 
