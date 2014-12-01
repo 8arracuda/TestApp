@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
 
     var iteration = 1;
     const dbName = "PE_TestC3";
@@ -10,8 +10,10 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testC3a = 1000;
-    var amountOfData_testC3b = 5000;
+    var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a;
+    var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b;
+    //var amountOfData_testC3b = PE_Para
+    //meterFactory.amountOfData_testC3b();
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';

@@ -23,6 +23,23 @@ angular.module('testDataFactory', [])
 
             },
 
+            getArrayWithDatasetFilenames: function() {
+                return [
+                    'res/data/data_5000_01.json',
+                    'res/data/data_5000_02.json',
+                    'res/data/data_5000_03.json',
+                    'res/data/data_5000_04.json',
+                    'res/data/data_5000_05.json',
+                    'res/data/data_5000_06.json',
+                    'res/data/data_5000_07.json',
+                    'res/data/data_5000_08.json',
+                    'res/data/data_5000_09.json',
+                    'res/data/data_5000_10.json',
+                    'res/data/data_5000_11.json',
+                    'res/data/data_5000_12.json'
+                ];
+            },
+
             testDataForUpdateTests: function () {
                 var filename = 'res/data/data02_first500_idStartingAt0.json';
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);

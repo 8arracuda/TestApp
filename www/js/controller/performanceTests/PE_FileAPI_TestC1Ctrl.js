@@ -10,8 +10,8 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testC1a = 100;
-    var amountOfData_testC1b = 500;
+    var amountOfData_testC1a = PE_ParameterFactory.amountOfData_testC1a();
+    var amountOfData_testC1b = PE_ParameterFactory.amountOfData_testC1b();
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';

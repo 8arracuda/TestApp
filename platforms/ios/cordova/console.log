@@ -13844,3 +13844,18 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-12-01 11:01:59.979 Test-App[26825:215778] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
 2014-12-01 11:02:16.880 Test-App[26825:215778] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
 2014-12-01 11:02:43.117 Test-App[26825:215778] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2014-12-01 12:24:22.784 Test-App[31390:247939] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/22F070C7-B518-40A1-AFF3-89FFA0A138A4/Library/Cookies/Cookies.binarycookies
+2014-12-01 12:24:24.552 Test-App[31390:247939] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-01 12:24:24.553 Test-App[31390:247939] Multi-tasking -> Device: YES, App: YES
+2014-12-01 12:24:24.559 Test-App[31390:247939] Unlimited access to network resources
+2014-12-01 12:24:24.593 Test-App[31390:247939] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-01 12:24:24.930 Test-App[31390:247939] [CDVTimer][file] 72.646976ms
+2014-12-01 12:24:24.930 Test-App[31390:247939] [CDVTimer][TotalPluginStartup] 72.981000ms
+2014-12-01 12:24:25.642 Test-App[31390:247939] Resetting plugins due to page load.
+2014-12-01 12:24:26.720 Test-App[31390:247939] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/DBEFFBC3-5734-4144-9F56-15205400E320/Test-App.app/www/index.html

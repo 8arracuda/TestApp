@@ -7,8 +7,8 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testC3a = 1000;
-    var amountOfData_testC3b = 5000;
+    var amountOfData_testC3a = 4;
+    var amountOfData_testC3b = 12;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -51,42 +51,33 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
 
     $scope.startPerformanceTest = function () {
 
-        //var datasetFiles = [
-        //    'res/data/data01.json',
-        //    'res/data/data02.json',
-        //    'res/data/data03.json',
-        //    'res/data/data05.json'
-        //];
-
-        var datasetFiles = [
-            'res/data/data_5000_01.json',
-            'res/data/data_5000_02.json',
-            'res/data/data_5000_03.json',
-            'res/data/data_5000_04.json',
-            'res/data/data_5000_05.json',
-            'res/data/data_5000_06.json',
-            'res/data/data_5000_07.json',
-            'res/data/data_5000_08.json',
-            'res/data/data_5000_09.json',
-            'res/data/data_5000_10.json',
-            'res/data/data_5000_11.json',
-            'res/data/data_5000_12.json'
-        ];
+        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
 
         var timeDiffSum = 0;
 
-        for (var i = 0; i < 5; i++) {
+        //The 5th dataset can't be saved on Safari (iOS 8) due to exceeded quota
+        //Error: QuotaExceededError: DOM Exception 22
+        //setItem@[native code]
+        for (var i = 0; i < amountOfData; i++) {
 
             var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
 
             var timeStart = new Date().getTime();
-            localStorage.setItem('dataset_' + i, datasetString);
+            try {
+                localStorage.setItem('dataset_' + i, datasetString);
 
-            //The time taken is calculated step by step inside the loop
-            //because the fetching of the string from the files is also taking
-            //a long time. This time is not relevant when looking at the storage-techniques!
-            timeDiffSum = +new Date().getTime() - timeStart;
-            console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
+
+                //The time taken is calculated step by step inside the loop
+                //because the fetching of the string from the files is also taking
+                //a long time. This time is not relevant when looking at the storage-techniques!
+                timeDiffSum = +new Date().getTime() - timeStart;
+                console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
+            } catch (e) {
+                if (e.name === 'QuotaExceededError') {
+                    alert('quota exceeded when writing dataset_' + i + '. The results for this test cannot be used!');
+                    break;
+                }
+            }
 
         }
 

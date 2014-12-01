@@ -9,8 +9,8 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testC3a = 100;
-    var amountOfData_testC3b = 500;
+    var amountOfData_testC3a = 4;
+    var amountOfData_testC3b = 12;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -69,22 +69,17 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
 
     };
 
-    $scope.startPerformanceTest = function () {
-        startPerformanceTest_save_onlyOne();
-    };
-
-    function startPerformanceTest_save_onlyOne() {
+    $scope.startPerformanceTest = function() {
 
         $scope.testInProgress = true;
 
+        var datasetFiles =  testDataFactory.getArrayWithDatasetFilenames();
 
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-                    //console.log('saving ' + i + ' for key ' + i);
-                    //tx.executeSql("INSERT INTO PE_Test1(keyName, value) VALUES(?,?)", [i, i]);
-                    tx.executeSql("INSERT INTO PE_TestC3(keyName, value) VALUES(?,?)", ['' + i, '' + i]);
-                    //console.log('saved ' + i + ' for key ' + i);
+                    var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+                    tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, datasetString]);
 
                 }
             }, function errorHandler(transaction, error) {
@@ -102,26 +97,21 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
         iteration++;
         $scope.$apply();
 
-        console.log(amountOfData + ' items added');
-
-
     };
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
         $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
-        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-        $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
+        $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
     };
 
-    $scope.createTableEinzelwerte = function (tx) {
-        console.log('createTableEinzelwerte start');
-
+    $scope.createTable = function (tx) {
+        console.log('createTable start');
         //Define the structure of the database
-        tx.executeSql('CREATE TABLE IF NOT EXISTS PE_TestC3(keyName TEXT PRIMARY KEY, value TEXT)');
-        console.log('createTableEinzelwerte executed');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(keyName TEXT PRIMARY KEY, value TEXT)');
+        console.log('createTable executed');
     };
 
     $scope.errorHandlerWebSQL = function (e) {
