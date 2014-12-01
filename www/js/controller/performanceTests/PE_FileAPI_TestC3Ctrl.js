@@ -10,11 +10,8 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
     $scope.isPrepared = false;
 
     var amountOfData;
-    //var amountOfData_testC3a = 4;
-    //var amountOfData_testC3b = 12;
-
-    var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a();
-    var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b();
+    var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a;
+    var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b;
 
 
     $scope.selectedTestVariant = '';
@@ -71,11 +68,17 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
         $scope.inProgress = true;
 
+
+        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
+
         var timeStart = new Date().getTime();
+        //TODO Try changing the size of it and see what happens...
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
                 var i = 0;
+
+                var timeDiffSum=0;
 
                 $scope.testInProgress = true;
                 $scope.$apply();
@@ -96,6 +99,7 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
                                     //after one file has been successfully written the next file can be written
                                     i++;
+                                    timeDiffSum = +new Date().getTime() - timeStart;
                                     writeFile();
                                 };
 
@@ -106,7 +110,9 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
                                 //overwrites the file from the beginning
                                 fileWriter.seek(0);
-                                fileWriter.write(JSON.stringify(data[i]));
+
+                                var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+                                fileWriter.write(datasetString);
                                 //fileWriter.write('' + k);
 
                             }, errorHandler);
@@ -115,11 +121,11 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
                     } else {
                         console.error('end of loop');
 
-                        var timeEnd = new Date().getTime();
+                        //var timeEnd = new Date().getTime();
 
-                        var timeDiff = timeEnd - timeStart;
+                        //var timeDiff = timeEnd - timeStart;
 
-                        $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+                        $scope.results.push('iteration ' + iteration + ': ' + timeDiffSum + ' ms');
                         $scope.testInProgress = false;
                         $scope.isPrepared = false;
                         $scope.$apply();
