@@ -85,6 +85,21 @@ sdApp.controller('SidebarController', function ($scope, techSupportFactory) {
             labelText: 'WebSQL',
             linkURL: 'PL_webSQL',
             support: ts.webSQL
+        },
+        {
+            labelText: 'IndexedDB',
+            linkURL: 'PL_indexedDB',
+            support: ts.indexedDB
+        },
+        {
+            labelText: 'SQLite Plugin',
+            linkURL: 'PL_PGSQLite',
+            support: ts.sqlitePlugin
+        },
+        {
+            labelText: 'File API',
+            linkURL: 'PL_fileAPI',
+            support: ts.fileAPI_fullSupport
         }
     ];
 

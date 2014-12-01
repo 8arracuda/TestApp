@@ -164,7 +164,7 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
         //localStorage.setItem(keyPrefix + '' + fillWithZeroes(10,i), value);
         $scope.loop = 0;
 
-        var i=0;
+        var i = 0;
 
         function nextLoop() {
             var limit = 50000;
@@ -183,32 +183,34 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
 
                         $scope.currentIteration = (parseInt($scope.currentIteration) + limit);
 
-                    }, function() {}
-                    //function errorHandler(transaction, error) {
-                    //
-                    //
-                    //    if (transaction.code == transaction.QUOTA_ERR) {
-                    //        alert('quota error at ' + i);
-                    //    }
-                    //    alert('some error...');
-                    //    console.log('is there a .code that contains QUOTA_ERR?');
-                    //    console.dir(transaction);
-                    //    console.log("Error : " + transaction.message);
-                    //    console.log("Error : " + error.message);
-                    //}
-                    , function onSuccessHandler(transaction) {
+                    },
+                    function errorHandler(transaction, error) {
 
-                        if (transaction) {
-                            if (transaction.code == transaction.QUOTA_ERR) {
-                                alert('quota error at ' + i);
-                            }
-                            }
+
+                        if (transaction.code == transaction.QUOTA_ERR) {
+                            alert('quota error at ' + i);
+                        }
+                        //alert('some error...');
+                        console.log('is there a .code that contains QUOTA_ERR?');
+                        console.dir(transaction);
+                        console.log(JSON.stringify(transaction));
+                        console.log("Error : " + transaction.message);
+                        //console.log("Error : " + error.message);
+                    }
+                    , function onSuccessHandler() {
+
+                        //if (transaction) {
+                        //    if (transaction.code == transaction.QUOTA_ERR) {
+                        //        alert('quota error at ' + i);
+                        //    }
+                        //    alert(JSON.stringify(transaction));
+                        //}
                         $scope.loop = $scope.loop + 1;
                         //if ($scope.loop < 10) {
                         //  nextLoop();
                         //}
 
-                        if (i%limit==0) {
+                        if (i % limit == 0) {
                             console.log('i+' + i);
                             setTimeout(
                                 function () {
@@ -261,7 +263,7 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
-        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
+        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 1 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');

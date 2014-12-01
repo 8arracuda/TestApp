@@ -19,7 +19,6 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' items';
 
 
-
     $scope.selectTestVariant = function (testVariant) {
         $scope.selectedTestVariant = testVariant;
 
@@ -52,16 +51,35 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
 
     $scope.startPerformanceTest = function () {
 
+        //var datasetFiles = [
+        //    'res/data/data01.json',
+        //    'res/data/data02.json',
+        //    'res/data/data03.json',
+        //    'res/data/data05.json'
+        //];
+
         var datasetFiles = [
-            'res/data/data01.json',
-            'res/data/data02.json',
-            'res/data/data03.json',
-            'res/data/data05.json'
+            'res/data/data_5000_01.json',
+            'res/data/data_5000_02.json',
+            'res/data/data_5000_03.json',
+            'res/data/data_5000_04.json',
+            'res/data/data_5000_05.json',
+            'res/data/data_5000_06.json',
+            'res/data/data_5000_07.json',
+            'res/data/data_5000_08.json',
+            'res/data/data_5000_09.json',
+            'res/data/data_5000_10.json',
+            'res/data/data_5000_11.json',
+            'res/data/data_5000_12.json'
         ];
 
         var timeDiffSum = 0;
 
-        for (var i = 0; i < 2; i++) {
+
+        //The 5th dataset can't be saved on Safari (iOS 8) due to exceeded quota
+        //Error: QuotaExceededError: DOM Exception 22
+        //setItem@[native code]
+        for (var i = 0; i < 4; i++) {
 
             var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
 

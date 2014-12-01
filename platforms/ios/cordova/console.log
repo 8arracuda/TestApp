@@ -13764,3 +13764,83 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-11-30 17:25:36.993 Test-App[12632:76559] [CDVTimer][TotalPluginStartup] 2.566993ms
 2014-11-30 17:25:37.023 Test-App[12632:76559] Resetting plugins due to page load.
 2014-11-30 17:25:37.360 Test-App[12632:76559] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/5B517B0E-DB43-4E09-B4AD-999A9F2AC9B8/Test-App.app/www/index.html
+2014-12-01 10:09:47.608 Test-App[23505:193120] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/98285F49-EC06-4015-B19F-C248EB6573A6/Library/Cookies/Cookies.binarycookies
+2014-12-01 10:09:48.069 Test-App[23505:193120] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-01 10:09:48.070 Test-App[23505:193120] Multi-tasking -> Device: YES, App: YES
+2014-12-01 10:09:48.075 Test-App[23505:193120] Unlimited access to network resources
+2014-12-01 10:09:48.094 Test-App[23505:193120] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-01 10:09:48.295 Test-App[23505:193120] [CDVTimer][file] 24.870992ms
+2014-12-01 10:09:48.295 Test-App[23505:193120] [CDVTimer][TotalPluginStartup] 25.121987ms
+2014-12-01 10:09:48.679 Test-App[23505:193120] Resetting plugins due to page load.
+2014-12-01 10:09:49.308 Test-App[23505:193120] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/B90D0454-8FAB-44F4-9265-5CA834233621/Test-App.app/www/index.html
+2014-12-01 10:13:19.603 Test-App[23505:193158] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2014-12-01 10:15:24.009 Test-App[24147:196845] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/4388A27B-D1A7-4774-883E-39996718FD40/Library/Cookies/Cookies.binarycookies
+2014-12-01 10:15:25.674 Test-App[24147:196845] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-01 10:15:25.674 Test-App[24147:196845] Multi-tasking -> Device: YES, App: YES
+2014-12-01 10:15:25.695 Test-App[24147:196845] Unlimited access to network resources
+2014-12-01 10:15:25.699 Test-App[24147:196845] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-01 10:15:25.973 Test-App[24147:196845] [CDVTimer][file] 43.919027ms
+2014-12-01 10:15:25.973 Test-App[24147:196845] [CDVTimer][TotalPluginStartup] 44.167042ms
+2014-12-01 10:15:26.776 Test-App[24147:196845] Resetting plugins due to page load.
+2014-12-01 10:15:27.386 Test-App[24147:196845] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/0751E752-81AC-4AF3-8C66-6C5C4C681CA0/Test-App.app/www/index.html
+2014-12-01 10:49:36.445 Test-App[25989:213481] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/00B0613A-FA7F-4318-8267-D10FAC731D11/Library/Cookies/Cookies.binarycookies
+2014-12-01 10:49:36.989 Test-App[25989:213481] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-01 10:49:36.990 Test-App[25989:213481] Multi-tasking -> Device: YES, App: YES
+2014-12-01 10:49:37.016 Test-App[25989:213481] Unlimited access to network resources
+2014-12-01 10:49:37.020 Test-App[25989:213481] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-01 10:49:37.233 Test-App[25989:213481] [CDVTimer][file] 19.349992ms
+2014-12-01 10:49:37.233 Test-App[25989:213481] [CDVTimer][TotalPluginStartup] 19.604981ms
+2014-12-01 10:49:37.726 Test-App[25989:213481] Resetting plugins due to page load.
+2014-12-01 10:49:38.334 Test-App[25989:213481] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/DEF797C7-F233-4059-861C-DF20C0CF2716/Test-App.app/www/index.html
+2014-12-01 10:50:18.987 Test-App[26387:214391] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/9189A14C-E45C-4DDE-B895-E12FB9F307F3/Library/Cookies/Cookies.binarycookies
+2014-12-01 10:50:19.118 Test-App[26387:214391] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-01 10:50:19.118 Test-App[26387:214391] Multi-tasking -> Device: YES, App: YES
+2014-12-01 10:50:19.124 Test-App[26387:214391] Unlimited access to network resources
+2014-12-01 10:50:19.129 Test-App[26387:214391] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-01 10:50:19.358 Test-App[26387:214391] [CDVTimer][file] 3.148019ms
+2014-12-01 10:50:19.358 Test-App[26387:214391] [CDVTimer][TotalPluginStartup] 3.546000ms
+2014-12-01 10:50:19.429 Test-App[26387:214391] Resetting plugins due to page load.
+2014-12-01 10:50:19.771 Test-App[26387:214391] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/BDA16C7A-1D28-4CCD-BCC9-532168170297/Test-App.app/www/index.html
+2014-12-01 10:51:52.259 Test-App[26825:215760] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/C94F3524-BFB1-4F36-9843-78BEB1AB80E8/Library/Cookies/Cookies.binarycookies
+2014-12-01 10:51:52.393 Test-App[26825:215760] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-01 10:51:52.394 Test-App[26825:215760] Multi-tasking -> Device: YES, App: YES
+2014-12-01 10:51:52.401 Test-App[26825:215760] Unlimited access to network resources
+2014-12-01 10:51:52.405 Test-App[26825:215760] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-01 10:51:52.670 Test-App[26825:215760] [CDVTimer][file] 2.803028ms
+2014-12-01 10:51:52.670 Test-App[26825:215760] [CDVTimer][TotalPluginStartup] 3.001988ms
+2014-12-01 10:51:52.740 Test-App[26825:215760] Resetting plugins due to page load.
+2014-12-01 10:51:53.056 Test-App[26825:215760] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/06BE0534-8F2D-4560-9102-599EA20142F2/Test-App.app/www/index.html
+2014-12-01 11:01:33.924 Test-App[26825:215778] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2014-12-01 11:01:59.979 Test-App[26825:215778] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2014-12-01 11:02:16.880 Test-App[26825:215778] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2014-12-01 11:02:43.117 Test-App[26825:215778] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
