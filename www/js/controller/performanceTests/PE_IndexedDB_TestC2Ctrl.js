@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
 
     var data;
 

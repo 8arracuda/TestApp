@@ -1,4 +1,4 @@
-sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
     var iteration = 1;
 
     var dataForPreparation;

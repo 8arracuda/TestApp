@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
 
     var iteration = 1;
     const dbName = "PE_TestU1";
