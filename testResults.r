@@ -49,3 +49,13 @@ boxplot(Nexus4,main="Nexus 4", las=2, xlab='ms', horizontal = TRUE);
 #boxplot(LocalStorage_C1_500, FileAPI_C1_500, WebSQL_C1_500_Nexus4);
 #boxplot(FileAPI_C1_500_IOS8Sim, FileAPI_C1_500_Nexus4);
 
+
+
+
+
+Platform Tests:
+
+#PL_WebSQL
+#Opening the database with 1*1024*1024
+#$scope.db = window.openDatabase(dbName, dbVersion, dbName, 1 * 1024 * 1024);
+#IOS8SIM - LimitTest1: Crash at 13.800.000

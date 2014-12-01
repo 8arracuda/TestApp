@@ -40,8 +40,6 @@
 
             <div class="panel-body">
 
-                <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
-                <button ng-click="prepare()" class="btn btn-primary">prepare</button>
                 <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest()" class="btn btn-primary">
                     startPerformanceTest
                 </button>

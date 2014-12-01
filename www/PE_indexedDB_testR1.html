@@ -41,8 +41,6 @@
 
             <div class="panel-body">
 
-                <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
-                <button ng-click="prepare()" class="btn btn-primary">prepare</button>
                 <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="loadAddressIds()"
                         class="btn btn-primary">loadAddressIds
                 </button>

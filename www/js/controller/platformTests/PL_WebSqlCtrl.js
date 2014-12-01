@@ -183,21 +183,21 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
 
                         $scope.currentIteration = (parseInt($scope.currentIteration) + limit);
 
-                    }, function () {
+                    },
+                    function errorHandler(transaction, error) {
+
+
+                        if (transaction.code == transaction.QUOTA_ERR) {
+                            alert('quota error at ' + i);
+                        }
+                        //alert('some error...');
+                        console.log('is there a .code that contains QUOTA_ERR?');
+                        console.dir(transaction);
+                        console.log(JSON.stringify(transaction));
+                        console.log("Error : " + transaction.message);
+                        //console.log("Error : " + error.message);
                     }
-                    //function errorHandler(transaction, error) {
-                    //
-                    //
-                    //    if (transaction.code == transaction.QUOTA_ERR) {
-                    //        alert('quota error at ' + i);
-                    //    }
-                    //    alert('some error...');
-                    //    console.log('is there a .code that contains QUOTA_ERR?');
-                    //    console.dir(transaction);
-                    //    console.log("Error : " + transaction.message);
-                    //    console.log("Error : " + error.message);
-                    //}
-                    , function onSuccessHandler(transaction) {
+                    , function onSuccessHandler() {
 
                         //if (transaction) {
                         //    if (transaction.code == transaction.QUOTA_ERR) {
@@ -263,7 +263,7 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
-        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
+        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 1 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
