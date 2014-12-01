@@ -1,20 +1,4 @@
 sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
-    //var iteration = 1;
-    //
-    //const dbName = "PE_TestR3";
-    //const tableName = "PE_TestR3";
-    //const dbVersion = "1.0";
-    //
-    ////bool value used for the status-light in the "open database" section
-    //$scope.databaseOpened = false;
-    //
-    //$scope.testDecription= 'Read test - random addresses will be loaded';
-    //
-    //$scope.isPrepared = false;
-    //
-    //$scope.testInProgress = false;
-    //
-    //$scope.results = [];
 
     var iteration = 1;
 
@@ -70,40 +54,34 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
     };
 
     $scope.prepare = function () {
-        console.log('prepare');
-
         clearTable();
-        loadData();
         saveAddressData();
 
     };
 
     function saveAddressData() {
 
-        console.log('saveTable1ToWebSQL start');
+        $scope.testInProgress = true;
+
+        var datasetFiles =  testDataFactory.getArrayWithDatasetFilenames();
 
         $scope.db.transaction(function (tx) {
+                for (var i = 0; i < amountOfData; i++) {
+                    var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+                    tx.executeSql("INSERT INTO " + tableName + "(id, dataset) VALUES(?,?)", ['dataset_' + i, datasetString]);
 
-            for (var i = 0; i < data.length; i++) {
-                tx.executeSql("INSERT INTO " + tableName + "(id, firstName, lastName, street, zipcode, city, email, randomNumbeR3, randomNumbeR3) VALUES(?,?,?,?,?,?,?,?,?)", [data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6], data[i][7], data[i][8]]);
+                }
+            }, function errorHandler(transaction, error) {
+                console.log("Error : " + transaction.message);
+                console.log("Error : " + error.message);
             }
+        );
 
-            console.log(data.length + ' addresses saved in WebSQL database  -' + tableName + '-?');
-
-        }, function errorHandler(transaction, error) {
-            alert("Error : " + transaction.message);
-            alert("Error : " + error.message);
-        });
-
-        console.log('saveTable1ToWebSQL executed');
+        $scope.isPrepared = false;
+        $scope.$apply();
 
     }
 
-    function loadData() {
-
-        data = testDataFactory.testData();
-
-    };
 
     function clearTable() {
 
@@ -131,7 +109,7 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
     $scope.createTable = function (tx) {
         console.log('createTableStrDaten start');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, street TEXT, zipcode TEXT, city TEXT, email TEXT, randomNumbeR3 INTEGER, randomNumbeR3 INTEGER)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id TEXT PRIMARY KEY, dataset TEXT)');
         console.log('createTableStrDaten executed');
     };
 
@@ -152,23 +130,20 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
             alert('Warning: Too few address Ids defined. The test will produce wrong results!');
         }
 
+
         var timeStart = new Date().getTime();
         var onSuccessCounter = 0;
 
-        $scope.keyLoaded = $scope.keyToLoad;
-
         $scope.db.transaction(function (tx) {
 
+            for (var i = 0; i < amountOfData; i++) {
 
-            for (var i = 0; i < addressIdsToLoad.length; i++) {
-                // console.log('SELECT * FROM einzelwerte WHERE keyName = ' +  addressIdsToLoad[i]);
-
-                tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
+                tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", ['dataset_' + i], function (transaction, results) {
 
                     onSuccessCounter = onSuccessCounter + 1;
 
                     //the last result is there....
-                    if (onSuccessCounter == addressIdsToLoad.length) {
+                    if (onSuccessCounter == amountOfData) {
                         var timeEnd = new Date().getTime();
 
                         var timeDiff = timeEnd - timeStart;
@@ -177,8 +152,6 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
                         iteration++;
                         $scope.$apply();
                     }
-
-                    //$scope.$apply();
 
                 }, function (t, e) {
                     // couldn't read database

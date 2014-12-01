@@ -1,20 +1,4 @@
 sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
-    //var iteration = 1;
-    //
-    //const dbName = "PE_TestR3";
-    //const tableName = "PE_TestR3";
-    //const dbVersion = "1.0";
-    //
-    ////bool value used for the status-light in the "open database" section
-    //$scope.databaseOpened = false;
-    //
-    //$scope.testDecription= 'Read test - random addresses will be loaded';
-    //
-    //$scope.isPrepared = false;
-    //
-    //$scope.testInProgress = false;
-    //
-    //$scope.results = [];
 
     var iteration = 1;
 

@@ -63,8 +63,6 @@ sdApp.controller('PE_FileAPI_TestC1Ctrl', function ($scope, $rootScope, testData
 
     $scope.startPerformanceTest = function () {
 
-        console.log('saveEinzelwerte');
-
         $scope.inProgress = true;
 
         var timeStart = new Date().getTime();

@@ -65,8 +65,6 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
     //TODO: Check if the timers are correct!
     $scope.startPerformanceTest = function () {
 
-        console.log('saveEinzelwerte');
-
         $scope.inProgress = true;
 
 

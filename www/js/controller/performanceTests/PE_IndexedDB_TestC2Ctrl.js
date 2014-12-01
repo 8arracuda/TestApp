@@ -12,7 +12,7 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
 
     //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC2a;
+    var amountOfData_testC2a = PE_ParameterFactory.amountOfData_testC2a;
     var amountOfData_testC2b = PE_ParameterFactory.amountOfData_testC2b;
 
     $scope.selectedTestVariant = '';
