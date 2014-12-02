@@ -61,8 +61,6 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
     function saveAddressData() {
 
-        $scope.testInProgress = true;
-
         var datasetFiles =  testDataFactory.getArrayWithDatasetFilenames();
 
         $scope.db.transaction(function (tx) {
@@ -139,6 +137,10 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
             for (var i = 0; i < amountOfData; i++) {
 
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", ['dataset_' + i], function (transaction, results) {
+
+
+                    //---Test-Output to check the returned values---
+                    console.log('loaded address: ' + JSON.stringify(results.rows.item(0)));
 
                     onSuccessCounter = onSuccessCounter + 1;
 
