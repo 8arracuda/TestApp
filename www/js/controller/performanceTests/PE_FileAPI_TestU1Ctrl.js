@@ -1,4 +1,4 @@
-sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, FileApiDeleteAllFilesFactory) {
 
     var dataForUpdate;
     var dataForPreparation;
@@ -48,7 +48,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
 
     };
 
-    function loadData() {
+    function loadDataForPreparation() {
 
         dataForPreparation = testDataFactory.testData();
 
@@ -60,11 +60,14 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
 
     $scope.prepare = function () {
 
-        deleteAllFiles();
-        loadData();
-        saveAddressData();
-        loadDataForUpdate();
-        $scope.isPrepared = true;
+        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function() {
+            loadDataForPreparation()
+            saveAddressData();
+            loadDataForUpdate();
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
+
     };
 
     //function saveAddressData() {
@@ -240,75 +243,6 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
             },
             errorHandler
         );
-
-    }
-
-    function deleteAllFiles() {
-
-        console.log('deleteAllFiles started');
-        $scope.filelist = [];
-        $scope.loadingInProgress = true;
-        $scope.$apply();
-
-        function toArray(list) {
-            return Array.prototype.slice.call(list || [], 0);
-        }
-
-        function listResults(entries, fs) {
-
-            $scope.loadingInProgress = true;
-            $scope.$apply();
-
-            entries.forEach(function (entry, i) {
-
-                if (!entry.isDirectory) {
-                    console.log('fs.root in listResults');
-                    console.log('entry.name:' + entry.name);
-
-                    var filename = entry.name;
-
-                    if (filename != '.DS_Store') {
-
-                        fs.root.getFile(filename, {create: false}, function (fileEntry) {
-
-                            fileEntry.remove(function () {
-                                console.log(filename + ' has been removed.');
-
-                            }, errorHandler);
-
-                        }, errorHandler);
-
-                    }
-                }
-
-            });
-            $scope.loadingInProgress = false;
-            $scope.isPrepared = true;
-            $scope.$apply();
-
-        }
-
-        console.log('before');
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
-            var dirReader = fs.root.createReader();
-            var entries = [];
-
-            // Call the reader.readEntries() until no more results are returned.
-            var readEntries = function () {
-                dirReader.readEntries(function (results) {
-                    if (!results.length) {
-                        listResults(entries.sort(), fs);
-                    } else {
-                        entries = entries.concat(toArray(results));
-                        readEntries();
-                    }
-                }, errorHandler);
-            };
-
-            readEntries();
-
-        }, errorHandler);
-        console.log('after');
 
     };
 

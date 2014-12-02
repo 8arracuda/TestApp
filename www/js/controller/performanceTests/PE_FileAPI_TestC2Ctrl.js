@@ -1,4 +1,4 @@
-sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, FileApiDeleteAllFilesFactory) {
     var iteration = 1;
 
     var fs;
@@ -55,9 +55,11 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
     }
 
     $scope.prepare = function () {
-
-        loadData();
-        deleteAllFiles();
+        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
+            loadData();
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
 
     };
 
@@ -184,75 +186,6 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
 
         console.log('Error: ' + msg);
     }
-
-    function deleteAllFiles() {
-
-        console.log('showfiles started');
-        $scope.filelist = [];
-        $scope.loadingInProgress = true;
-        $scope.$apply();
-
-        function toArray(list) {
-            return Array.prototype.slice.call(list || [], 0);
-        }
-
-        function listResults(entries, fs) {
-
-            $scope.loadingInProgress = true;
-            $scope.$apply();
-
-            entries.forEach(function (entry, i) {
-
-                if (!entry.isDirectory) {
-                    console.log('fs.root in listResults');
-                    console.log('entry.name:' + entry.name);
-
-                    var filename = entry.name;
-
-                    if (filename != '.DS_Store') {
-
-                        fs.root.getFile(filename, {create: false}, function (fileEntry) {
-
-                            fileEntry.remove(function () {
-                                console.log(filename + ' has been removed.');
-
-                            }, errorHandler);
-
-                        }, errorHandler);
-
-                    }
-                }
-
-            });
-            $scope.loadingInProgress = false;
-            $scope.isPrepared = true;
-            $scope.$apply();
-
-        }
-
-        console.log('before');
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
-            var dirReader = fs.root.createReader();
-            var entries = [];
-
-            // Call the reader.readEntries() until no more results are returned.
-            var readEntries = function () {
-                dirReader.readEntries(function (results) {
-                    if (!results.length) {
-                        listResults(entries.sort(), fs);
-                    } else {
-                        entries = entries.concat(toArray(results));
-                        readEntries();
-                    }
-                }, errorHandler);
-            };
-
-            readEntries(); // Start reading dirs.
-
-        }, errorHandler);
-        console.log('after');
-
-    };
 
 
 })

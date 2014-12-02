@@ -1,12 +1,11 @@
-sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, FileApiDeleteAllFilesFactory) {
     var iteration = 1;
 
     var dataForPreparation;
 
     $scope.testInProgress = false;
 
-    //TODO change to false
-    $scope.isPrepared = true;
+    $scope.isPrepared = false;
 
     var amountOfData;
     var amountOfData_testR1a = PE_ParameterFactory.amountOfData_testR1a;
@@ -49,10 +48,12 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
     $scope.prepare = function () {
 
-        deleteAllFiles();
-        loadData();
-        saveAddressData();
-        $scope.isPrepared = true;
+        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function() {
+            loadData();
+            saveAddressData();
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
 
     };
 
@@ -259,76 +260,76 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
     };
 
-    function deleteAllFiles() {
-
-        console.log('showfiles started');
-        $scope.filelist = [];
-        $scope.loadingInProgress = true;
-        $scope.$apply();
-
-        function toArray(list) {
-            return Array.prototype.slice.call(list || [], 0);
-        }
-
-        function deleteFiles(entries, fs) {
-
-            $scope.loadingInProgress = true;
-            $scope.$apply();
-            var counterFilesRemoved = 0;
-            entries.forEach(function (entry, i) {
-
-                if (!entry.isDirectory) {
-
-                    var filename = entry.name;
-
-                    if (filename != '.DS_Store') {
-
-                        fs.root.getFile(filename, {create: false}, function (fileEntry) {
-
-                            fileEntry.remove(function () {
-                                //console.log(filename + ' has been removed.');
-                                counterFilesRemoved++;
-
-                            }, errorHandler);
-
-                        }, errorHandler);
-
-                    }
-                }
-
-            });
-
-            console.log(counterFilesRemoved + ' files had been removed.');
-            $scope.loadingInProgress = false;
-            $scope.isPrepared = true;
-            $scope.$apply();
-
-        }
-
-        console.log('before');
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
-            //console.log('fs.root in onInitFs');
-            var dirReader = fs.root.createReader();
-            var entries = [];
-
-            // Call the reader.readEntries() until no more results are returned.
-            var readEntries = function () {
-                dirReader.readEntries(function (results) {
-                    if (!results.length) {
-                        deleteFiles(entries.sort(), fs);
-                    } else {
-                        entries = entries.concat(toArray(results));
-                        readEntries();
-                    }
-                }, errorHandler);
-            };
-
-            readEntries(); // Start reading dirs.
-
-        }, errorHandler);
-        console.log('after');
-
-    };
+    //function deleteAllFiles() {
+    //
+    //    console.log('showfiles started');
+    //    $scope.filelist = [];
+    //    $scope.loadingInProgress = true;
+    //    $scope.$apply();
+    //
+    //    function toArray(list) {
+    //        return Array.prototype.slice.call(list || [], 0);
+    //    }
+    //
+    //    function deleteFiles(entries, fs) {
+    //
+    //        $scope.loadingInProgress = true;
+    //        $scope.$apply();
+    //        var counterFilesRemoved = 0;
+    //        entries.forEach(function (entry, i) {
+    //
+    //            if (!entry.isDirectory) {
+    //
+    //                var filename = entry.name;
+    //
+    //                if (filename != '.DS_Store') {
+    //
+    //                    fs.root.getFile(filename, {create: false}, function (fileEntry) {
+    //
+    //                        fileEntry.remove(function () {
+    //                            //console.log(filename + ' has been removed.');
+    //                            counterFilesRemoved++;
+    //
+    //                        }, errorHandler);
+    //
+    //                    }, errorHandler);
+    //
+    //                }
+    //            }
+    //
+    //        });
+    //
+    //        console.log(counterFilesRemoved + ' files had been removed.');
+    //        $scope.loadingInProgress = false;
+    //        $scope.isPrepared = true;
+    //        $scope.$apply();
+    //
+    //    }
+    //
+    //    console.log('before');
+    //    window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
+    //        //console.log('fs.root in onInitFs');
+    //        var dirReader = fs.root.createReader();
+    //        var entries = [];
+    //
+    //        // Call the reader.readEntries() until no more results are returned.
+    //        var readEntries = function () {
+    //            dirReader.readEntries(function (results) {
+    //                if (!results.length) {
+    //                    deleteFiles(entries.sort(), fs);
+    //                } else {
+    //                    entries = entries.concat(toArray(results));
+    //                    readEntries();
+    //                }
+    //            }, errorHandler);
+    //        };
+    //
+    //        readEntries(); // Start reading dirs.
+    //
+    //    }, errorHandler);
+    //    console.log('after');
+    //
+    //};
 
     function errorHandler(e) {
         var msg = '';
