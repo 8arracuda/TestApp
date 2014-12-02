@@ -67,6 +67,9 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
     //This function writes the files sequentially
     $scope.startPerformanceTest = function () {
 
+        $scope.testInProgress = true;
+        $scope.$apply();
+
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 

@@ -91,9 +91,9 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_fileAPI_testU1.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_indexedDB.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_indexedDB_backup.html \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_IndexedDB_testC1.html \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_IndexedDB_testC2.html \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_IndexedDB_testC3.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_indexedDB_testC1.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_indexedDB_testC2.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_indexedDB_testC3.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_indexedDB_testD1.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_indexedDB_testR1.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_indexedDB_testR2.html \
@@ -136,11 +136,12 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/css_backup/index.css \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/MediendatenImageSelector.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/MediendatenVideoSelector.html \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/openDatabaseSection.html \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/openDatabaseSectionWebsql.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/OpenDatabaseSection.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/OpenDatabaseSectionWebsql.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/PrepareButton.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/PrepareSectionForTests.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/ResultsForPerformanceTests.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StartPerformanceTestButton.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StrDatenDatasetLoader.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/fonts/fontawesome-webfont.eot \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/fonts/fontawesome-webfont.svg \

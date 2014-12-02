@@ -1,3 +1,30 @@
+<!--<h2 class="panel-title">-->
+    <!--Results-->
+<!--</h2>-->
+
+<!--<div class="panel-body">-->
+
+    <!--{{ stringWithResults }}<br>-->
+
+    <!--<br>-->
+
+    <!--<div class="list-group">-->
+
+        <!--<li ng-show="testInProgress==true" class="list-group-item list-group-item-warning">-->
+            <!--Test in progress <i class="fa fa-spinner fa-spin"></i>-->
+        <!--</li>-->
+        <!--<div ng-repeat="result in results track by $index">-->
+
+            <!--<li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">-->
+                <!--{{ result }}-->
+            <!--</li>-->
+
+        <!--</div>-->
+
+    <!--</div>-->
+
+<!--</div>-->
+
 <h2 class="panel-title">
     Results
 </h2>
@@ -11,12 +38,13 @@
     <div class="list-group">
 
         <li ng-show="testInProgress==true" class="list-group-item list-group-item-warning">
-            Test in progress
+            Test in progress <i class="fa fa-spinner fa-spin"></i>
         </li>
-        <div ng-repeat="result in results track by $index">
+        <div ng-repeat="r in results | orderBy: iteration : reverse ">
 
             <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
-                {{ result }}
+                {{ r.iteration }} iteration : {{ r.time }}  ms
+                <!--{{ result }}-->
             </li>
 
         </div>

@@ -141,6 +141,12 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
 
 
+sdApp.directive('ngStartPerformanceTestButton', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/StartPerformanceTestButton.html'
+    }
+});
 
 sdApp.directive('ngPrepareSectionForTests', function () {
     return {

@@ -134,7 +134,7 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
 
             //var timeDiff = timeEnd - timeStart;
 
-            $scope.results.push('iteration ' + iteration + ': ' + timeDiffSum + ' ms');
+            $scope.results.push({iteration:  iteration,  time: timeDiffSum});
             iteration++;
             $scope.testInProgress = false;
             $scope.isPrepared = false;

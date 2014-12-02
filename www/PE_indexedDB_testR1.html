@@ -41,10 +41,7 @@
 
             <div class="panel-body">
 
-                <button ng-class="{disabled: (!isPrepared || !databaseOpened)}"
-                        ng-click="startPerformanceTest()"
-                        class="btn btn-primary">startPerformanceTest
-                </button>
+                <div ng-start-performance-test-button-with-database></div>
             </div>
 
             <div ng-results-for-performance-tests></div>
