@@ -47,6 +47,11 @@
                     startPerformanceTest_variant2 (sequentiell)
                 </button>
 
+                <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest()" class="btn btn-primary">
+                    start
+                    Performance-Test
+                </button>
+
             </div>
 
             <div ng-results-for-performance-tests></div>

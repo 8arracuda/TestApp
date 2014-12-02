@@ -73,7 +73,6 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
             request.onerror = function (event) {
                 console.error('request.onerror');
                 alert("Database error: " + event.target.errorCode);
-                // Machen Sie etwas mit request.errorCode!
             };
             request.onsuccess = function (event) {
                 console.log('request.onsuccess (in openDatabase)');

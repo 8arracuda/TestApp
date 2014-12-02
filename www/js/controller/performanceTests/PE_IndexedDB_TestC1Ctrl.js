@@ -127,16 +127,9 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
 
         for (var i = 0; i < amountOfData; i++) {
         console.log('_' + data[i][0]);
-            //localStorage.setItem(data[i][0], JSON.stringify(data[i]));
-            //var keyValuePair = {key: i, value: i};
-            var objectToStore = {id: data[i][0], value: data[i]};
-            //var objectToStore = {key: data[i][0], value: data[i]};
-            //objectStore.add(objectToStore, data[i]);
-            //objectStore.add(objectToStore);
+            //var objectToStore = {id: data[i][0], value: data[i]};
             objectStore.add(data[i], data[i][0]);
 
-
-            //objectStore.add(data[i], data[i][0]);
         }
 
         transaction.oncomplete = function (event) {

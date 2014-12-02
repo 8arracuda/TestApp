@@ -1,7 +1,7 @@
 sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
     var iteration = 1;
 
-    var data;
+    var dataForPreparation;
 
     $scope.testInProgress = false;
 
@@ -64,7 +64,9 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         $scope.testInProgress = true;
         //$scope.$apply();
 
-        var addressIdsToLoad = [13, 18, 21, 35, 44, 46, 48, 49, 54, 71, 72, 74, 76, 79, 83, 86, 90, 92, 94, 100, 102, 104, 105, 110, 113, 115, 116, 118, 119, 120, 129, 130, 131, 132, 141, 142, 152, 155, 156, 166, 168, 170, 175, 176, 179, 186, 197, 212, 216, 220, 224, 226, 227, 229, 235, 237, 247, 252, 258, 260, 262, 268, 270, 276, 280, 282, 294, 296, 298, 299, 302, 309, 313, 318, 319, 322, 324, 326, 336, 337, 338, 342, 344, 345, 347, 360, 368, 371, 377, 379, 383, 384, 393, 396, 398, 400, 401, 409, 415, 419, 423, 429, 437, 456, 463, 465, 468, 483, 489, 492, 499];
+        //var addressIdsToLoad = [13, 18, 21, 35, 44, 46, 48, 49, 54, 71, 72, 74, 76, 79, 83, 86, 90, 92, 94, 100, 102, 104, 105, 110, 113, 115, 116, 118, 119, 120, 129, 130, 131, 132, 141, 142, 152, 155, 156, 166, 168, 170, 175, 176, 179, 186, 197, 212, 216, 220, 224, 226, 227, 229, 235, 237, 247, 252, 258, 260, 262, 268, 270, 276, 280, 282, 294, 296, 298, 299, 302, 309, 313, 318, 319, 322, 324, 326, 336, 337, 338, 342, 344, 345, 347, 360, 368, 371, 377, 379, 383, 384, 393, 396, 398, 400, 401, 409, 415, 419, 423, 429, 437, 456, 463, 465, 468, 483, 489, 492, 499];
+        var addressIdsToLoad = testDataFactory.getRandomIndices();
+
 
         if (addressIdsToLoad.length<amountOfData) {
             alert('Warning: Too few address Ids defined. The test will produce wrong results!');
@@ -147,7 +149,8 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         $scope.testInProgress = true;
         $scope.$apply();
 
-        var addressIdsToLoad = [13, 18, 21, 35, 44, 46, 48, 49, 54, 71, 72, 74, 76, 79, 83, 86, 90, 92, 94, 100, 102, 104, 105, 110, 113, 115, 116, 118, 119, 120, 129, 130, 131, 132, 141, 142, 152, 155, 156, 166, 168, 170, 175, 176, 179, 186, 197, 212, 216, 220, 224, 226, 227, 229, 235, 237, 247, 252, 258, 260, 262, 268, 270, 276, 280, 282, 294, 296, 298, 299, 302, 309, 313, 318, 319, 322, 324, 326, 336, 337, 338, 342, 344, 345, 347, 360, 368, 371, 377, 379, 383, 384, 393, 396, 398, 400, 401, 409, 415, 419, 423, 429, 437, 456, 463, 465, 468, 483, 489, 492, 499];
+        //var addressIdsToLoad = [13, 18, 21, 35, 44, 46, 48, 49, 54, 71, 72, 74, 76, 79, 83, 86, 90, 92, 94, 100, 102, 104, 105, 110, 113, 115, 116, 118, 119, 120, 129, 130, 131, 132, 141, 142, 152, 155, 156, 166, 168, 170, 175, 176, 179, 186, 197, 212, 216, 220, 224, 226, 227, 229, 235, 237, 247, 252, 258, 260, 262, 268, 270, 276, 280, 282, 294, 296, 298, 299, 302, 309, 313, 318, 319, 322, 324, 326, 336, 337, 338, 342, 344, 345, 347, 360, 368, 371, 377, 379, 383, 384, 393, 396, 398, 400, 401, 409, 415, 419, 423, 429, 437, 456, 463, 465, 468, 483, 489, 492, 499];
+        var addressIdsToLoad = testDataFactory.getRandomIndices();
 
         var timeStart = new Date().getTime();
 
@@ -181,7 +184,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
         function addOne() {
             callbackNumber++;
-            if (callbackNumber == addressIdsToLoad.length) {
+            if (callbackNumber == amountOfData) {
                 var timeEnd = new Date().getTime();
 
                 var timeDiff = timeEnd - timeStart;
@@ -192,20 +195,19 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                 iteration++;
             }
 
-
         }
 
     };
 
     function loadData() {
 
-        data = testDataFactory.testData();
+        dataForPreparation = testDataFactory.testData();
 
     };
 
     function saveAddressData() {
 
-        if (data == null) {
+        if (dataForPreparation == null) {
             alert('error: no data loaded');
             console.error('no data loaded (in saveAddressData)');
         } else {
@@ -214,8 +216,10 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                 function (fs) {
 
                     function writeAddress(i) {
-                        if (i < amountOfData) {
-                            var filename = 'address_' + i + '.txt';
+                        //if (i < amountOfData) {
+                        if (i < dataForPreparation.length) {
+                            var id = dataForPreparation[i][0];
+                            var filename = 'address_' + id + '.txt';
                             fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
                                 fileEntry.createWriter(function (fileWriter) {
@@ -234,7 +238,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
                                     //overwrites the file from the beginning
                                     fileWriter.seek(0);
-                                    fileWriter.write(JSON.stringify(data[i]));
+                                    fileWriter.write(JSON.stringify(dataForPreparation[i]));
 
                                 }, errorHandler);
                             }, errorHandler);

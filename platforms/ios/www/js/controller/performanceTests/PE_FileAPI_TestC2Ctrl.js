@@ -61,129 +61,100 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
 
     };
 
+
+    //This function writes the files sequentially
     $scope.startPerformanceTest = function () {
 
-        console.log('startPerformanceTest');
-
-        $scope.inProgress = true;
-
-        var timeStart = new Date().getTime();
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
+                var filename;
+                var dataToWrite;
                 var i = 0;
 
-                $scope.testInProgress = true;
-                $scope.$apply();
+                function writeNextFile() {
 
-                writeFile();
+                    var currentAddress = parseInt(i / 9);
+                    var id = data[currentAddress][0];
+                    switch (i % 9) {
+                        case 0:
+                            filename = 'address' + id + '_id.txt';
+                            dataToWrite = data[currentAddress][0] + '';
+                            break;
+                        case 1:
+                            filename = 'address' + id + '_firstName.txt';
+                            dataToWrite = data[currentAddress][1];
+                            break;
+                        case 2:
+                            filename = 'address' + id + '_lastName.txt';
+                            dataToWrite = data[currentAddress][2];
+                            break;
+                        case 3:
+                            filename = 'address' + id + '_street.txt';
+                            dataToWrite = data[currentAddress][3];
+                            break;
+                        case 4:
+                            filename = 'address' + id + '_zipcode.txt';
+                            dataToWrite = data[currentAddress][4];
+                            break;
+                        case 5:
+                            filename = 'address' + id + '_city.txt';
+                            dataToWrite = data[currentAddress][5];
+                            break;
+                        case 6:
+                            filename = 'address' + id + '_email.txt';
+                            dataToWrite = data[currentAddress][6];
+                            break;
+                        case 7:
+                            filename = 'address' + id + '_randomNumber1.txt';
+                            dataToWrite = data[currentAddress][7] + '';
+                            break;
+                        default:
+                            filename = 'address' + id + '_randomNumber2.txt';
+                            dataToWrite = data[currentAddress][8] + '';
 
-                function writeFile() {
-
-                    if (i < amountOfData) {
-                        var successfullyWrittenCounter = 0;
-
-                        var filename = '';
-                        var dataToWrite = '';
-                        for (var k = 0; k < 9; k++) {
-                            var id = data[i][0];
-                            switch (k) {
-                                case 0:
-                                    filename = 'address' + id + '_id.txt';
-                                    dataToWrite = data[i][0];
-                                    break;
-                                case 1:
-                                    filename = 'address' + id + '_firstName.txt';
-                                    dataToWrite = data[i][1];
-                                    break;
-                                case 2:
-                                    filename = 'address' + id + '_lastName.txt';
-                                    dataToWrite = data[i][2];
-                                    break;
-                                case 3:
-                                    filename = 'address' + id + '_street.txt';
-                                    dataToWrite = data[i][3];
-                                    break;
-                                case 4:
-                                    filename = 'address' + id + '_zipcode.txt';
-                                    dataToWrite = data[i][4];
-                                    break;
-                                case 5:
-                                    filename = 'address' + id + '_city.txt';
-                                    dataToWrite = data[i][5];
-                                    break;
-                                case 6:
-                                    filename = 'address' + id + '_email.txt';
-                                    dataToWrite = data[i][6];
-                                    break;
-                                case 7:
-                                    filename = 'address' + id + '_randomNumber1.txt';
-                                    dataToWrite = data[i][7];
-                                    break;
-                                default:
-                                    filename = 'address' + id + '_randomNumber2.txt';
-                                    dataToWrite = data[i][8];
-
-                            }
-                            //console.log('filename: ' + filename);
-
-                            fs.root.getFile(filename, {create: true}, function (fileEntry) {
-
-                                fileEntry.createWriter(function (fileWriter) {
-
-                                    fileWriter.onwriteend = function (e) {
-
-                                        console.log('onwriteend k:' + k);
-                                        //after one file has been successfully written the next file can be written
-                                        i++;
-
-                                        successfullyWrittenCounter++;
-                                        if (successfullyWrittenCounter == 8) {
-                                            writeFile();
-                                        }
-
-                                    };
-
-                                    fileWriter.onerror = function (e) {
-                                        //console.log('Write failed: ' + e.toString());
-                                        //console.log('Write failed: ' + e.message);
-                                        console.dir(e);
-
-                                    };
-
-                                    //overwrites the file from the beginning
-                                    fileWriter.seek(0);
-                                    //fileWriter.write(JSON.stringify(data[i]));
-                                    //fileWriter.write(dataToWrite);
-                                    fileWriter.write(JSON.stringify(dataToWrite));
-
-                                }, errorHandler);
-
-                            }, errorHandler);
-                        }
-
-                    } else {
-                        //console.error('end of loop');
-                        //console.log('end of loop');
-
-                        var timeEnd = new Date().getTime();
-
-                        var timeDiff = timeEnd - timeStart;
-
-                        $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
-                        $scope.testInProgress = false;
-                        $scope.isPrepared = false;
-                        $scope.$apply();
-                        iteration++;
                     }
+
+                    fs.root.getFile(filename, {create: true}, function (fileEntry) {
+
+                        fileEntry.createWriter(function (fileWriter) {
+
+                            fileWriter.onwriteend = function (e) {
+                                i++;
+
+                                if (i < amountOfData * 9) {
+                                    writeNextFile();
+                                } else {
+                                    var timeEnd = new Date().getTime();
+                                    var timeDiff = timeEnd - timeStart;
+                                    $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+                                    $scope.testInProgress = false;
+                                    $scope.isPrepared = false;
+                                    $scope.$apply();
+                                    iteration++;
+                                }
+                            };
+
+                            fileWriter.onerror = function (e) {
+                                console.dir(e);
+                            };
+
+                            fileWriter.seek(0);
+                            fileWriter.write(dataToWrite);
+
+                        }, errorHandler);
+
+                    }, errorHandler);
 
                 }
 
-            },
-            errorHandler
-        );
 
+                var timeStart = new Date().getTime();
+                writeNextFile();
+
+            });
     };
+
 
     function errorHandler(e) {
         var msg = '';
