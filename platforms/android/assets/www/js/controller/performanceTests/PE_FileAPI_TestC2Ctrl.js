@@ -1,7 +1,8 @@
-sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, FileApiDeleteAllFilesFactory) {
     var iteration = 1;
 
     var fs;
+    var data;
     $scope.filelist = [];
 
     $scope.testInProgress = false;
@@ -9,8 +10,8 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testC2a = 1000;
-    var amountOfData_testC2b = 5000;
+    var amountOfData_testC2a = PE_ParameterFactory.amountOfData_testC2a;
+    var amountOfData_testC2b = PE_ParameterFactory.amountOfData_testC2b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -47,74 +48,115 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
 
     };
 
+    function loadData() {
+
+        data = testDataFactory.testData();
+
+    }
+
     $scope.prepare = function () {
-        deleteAllFiles();
+        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
+            loadData();
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
+
     };
 
+
+    //This function writes the files sequentially
     $scope.startPerformanceTest = function () {
 
-        console.log('saveEinzelwerte');
-
-        $scope.inProgress = true;
-
-        var timeStart = new Date().getTime();
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
-                var k = 0;
+                var filename;
+                var dataToWrite;
+                var i = 0;
 
-                writeFile();
+                function writeNextFile() {
 
-                function writeFile() {
+                    var currentAddress = parseInt(i / 9);
+                    var id = data[currentAddress][0];
+                    switch (i % 9) {
+                        case 0:
+                            filename = 'address' + id + '_id.txt';
+                            dataToWrite = data[currentAddress][0] + '';
+                            break;
+                        case 1:
+                            filename = 'address' + id + '_firstName.txt';
+                            dataToWrite = data[currentAddress][1];
+                            break;
+                        case 2:
+                            filename = 'address' + id + '_lastName.txt';
+                            dataToWrite = data[currentAddress][2];
+                            break;
+                        case 3:
+                            filename = 'address' + id + '_street.txt';
+                            dataToWrite = data[currentAddress][3];
+                            break;
+                        case 4:
+                            filename = 'address' + id + '_zipcode.txt';
+                            dataToWrite = data[currentAddress][4];
+                            break;
+                        case 5:
+                            filename = 'address' + id + '_city.txt';
+                            dataToWrite = data[currentAddress][5];
+                            break;
+                        case 6:
+                            filename = 'address' + id + '_email.txt';
+                            dataToWrite = data[currentAddress][6];
+                            break;
+                        case 7:
+                            filename = 'address' + id + '_randomNumber1.txt';
+                            dataToWrite = data[currentAddress][7] + '';
+                            break;
+                        default:
+                            filename = 'address' + id + '_randomNumber2.txt';
+                            dataToWrite = data[currentAddress][8] + '';
 
-                    console.log('writeFile (k= ' + k + ')');
-                    if (k < amountOfData) {
-                        var filename = 'key' + k + '.txt';
-                        console.log('fs.root in writeFile');
-                        fs.root.getFile(filename, {create: true}, function (fileEntry) {
+                    }
 
-                            fileEntry.createWriter(function (fileWriter) {
+                    fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
-                                fileWriter.onwriteend = function (e) {
+                        fileEntry.createWriter(function (fileWriter) {
 
-                                    //after one file has been successfully written the next file can be written
-                                    k++;
-                                    writeFile();
-                                };
+                            fileWriter.onwriteend = function (e) {
+                                i++;
 
-                                fileWriter.onerror = function (e) {
-                                    console.log('Write failed: ' + e.toString());
-                                    console.dir(e);
-                                };
+                                if (i < amountOfData * 9) {
+                                    writeNextFile();
+                                } else {
+                                    var timeEnd = new Date().getTime();
+                                    var timeDiff = timeEnd - timeStart;
+                                    $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+                                    $scope.testInProgress = false;
+                                    $scope.isPrepared = false;
+                                    $scope.$apply();
+                                    iteration++;
+                                }
+                            };
 
-                                //overwrites the file from the beginning
-                                fileWriter.seek(0);
-                                fileWriter.write('' + k);
+                            fileWriter.onerror = function (e) {
+                                console.dir(e);
+                            };
 
-                            }, errorHandler);
+                            fileWriter.seek(0);
+                            fileWriter.write(dataToWrite);
 
                         }, errorHandler);
-                    } else {
-                        console.error('end of loop');
 
-                        var timeEnd = new Date().getTime();
-
-                        var timeDiff = timeEnd - timeStart;
-
-                        $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
-                        $scope.testInProgress = false;
-                        $scope.isPrepared = false;
-                        $scope.$apply();
-                        iteration++;
-                    }
+                    }, errorHandler);
 
                 }
 
-            },
-            errorHandler
-        );
 
+                var timeStart = new Date().getTime();
+                writeNextFile();
+
+            });
     };
+
 
     function errorHandler(e) {
         var msg = '';
@@ -145,135 +187,6 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
         console.log('Error: ' + msg);
     }
 
-    function deleteAllFiles() {
 
-        console.log('showfiles started');
-        $scope.filelist = [];
-        $scope.loadingInProgress = true;
-        $scope.$apply();
-
-        function toArray(list) {
-            return Array.prototype.slice.call(list || [], 0);
-        }
-
-        function listResults(entries, fs) {
-
-            $scope.loadingInProgress = true;
-            $scope.$apply();
-
-            entries.forEach(function (entry, i) {
-
-                if (!entry.isDirectory) {
-                    console.log('fs.root in listResults');
-                    console.log('entry.name:' + entry.name);
-
-                    var filename = entry.name;
-
-                    if (filename != '.DS_Store') {
-
-                        fs.root.getFile(filename, {create: false}, function (fileEntry) {
-
-                            fileEntry.remove(function () {
-                                console.log(filename + ' has been removed.');
-
-                            }, errorHandler);
-
-                        }, errorHandler);
-
-                    }
-                }
-
-            });
-            $scope.loadingInProgress = false;
-            $scope.isPrepared = true;
-            $scope.$apply();
-
-        }
-
-        function onInitFs(fs) {
-            console.log('fs.root in onInitFs');
-            var dirReader = fs.root.createReader();
-            var entries = [];
-
-            // Call the reader.readEntries() until no more results are returned.
-            var readEntries = function () {
-                dirReader.readEntries(function (results) {
-                    if (!results.length) {
-                        listResults(entries.sort(), fs);
-                    } else {
-                        entries = entries.concat(toArray(results));
-                        readEntries();
-                    }
-                }, errorHandler);
-            };
-
-            readEntries(); // Start reading dirs.
-
-        }
-
-        console.log('before');
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
-        console.log('after');
-
-    };
-
-    function showFiles() {
-
-        console.log('showfiles started');
-        $scope.filelist = [];
-        $scope.loadingInProgress = true;
-        $scope.$apply();
-
-        function toArray(list) {
-            return Array.prototype.slice.call(list || [], 0);
-        }
-
-        function listResults(entries) {
-
-            $scope.loadingInProgress = true;
-            $scope.$apply();
-
-            entries.forEach(function (entry, i) {
-
-                if (entry.isDirectory) {
-                    var fileListEntry = {name: entry.name + ' [DIR]', value: ""};
-                } else {
-                    var fileListEntry = {name: entry.name, value: ""};
-                }
-
-                $scope.filelist.push(fileListEntry);
-
-            });
-            $scope.loadingInProgress = false;
-            $scope.$apply();
-
-        }
-
-
-        console.log('before');
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
-            function (fs) {
-
-                var dirReader = fs.root.createReader();
-                var entries = [];
-
-                // Call the reader.readEntries() until no more results are returned.
-                var readEntries = function () {
-                    dirReader.readEntries(function (results) {
-                        if (!results.length) {
-                            listResults(entries.sort());
-                        } else {
-                            entries = entries.concat(toArray(results));
-                            readEntries();
-                        }
-                    }, errorHandler);
-                };
-
-                readEntries(); // Start reading dirs.
-
-            }, errorHandler);
-        console.log('after');
-
-    };
-
-});
+})
+;

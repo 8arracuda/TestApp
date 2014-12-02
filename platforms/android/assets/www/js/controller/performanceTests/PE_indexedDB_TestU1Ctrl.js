@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
 
     var iteration = 1;
     const dbName = "PE_TestU1";
@@ -11,10 +11,9 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
     $scope.testInProgress = false;
     $scope.isPrepared = false;
 
-    //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testU1a = 100;
-    var amountOfData_testU1b = 500;
+    var amountOfData_testU1a = PE_ParameterFactory.amountOfData_testU1a;
+    var amountOfData_testU1b = PE_ParameterFactory.amountOfData_testU1b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -73,7 +72,6 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
             request.onerror = function (event) {
                 console.error('request.onerror');
                 alert("Database error: " + event.target.errorCode);
-                // Machen Sie etwas mit request.errorCode!
             };
             request.onsuccess = function (event) {
                 console.log('request.onsuccess (in openDatabase)');

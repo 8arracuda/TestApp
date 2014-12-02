@@ -18971,3 +18971,56 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-12-02 18:38:44.631 Test-App[97976:681548] THREAD WARNING: ['File'] took '52.747070' ms. Plugin should use a background thread.
 2014-12-02 18:38:56.601 Test-App[97976:681548] THREAD WARNING: ['File'] took '119.182129' ms. Plugin should use a background thread.
 2014-12-02 18:39:00.295 Test-App[97976:681548] THREAD WARNING: ['File'] took '1967.336914' ms. Plugin should use a background thread.
+2014-12-02 19:54:13.224 Test-App[2457:712267] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/21ECB9E7-A65A-42E2-9E4F-F3BAC4402F24/Library/Cookies/Cookies.binarycookies
+2014-12-02 19:54:13.522 Test-App[2457:712267] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-02 19:54:13.522 Test-App[2457:712267] Multi-tasking -> Device: YES, App: YES
+2014-12-02 19:54:13.609 Test-App[2457:712267] Unlimited access to network resources
+2014-12-02 19:54:13.617 Test-App[2457:712267] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-02 19:54:15.871 Test-App[2457:712267] [CDVTimer][file] 63.181996ms
+2014-12-02 19:54:15.871 Test-App[2457:712267] [CDVTimer][TotalPluginStartup] 63.434958ms
+2014-12-02 19:54:16.796 Test-App[2457:712267] Resetting plugins due to page load.
+2014-12-02 19:54:17.925 Test-App[2457:712267] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/F051BA51-CED1-4BFC-ABB5-F587C171D052/Test-App.app/www/index.html
+2014-12-02 20:01:13.209 Test-App[2457:712267] THREAD WARNING: ['File'] took '45.061035' ms. Plugin should use a background thread.
+2014-12-02 20:01:13.413 Test-App[2457:712267] THREAD WARNING: ['File'] took '39.920898' ms. Plugin should use a background thread.
+2014-12-02 20:01:17.872 Test-App[2457:712267] THREAD WARNING: ['File'] took '2646.813965' ms. Plugin should use a background thread.
+2014-12-02 20:06:33.870 Test-App[3455:718295] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/C16A845D-D659-4EA3-802F-CA759C97B897/Library/Cookies/Cookies.binarycookies
+2014-12-02 20:06:35.148 Test-App[3455:718295] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-02 20:06:35.149 Test-App[3455:718295] Multi-tasking -> Device: YES, App: YES
+2014-12-02 20:06:35.154 Test-App[3455:718295] Unlimited access to network resources
+2014-12-02 20:06:35.181 Test-App[3455:718295] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-02 20:06:35.370 Test-App[3455:718295] [CDVTimer][file] 29.402971ms
+2014-12-02 20:06:35.370 Test-App[3455:718295] [CDVTimer][TotalPluginStartup] 29.660046ms
+2014-12-02 20:06:35.767 Test-App[3455:718295] Resetting plugins due to page load.
+2014-12-02 20:06:36.227 Test-App[3455:718295] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/DF919148-CB2E-45D6-8F22-319A94D28323/Test-App.app/www/index.html
+2014-12-02 20:06:47.390 Test-App[3455:718295] THREAD WARNING: ['File'] took '48.718994' ms. Plugin should use a background thread.
+2014-12-02 20:07:03.549 Test-App[3455:718295] THREAD WARNING: ['File'] took '14696.044189' ms. Plugin should use a background thread.
+2014-12-02 20:54:35.762 Test-App[3455:718295] THREAD WARNING: ['File'] took '594.839111' ms. Plugin should use a background thread.
+2014-12-02 20:54:36.168 Test-App[3455:718295] THREAD WARNING: ['File'] took '41.871094' ms. Plugin should use a background thread.
+2014-12-02 20:54:36.319 Test-App[3455:718295] THREAD WARNING: ['File'] took '16.100830' ms. Plugin should use a background thread.
+2014-12-02 20:57:16.795 Test-App[6339:739671] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/4A7E66D5-A730-459C-9DC3-425E34924D98/Library/Cookies/Cookies.binarycookies
+2014-12-02 20:57:18.894 Test-App[6339:739671] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-02 20:57:18.895 Test-App[6339:739671] Multi-tasking -> Device: YES, App: YES
+2014-12-02 20:57:18.900 Test-App[6339:739671] Unlimited access to network resources
+2014-12-02 20:57:18.930 Test-App[6339:739671] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-02 20:57:19.230 Test-App[6339:739671] [CDVTimer][file] 64.976990ms
+2014-12-02 20:57:19.230 Test-App[6339:739671] [CDVTimer][TotalPluginStartup] 65.244973ms
+2014-12-02 20:57:20.001 Test-App[6339:739671] Resetting plugins due to page load.
+2014-12-02 20:57:20.625 Test-App[6339:739671] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/2DCBFBDB-CEF9-4458-B3CF-F1A73576FB98/Test-App.app/www/index.html

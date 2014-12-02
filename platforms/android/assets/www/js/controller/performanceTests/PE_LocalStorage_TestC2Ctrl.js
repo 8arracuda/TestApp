@@ -1,4 +1,4 @@
-sdApp.controller('PE_LocalStorage_TestC2Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_LocalStorage_TestC2Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
         var iteration = 1;
 
         //prepare results-array
@@ -8,8 +8,8 @@ sdApp.controller('PE_LocalStorage_TestC2Ctrl', function ($scope, $rootScope, tes
         $scope.isPrepared = false;
 
         var amountOfData;
-        var amountOfData_testC2a = 100;
-        var amountOfData_testC2b = 500;
+        var amountOfData_testC2a = PE_ParameterFactory.amountOfData_testC2a;
+        var amountOfData_testC2b = PE_ParameterFactory.amountOfData_testC2b;
 
         $scope.selectedTestVariant = '';
         $scope.preparationText = 'Clears LocalStorage and fetches addressData to be written during the test.';

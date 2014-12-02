@@ -69,7 +69,7 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
 
     function saveAddressData() {
 
-        if (data == null) {
+        if (dataForPreparation == null) {
             alert('error: no data loaded');
             console.error('no data loaded (in saveAddressData)');
         } else {
@@ -114,8 +114,6 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
         loadDataForUpdate();
         $scope.isPrepared = true;
     };
-
-
 
 })
 ;

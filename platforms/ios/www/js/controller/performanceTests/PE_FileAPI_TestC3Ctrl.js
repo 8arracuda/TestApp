@@ -13,7 +13,6 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
     var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a;
     var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b;
 
-
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
@@ -58,8 +57,9 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
     $scope.prepare = function () {
 
 
-        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function() {
-        loadData();
+        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
+            loadData();
+            $scope.isPrepared = true;
         });
 
 
@@ -80,7 +80,7 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
                 var i = 0;
 
-                var timeDiffSum=0;
+                var timeDiffSum = 0;
 
                 $scope.testInProgress = true;
                 $scope.$apply();
@@ -170,7 +170,6 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
         console.log('Error: ' + msg);
     }
-
 
 
     //function showFiles() {

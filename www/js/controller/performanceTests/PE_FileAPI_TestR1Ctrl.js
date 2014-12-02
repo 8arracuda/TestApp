@@ -63,9 +63,9 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         console.log('startPerformanceTest_variant2');
         //var callbackNumber = 0;
         $scope.testInProgress = true;
-        //$scope.$apply();
+        $scope.$apply();
 
-        //var addressIdsToLoad = [13, 18, 21, 35, 44, 46, 48, 49, 54, 71, 72, 74, 76, 79, 83, 86, 90, 92, 94, 100, 102, 104, 105, 110, 113, 115, 116, 118, 119, 120, 129, 130, 131, 132, 141, 142, 152, 155, 156, 166, 168, 170, 175, 176, 179, 186, 197, 212, 216, 220, 224, 226, 227, 229, 235, 237, 247, 252, 258, 260, 262, 268, 270, 276, 280, 282, 294, 296, 298, 299, 302, 309, 313, 318, 319, 322, 324, 326, 336, 337, 338, 342, 344, 345, 347, 360, 368, 371, 377, 379, 383, 384, 393, 396, 398, 400, 401, 409, 415, 419, 423, 429, 437, 456, 463, 465, 468, 483, 489, 492, 499];
+
         var addressIdsToLoad = testDataFactory.getRandomIndices();
 
 
@@ -93,8 +93,13 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                             var reader = new FileReader();
 
                             reader.onloadend = function (e) {
+
+                                //---Test-Output to check the returned values---
+                                console.log(JSON.stringify(this.result));
+
                                 //loadAddress(i++);
                                 if (i == addressIdsToLoad.length-1) {
+
                                     var timeEnd = new Date().getTime();
 
                                     var timeDiff = timeEnd - timeStart;
@@ -111,13 +116,11 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                             reader.readAsText(file);
                         }, errorHandler);
                     }, errorHandler);
-                    //}
-              //      console.log('loadAddress end (' + i + ')');
                 }
 
-  //              console.log('before(2)');
+
                 loadAddress(0);
-//                console.log('after(2)');
+
 
             },
             errorHandler
@@ -150,7 +153,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         $scope.testInProgress = true;
         $scope.$apply();
 
-        //var addressIdsToLoad = [13, 18, 21, 35, 44, 46, 48, 49, 54, 71, 72, 74, 76, 79, 83, 86, 90, 92, 94, 100, 102, 104, 105, 110, 113, 115, 116, 118, 119, 120, 129, 130, 131, 132, 141, 142, 152, 155, 156, 166, 168, 170, 175, 176, 179, 186, 197, 212, 216, 220, 224, 226, 227, 229, 235, 237, 247, 252, 258, 260, 262, 268, 270, 276, 280, 282, 294, 296, 298, 299, 302, 309, 313, 318, 319, 322, 324, 326, 336, 337, 338, 342, 344, 345, 347, 360, 368, 371, 377, 379, 383, 384, 393, 396, 398, 400, 401, 409, 415, 419, 423, 429, 437, 456, 463, 465, 468, 483, 489, 492, 499];
         var addressIdsToLoad = testDataFactory.getRandomIndices();
 
         var timeStart = new Date().getTime();
@@ -170,6 +172,10 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                             var reader = new FileReader();
 
                             reader.onloadend = function (e) {
+
+                                //---Test-Output to check the returned values---
+                                console.log(JSON.stringify(this.result));
+
                                 addOne();
 
                             };

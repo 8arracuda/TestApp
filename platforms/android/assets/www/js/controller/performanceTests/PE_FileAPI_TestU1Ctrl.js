@@ -1,4 +1,4 @@
-sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, FileApiDeleteAllFilesFactory) {
 
     var dataForUpdate;
     var dataForPreparation;
@@ -10,8 +10,8 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testU1a = 100;
-    var amountOfData_testU1b = 500;
+    var amountOfData_testU1a = PE_ParameterFactory.amountOfData_testU1a;
+    var amountOfData_testU1b = PE_ParameterFactory.amountOfData_testU1b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -48,7 +48,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
 
     };
 
-    function loadData() {
+    function loadDataForPreparation() {
 
         dataForPreparation = testDataFactory.testData();
 
@@ -60,12 +60,67 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
 
     $scope.prepare = function () {
 
-        deleteAllFiles();
-        loadData();
-        saveAddressData();
-        loadDataForUpdate();
-        $scope.isPrepared = true;
+        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function() {
+            loadDataForPreparation()
+            saveAddressData();
+            loadDataForUpdate();
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
+
     };
+
+    //function saveAddressData() {
+    //
+    //    if (dataForPreparation == null) {
+    //        alert('error: no data loaded');
+    //        console.error('no data loaded (in saveAddressData)');
+    //    } else {
+    //
+    //        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+    //            function (fs) {
+    //
+    //                function writeAddress(i) {
+    //                    if (i < amountOfData) {
+    //                        var filename = i + '.txt';
+    //                        fs.root.getFile(filename, {create: true}, function (fileEntry) {
+    //
+    //                            fileEntry.createWriter(function (fileWriter) {
+    //
+    //                                fileWriter.onwriteend = function (e) {
+    //                                    console.log(fileEntry.name + ' written successfully.');
+    //
+    //                                    //calls the function again to write the next file
+    //                                    writeAddress(i + 1);
+    //                                };
+    //
+    //                                fileWriter.onerror = function (e) {
+    //                                    console.log('Write failed: ' + e.toString());
+    //                                    console.dir(e);
+    //                                };
+    //
+    //                                //overwrites the file from the beginning
+    //                                fileWriter.seek(0);
+    //                                fileWriter.write(JSON.stringify(dataForPreparation[i]));
+    //
+    //                            }, errorHandler);
+    //                        }, errorHandler);
+    //
+    //                    } else {
+    //                        //alert(amountOfData + ' addressfiles has been written.');
+    //                    }
+    //
+    //                }
+    //
+    //                writeAddress(0);
+    //
+    //            },
+    //            errorHandler
+    //        );
+    //
+    //    }
+    //
+    //};
 
     function saveAddressData() {
 
@@ -78,8 +133,10 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                 function (fs) {
 
                     function writeAddress(i) {
-                        if (i < amountOfData) {
-                            var filename = i + '.txt';
+                        //if (i < amountOfData) {
+                        if (i < dataForPreparation.length) {
+                            var id = dataForPreparation[i][0];
+                            var filename = 'address_' + id + '.txt';
                             fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
                                 fileEntry.createWriter(function (fileWriter) {
@@ -104,7 +161,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                             }, errorHandler);
 
                         } else {
-                            //alert(amountOfData + ' addressfiles has been written.');
+                            alert(amountOfData + ' addressfiles has been written.');
                         }
 
                     }
@@ -125,8 +182,9 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
             function (fs) {
 
                 function writeAddress(i) {
-                    if (i < amountOfData) {
-                        var filename = i + '.txt';
+                    //
+                        //var filename = i + '.txt';
+                    var filename = 'address_' + i + '.txt';
                         fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
                             fileEntry.createWriter(function (fileWriter) {
@@ -135,7 +193,21 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                                     console.log(fileEntry.name + ' written successfully.');
 
                                     //calls the function again to write the next file
+                                    if (i < amountOfData) {
                                     writeAddress(i + 1);
+                                        } else {
+
+                                            //console.log(amountOfData + ' addressfiles has been written.');
+                                            var timeEnd = new Date().getTime();
+
+                                            var timeDiff = timeEnd - timeStart;
+
+                                            $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+                                            $scope.testInProgress = false;
+                                            $scope.isPrepared = false;
+                                            $scope.$apply();
+                                            iteration++;
+                                    }
                                 };
 
                                 fileWriter.onerror = function (e) {
@@ -150,18 +222,18 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                             }, errorHandler);
                         }, errorHandler);
 
-                    } else {
-                        //console.log(amountOfData + ' addressfiles has been written.');
-                        var timeEnd = new Date().getTime();
-
-                        var timeDiff = timeEnd - timeStart;
-
-                        $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
-                        $scope.testInProgress = false;
-                        $scope.isPrepared = false;
-                        $scope.$apply();
-                        iteration++;
-                    }
+                    //} else {
+                    //    //console.log(amountOfData + ' addressfiles has been written.');
+                    //    var timeEnd = new Date().getTime();
+                    //
+                    //    var timeDiff = timeEnd - timeStart;
+                    //
+                    //    $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+                    //    $scope.testInProgress = false;
+                    //    $scope.isPrepared = false;
+                    //    $scope.$apply();
+                    //    iteration++;
+                    //}
 
                 }
 
@@ -171,75 +243,6 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
             },
             errorHandler
         );
-
-    }
-
-    function deleteAllFiles() {
-
-        console.log('deleteAllFiles started');
-        $scope.filelist = [];
-        $scope.loadingInProgress = true;
-        $scope.$apply();
-
-        function toArray(list) {
-            return Array.prototype.slice.call(list || [], 0);
-        }
-
-        function listResults(entries, fs) {
-
-            $scope.loadingInProgress = true;
-            $scope.$apply();
-
-            entries.forEach(function (entry, i) {
-
-                if (!entry.isDirectory) {
-                    console.log('fs.root in listResults');
-                    console.log('entry.name:' + entry.name);
-
-                    var filename = entry.name;
-
-                    if (filename != '.DS_Store') {
-
-                        fs.root.getFile(filename, {create: false}, function (fileEntry) {
-
-                            fileEntry.remove(function () {
-                                console.log(filename + ' has been removed.');
-
-                            }, errorHandler);
-
-                        }, errorHandler);
-
-                    }
-                }
-
-            });
-            $scope.loadingInProgress = false;
-            $scope.isPrepared = true;
-            $scope.$apply();
-
-        }
-
-        console.log('before');
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
-            var dirReader = fs.root.createReader();
-            var entries = [];
-
-            // Call the reader.readEntries() until no more results are returned.
-            var readEntries = function () {
-                dirReader.readEntries(function (results) {
-                    if (!results.length) {
-                        listResults(entries.sort(), fs);
-                    } else {
-                        entries = entries.concat(toArray(results));
-                        readEntries();
-                    }
-                }, errorHandler);
-            };
-
-            readEntries();
-
-        }, errorHandler);
-        console.log('after');
 
     };
 

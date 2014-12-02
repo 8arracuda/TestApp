@@ -3,7 +3,7 @@
     <div class="panel">
 
         <div class="panel-heading">
-            <h2>Performance-Test R1 (placeholder)</h2>
+            <h2>Performance-Test R1</h2>
             {{ mainTestDecription }}<br>
 
             <div ng-show="selectedTestVariant=='TestR1a' || selectedTestVariant=='' ">
@@ -32,15 +32,9 @@
 
         <div ng-show="selectedTestVariant!=''">
 
-            <h2 class="panel-title">
-                database connection
-            </h2>
+            <div ng-open-database-section_websql></div>
 
-            <div class="panel-body">
-                <button class="btn"
-                        ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
-                <button class="btn btn-primary" ng-click="initWebSQL()">init/open database</button>
-            </div>
+            <div ng-prepare-section-for-tests></div>
 
             <h2 class="panel-title">
                 Start test
@@ -48,8 +42,6 @@
 
             <div class="panel-body">
 
-                <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
-                <button class="btn btn-primary" ng-click="prepare()">prepare</button>
                 <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="startPerformanceTest()"
                         class="btn btn-primary">startPerformanceTest
                 </button>

@@ -31,18 +31,11 @@
 
         <div ng-show="selectedTestVariant!=''">
 
-            <h2 class="panel-title">
-                database open?
-            </h2>
 
-            <div class="panel-body">
-                <button class="btn"
-                        ng-class="{ 'btn-success' : databaseOpened, 'btn-danger' : !databaseOpened  }"></button>
+            <div ng-open-database-section></div>
 
-                <button class="btn btn-primary" ng-click="openDatabase()">open database</button>
-                <button class="btn btn-primary" ng-click="closeDatabase()">close database</button>
+            <div ng-prepare-section-for-tests></div>
 
-            </div>
 
             <h2 class="panel-title">
                 actions
@@ -50,9 +43,6 @@
 
             <div class="panel-body">
 
-                <br>
-                <button class="btn" ng-class="{ 'btn-success' : isPrepared, 'btn-danger' : !isPrepared  }"></button>
-                <button ng-click="prepare()" class="btn btn-primary">prepare</button>
                 <button ng-class="{disabled: (!isPrepared || !databaseOpened)}"
                         ng-click="startPerformanceTest()"
                         class="btn btn-primary">startPerformanceTest

@@ -1,5 +1,7 @@
-sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
     var iteration = 1;
+
+    var dataForPreparation;
 
     const dbName = "PE_TestR2";
     const objStoreName = "PE_TestR2";
@@ -8,10 +10,9 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
     $scope.testInProgress = false;
     $scope.isPrepared = false;
 
-    //TODO Change for real tests
     var amountOfData;
-    var amountOfData_testR2a = 1000;
-    var amountOfData_testR2b = 5000;
+    var amountOfData_testR2a = PE_ParameterFactory.amountOfData_testR2a;
+    var amountOfData_testR2b = PE_ParameterFactory.amountOfData_testR2b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -23,9 +24,9 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
 
     $scope.results = [];
 
-    function loadData() {
+    function loadDataForPreparation() {
 
-        data = testDataFactory.testData();
+        dataForPreparation = testDataFactory.testData();
 
     };
 
@@ -54,10 +55,10 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
 
     };
 
-    $scope.closeDatabase = function() {
+    $scope.closeDatabase = function () {
         $scope.db.close();
         console.log('database closed');
-        $scope.isPrepared=false;
+        $scope.isPrepared = false;
         $scope.databaseOpened = null;
         $scope.$apply();
     };
@@ -70,12 +71,12 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
-            var request = window.indexedDB.open(dbName, 1);
+            var request = window.indexedDB.open(dbName, 2);
 
             request.onerror = function (event) {
                 console.error('request.onerror');
                 alert("Database error: " + event.target.errorCode);
-                // Machen Sie etwas mit request.errorCode!
+
             };
             request.onsuccess = function (event) {
                 console.log('request.onsuccess (in openDatabase)');
@@ -92,11 +93,12 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
 
                 //on update: when objectStore existed
                 //before it needs to be deleted, before it's created again with new keys.
-                //$scope.db.deleteObjectStore(objStoreName);
+                $scope.db.deleteObjectStore(objStoreName);
 
-                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "id"});
+                var objectStore = $scope.db.createObjectStore(objStoreName, {});
 
-                objectStore.createIndex("id", "id", {unique: true});
+                //var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "id"});
+                //objectStore.createIndex("id", "id", {unique: true});
 
             }
         }
@@ -110,32 +112,32 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
 
         var objectStore = transaction.objectStore(objStoreName);
 
-        for (var i = 0; i < data.length; i++) {
-            var address = {};
+        for (var i = 0; i < amountOfData; i++) {
+            console.log('_' + dataForPreparation[i][0]);
 
-            address.id = data[i][0];
-            address.firstName = data[i][1];
-            address.lastName = data[i][2];
-            address.street = data[i][3];
-            address.zipcode = data[i][4];
-            address.city = data[i][5];
-            address.email = data[i][6];
-            address.randomNumbeR2 = data[i][7];
-            address.randomNumber2 = data[i][8];
+            var id = dataForPreparation[i][0];
+            objectStore.add(dataForPreparation[i][0], id + '_id');
+            objectStore.add(dataForPreparation[i][1], id + '_firstName');
+            objectStore.add(dataForPreparation[i][2], id + '_lastName');
+            objectStore.add(dataForPreparation[i][3], id + '_street');
+            objectStore.add(dataForPreparation[i][4], id + '_zipcode');
+            objectStore.add(dataForPreparation[i][5], id + '_city');
+            objectStore.add(dataForPreparation[i][6], id + '_email');
+            objectStore.add(dataForPreparation[i][7], id + '_randomNumber1');
+            objectStore.add(dataForPreparation[i][8], id + '_randomNumber2');
 
-            objectStore.put(address);
         }
 
-        //console.log('addded ' + $rootScope.numberOfRows + ' addresses to ObjectStore strDaten.');
-
         transaction.oncomplete = function (event) {
-            console.log('transaction.oncomplete (in saveAddressData)');
+            iteration++;
             $scope.isPrepared = true;
             $scope.$apply();
+
         };
 
         transaction.onerror = function (event) {
-            console.error('transaction.onerror (in saveAddressData)');
+            console.error('transaction.onerror');
+            $scope.testInProgress = false;
         };
 
     };
@@ -160,48 +162,32 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
         console.log('prepare');
 
         clearObjectStore();
-        loadData();
-        saveAddressData();
+        loadDataForPreparation();
+
+        setTimeout(function () {
+            saveAddressData();
+
+        }, 1000);
 
     };
 
-    $scope.loadAddressIds = function () {
-        $scope.testInProgress = true;
-        $scope.$apply();
+    $scope.startPerformanceTest = function () {
 
-        var addressIdsToLoad = testDataFactory.getRandomIndices();
+        var i = 0;
 
-        if (addressIdsToLoad.length<amountOfData) {
-            alert('Warning: Too few address Ids defined. The test will produce wrong results!');
-        }
-
-        var timeStart = new Date().getTime();
-
-        //var request = objectStore.get($scope.keyToLoad);
-        var onSuccessCounter = 0;
-
-        console.log('addressIdsToLoad.length:' + addressIdsToLoad.length);
-
-        for (var i = 0; i < addressIdsToLoad.length; i++) {
+        function readNext() {
             var transaction = $scope.db.transaction([objStoreName], "readonly");
 
             var objectStore = transaction.objectStore(objStoreName);
-            var request = objectStore.get(addressIdsToLoad[i]);
+
             transaction.oncomplete = function (event) {
-                console.log('transaction.oncomplete (in loadAddressIds)');
+                i++;
+                if (i < amountOfData*9) {
+                    readNext();
+                } else {
 
-                $scope.keyToLoad = $scope.keyLoaded;
-            };
+                    console.log('transaction.oncomplete');
 
-            transaction.onerror = function (event) {
-                console.error('transaction.onerror (in loadAddressIds)');
-            };
-
-            request.onsuccess = function (event) {
-                console.log('request.onsuccess (in loadAddressIds)');
-
-                onSuccessCounter = onSuccessCounter + 1;
-                if (onSuccessCounter == addressIdsToLoad.length) {
                     var timeEnd = new Date().getTime();
 
                     var timeDiff = timeEnd - timeStart;
@@ -211,18 +197,60 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
                     $scope.$apply();
                 }
 
-                //if there was a result
-                //if (request.result) {
-                //    $scope.valueLoadedFromIndexedDB = 'has value "' + request.result.value + '"';
-                //
-                //} else {
-                //    $scope.valueLoadedFromIndexedDB = 'does not exist';
-                //}
-                //
-                //$scope.$apply();
             };
-        }
 
+            transaction.onerror = function (event) {
+                console.error('transaction.onerror');
+            };
+
+            var id = parseInt(i / 9);
+            var keyName;
+            switch (i % 9) {
+                case 0:
+                    keyName = id + '_id';
+                    break;
+                case 1:
+                    keyName = id + '_firstName';
+                    break;
+                case 2:
+                    keyName = id + '_lastName';
+                    break;
+                case 3:
+                    keyName = id + '_street';
+                    break;
+                case 4:
+                    keyName = id + '_zipcode';
+                    break;
+                case 5:
+                    keyName = id + '_city';
+                    break;
+                case 6:
+                    keyName = id + '_email';
+                    break;
+                case 7:
+                    keyName = id + '_randomNumber1';
+                    break;
+                default:
+                    keyName = id + '_randomNumber2';
+
+            }
+
+            var request = objectStore.get(keyName);
+
+            request.onsuccess = function (event) {
+
+                //---Test-Output to check the returned values---
+                //console.log(keyName + ' has value "' + request.result + '"');
+
+            };
+
+        };
+
+        $scope.testInProgress = true;
+        $scope.$apply();
+
+        var timeStart = new Date().getTime();
+        readNext();
 
     };
 
