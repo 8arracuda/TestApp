@@ -11,7 +11,6 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
     $scope.testInProgress = false;
 
-    //TODO Change for real tests
     var amountOfData;
     var amountOfData_testR3a = PE_ParameterFactory.amountOfData_testR3a;
     var amountOfData_testR3b = PE_ParameterFactory.amountOfData_testR3b;
@@ -60,8 +59,6 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
     };
 
     function saveAddressData() {
-
-        $scope.testInProgress = true;
 
         var datasetFiles =  testDataFactory.getArrayWithDatasetFilenames();
 
@@ -139,6 +136,10 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
             for (var i = 0; i < amountOfData; i++) {
 
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", ['dataset_' + i], function (transaction, results) {
+
+
+                    //---Test-Output to check the returned values---
+                    console.log('loaded address: ' + JSON.stringify(results.rows.item(0)));
 
                     onSuccessCounter = onSuccessCounter + 1;
 

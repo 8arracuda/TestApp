@@ -10,7 +10,6 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
     $scope.testInProgress = false;
     $scope.isPrepared = false;
 
-    //TODO Change for real tests
     var amountOfData;
     var amountOfData_testD1a = PE_ParameterFactory.amountOfData_testD1a;
     var amountOfData_testD1b = PE_ParameterFactory.amountOfData_testD1b;
@@ -72,7 +71,6 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
             request.onerror = function (event) {
                 console.error('request.onerror');
                 alert("Database error: " + event.target.errorCode);
-                // Machen Sie etwas mit request.errorCode!
             };
             request.onsuccess = function (event) {
                 console.log('request.onsuccess (in openDatabase)');

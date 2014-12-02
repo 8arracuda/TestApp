@@ -44,6 +44,8 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 })
     .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope, testDataFactory) {
 
+        $rootScope.verifyTestsOutput=true;
+
         $scope.datasets = [
             'data01_small.json',
             'data01.json',
