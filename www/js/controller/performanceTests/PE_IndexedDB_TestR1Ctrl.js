@@ -1,6 +1,8 @@
 sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
     var iteration = 1;
 
+    var dataForPreparation;
+
     const dbName = "PE_TestR1";
     const objStoreName = "PE_TestR1";
 
@@ -23,9 +25,9 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
     $scope.results = [];
 
-    function loadData() {
+    function loadDataForPreparation() {
 
-        data = testDataFactory.testData();
+        dataForPreparation = testDataFactory.testData();
 
     };
 
@@ -110,18 +112,18 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
         var objectStore = transaction.objectStore(objStoreName);
 
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i < dataForPreparation.length; i++) {
             var address = {};
 
-            address.id = data[i][0];
-            address.firstName = data[i][1];
-            address.lastName = data[i][2];
-            address.street = data[i][3];
-            address.zipcode = data[i][4];
-            address.city = data[i][5];
-            address.email = data[i][6];
-            address.randomNumber1 = data[i][7];
-            address.randomNumber2 = data[i][8];
+            address.id = dataForPreparation[i][0];
+            address.firstName = dataForPreparation[i][1];
+            address.lastName = dataForPreparation[i][2];
+            address.street = dataForPreparation[i][3];
+            address.zipcode = dataForPreparation[i][4];
+            address.city = dataForPreparation[i][5];
+            address.email = dataForPreparation[i][6];
+            address.randomNumber1 = dataForPreparation[i][7];
+            address.randomNumber2 = dataForPreparation[i][8];
 
             objectStore.put(address);
         }
@@ -160,12 +162,12 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         console.log('prepare');
 
         clearObjectStore();
-        loadData();
+        loadDataForPreparation();
         saveAddressData();
 
     };
 
-    $scope.loadAddressIds = function () {
+    $scope.startPerformanceTest = function () {
         $scope.testInProgress = true;
         $scope.$apply();
 
@@ -183,7 +185,8 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
         console.log('addressIdsToLoad.length:' + addressIdsToLoad.length);
 
-        for (var i = 0; i < addressIdsToLoad.length; i++) {
+        //for (var i = 0; i < addressIdsToLoad.length; i++) {
+        for (var i = 0; i < amountOfData; i++) {
             var transaction = $scope.db.transaction([objStoreName], "readonly");
 
             var objectStore = transaction.objectStore(objStoreName);
@@ -200,6 +203,10 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
             request.onsuccess = function (event) {
                 console.log('request.onsuccess (in loadAddressIds)');
+
+                //---Test-Output to check the returned values---
+                //console.log(keyName + ' has value "' + request.result + '"');
+                console.log('read address was "' + request.result + '"');
 
                 onSuccessCounter = onSuccessCounter + 1;
                 if (onSuccessCounter == addressIdsToLoad.length) {

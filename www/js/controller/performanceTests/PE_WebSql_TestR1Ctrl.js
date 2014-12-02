@@ -110,7 +110,6 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
         $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
-        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
@@ -150,7 +149,7 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
 
                     //---Test-Output to check the returned values---
-                    console.log('loaded address: ' + JSON.stringify(results.rows.item(0)));
+                    //console.log('loaded address: ' + JSON.stringify(results.rows.item(0)));
 
                     onSuccessCounter = onSuccessCounter + 1;
 
@@ -164,10 +163,8 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
                         $scope.$apply();
                     }
 
-                    //$scope.$apply();
 
                 }, function (t, e) {
-                    // couldn't read database
                     alert("couldn't read database (" + e.message + ")");
                 });
             }
