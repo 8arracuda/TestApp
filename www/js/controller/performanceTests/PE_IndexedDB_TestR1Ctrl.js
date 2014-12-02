@@ -10,7 +10,7 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
     $scope.testInProgress = false;
     $scope.isPrepared = false;
 
-    //TODO Change for real tests
+
     var amountOfData;
     var amountOfData_testR1a = PE_ParameterFactory.amountOfData_testR1a;
     var amountOfData_testR1b = PE_ParameterFactory.amountOfData_testR1b;
@@ -56,10 +56,10 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
     };
 
-    $scope.closeDatabase = function() {
+    $scope.closeDatabase = function () {
         $scope.db.close();
         console.log('database closed');
-        $scope.isPrepared=false;
+        $scope.isPrepared = false;
         $scope.databaseOpened = null;
         $scope.$apply();
     };
@@ -104,7 +104,6 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         }
     };
 
-    //slightly modified code from DE_IndexedDB_strDaten
     function saveAddressData() {
         console.log('saveAddressData');
 
@@ -128,8 +127,6 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
             objectStore.put(address);
         }
 
-        //console.log('addded ' + $rootScope.numberOfRows + ' addresses to ObjectStore strDaten.');
-
         transaction.oncomplete = function (event) {
             console.log('transaction.oncomplete (in saveAddressData)');
             $scope.isPrepared = true;
@@ -152,7 +149,7 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         };
         request.onerror = function (event) {
             console.error("clearObjectStore:", event.target.errorCode);
-            //displayActionFailure(this.error);
+
         };
 
     };
@@ -168,48 +165,29 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
     };
 
     $scope.startPerformanceTest = function () {
-        $scope.testInProgress = true;
-        $scope.$apply();
+
+        var i = 0;
 
         var addressIdsToLoad = testDataFactory.getRandomIndices();
 
-
-        if (addressIdsToLoad.length<amountOfData) {
+        if (addressIdsToLoad.length < amountOfData) {
             alert('Warning: Too few address Ids defined. The test will produce wrong results!');
         }
 
-        var timeStart = new Date().getTime();
 
-        //var request = objectStore.get($scope.keyToLoad);
-        var onSuccessCounter = 0;
-
-        console.log('addressIdsToLoad.length:' + addressIdsToLoad.length);
-
-        //for (var i = 0; i < addressIdsToLoad.length; i++) {
-        for (var i = 0; i < amountOfData; i++) {
+        function readNext() {
             var transaction = $scope.db.transaction([objStoreName], "readonly");
 
             var objectStore = transaction.objectStore(objStoreName);
-            var request = objectStore.get(addressIdsToLoad[i]);
+
             transaction.oncomplete = function (event) {
-                console.log('transaction.oncomplete (in loadAddressIds)');
+                i++;
+                if (i < amountOfData) {
+                    readNext();
+                } else {
 
-                $scope.keyToLoad = $scope.keyLoaded;
-            };
+                    console.log('transaction.oncomplete');
 
-            transaction.onerror = function (event) {
-                console.error('transaction.onerror (in loadAddressIds)');
-            };
-
-            request.onsuccess = function (event) {
-                console.log('request.onsuccess (in loadAddressIds)');
-
-                //---Test-Output to check the returned values---
-                //console.log(keyName + ' has value "' + request.result + '"');
-                console.log('read address was "' + request.result + '"');
-
-                onSuccessCounter = onSuccessCounter + 1;
-                if (onSuccessCounter == addressIdsToLoad.length) {
                     var timeEnd = new Date().getTime();
 
                     var timeDiff = timeEnd - timeStart;
@@ -219,18 +197,29 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
                     $scope.$apply();
                 }
 
-                //if there was a result
-                //if (request.result) {
-                //    $scope.valueLoadedFromIndexedDB = 'has value "' + request.result.value + '"';
-                //
-                //} else {
-                //    $scope.valueLoadedFromIndexedDB = 'does not exist';
-                //}
-                //
-                //$scope.$apply();
             };
-        }
 
+            transaction.onerror = function (event) {
+                console.error('transaction.onerror');
+            };
+
+
+            var request = objectStore.get(addressIdsToLoad[i]);
+
+            request.onsuccess = function (event) {
+
+                //---Test-Output to check the returned values---
+                //console.log('read address was "' + JSON.stringify(request.result) + '"');
+
+            };
+
+        };
+
+        $scope.testInProgress = true;
+        $scope.$apply();
+
+        var timeStart = new Date().getTime();
+        readNext();
 
     };
 

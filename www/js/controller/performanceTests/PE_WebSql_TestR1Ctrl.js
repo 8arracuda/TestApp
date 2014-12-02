@@ -13,7 +13,6 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
 
     $scope.testInProgress = false;
 
-    //TODO Change for real tests
     var amountOfData;
     var amountOfData_testR1a = PE_ParameterFactory.amountOfData_testR1a;
     var amountOfData_testR1b = PE_ParameterFactory.amountOfData_testR1b;

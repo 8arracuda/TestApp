@@ -11,7 +11,6 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
     $scope.testInProgress = false;
     $scope.isPrepared = false;
 
-    //TODO Change for real tests
     var amountOfData;
     var amountOfData_testU1a = PE_ParameterFactory.amountOfData_testU1a;
     var amountOfData_testU1b = PE_ParameterFactory.amountOfData_testU1b;

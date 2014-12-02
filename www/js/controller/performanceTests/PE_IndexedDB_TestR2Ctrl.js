@@ -10,7 +10,6 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
     $scope.testInProgress = false;
     $scope.isPrepared = false;
 
-    //TODO Change for real tests
     var amountOfData;
     var amountOfData_testR2a = PE_ParameterFactory.amountOfData_testR2a;
     var amountOfData_testR2b = PE_ParameterFactory.amountOfData_testR2b;
@@ -182,7 +181,7 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
             var objectStore = transaction.objectStore(objStoreName);
 
             transaction.oncomplete = function (event) {
-                i++
+                i++;
                 if (i < amountOfData*9) {
                     readNext();
                 } else {
@@ -204,9 +203,8 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
                 console.error('transaction.onerror');
             };
 
-            var currentAddress = parseInt(i / 9);
-            //var id = data[currentAddress][0];
-            var id = currentAddress;
+            var id = parseInt(i / 9);
+            var keyName;
             switch (i % 9) {
                 case 0:
                     keyName = id + '_id';
