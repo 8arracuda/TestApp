@@ -56,6 +56,8 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
         for (var i = 0; i < amountOfData; i++) {
 
             localStorage.getItem('dataset_' + i);
+            //---Test-Output to check the returned values---
+            //console.log(localStorage.getItem('dataset_' + i));
 
         }
 

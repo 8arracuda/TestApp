@@ -62,10 +62,9 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
 
             localStorage.getItem('address' + addressIdsToLoad[i]);
 
-            //output to verify the results
-            //if (i < 10) {
-            //    console.log(localStorage.getItem('address' + addressIdsToLoad[i]));
-            //}
+
+            //---Test-Output to check the returned values---
+            //console.log(localStorage.getItem('address' + addressIdsToLoad[i]));
 
         }
 
