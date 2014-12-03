@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, IndexedDBClearObjectStore) {
     var iteration = 1;
 
     var dataForPreparation;
@@ -9,7 +9,6 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
     $scope.databaseOpened = false;
     $scope.testInProgress = false;
     $scope.isPrepared = false;
-
 
     var amountOfData;
     var amountOfData_testR1a = PE_ParameterFactory.amountOfData_testR1a;
@@ -139,29 +138,16 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
     };
 
-    function clearObjectStore() {
-
-        var request = $scope.db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
-
-        request.onsuccess = function (evt) {
-
-            console.log('objectStore "' + objStoreName + '" has been cleared');
-        };
-        request.onerror = function (event) {
-            console.error("clearObjectStore:", event.target.errorCode);
-
-        };
-
-    };
-
-
     $scope.prepare = function () {
-        console.log('prepare');
-
-        clearObjectStore();
-        loadDataForPreparation();
-        saveAddressData();
-
+        $scope.prepareInProgress = true;
+        $scope.$apply();
+        IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
+            loadDataForPreparation();
+            saveAddressData();
+            $scope.prepareInProgress = false;
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
     };
 
     $scope.startPerformanceTest = function () {
@@ -174,7 +160,6 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
             alert('Warning: Too few address Ids defined. The test will produce wrong results!');
         }
 
-
         function readNext() {
             var transaction = $scope.db.transaction([objStoreName], "readonly");
 
@@ -185,14 +170,12 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
                 if (i < amountOfData) {
                     readNext();
                 } else {
-
                     console.log('transaction.oncomplete');
-
                     var timeEnd = new Date().getTime();
 
                     var timeDiff = timeEnd - timeStart;
                     $scope.testInProgress = false;
-                    $scope.results.push('Iteration ' + iteration + ': ' + timeDiff + ' ms');
+                    $scope.results.push({iteration:  iteration,  time: timeDiff});
                     iteration++;
                     $scope.$apply();
                 }
@@ -203,11 +186,11 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
                 console.error('transaction.onerror');
             };
 
-
             var request = objectStore.get(addressIdsToLoad[i]);
 
             request.onsuccess = function (event) {
 
+                console.log('onsuccess');
                 //---Test-Output to check the returned values---
                 //console.log('read address was "' + JSON.stringify(request.result) + '"');
 

@@ -1,4 +1,4 @@
-var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "FileApiDeleteAllFilesFactory" ,"testDataFactory", "PE_ParameterFactory", "ngAnimate"]);
+var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "IndexedDBClearObjectStore", "FileApiDeleteAllFilesFactory", "testDataFactory", "PE_ParameterFactory", "ngAnimate"]);
 
 //copied from
 // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
@@ -140,11 +140,17 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
     });
 
 
-
-sdApp.directive('ngStartPerformanceTestButton', function () {
+sdApp.directive('ngStartPerformanceTestButtonWithDatabase', function () {
     return {
         restrict: 'A',
-        templateUrl: 'customAngularDirectives/StartPerformanceTestButton.html'
+        templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithDatabase.html'
+    }
+});
+
+sdApp.directive('ngStartPerformanceTestButtonWithoutDatabase', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithoutDatabase.html'
     }
 });
 

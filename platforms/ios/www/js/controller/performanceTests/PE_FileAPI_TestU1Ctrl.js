@@ -161,7 +161,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                             }, errorHandler);
 
                         } else {
-                            alert(amountOfData + ' addressfiles has been written.');
+                            console.log(dataForPreparation.length + ' addressfiles has been written.');
                         }
 
                     }

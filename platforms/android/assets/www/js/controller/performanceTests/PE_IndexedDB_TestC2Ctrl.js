@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, IndexedDBClearObjectStore) {
 
     var data;
 
@@ -105,8 +105,14 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
 
 
     $scope.prepare = function () {
-        loadData();
-        clearObjectStore();
+        $scope.prepareInProgress = true;
+        $scope.$apply();
+        IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
+            loadData();
+            $scope.prepareInProgress = false;
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
     };
 
     function loadData() {
@@ -155,7 +161,7 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
 
             var timeDiff = timeEnd - timeStart;
 
-            $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+            $scope.results.push({iteration:  iteration,  time: timeDiff});
             iteration++;
             $scope.testInProgress = false;
             $scope.isPrepared = false;
@@ -167,31 +173,6 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
             console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
             $scope.testInProgress = false;
         };
-    };
-
-    function clearObjectStore() {
-
-        var transaction = $scope.db.transaction([objStoreName], "readwrite");
-        var objectStore = transaction.objectStore(objStoreName);
-
-        objectStore.clear();
-        objectStore.onsuccess = function (evt) {
-            console.log('onSuccess');
-
-        };
-        objectStore.onerror = function (event) {
-            console.error("clearObjectStore:", event.target.errorCode);
-
-        };
-
-        transaction.oncomplete = function (event) {
-            console.log('onComplete');
-            $scope.isPrepared = true;
-            $scope.testInProgress = false;
-            $scope.$apply();
-
-        };
-
     };
 
 });

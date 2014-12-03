@@ -55,9 +55,12 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
     }
 
     $scope.prepare = function () {
+        $scope.prepareInProgress=true;
+        $scope.$apply();
         deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
             loadData();
             $scope.isPrepared = true;
+            $scope.prepareInProgress=false;
             $scope.$apply();
         });
 
@@ -132,7 +135,7 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
                                 } else {
                                     var timeEnd = new Date().getTime();
                                     var timeDiff = timeEnd - timeStart;
-                                    $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+                                    $scope.results.push({iteration:  iteration,  time: timeDiff});
                                     $scope.testInProgress = false;
                                     $scope.isPrepared = false;
                                     $scope.$apply();

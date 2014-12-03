@@ -4,8 +4,10 @@ angular.module('PE_ParameterFactory', [])
 
             amountOfData_testC1a: 100,
             amountOfData_testC1b: 500,
-            amountOfData_testC2a: 100,
-            amountOfData_testC2b: 500,
+            //amountOfData_testC2a: 100,
+            //amountOfData_testC2b: 500,
+            amountOfData_testC2a: 15000,
+            amountOfData_testC2b: 10000,
             amountOfData_testC3a: 4,
             amountOfData_testC3b: 12,
             amountOfData_testR1a: 100,

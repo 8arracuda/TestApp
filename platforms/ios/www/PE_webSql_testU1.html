@@ -24,7 +24,9 @@
                 <b>{{ testName2}}:</b> {{ testDecription2 }}
             </div>
 
-            <button class="btn btn-sm btn-default" ng-show="selectedTestVariant!=''" ng-click="reset()">reset this page</button>
+            <button class="btn btn-sm btn-default" ng-show="selectedTestVariant!=''" ng-click="reset()">reset this
+                page
+            </button>
         </div>
 
         <div ng-show="selectedTestVariant!=''">
@@ -39,9 +41,7 @@
 
             <div class="panel-body">
 
-                <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="startPerformanceTest()"
-                        class="btn btn-primary">startPerformanceTest
-                </button>
+                <div ng-start-performance-test-button-with-database></div>
 
             </div>
 

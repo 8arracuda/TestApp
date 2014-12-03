@@ -47,19 +47,22 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
     };
 
     $scope.prepare = function () {
-
+        $scope.prepareInProgress=true;
+        $scope.$apply();
         deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function() {
-            loadData();
+            loadForPreparationData();
             saveAddressData();
             $scope.isPrepared = true;
+            $scope.prepareInProgress=false;
             $scope.$apply();
         });
 
     };
 
 
-    //Sequential requests for fetching the addresses
-    $scope.startPerformanceTest_variant2 = function () {
+    //sequential requests for fetching the addresses
+    //$scope.startPerformanceTest_sequential = function () {
+    $scope.startPerformanceTest = function () {
         console.log('startPerformanceTest_variant2');
         //var callbackNumber = 0;
         $scope.testInProgress = true;
@@ -80,8 +83,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
                 //var callbackNumber = 0;
                 function loadAddress(i) {
-                    console.log('loadAddress start (' + i + ')');
-                    //  if (i < addressIdsToLoad.length) {
 
                     var filename = 'address_' + addressIdsToLoad[i] + '.txt';
                     console.log('trying to load ' + filename);
@@ -95,15 +96,14 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                             reader.onloadend = function (e) {
 
                                 //---Test-Output to check the returned values---
-                                console.log(JSON.stringify(this.result));
+                                //console.log(JSON.stringify(this.result));
 
-                                //loadAddress(i++);
                                 if (i == addressIdsToLoad.length-1) {
 
                                     var timeEnd = new Date().getTime();
 
                                     var timeDiff = timeEnd - timeStart;
-                                    $scope.results.push('Iteration ' + iteration + ': ' + timeDiff + ' ms');
+                                    $scope.results.push({iteration:  iteration,  time: timeDiff});
                                     $scope.testInProgress = false;
                                     $scope.$apply();
 
@@ -118,95 +118,73 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                     }, errorHandler);
                 }
 
-
                 loadAddress(0);
 
-
             },
             errorHandler
-        )
-        ;
-        //console.log('after');
-
-        //function addOne() {
-        //    callbackNumber++;
-        //    if (callbackNumber == addressIdsToLoad.length) {
-        //        var timeEnd = new Date().getTime();
-        //
-        //        var timeDiff = timeEnd - timeStart;
-        //        $scope.results.push('Iteration ' + iteration + ': ' + timeDiff + ' ms');
-        //        $scope.testInProgress = false;
-        //        $scope.$apply();
-        //
-        //        iteration++;
-        //    }
-        //
-        //
-        //}
+        );
 
     };
 
 
-    //asynchronous requests for fetching the addresses
-    $scope.startPerformanceTest_variant1 = function () {
-        var callbackNumber = 0;
-        $scope.testInProgress = true;
-        $scope.$apply();
+    //Not working on Android -> NOT_FOUND_ERR(1)
+    ////asynchronous requests for fetching the addresses
+    //$scope.startPerformanceTest_parallel = function () {
+    //    var callbackNumber = 0;
+    //    $scope.testInProgress = true;
+    //    $scope.$apply();
+    //
+    //    var addressIdsToLoad = testDataFactory.getRandomIndices();
+    //
+    //    var timeStart = new Date().getTime();
+    //
+    //    window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+    //        function (fs) {
+    //
+    //            for (var i = 0; i < addressIdsToLoad.length; i++) {
+    //
+    //                var filename = 'address_' + addressIdsToLoad[i] + '.txt';
+    //
+    //                fs.root.getFile(filename, {}, function (fileEntry) {
+    //
+    //                    // Get a File object representing the file,
+    //                    // then use FileReader to read its contents.
+    //                    fileEntry.file(function (file) {
+    //                        var reader = new FileReader();
+    //
+    //                        reader.onloadend = function (e) {
+    //
+    //                            //---Test-Output to check the returned values---
+    //                            //console.log(JSON.stringify(this.result));
+    //
+    //                            callbackNumber++;
+    //                            if (callbackNumber == amountOfData) {
+    //                                var timeEnd = new Date().getTime();
+    //
+    //                                var timeDiff = timeEnd - timeStart;
+    //                                $scope.results.push({iteration:  iteration,  time: timeDiff});
+    //                                $scope.testInProgress = false;
+    //                                $scope.$apply();
+    //
+    //                                iteration++;
+    //                            }
+    //
+    //                        };
+    //
+    //                        reader.readAsText(file);
+    //                    }, errorHandler);
+    //                }, errorHandler);
+    //            }
+    //        },
+    //        errorHandler
+    //    )
+    //    ;
+    //
+    //
+    //
+    //};
 
-        var addressIdsToLoad = testDataFactory.getRandomIndices();
-
-        var timeStart = new Date().getTime();
-
-        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
-            function (fs) {
-
-                for (var i = 0; i < addressIdsToLoad.length; i++) {
-
-                    var filename = 'address_' + addressIdsToLoad[i] + '.txt';
-                    console.log('trying to load ' + filename);
-                    fs.root.getFile(filename, {}, function (fileEntry) {
-
-                        // Get a File object representing the file,
-                        // then use FileReader to read its contents.
-                        fileEntry.file(function (file) {
-                            var reader = new FileReader();
-
-                            reader.onloadend = function (e) {
-
-                                //---Test-Output to check the returned values---
-                                console.log(JSON.stringify(this.result));
-
-                                addOne();
-
-                            };
-
-                            reader.readAsText(file);
-                        }, errorHandler);
-                    }, errorHandler);
-                }
-            },
-            errorHandler
-        )
-        ;
-
-        function addOne() {
-            callbackNumber++;
-            if (callbackNumber == amountOfData) {
-                var timeEnd = new Date().getTime();
-
-                var timeDiff = timeEnd - timeStart;
-                $scope.results.push({iteration:  iteration,  time: timeDiff});
-                $scope.testInProgress = false;
-                $scope.$apply();
-
-                iteration++;
-            }
-
-        }
-
-    };
-
-    function loadData() {
+    function loadForPreparationData() {
 
         dataForPreparation = testDataFactory.testData();
 
@@ -232,7 +210,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                                 fileEntry.createWriter(function (fileWriter) {
 
                                     fileWriter.onwriteend = function (e) {
-                                        console.log(fileEntry.name + ' written successfully.');
+                                            //fileentry has been written successfully.');
 
                                         //calls the function again to write the next file
                                         writeAddress(i + 1);
@@ -251,7 +229,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                             }, errorHandler);
 
                         } else {
-                            alert(amountOfData + ' addressfiles has been written.');
+                            console.log(dataForPreparation.length + ' addressfiles has been written.');
                         }
 
                     }
@@ -265,77 +243,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         }
 
     };
-
-    //function deleteAllFiles() {
-    //
-    //    console.log('showfiles started');
-    //    $scope.filelist = [];
-    //    $scope.loadingInProgress = true;
-    //    $scope.$apply();
-    //
-    //    function toArray(list) {
-    //        return Array.prototype.slice.call(list || [], 0);
-    //    }
-    //
-    //    function deleteFiles(entries, fs) {
-    //
-    //        $scope.loadingInProgress = true;
-    //        $scope.$apply();
-    //        var counterFilesRemoved = 0;
-    //        entries.forEach(function (entry, i) {
-    //
-    //            if (!entry.isDirectory) {
-    //
-    //                var filename = entry.name;
-    //
-    //                if (filename != '.DS_Store') {
-    //
-    //                    fs.root.getFile(filename, {create: false}, function (fileEntry) {
-    //
-    //                        fileEntry.remove(function () {
-    //                            //console.log(filename + ' has been removed.');
-    //                            counterFilesRemoved++;
-    //
-    //                        }, errorHandler);
-    //
-    //                    }, errorHandler);
-    //
-    //                }
-    //            }
-    //
-    //        });
-    //
-    //        console.log(counterFilesRemoved + ' files had been removed.');
-    //        $scope.loadingInProgress = false;
-    //        $scope.isPrepared = true;
-    //        $scope.$apply();
-    //
-    //    }
-    //
-    //    console.log('before');
-    //    window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
-    //        //console.log('fs.root in onInitFs');
-    //        var dirReader = fs.root.createReader();
-    //        var entries = [];
-    //
-    //        // Call the reader.readEntries() until no more results are returned.
-    //        var readEntries = function () {
-    //            dirReader.readEntries(function (results) {
-    //                if (!results.length) {
-    //                    deleteFiles(entries.sort(), fs);
-    //                } else {
-    //                    entries = entries.concat(toArray(results));
-    //                    readEntries();
-    //                }
-    //            }, errorHandler);
-    //        };
-    //
-    //        readEntries(); // Start reading dirs.
-    //
-    //    }, errorHandler);
-    //    console.log('after');
-    //
-    //};
 
     function errorHandler(e) {
         var msg = '';

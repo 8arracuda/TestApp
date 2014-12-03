@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, IndexedDBClearObjectStore) {
 
     var iteration = 1;
     const dbName = "PE_TestC3";
@@ -102,7 +102,13 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
 
 
     $scope.prepare = function () {
-        clearObjectStore();
+        $scope.prepareInProgress = true;
+        $scope.$apply();
+        IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
+            $scope.prepareInProgress = false;
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
     };
 
 
@@ -134,7 +140,7 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
 
             //var timeDiff = timeEnd - timeStart;
 
-            $scope.results.push('iteration ' + iteration + ': ' + timeDiffSum + ' ms');
+            $scope.results.push({iteration:  iteration,  time: timeDiffSum});
             iteration++;
             $scope.testInProgress = false;
             $scope.isPrepared = false;
@@ -182,29 +188,5 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
     //    };
     //};
 
-    function clearObjectStore() {
-
-        var transaction = $scope.db.transaction([objStoreName], "readwrite");
-        var objectStore = transaction.objectStore(objStoreName);
-
-        objectStore.clear();
-        objectStore.onsuccess = function (evt) {
-            console.log('onSuccess');
-
-        };
-        objectStore.onerror = function (event) {
-            console.error("clearObjectStore:", event.target.errorCode);
-
-        };
-
-        transaction.oncomplete = function (event) {
-            console.log('onComplete');
-            $scope.isPrepared = true;
-            $scope.testInProgress = false;
-            $scope.$apply();
-
-        };
-
-    };
 
 });

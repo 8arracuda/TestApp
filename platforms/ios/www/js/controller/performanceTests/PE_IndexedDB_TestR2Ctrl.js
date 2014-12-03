@@ -192,7 +192,7 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
 
                     var timeDiff = timeEnd - timeStart;
                     $scope.testInProgress = false;
-                    $scope.results.push('Iteration ' + iteration + ': ' + timeDiff + ' ms');
+                    $scope.results.push({iteration:  iteration,  time: timeDiff});
                     iteration++;
                     $scope.$apply();
                 }

@@ -141,7 +141,8 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/PrepareButton.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/PrepareSectionForTests.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/ResultsForPerformanceTests.html \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StartPerformanceTestButton.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StartPerformanceTestButtonWithDatabase.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StartPerformanceTestButtonWithoutDatabase.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StrDatenDatasetLoader.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/fonts/fontawesome-webfont.eot \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/fonts/fontawesome-webfont.svg \
@@ -178,6 +179,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/DevOrientationCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/DirectoryVariablesCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/FileApiDeleteAllFilesFactory.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/IndexedDBClearObjectStore.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/LoadImageCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/LocalStorageList2DetailCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/NavbarController.js \
@@ -323,6 +325,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01_first500.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01_first500_randomSelection.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01_small.json \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01_tmp.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data02.csv \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data02.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data02_first500_idStartingAt0.json \

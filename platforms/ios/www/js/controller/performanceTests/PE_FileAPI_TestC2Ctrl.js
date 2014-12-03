@@ -67,6 +67,9 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
     //This function writes the files sequentially
     $scope.startPerformanceTest = function () {
 
+        $scope.testInProgress = true;
+        $scope.$apply();
+
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
@@ -129,7 +132,7 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
                                 } else {
                                     var timeEnd = new Date().getTime();
                                     var timeDiff = timeEnd - timeStart;
-                                    $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+                                    $scope.results.push({iteration:  iteration,  time: timeDiff});
                                     $scope.testInProgress = false;
                                     $scope.isPrepared = false;
                                     $scope.$apply();

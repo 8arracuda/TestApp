@@ -32,26 +32,16 @@ angular.module('FileApiDeleteAllFilesFactory', [])
                     console.log('Error: ' + msg);
                 }
 
-                console.log('deleteAllFiles started');
-                //$scope.filelist = [];
-                //$scope.loadingInProgress = true;
-                //$scope.$apply();
-
-
                 function toArray(list) {
                     return Array.prototype.slice.call(list || [], 0);
                 }
 
                 function listResults(entries, fs) {
 
-                    //scope.loadingInProgress = true;
-                    //$scope.$apply();
-
                     entries.forEach(function (entry, i) {
 
                         if (!entry.isDirectory) {
-                            console.log('fs.root in listResults');
-                            console.log('entry.name:' + entry.name);
+                            //console.log('entry.name:' + entry.name);
 
                             var filename = entry.name;
 
@@ -60,7 +50,7 @@ angular.module('FileApiDeleteAllFilesFactory', [])
                                 fs.root.getFile(filename, {create: false}, function (fileEntry) {
 
                                     fileEntry.remove(function () {
-                                        console.log(filename + ' has been removed.');
+                                        //console.log(filename + ' has been removed.');
 
                                     }, errorHandler);
 
@@ -70,14 +60,9 @@ angular.module('FileApiDeleteAllFilesFactory', [])
                         }
 
                     });
-                    //scope.loadingInProgress = false;
-                    //scope.isPrepared = true;
-                    //scope.$apply();
-                   // callback();
 
                 }
 
-                console.log('before');
                 window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
                     var dirReader = fs.root.createReader();
                     var entries = [];
@@ -87,6 +72,7 @@ angular.module('FileApiDeleteAllFilesFactory', [])
                         dirReader.readEntries(function (results) {
                             if (!results.length) {
                                 listResults(entries.sort(), fs);
+                                console.log('deleteAllFiles finished');
                                 callback();
                             } else {
                                 entries = entries.concat(toArray(results));
@@ -98,7 +84,6 @@ angular.module('FileApiDeleteAllFilesFactory', [])
                     readEntries();
 
                 }, errorHandler);
-                console.log('after');
 
             }
 

@@ -140,7 +140,19 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
     });
 
 
+sdApp.directive('ngStartPerformanceTestButtonWithDatabase', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithDatabase.html'
+    }
+});
 
+sdApp.directive('ngStartPerformanceTestButtonWithoutDatabase', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithoutDatabase.html'
+    }
+});
 
 sdApp.directive('ngPrepareSectionForTests', function () {
     return {

@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, IndexedDBClearObjectStore) {
 
     var iteration = 1;
     const dbName = "PE_TestD1";
@@ -86,8 +86,7 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
                 $scope.db = event.target.result;
 
                 //removes the existing objectStore - this is ok for tests
-                $scope.db.deleteObjectStore(objStoreName);
-
+                //$scope.db.deleteObjectStore(objStoreName);
 
                 //create a new objectStore
                 var objectStore = $scope.db.createObjectStore(objStoreName, {});
@@ -131,11 +130,15 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
 
     $scope.prepare = function () {
 
-        loadDataForPreparation();
-        clearObjectStore();
-        saveAddressData();
-        $scope.isPrepared = true;
-
+            $scope.prepareInProgress = true;
+            $scope.$apply();
+            IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
+                loadDataForPreparation();
+                saveAddressData();
+                $scope.prepareInProgress = false;
+                $scope.isPrepared = true;
+                $scope.$apply();
+            });
     };
 
     function loadDataForPreparation() {
@@ -177,32 +180,6 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
             console.dir(event);
             console.error('transaction.onerror (in startPerformanceTest)');
             $scope.testInProgress = false;
-        };
-
-    };
-
-    function clearObjectStore() {
-
-        var transaction = $scope.db.transaction([objStoreName], "readwrite");
-        var objectStore = transaction.objectStore(objStoreName);
-
-        objectStore.clear();
-        objectStore.onsuccess = function (evt) {
-            console.log('onSuccess');
-
-        };
-
-        objectStore.onerror = function (event) {
-            console.error("clearObjectStore:", event.target.errorCode);
-
-        };
-
-        transaction.oncomplete = function (event) {
-            console.log('onComplete');
-            $scope.isPrepared = true;
-            $scope.testInProgress = false;
-            $scope.$apply();
-
         };
 
     };

@@ -73,7 +73,7 @@ sdApp.controller('PE_LocalStorage_TestC2Ctrl', function ($scope, $rootScope, tes
 
                 var timeDiff = timeEnd - timeStart;
 
-                $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+                $scope.results.push({iteration:  iteration,  time: timeDiff});
                 $scope.isPrepared = false;
                 $scope.testInProgress = false;
                 $scope.$apply();

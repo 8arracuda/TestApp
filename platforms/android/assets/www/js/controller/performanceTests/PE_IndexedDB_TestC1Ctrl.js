@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, IndexedDBClearObjectStore) {
 
     var data;
 
@@ -41,7 +41,7 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
 
         if (answer) {
-            iteration=1;
+            iteration = 1;
             $scope.isPrepared = false;
             $scope.results = [];
             $scope.selectedTestVariant = '';
@@ -49,10 +49,10 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
 
     };
 
-    $scope.closeDatabase = function() {
+    $scope.closeDatabase = function () {
         $scope.db.close();
         console.log('database closed');
-        $scope.isPrepared=false;
+        $scope.isPrepared = false;
         $scope.databaseOpened = null;
         $scope.$apply();
     };
@@ -104,8 +104,14 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
 
 
     $scope.prepare = function () {
-        loadData();
-        clearObjectStore();
+        $scope.prepareInProgress = true;
+        $scope.$apply();
+        IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
+            loadData();
+            $scope.prepareInProgress = false;
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
     };
 
     function loadData() {
@@ -125,7 +131,7 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-        console.log('_' + data[i][0]);
+            console.log('_' + data[i][0]);
             //var objectToStore = {id: data[i][0], value: data[i]};
             objectStore.add(data[i], data[i][0]);
 
@@ -136,7 +142,7 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
 
             var timeDiff = timeEnd - timeStart;
 
-            $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+            $scope.results.push({iteration: iteration, time: timeDiff});
             iteration++;
             $scope.testInProgress = false;
             $scope.isPrepared = false;
@@ -150,29 +156,5 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
         };
     };
 
-    function clearObjectStore() {
-
-        var transaction = $scope.db.transaction([objStoreName], "readwrite");
-        var objectStore = transaction.objectStore(objStoreName);
-
-        objectStore.clear();
-        objectStore.onsuccess = function (evt) {
-            console.log('onSuccess');
-
-        };
-        objectStore.onerror = function (event) {
-            console.error("clearObjectStore:", event.target.errorCode);
-
-        };
-
-        transaction.oncomplete = function (event) {
-           console.log('onComplete');
-            $scope.isPrepared = true;
-            $scope.testInProgress = false;
-            $scope.$apply();
-
-        };
-
-    };
 
 });

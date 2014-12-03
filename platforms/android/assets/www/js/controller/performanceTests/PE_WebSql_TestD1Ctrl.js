@@ -126,7 +126,7 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
         var timeEnd = new Date().getTime();
 
         var timeDiff = timeEnd - timeStart;
-        $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
+        $scope.results.push({iteration:  iteration,  time: timeDiff});
         $scope.testInProgress = false;
         $scope.isPrepared = false;
         iteration++;

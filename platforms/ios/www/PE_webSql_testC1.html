@@ -31,7 +31,7 @@
 
         <div ng-show="selectedTestVariant!=''">
 
-            <div ng-open-database-section_websql></div>
+            <div ng-open-database-section-websql></div>
 
             <div ng-prepare-section-for-tests></div>
 
@@ -41,9 +41,7 @@
 
             <div class="panel-body">
 
-                <button ng-class="{disabled: (!isPrepared || !databaseOpened)}" ng-click="startPerformanceTest()"
-                        class="btn btn-primary">startPerformanceTest
-                </button>
+                <div ng-start-performance-test-button-with-database></div>
 
             </div>
 

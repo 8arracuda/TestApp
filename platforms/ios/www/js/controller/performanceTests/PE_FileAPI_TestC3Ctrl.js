@@ -127,7 +127,7 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
                         //var timeDiff = timeEnd - timeStart;
 
-                        $scope.results.push('iteration ' + iteration + ': ' + timeDiffSum + ' ms');
+                        $scope.results.push({iteration:  iteration,  time: timeDiff});
                         $scope.testInProgress = false;
                         $scope.isPrepared = false;
                         $scope.$apply();
