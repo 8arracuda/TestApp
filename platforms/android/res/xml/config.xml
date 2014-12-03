@@ -25,4 +25,7 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="orientation" value="portrait" />
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
 </widget>

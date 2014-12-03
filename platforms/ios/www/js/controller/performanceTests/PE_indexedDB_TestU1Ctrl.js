@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, IndexedDBClearObjectStore) {
 
     var iteration = 1;
     const dbName = "PE_TestU1";
@@ -134,13 +134,16 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
     };
 
     $scope.prepare = function () {
-
         loadDataForPreparation();
         loadDataForUpdate();
-        clearObjectStore();
-        saveAddressData();
-        $scope.isPrepared = true;
-
+        $scope.prepareInProgress = true;
+        $scope.$apply();
+        IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
+            saveAddressData();
+            $scope.prepareInProgress = false;
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
     };
 
     function loadDataForPreparation() {
@@ -171,7 +174,7 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
 
             var timeDiff = timeEnd - timeStart;
 
-            $scope.results.push({iteration:  iteration,  time: timeDiff});
+            $scope.results.push({iteration: iteration, time: timeDiff});
             iteration++;
             $scope.testInProgress = false;
             $scope.isPrepared = false;

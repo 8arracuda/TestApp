@@ -14,4 +14,7 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="orientation" value="portrait" />
+    <feature name="Device">
+        <param name="browser-package" value="Device" />
+    </feature>
 </widget>

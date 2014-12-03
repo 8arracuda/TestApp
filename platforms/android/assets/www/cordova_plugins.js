@@ -194,6 +194,13 @@ module.exports = [
             "cordova"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/org.apache.cordova.device/www/device.js",
+        "id": "org.apache.cordova.device.device",
+        "clobbers": [
+            "device"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -203,7 +210,8 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.hidden-statusbar-overlay": "1.2.0",
     "org.apache.cordova.camera": "0.3.2",
     "org.apache.cordova.device-motion": "0.2.10-dev",
-    "org.apache.cordova.file": "1.3.1"
+    "org.apache.cordova.file": "1.3.1",
+    "org.apache.cordova.device": "0.2.12"
 }
 // BOTTOM OF METADATA
 });

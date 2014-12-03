@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, IndexedDBClearObjectStore) {
     var iteration = 1;
 
     const dbName = "PE_TestR3";
@@ -144,12 +144,15 @@ sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDa
 
 
     $scope.prepare = function () {
-        console.log('prepare');
-
-        clearObjectStore();
-        loadData();
-        saveAddressData();
-
+        $scope.prepareInProgress = true;
+        $scope.$apply();
+        IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
+            loadData();
+            saveAddressData();
+            $scope.prepareInProgress = false;
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
     };
 
     //$scope.startPerformanceTest = function () {

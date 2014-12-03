@@ -37,6 +37,7 @@ var app = {
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
         console.log('onDeviceReady');
+        alert('platform:' + device.platform);
 
         //"enable" AngularJS
         var htmlElement = document.getElementsByTagName("html")[0];

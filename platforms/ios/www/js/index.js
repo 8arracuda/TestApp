@@ -37,13 +37,13 @@ var app = {
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
         console.log('onDeviceReady');
+        alert('platform:' + device.platform);
 
         //"enable" AngularJS
         var htmlElement = document.getElementsByTagName("html")[0];
         angular.bootstrap(htmlElement, ['sdApp']);
 
     }
-
 };
 
 ////code copied from https://stackoverflow.com/questions/15266671/angular-ng-repeat-in-reverse
@@ -67,4 +67,6 @@ if (navigator.userAgent==userAgentForDesktopDevelopment1 || navigator.userAgent=
 
 }
 
-
+if (device.platform === "Win32NT") {
+    alert('Windows Phone 8 (Win32NT)');
+}

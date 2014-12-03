@@ -1,4 +1,4 @@
-var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "FileApiDeleteAllFilesFactory" ,"testDataFactory", "PE_ParameterFactory", "ngAnimate"]);
+var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "IndexedDBClearObjectStore", "FileApiDeleteAllFilesFactory", "testDataFactory", "PE_ParameterFactory", "ngAnimate"]);
 
 //copied from
 // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
@@ -118,9 +118,9 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             $scope.toggle('datasetSelectionOverlay', 'on');
         };
 
-        $scope.test = function () {
-            alert('test');
-        };
+        //$scope.test = function () {
+        //    alert('test');
+        //};
 
         $scope.decreaseNumberOfRowsBy = function (i) {
             $rootScope.numberOfRows = $rootScope.numberOfRows - i;
@@ -243,7 +243,6 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
                 $rootScope.currentVideo--;
             }
         };
-
     });
 
 //Code take from http://www.stephenpauladams.com/articles/angularjs-cordova-windows-phone-quirk/
@@ -252,8 +251,6 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
 sdApp.config([
     '$compileProvider',
     function ($compileProvider) {
-        //$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
-
-        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ms-appx):/);
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
     }
 ]);

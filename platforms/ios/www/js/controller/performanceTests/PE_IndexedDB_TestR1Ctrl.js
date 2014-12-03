@@ -1,4 +1,4 @@
-sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
+sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, IndexedDBClearObjectStore) {
     var iteration = 1;
 
     var dataForPreparation;
@@ -138,29 +138,16 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
     };
 
-    function clearObjectStore() {
-
-        var request = $scope.db.transaction([objStoreName], "readwrite").objectStore(objStoreName).clear();
-
-        request.onsuccess = function (evt) {
-
-            console.log('objectStore "' + objStoreName + '" has been cleared');
-        };
-        request.onerror = function (event) {
-            console.error("clearObjectStore:", event.target.errorCode);
-
-        };
-
-    };
-
-
     $scope.prepare = function () {
-        console.log('prepare');
-
-        clearObjectStore();
-        loadDataForPreparation();
-        saveAddressData();
-
+        $scope.prepareInProgress = true;
+        $scope.$apply();
+        IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
+            loadDataForPreparation();
+            saveAddressData();
+            $scope.prepareInProgress = false;
+            $scope.isPrepared = true;
+            $scope.$apply();
+        });
     };
 
     $scope.startPerformanceTest = function () {
