@@ -243,7 +243,6 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
                 $rootScope.currentVideo--;
             }
         };
-
     });
 
 //Code take from http://www.stephenpauladams.com/articles/angularjs-cordova-windows-phone-quirk/
@@ -252,8 +251,6 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
 sdApp.config([
     '$compileProvider',
     function ($compileProvider) {
-        //$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
-
-        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ms-appx):/);
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
     }
 ]);

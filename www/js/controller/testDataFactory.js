@@ -19,7 +19,8 @@ angular.module('testDataFactory', [])
                 //Filehelper function is defined in custom.js
                 //TODO: Change before real tests are done!!!
 
-                var filename = 'res/data/Indices_random_500.json';
+                //var filename = 'res/data/Indices_random_500.json';
+                var filename = 'res/data/Indices_random_15000.json';
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
                 return JSON.parse(contentsOfFileAsString);
 

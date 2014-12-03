@@ -43,7 +43,6 @@ var app = {
         angular.bootstrap(htmlElement, ['sdApp']);
 
     }
-
 };
 
 ////code copied from https://stackoverflow.com/questions/15266671/angular-ng-repeat-in-reverse
@@ -67,4 +66,6 @@ if (navigator.userAgent==userAgentForDesktopDevelopment1 || navigator.userAgent=
 
 }
 
-
+if (device.platform === "Win32NT") {
+    alert('Windows Phone 8 (Win32NT)');
+}
