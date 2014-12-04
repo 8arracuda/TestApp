@@ -19,40 +19,26 @@
 
 
 var app = {
-    // Application Constructor
     initialize: function () {
         this.bindEvents();
     },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
+
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
+
     onDeviceReady: function () {
-        //app.receivedEvent('deviceready');
+
         console.log('onDeviceReady');
-        //console.log('platform:' + device.platform);
+
 
         //"enable" AngularJS
         var htmlElement = document.getElementsByTagName("html")[0];
         angular.bootstrap(htmlElement, ['sdApp']);
-        console.log('--1--');
+
 
     }
 };
-
-////code copied from https://stackoverflow.com/questions/15266671/angular-ng-repeat-in-reverse
-//app.filter('reverse', function() {
-//    return function(items) {
-//        return items.slice().reverse();
-//    };
-//});
 
 //TODO For debugging in Chrome (remove at the end)
 //if (navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36' || navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36') {
@@ -67,8 +53,3 @@ if (navigator.userAgent==userAgentForDesktopDevelopment1 || navigator.userAgent=
     }, 2000);
 
 }
-
-console.log('--4--');
-//if (device.platform === "Win32NT") {
-//    alert('Windows Phone 8 (Win32NT)');
-//}
