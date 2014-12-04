@@ -69,7 +69,7 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
         console.log('startPerformanceTest_variant2');
         //var callbackNumber = 0;
         $scope.testInProgress = true;
-        //$scope.$apply();
+        $scope.$apply();
 
         var addressIdsToLoad = testDataFactory.getRandomIndices();
 

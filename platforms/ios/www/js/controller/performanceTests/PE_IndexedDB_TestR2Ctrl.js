@@ -169,6 +169,7 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
             }, 1000);
             $scope.prepareInProgress = false;
             $scope.isPrepared = true;
+            console.log('prepare function finished');
             $scope.$apply();
         });
     };

@@ -103,6 +103,8 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
         clearLocalStorage();
         saveAddressData();
         $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
 
     };
 

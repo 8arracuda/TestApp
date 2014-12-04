@@ -142,6 +142,7 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
             saveAddressData();
             $scope.prepareInProgress = false;
             $scope.isPrepared = true;
+            console.log('prepare function finished');
             $scope.$apply();
         });
     };

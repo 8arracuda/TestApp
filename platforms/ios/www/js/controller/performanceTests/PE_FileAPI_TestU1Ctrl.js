@@ -67,6 +67,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
             loadDataForUpdate();
             $scope.isPrepared = true;
             $scope.prepareInProgress=false;
+            console.log('prepare function finished');
             $scope.$apply();
         });
 
@@ -138,7 +139,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                         //if (i < amountOfData) {
                         if (i < dataForPreparation.length) {
                             var id = dataForPreparation[i][0];
-                            var filename = 'address_' + id + '.txt';
+                            var filename = id + '.txt';
                             fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
                                 fileEntry.createWriter(function (fileWriter) {
@@ -186,7 +187,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                 function writeAddress(i) {
                     //
                         //var filename = i + '.txt';
-                    var filename = 'address_' + i + '.txt';
+                    var filename = i + '.txt';
                         fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
                             fileEntry.createWriter(function (fileWriter) {
@@ -224,21 +225,9 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                             }, errorHandler);
                         }, errorHandler);
 
-                    //} else {
-                    //    //console.log(amountOfData + ' addressfiles has been written.');
-                    //    var timeEnd = new Date().getTime();
-                    //
-                    //    var timeDiff = timeEnd - timeStart;
-                    //
-                    //    $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
-                    //    $scope.testInProgress = false;
-                    //    $scope.isPrepared = false;
-                    //    $scope.$apply();
-                    //    iteration++;
-                    //}
-
                 }
 
+                //test is started here
                 var timeStart= new Date().getTime();
                 writeAddress(0);
 

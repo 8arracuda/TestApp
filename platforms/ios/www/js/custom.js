@@ -2,16 +2,21 @@ var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSuppor
 
 //copied from
 // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
+//On Windows Phone this cannot be used to fetch files from the local file system.
+//It is used only for Android and iOS.
+//
 function FileHelper() {
 
 }
 {
     FileHelper.readStringFromFileAtPath = function (pathOfFileToReadFrom) {
         var request = new XMLHttpRequest();
+
+        //false = synchronous!
         request.open("GET", pathOfFileToReadFrom, false);
         request.send(null);
         var returnValue = request.responseText;
-
+        console.log('FileHelper read: ' + returnValue.substr(0,50) + ' .....');
         return returnValue;
     }
 }
@@ -26,6 +31,8 @@ function highlightSourceTableTitle(scope) {
     }, 1500);
 }
 
+console.log('--9--');
+
 function highlightDestinationTableTitle(scope) {
     scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
     scope.$apply();
@@ -36,18 +43,15 @@ function highlightDestinationTableTitle(scope) {
     }, 1500);
 }
 
+console.log('--10--');
+
 sdApp.directive('ngStrDatenDatasetLoader', function () {
-    if (device.platform == 'Win32NT') {
-        return {
-            restrict: 'A',
-            templateUrl: '/www/customAngularDirectives/StrDatenDatasetLoader.html'
-        }
-    } else {
-        return {
-            restrict: 'A',
-            templateUrl: 'customAngularDirectives/StrDatenDatasetLoader.html'
-        }
+
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/StrDatenDatasetLoader.html'
     }
+
 })
     .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope, testDataFactory) {
 
@@ -80,11 +84,9 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
         //copied and modified from
         // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
         startJSONImport = function () {
-            if (device.platform == 'Win32NT') {
-                var pathOfFileToRead = '/www/res/data/' + $scope.selectedDataset;
-            } else {
-                var pathOfFileToRead = 'res/data/' + $scope.selectedDataset;
-            }
+
+            var pathOfFileToRead = 'res/data/' + $scope.selectedDataset;
+
             $rootScope.data = testDataFactory.getDataFromFile(pathOfFileToRead);
 
             console.log('dataset ' + $scope.selectedDataset + " loaded successfully");
@@ -152,120 +154,78 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
 
 sdApp.directive('ngStartPerformanceTestButtonWithDatabase', function () {
-    if (device.platform == 'Win32NT') {
-        return {
-            restrict: 'A',
-            templateUrl: '/www/customAngularDirectives/StartPerformanceTestButtonWithDatabase.html'
-        }
-    } else {
-        return {
-            restrict: 'A',
-            templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithDatabase.html'
-        }
+
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithDatabase.html'
     }
+
 
 });
 
 sdApp.directive('ngStartPerformanceTestButtonWithoutDatabase', function () {
-    if (device.platform == 'Win32NT') {
-        return {
-            restrict: 'A',
-            templateUrl: '/www/customAngularDirectives/StartPerformanceTestButtonWithoutDatabase.html'
-        }
-    } else {
-        return {
-            restrict: 'A',
-            templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithoutDatabase.html'
-        }
+
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithoutDatabase.html'
     }
+
 
 });
 
 sdApp.directive('ngPrepareSectionForTests', function () {
-    if (device.platform == 'Win32NT') {
-        return {
-            restrict: 'A',
-            templateUrl: '/www/customAngularDirectives/PrepareSectionForTests.html'
-        }
-    } else {
-        return {
-            restrict: 'A',
-            templateUrl: 'customAngularDirectives/PrepareSectionForTests.html'
 
-        }
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/PrepareSectionForTests.html'
+
     }
+
 });
 
 sdApp.directive('ngOpenDatabaseSectionWebsql', function () {
-    if (device.platform == 'Win32NT') {
 
-        return {
-            restrict: 'A',
-            templateUrl: '/www/customAngularDirectives/OpenDatabaseSectionWebsql.html'
-        }
-    } else {
-        return {
-            restrict: 'A',
-            templateUrl: 'customAngularDirectives/OpenDatabaseSectionWebsql.html'
-        }
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/OpenDatabaseSectionWebsql.html'
     }
+
 });
 
 sdApp.directive('ngOpenDatabaseSection', function () {
-    if (device.platform == 'Win32NT') {
 
-        return {
-            restrict: 'A',
-            templateUrl: '/www/customAngularDirectives/OpenDatabaseSection.html'
-        }
-    } else {
-        return {
-            restrict: 'A',
-            templateUrl: 'customAngularDirectives/OpenDatabaseSection.html'
-        }
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/OpenDatabaseSection.html'
     }
+
 });
 
 sdApp.directive('ngResultsForPerformanceTests', function () {
-    if (device.platform == 'Win32NT') {
 
-        return {
-            restrict: 'A',
-            templateUrl: '/www/customAngularDirectives/ResultsForPerformanceTests.html'
-        }
-    } else {
-        return {
-            restrict: 'A',
-            templateUrl: 'customAngularDirectives/ResultsForPerformanceTests.html'
-        }
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/ResultsForPerformanceTests.html'
     }
+
 });
 
 sdApp.directive('ngMediendatenImageSelector', function () {
-    if (device.platform == 'Win32NT') {
-        return {
-            restrict: 'A',
-            templateUrl: '/www/customAngularDirectives/MediendatenImageSelector.html'
-        }
-    } else {
-        return {
-            restrict: 'A',
-            templateUrl: 'customAngularDirectives/MediendatenImageSelector.html'
-        }
 
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/MediendatenImageSelector.html'
     }
+
+
 })
     .controller('MediendatenImageSelectorCtrl', function ($scope, $rootScope) {
 
-        if (device.platform == 'Win32NT') {
-            $rootScope.images = [
-                '/www/res/logo_brs.jpg', '/www/res/logo_angularJS.jpg', '/www/res/logo_cordova.jpg'
-            ];
-        } else {
-            $rootScope.images = [
-                'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
-            ];
-        }
+
+        $rootScope.images = [
+            'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
+        ];
+
 
         $rootScope.currentImage = 0;
 
@@ -288,28 +248,19 @@ sdApp.directive('ngMediendatenImageSelector', function () {
     });
 
 sdApp.directive('ngMediendatenVideoSelector', function () {
-    if (device.platform == 'Win32NT') {
-        return {
-            restrict: 'A',
-            templateUrl: '/www/customAngularDirectives/MediendatenVideoSelector.html'
-        }
-    } else {
-        return {
-            restrict: 'A',
-            templateUrl: 'customAngularDirectives/MediendatenVideoSelector.html'
-        }
+
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/MediendatenVideoSelector.html'
     }
+
 })
     .controller('MediendatenVideoSelectorCtrl', function ($scope, $rootScope) {
-        if (device.platform == 'Win32NT') {
-            $rootScope.videos = [
-                '/www/res/H264_test4_Talkingheadclipped_mp4_480x320.mp4', '/www/res/H264_test1_Talkinghead_mp4_480x360.mp4', '/www/res/mov_bbb.mp4'
-            ];
-        } else {
-            $rootScope.videos = [
-                'res/H264_test4_Talkingheadclipped_mp4_480x320.mp4', 'res/H264_test1_Talkinghead_mp4_480x360.mp4', 'res/mov_bbb.mp4'
-            ];
-        }
+
+        $rootScope.videos = [
+            'res/H264_test4_Talkingheadclipped_mp4_480x320.mp4', 'res/H264_test1_Talkinghead_mp4_480x360.mp4', 'res/mov_bbb.mp4'
+        ];
+
 
         $rootScope.currentVideo = 0;
 

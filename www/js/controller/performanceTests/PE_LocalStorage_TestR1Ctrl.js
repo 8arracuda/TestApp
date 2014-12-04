@@ -58,9 +58,9 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
         }
 
         var timeStart = new Date().getTime();
-        for (var i = 0; i < addressIdsToLoad.length; i++) {
+        for (var i = 0; i < amountOfData; i++) {
 
-            localStorage.getItem('address' + addressIdsToLoad[i]);
+            localStorage.getItem(addressIdsToLoad[i]);
 
 
             //---Test-Output to check the returned values---
@@ -86,7 +86,7 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
 
     function saveAddressData() {
 
-        if (data == null) {
+        if (dataForPreparation == null) {
             alert('error: no data loaded');
             console.error('no data loaded (in saveAddressData)');
         } else {
@@ -95,7 +95,7 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
 
                 //Set the Id as key
                 //Address with key 42 is saved with key -address42-
-                localStorage.setItem('address' + dataForPreparation[i][0], JSON.stringify(data[i]));
+                localStorage.setItem(dataForPreparation[i][0], JSON.stringify(dataForPreparation[i]));
 
             }
 

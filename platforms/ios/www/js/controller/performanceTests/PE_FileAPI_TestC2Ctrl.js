@@ -61,6 +61,7 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
             loadData();
             $scope.isPrepared = true;
             $scope.prepareInProgress=false;
+            console.log('prepare function finished');
             $scope.$apply();
         });
 
@@ -86,39 +87,39 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
                     var id = data[currentAddress][0];
                     switch (i % 9) {
                         case 0:
-                            filename = 'address' + id + '_id.txt';
+                            filename = + id + '_id.txt';
                             dataToWrite = data[currentAddress][0] + '';
                             break;
                         case 1:
-                            filename = 'address' + id + '_firstName.txt';
+                            filename = id + '_firstName.txt';
                             dataToWrite = data[currentAddress][1];
                             break;
                         case 2:
-                            filename = 'address' + id + '_lastName.txt';
+                            filename = id + '_lastName.txt';
                             dataToWrite = data[currentAddress][2];
                             break;
                         case 3:
-                            filename = 'address' + id + '_street.txt';
+                            filename = id + '_street.txt';
                             dataToWrite = data[currentAddress][3];
                             break;
                         case 4:
-                            filename = 'address' + id + '_zipcode.txt';
+                            filename = id + '_zipcode.txt';
                             dataToWrite = data[currentAddress][4];
                             break;
                         case 5:
-                            filename = 'address' + id + '_city.txt';
+                            filename = id + '_city.txt';
                             dataToWrite = data[currentAddress][5];
                             break;
                         case 6:
-                            filename = 'address' + id + '_email.txt';
+                            filename = id + '_email.txt';
                             dataToWrite = data[currentAddress][6];
                             break;
                         case 7:
-                            filename = 'address' + id + '_randomNumber1.txt';
+                            filename = id + '_randomNumber1.txt';
                             dataToWrite = data[currentAddress][7] + '';
                             break;
                         default:
-                            filename = 'address' + id + '_randomNumber2.txt';
+                            filename = id + '_randomNumber2.txt';
                             dataToWrite = data[currentAddress][8] + '';
 
                     }

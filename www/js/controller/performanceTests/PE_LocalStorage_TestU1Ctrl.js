@@ -83,7 +83,6 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
 
             }
 
-            localStorage.setItem('numberOfAddresses', dataForPreparation.length);
             console.log('saved ' + dataForPreparation.length + ' addresses.');
 
         }

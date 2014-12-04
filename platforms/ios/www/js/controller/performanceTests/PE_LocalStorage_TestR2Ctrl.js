@@ -59,7 +59,7 @@ sdApp.controller('PE_LocalStorage_TestR2Ctrl', function ($scope, $rootScope, tes
         }
 
         var timeStart = new Date().getTime();
-        for (var i = 0; i < addressIdsToLoad.length; i++) {
+        for (var i = 0; i < amountOfData; i++) {
 
             var addressId =  addressIdsToLoad[i];
             localStorage.getItem(addressId + '_id');
@@ -115,7 +115,6 @@ sdApp.controller('PE_LocalStorage_TestR2Ctrl', function ($scope, $rootScope, tes
                 localStorage.setItem(currentAddress[0] + '_randomNumber2', currentAddress[8]);
 
             }
-
     };
 
     function clearLocalStorage() {
@@ -130,6 +129,8 @@ sdApp.controller('PE_LocalStorage_TestR2Ctrl', function ($scope, $rootScope, tes
         loadDataForPreparation();
         saveAddressData();
         $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
 
     };
 

@@ -110,6 +110,7 @@ sdApp.controller('PE_LocalStorage_TestD1Ctrl', function ($scope, $rootScope, tes
 
         localStorage.clear();
 
+
     }
 
     $scope.prepare = function () {
@@ -118,6 +119,8 @@ sdApp.controller('PE_LocalStorage_TestD1Ctrl', function ($scope, $rootScope, tes
         loadData();
         saveAddressData();
         $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
     };
 
 })

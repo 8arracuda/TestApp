@@ -10,7 +10,7 @@ sdApp.controller('OverviewCtrl', function ($scope, techSupportFactory) {
 
             var resultsArray = [];
 
-            var limit = 14999;
+            var limit = 1999;
             var i = 0;
             var resultString = '';
             //while (resultsArray.length < limit) {

@@ -95,7 +95,7 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
                     //console.log('writeFile (k= ' + k + ')');
                     if (i < amountOfData) {
                         //address-id is filename
-                        var filename = data[i][0] + '.txt';
+                        var filename = 'dataset_' + data[i][0] + '.txt';
                         console.log('fs.root in writeFile');
                         fs.root.getFile(filename, {create: true}, function (fileEntry) {
 

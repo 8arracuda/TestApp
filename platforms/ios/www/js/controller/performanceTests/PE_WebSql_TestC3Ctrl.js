@@ -64,7 +64,13 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
     };
 
     $scope.prepare = function () {
+        $scope.prepareInProgress=true;
+        $scope.$apply();
         clearTable();
+        $scope.prepareInProgress=false;
+        $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
 
     };
 

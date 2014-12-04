@@ -69,8 +69,14 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
     }
 
     $scope.prepare = function () {
+        $scope.prepareInProgress=true;
+        $scope.$apply();
         loadData();
         clearTable();
+        $scope.prepareInProgress=false;
+        $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
 
     };
 
@@ -108,7 +114,7 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
-        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
+        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 10 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
