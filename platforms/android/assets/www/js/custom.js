@@ -1,4 +1,27 @@
+console.log('--5--');
 var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "IndexedDBClearObjectStore", "FileApiDeleteAllFilesFactory", "testDataFactory", "PE_ParameterFactory", "ngAnimate"]);
+console.log('--6--');
+
+sdApp.factory('testDataFactory', function () {
+    return {
+        testData: function () {
+
+            console.log('testData1');
+            var filename = 'res/data/data01_tmp.json';
+            console.log('testData2');
+
+            //Filehelper function is defined in custom.js
+            var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
+            //var contentsOfFileAsString = 'foo';
+            console.log('testData3');
+
+            console.log(contentsOfFileAsString);
+            return JSON.parse(contentsOfFileAsString);
+        }
+    };
+});
+
+console.log('--7--');
 
 //copied from
 // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
@@ -16,6 +39,8 @@ function FileHelper() {
     }
 }
 
+console.log('--8--');
+
 function highlightSourceTableTitle(scope) {
     scope.cssVarForSourceTable = 'sourceTableWasUpdated';
     scope.$apply();
@@ -25,6 +50,8 @@ function highlightSourceTableTitle(scope) {
         scope.$apply();
     }, 1500);
 }
+
+console.log('--9--');
 
 function highlightDestinationTableTitle(scope) {
     scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
@@ -36,15 +63,19 @@ function highlightDestinationTableTitle(scope) {
     }, 1500);
 }
 
+console.log('--10--');
+
 sdApp.directive('ngStrDatenDatasetLoader', function () {
+
     return {
         restrict: 'A',
         templateUrl: 'customAngularDirectives/StrDatenDatasetLoader.html'
     }
+
 })
     .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope, testDataFactory) {
 
-        $rootScope.verifyTestsOutput=true;
+        $rootScope.verifyTestsOutput = true;
 
         $scope.datasets = [
             'data01_small.json',
@@ -73,7 +104,9 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
         //copied and modified from
         // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
         startJSONImport = function () {
+
             var pathOfFileToRead = 'res/data/' + $scope.selectedDataset;
+
             $rootScope.data = testDataFactory.getDataFromFile(pathOfFileToRead);
 
             console.log('dataset ' + $scope.selectedDataset + " loaded successfully");
@@ -118,9 +151,9 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
             $scope.toggle('datasetSelectionOverlay', 'on');
         };
 
-        $scope.test = function () {
-            alert('test');
-        };
+        //$scope.test = function () {
+        //    alert('test');
+        //};
 
         $scope.decreaseNumberOfRowsBy = function (i) {
             $rootScope.numberOfRows = $rootScope.numberOfRows - i;
@@ -141,58 +174,78 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
 
 
 sdApp.directive('ngStartPerformanceTestButtonWithDatabase', function () {
+
     return {
         restrict: 'A',
         templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithDatabase.html'
     }
+
+
 });
 
 sdApp.directive('ngStartPerformanceTestButtonWithoutDatabase', function () {
+
     return {
         restrict: 'A',
         templateUrl: 'customAngularDirectives/StartPerformanceTestButtonWithoutDatabase.html'
     }
+
+
 });
 
 sdApp.directive('ngPrepareSectionForTests', function () {
+
     return {
         restrict: 'A',
         templateUrl: 'customAngularDirectives/PrepareSectionForTests.html'
+
     }
+
 });
 
 sdApp.directive('ngOpenDatabaseSectionWebsql', function () {
+
     return {
         restrict: 'A',
         templateUrl: 'customAngularDirectives/OpenDatabaseSectionWebsql.html'
     }
+
 });
 
 sdApp.directive('ngOpenDatabaseSection', function () {
+
     return {
         restrict: 'A',
         templateUrl: 'customAngularDirectives/OpenDatabaseSection.html'
     }
+
 });
 
 sdApp.directive('ngResultsForPerformanceTests', function () {
+
     return {
         restrict: 'A',
         templateUrl: 'customAngularDirectives/ResultsForPerformanceTests.html'
     }
+
 });
 
 sdApp.directive('ngMediendatenImageSelector', function () {
+
     return {
         restrict: 'A',
         templateUrl: 'customAngularDirectives/MediendatenImageSelector.html'
     }
+
+
 })
     .controller('MediendatenImageSelectorCtrl', function ($scope, $rootScope) {
+
 
         $rootScope.images = [
             'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
         ];
+
 
         $rootScope.currentImage = 0;
 
@@ -215,16 +268,19 @@ sdApp.directive('ngMediendatenImageSelector', function () {
     });
 
 sdApp.directive('ngMediendatenVideoSelector', function () {
+
     return {
         restrict: 'A',
         templateUrl: 'customAngularDirectives/MediendatenVideoSelector.html'
     }
+
 })
     .controller('MediendatenVideoSelectorCtrl', function ($scope, $rootScope) {
 
         $rootScope.videos = [
             'res/H264_test4_Talkingheadclipped_mp4_480x320.mp4', 'res/H264_test1_Talkinghead_mp4_480x360.mp4', 'res/mov_bbb.mp4'
         ];
+
 
         $rootScope.currentVideo = 0;
 
@@ -243,7 +299,6 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
                 $rootScope.currentVideo--;
             }
         };
-
     });
 
 //Code take from http://www.stephenpauladams.com/articles/angularjs-cordova-windows-phone-quirk/
@@ -252,8 +307,6 @@ sdApp.directive('ngMediendatenVideoSelector', function () {
 sdApp.config([
     '$compileProvider',
     function ($compileProvider) {
-        //$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
-
-        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ms-appx):/);
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
     }
 ]);

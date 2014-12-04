@@ -10,7 +10,7 @@ sdApp.controller('OverviewCtrl', function ($scope, techSupportFactory) {
 
             var resultsArray = [];
 
-            var limit = 499;
+            var limit = 14999;
             var i = 0;
             var resultString = '';
             //while (resultsArray.length < limit) {
@@ -27,27 +27,19 @@ sdApp.controller('OverviewCtrl', function ($scope, techSupportFactory) {
                 i++;
                 if (resultsArray.indexOf(randomNumber) == -1) {
                     resultsArray.push(randomNumber);
-                    //   resultString = resultString + ',' + randomNumber;
                 }
             }
 
-
-            //console.log(resultString);
             console.log(resultsArray.toString());
 
             checkArray(resultsArray);
-            //R code to confirm that the function works correct
-            //foo<-c(    --numbers here---     )
-            //foo2<-sort(foo, decreasing = FALSE)
-            //barplot(foo2);
 
-        }
-        ;
+        };
 
         function checkArray(array) {
 
-            console.log('max:' + Math.max.apply(Math, array))
-            console.log('min:' + Math.min.apply(Math, array))
+            console.log('max:' + Math.max.apply(Math, array));
+            console.log('min:' + Math.min.apply(Math, array));
 
             for (var i = 0; i < array.length; i++) {
                 if (array.indexOf(i) == -1) {
@@ -57,11 +49,10 @@ sdApp.controller('OverviewCtrl', function ($scope, techSupportFactory) {
 
         }
 
-
         //TODO remove at the end - Only a method to generate data - has nothing to do with the tests
         $scope.generate = function () {
 
-            resultString = '"';
+            var resultString = '"';
             for (var i = 0; i < 5000; i++) {
 
                 resultString = resultString + ',"' + $scope.fillWithZeroes(40, i) + '"';

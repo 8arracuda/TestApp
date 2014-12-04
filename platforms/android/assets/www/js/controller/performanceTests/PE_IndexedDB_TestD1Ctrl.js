@@ -88,7 +88,6 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
                 //removes the existing objectStore - this is ok for tests
                 //$scope.db.deleteObjectStore(objStoreName);
 
-
                 //create a new objectStore
                 var objectStore = $scope.db.createObjectStore(objStoreName, {});
 

@@ -156,6 +156,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/angularJS_1.3.2 \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/custom.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/custom_backup.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/index - Kopie.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/index.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/index_backup.js \
@@ -264,6 +265,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_WebSqlCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/com.brodysoft.sqlitePlugin \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.camera \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.device-motion \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/com.brodysoft.sqlitePlugin/www \
@@ -273,6 +275,8 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraConstants.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraPopoverHandle.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraPopoverOptions.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.device-motion/www \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.device-motion/www/Acceleration.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.device-motion/www/accelerometer.js \
@@ -348,6 +352,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data_5000_10.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data_5000_11.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data_5000_12.json \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/Indices_random_15000.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/Indices_random_500.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/sorting.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/ZufallszahlenBis500.csv \

@@ -1,6 +1,6 @@
 sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
 
-    var data;
+    var dataForPreparation;
 
     var iteration = 1;
 
@@ -79,9 +79,8 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
 
     };
 
-    function loadData() {
-
-        data = testDataFactory.testData();
+    function loadDataForPreparation() {
+        dataForPreparation = testDataFactory.testData();
 
     };
 
@@ -92,37 +91,36 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
             console.error('no data loaded (in saveAddressData)');
         } else {
 
-            //Same logic as in DE_LocalStorage_strDaten Test-Method 2
-
-            for (var i = 0; i < data.length; i++) {
+            for (var i = 0; i < dataForPreparation.length; i++) {
 
                 //Set the Id as key
                 //Address with key 42 is saved with key -address42-
-                localStorage.setItem('address' + data[i][0], JSON.stringify(data[i]));
+                localStorage.setItem('address' + dataForPreparation[i][0], JSON.stringify(data[i]));
 
             }
 
-            localStorage.setItem('numberOfAddresses', data.length);
+            localStorage.setItem('numberOfAddresses', dataForPreparation.length);
 
-            console.log('saved ' + data.length + ' addresses.');
+            console.log('saved ' + dataForPreparation.length + ' addresses.');
 
         }
 
     };
 
     function clearLocalStorage() {
-
         localStorage.clear();
-
-
     }
 
     $scope.prepare = function () {
 
+        $scope.prepareInProgress=true;
+        $scope.$apply();
         clearLocalStorage();
-        loadData();
+        loadDataForPreparation();
         saveAddressData();
+        $scope.prepareInProgress=false;
         $scope.isPrepared = true;
+        $scope.$apply();
 
     };
 

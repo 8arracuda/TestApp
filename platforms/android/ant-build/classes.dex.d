@@ -9,6 +9,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/camera/CameraLauncher.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/camera/ExifHelper.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/camera/FileHelper.class \
+/users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/devicemotion/AccelListener$1.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/devicemotion/AccelListener.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/file/ContentFilesystem.class \

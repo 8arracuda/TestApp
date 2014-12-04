@@ -37,13 +37,14 @@ var app = {
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
         console.log('onDeviceReady');
+        //console.log('platform:' + device.platform);
 
         //"enable" AngularJS
         var htmlElement = document.getElementsByTagName("html")[0];
         angular.bootstrap(htmlElement, ['sdApp']);
+        console.log('--1--');
 
     }
-
 };
 
 ////code copied from https://stackoverflow.com/questions/15266671/angular-ng-repeat-in-reverse
@@ -55,10 +56,10 @@ var app = {
 
 //TODO For debugging in Chrome (remove at the end)
 //if (navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36' || navigator.userAgent=='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36') {
-
+console.log('--2--');
 userAgentForDesktopDevelopment1 = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
 userAgentForDesktopDevelopment2 = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/600.1.25 (KHTML, like Gecko) Version/8.0 Safari/600.1.25';
-
+console.log('--3--');
 if (navigator.userAgent==userAgentForDesktopDevelopment1 || navigator.userAgent==userAgentForDesktopDevelopment2) {
     setTimeout(function () {
         var htmlElement = document.getElementsByTagName("html")[0];
@@ -67,4 +68,7 @@ if (navigator.userAgent==userAgentForDesktopDevelopment1 || navigator.userAgent=
 
 }
 
-
+console.log('--4--');
+//if (device.platform === "Win32NT") {
+//    alert('Windows Phone 8 (Win32NT)');
+//}
