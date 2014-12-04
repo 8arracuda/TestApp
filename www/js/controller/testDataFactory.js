@@ -2,18 +2,24 @@ angular.module('testDataFactory', [])
     .factory('testDataFactory', function () {
         return {
             testData: function () {
-
+                console.log('testData1');
                 //Filehelper function is defined in custom.js
                 //TODO: Change before real tests are done!!!
 
                 //var filename = 'res/data/data01_first500.json';
                 //var filename = 'res/data/data01.json';
                 if (device.platform == 'Win32NT') {
+                    console.log('testData2');
                     var filename = '/www/res/data/data01_tmp.json';
+                    console.log('testData3');
                 } else {
+                    console.log('testData4');
                     var filename = 'res/data/data01_tmp.json';
+                    console.log('testData5');
                 }
+                console.log('testData6');
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
+                console.log('testData7');
                 return JSON.parse(contentsOfFileAsString);
 
             },

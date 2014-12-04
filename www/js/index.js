@@ -37,7 +37,7 @@ var app = {
     onDeviceReady: function () {
         //app.receivedEvent('deviceready');
         console.log('onDeviceReady');
-        alert('platform:' + device.platform);
+        console.log('platform:' + device.platform);
 
         //"enable" AngularJS
         var htmlElement = document.getElementsByTagName("html")[0];
@@ -67,6 +67,6 @@ if (navigator.userAgent==userAgentForDesktopDevelopment1 || navigator.userAgent=
 
 }
 
-if (device.platform === "Win32NT") {
-    alert('Windows Phone 8 (Win32NT)');
-}
+//if (device.platform === "Win32NT") {
+//    alert('Windows Phone 8 (Win32NT)');
+//}
