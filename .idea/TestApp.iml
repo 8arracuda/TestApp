@@ -3,7 +3,6 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/platforms" />
-      <excludeFolder url="file://$MODULE_DIR$/plugins" />
       <excludeFolder url="file://$MODULE_DIR$/www/res/data" />
     </content>
     <orderEntry type="inheritedJdk" />
