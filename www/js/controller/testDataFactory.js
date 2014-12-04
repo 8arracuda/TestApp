@@ -4,7 +4,7 @@ angular.module('testDataFactory', [])
         return {
             testData: function () {
 
-                var filename = 'res/data/data01_tmp.json';
+                var filename = 'res/data/data01_2000.json';
                 //Filehelper function is defined in custom.js
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
 
@@ -14,7 +14,7 @@ angular.module('testDataFactory', [])
 
             getRandomIndices: function () {
 
-                var filename = 'res/data/Indices_random_15000.json';
+                var filename = 'res/data/Indices_random_2000.json';
 
                 //Filehelper function is defined in custom.js
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
