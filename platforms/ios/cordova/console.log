@@ -19713,3 +19713,53 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-12-03 22:20:28.408 Test-App[49514:1107667] Resetting plugins due to page load.
 2014-12-03 22:20:29.410 Test-App[49514:1107667] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/1E952BEE-AA84-425B-BD63-4850AB679403/Test-App.app/www/index.html
 2014-12-03 22:20:44.720 Test-App[49514:1107700] void SendDelegateMessage(NSInvocation *): delegate (webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:) failed to return after waiting 10 seconds. main run loop mode: kCFRunLoopDefaultMode
+2014-12-04 09:56:42.671 Test-App[57432:1161594] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/F3E47B21-3FE7-4E25-AE5D-6672F141016D/Library/Cookies/Cookies.binarycookies
+2014-12-04 09:56:42.741 Test-App[57432:1161594] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-04 09:56:42.742 Test-App[57432:1161594] Multi-tasking -> Device: YES, App: YES
+2014-12-04 09:56:42.748 Test-App[57432:1161594] Unlimited access to network resources
+2014-12-04 09:56:42.780 Test-App[57432:1161594] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-04 09:56:43.171 Test-App[57432:1161594] [CDVTimer][file] 112.221003ms
+2014-12-04 09:56:43.172 Test-App[57432:1161594] [CDVTimer][TotalPluginStartup] 112.485945ms
+2014-12-04 09:56:44.386 Test-App[57432:1161594] Resetting plugins due to page load.
+2014-12-04 09:56:46.678 Test-App[57432:1161594] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/A36951A4-535D-43B0-83C8-FAB48C9378C5/Test-App.app/www/index.html
+2014-12-04 09:57:03.372 Test-App[57432:1161594] THREAD WARNING: ['File'] took '351.185059' ms. Plugin should use a background thread.
+2014-12-04 09:57:03.440 Test-App[57432:1161594] THREAD WARNING: ['File'] took '38.976074' ms. Plugin should use a background thread.
+2014-12-04 09:57:03.470 Test-App[57432:1161594] THREAD WARNING: ['File'] took '11.552979' ms. Plugin should use a background thread.
+2014-12-04 09:57:03.772 Test-App[57432:1161594] THREAD WARNING: ['File'] took '56.596191' ms. Plugin should use a background thread.
+2014-12-04 09:57:03.813 Test-App[57432:1161594] THREAD WARNING: ['File'] took '39.808105' ms. Plugin should use a background thread.
+2014-12-04 09:57:03.845 Test-App[57432:1161594] THREAD WARNING: ['File'] took '21.277832' ms. Plugin should use a background thread.
+2014-12-04 09:57:03.884 Test-App[57432:1161594] THREAD WARNING: ['File'] took '32.090088' ms. Plugin should use a background thread.
+2014-12-04 09:57:03.913 Test-App[57432:1161594] THREAD WARNING: ['File'] took '16.576904' ms. Plugin should use a background thread.
+2014-12-04 09:57:03.997 Test-App[57432:1161594] THREAD WARNING: ['File'] took '66.551025' ms. Plugin should use a background thread.
+2014-12-04 09:57:04.076 Test-App[57432:1161594] THREAD WARNING: ['File'] took '13.896973' ms. Plugin should use a background thread.
+2014-12-04 09:57:08.989 Test-App[57432:1161594] THREAD WARNING: ['File'] took '47.187256' ms. Plugin should use a background thread.
+2014-12-04 09:57:09.033 Test-App[57432:1161594] THREAD WARNING: ['File'] took '43.113281' ms. Plugin should use a background thread.
+2014-12-04 09:57:09.053 Test-App[57432:1161594] THREAD WARNING: ['File'] took '19.635986' ms. Plugin should use a background thread.
+2014-12-04 09:57:09.102 Test-App[57432:1161594] THREAD WARNING: ['File'] took '18.233887' ms. Plugin should use a background thread.
+2014-12-04 09:57:11.069 Test-App[57432:1161594] THREAD WARNING: ['File'] took '31.811768' ms. Plugin should use a background thread.
+2014-12-04 09:57:12.788 Test-App[57432:1161594] THREAD WARNING: ['File'] took '39.293945' ms. Plugin should use a background thread.
+2014-12-04 09:57:13.333 Test-App[57432:1161594] THREAD WARNING: ['File'] took '12.446777' ms. Plugin should use a background thread.
+2014-12-04 09:57:13.883 Test-App[57432:1161594] THREAD WARNING: ['File'] took '18.642090' ms. Plugin should use a background thread.
+2014-12-04 09:57:14.724 Test-App[57432:1161594] THREAD WARNING: ['File'] took '18.017822' ms. Plugin should use a background thread.
+2014-12-04 09:57:16.023 Test-App[57432:1161594] THREAD WARNING: ['File'] took '17.715820' ms. Plugin should use a background thread.
+2014-12-04 10:18:10.612 Test-App[58860:1168451] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/53965D8F-FAAA-4789-BE89-BF3264D72D42/Library/Cookies/Cookies.binarycookies
+2014-12-04 10:18:11.660 Test-App[58860:1168451] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-04 10:18:11.661 Test-App[58860:1168451] Multi-tasking -> Device: YES, App: YES
+2014-12-04 10:18:11.667 Test-App[58860:1168451] Unlimited access to network resources
+2014-12-04 10:18:11.688 Test-App[58860:1168451] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-04 10:18:12.046 Test-App[58860:1168451] [CDVTimer][file] 113.079011ms
+2014-12-04 10:18:12.046 Test-App[58860:1168451] [CDVTimer][TotalPluginStartup] 113.397002ms
+2014-12-04 10:18:12.913 Test-App[58860:1168451] Resetting plugins due to page load.
+2014-12-04 10:18:14.857 Test-App[58860:1168451] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/148CC0E4-588E-41C7-B650-AC4F3E7B83C2/Test-App.app/www/index.html
