@@ -67,6 +67,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
             loadDataForUpdate();
             $scope.isPrepared = true;
             $scope.prepareInProgress=false;
+            console.log('prepare function finished');
             $scope.$apply();
         });
 

@@ -145,13 +145,17 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
 
 
     $scope.prepare = function () {
-
+        $scope.prepareInProgress=true;
+        $scope.$apply();
         clearTable();
         loadDataForPreparation();
         console.dir(dataForPreparation);
         saveAddressData();
         loadDataForUpdate();
+        $scope.prepareInProgress=false;
         $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
     };
 
     function loadDataForPreparation() {

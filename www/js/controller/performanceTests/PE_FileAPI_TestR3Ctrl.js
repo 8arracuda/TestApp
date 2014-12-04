@@ -56,6 +56,7 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
             saveAddressData();
             $scope.isPrepared = true;
             $scope.prepareInProgress=false;
+            console.log('prepare function finished');
             $scope.$apply();
         });
 

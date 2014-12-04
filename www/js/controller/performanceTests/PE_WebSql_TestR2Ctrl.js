@@ -55,11 +55,15 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
     };
 
     $scope.prepare = function () {
-        console.log('prepare');
-
+        $scope.prepareInProgress=false;
+        $scope.$apply();
         clearTable();
         loadDataForPreparation();
         saveAddressData();
+        $scope.prepareInProgress=false;
+        $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
 
     };
 
