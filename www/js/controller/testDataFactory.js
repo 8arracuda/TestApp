@@ -1,4 +1,3 @@
-//sdApp.factory('testDataFactory', function () {
 angular.module('testDataFactory', [])
     .factory('testDataFactory', function () {
         return {
