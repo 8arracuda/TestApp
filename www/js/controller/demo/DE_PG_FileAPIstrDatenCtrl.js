@@ -2,9 +2,9 @@ sdApp.controller('DE_PG_FileAPIStrDatenCtrl', function ($scope, $rootScope) {
 
     $scope.tableFromPGFileAPI = [];
 
-    const filenameForMethod1 = 'table1';
-    const filenameForMethod1NumberOfRows = 'table1_numberOfRows.txt';
-    const filenameForMethod2 = 'table2.txt';
+    var filenameForMethod1 = 'table1';
+    var filenameForMethod1NumberOfRows = 'table1_numberOfRows.txt';
+    var filenameForMethod2 = 'table2.txt';
 
     $scope.saveTable1ToPGFileAPI = function () {
 

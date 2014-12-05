@@ -4,8 +4,8 @@ sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope) {
 
     var data;
 
-    const dbName = "PL_Test1";
-    const objStoreName = "PL_Test1";
+    var dbName = "PL_Test1";
+    var objStoreName = "PL_Test1";
 
     $scope.databaseOpened = false;
 

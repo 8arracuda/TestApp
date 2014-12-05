@@ -4,9 +4,9 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
 
     var dataForPreparation;
 
-    const dbName = "PE_TestR1";
-    const tableName = "PE_TestR1";
-    const dbVersion = "1.0";
+    var dbName = "PE_TestR1";
+    var tableName = "PE_TestR1";
+    var dbVersion = "1.0";
 
     //bool value used for the status-light in the "open database" section
     $scope.databaseOpened = false;

@@ -2,10 +2,9 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
 
     $rootScope.section = 'PL';
 
-
-    const tableName = 'PL_WebSQL';
-    const dbName = 'PL_WebSQL';
-    const dbVersion = '1.0';
+    var tableName = 'PL_WebSQL';
+    var dbName = 'PL_WebSQL';
+    var dbVersion = '1.0';
 
     $scope.result = '';
     $scope.isPrepared = false;

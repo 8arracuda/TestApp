@@ -3,8 +3,8 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
     var dataForPreparation;
 
-    const dbName = "PE_TestR1";
-    const objStoreName = "PE_TestR1";
+    var dbName = "PE_TestR1";
+    var objStoreName = "PE_TestR1";
 
     $scope.databaseOpened = false;
     $scope.testInProgress = false;
