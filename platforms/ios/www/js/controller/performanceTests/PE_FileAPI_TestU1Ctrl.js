@@ -185,8 +185,6 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
             function (fs) {
 
                 function writeAddress(i) {
-                    //
-                        //var filename = i + '.txt';
                     var filename = i + '.txt';
                         fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
@@ -200,11 +198,8 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                                     writeAddress(i + 1);
                                         } else {
 
-                                            //console.log(amountOfData + ' addressfiles has been written.');
                                             var timeEnd = new Date().getTime();
-
                                             var timeDiff = timeEnd - timeStart;
-
                                             $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
                                             $scope.testInProgress = false;
                                             $scope.isPrepared = false;

@@ -64,7 +64,9 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
 
 
             //---Test-Output to check the returned values---
-            //console.log(localStorage.getItem('address' + addressIdsToLoad[i]));
+            if (i == PE_TestR1_indexToCheck) {
+                console.log('check Test R1:' + localStorage.getItem(addressIdsToLoad[i]));
+            }
 
         }
 

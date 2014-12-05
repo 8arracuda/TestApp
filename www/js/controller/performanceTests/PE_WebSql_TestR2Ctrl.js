@@ -132,6 +132,7 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
 
 
     $scope.startPerformanceTest = function () {
+        alert('gestartet');
 
         $scope.testInProgress = true;
         $scope.$apply();
@@ -145,21 +146,18 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
         var timeStart = new Date().getTime();
         var onSuccessCounter = 0;
 
-        $scope.keyLoaded = $scope.keyToLoad;
-
         $scope.db.transaction(function (tx) {
 
-            //for (var i = 0; i < addressIdsToLoad.length; i++) {
             for (var i = 0; i < amountOfData; i++) {
 
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
 
-                    onSuccessCounter = onSuccessCounter + 1;
-
                     //---Test-Output to check the returned values---
-                    //if ($rootScope.testOutputLogging) {
-                    //console.log('loaded address: ' + JSON.stringify(results.rows.item(0)));
-                    //}
+                    if (onSuccessCounter == PE_TestR2_indexToCheck) {
+                        console.log('check Test R2:' + JSON.stringify(results.rows.item(0)));
+                    }
+
+                    onSuccessCounter = onSuccessCounter + 1;
 
                     if (onSuccessCounter == amountOfData) {
                         var timeEnd = new Date().getTime();

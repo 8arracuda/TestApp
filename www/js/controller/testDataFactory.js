@@ -8,7 +8,6 @@ angular.module('testDataFactory', [])
                 //Filehelper function is defined in custom.js
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
 
-                console.log(contentsOfFileAsString);
                 return JSON.parse(contentsOfFileAsString);
             },
 

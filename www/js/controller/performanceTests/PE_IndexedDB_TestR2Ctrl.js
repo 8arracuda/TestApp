@@ -104,7 +104,6 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
         }
     };
 
-    //slightly modified code from DE_IndexedDB_strDaten
     function saveAddressData() {
         console.log('saveAddressData');
 
@@ -112,8 +111,7 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
 
         var objectStore = transaction.objectStore(objStoreName);
 
-        for (var i = 0; i < amountOfData; i++) {
-            console.log('_' + dataForPreparation[i][0]);
+        for (var i = 0; i < dataForPreparation.length; i++) {
 
             var id = dataForPreparation[i][0];
             objectStore.add(dataForPreparation[i][0], id + '_id');
@@ -152,7 +150,6 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
         };
         request.onerror = function (event) {
             console.error("clearObjectStore:", event.target.errorCode);
-            //displayActionFailure(this.error);
         };
 
     };
@@ -246,6 +243,9 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
 
                 //---Test-Output to check the returned values---
                 //console.log(keyName + ' has value "' + request.result + '"');
+                if (i == PE_TestR2_indexToCheck*9 +1 ) {
+                    console.log('check Test R2 (firstname only):' + request.result);
+                }
 
             };
 

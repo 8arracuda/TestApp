@@ -157,6 +157,8 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
         var addressIdsToLoad = testDataFactory.getRandomIndices();
 
+        console.log(addressIdsToLoad[100]);
+
         if (addressIdsToLoad.length < amountOfData) {
             alert('Warning: Too few address Ids defined. The test will produce wrong results!');
         }
@@ -193,7 +195,9 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
                 console.log('onsuccess');
                 //---Test-Output to check the returned values---
-                //console.log('read address was "' + JSON.stringify(request.result) + '"');
+                if (i == PE_TestR1_indexToCheck) {
+                    console.log('check Test R1:' + JSON.stringify(request.result));
+                }
 
             };
 

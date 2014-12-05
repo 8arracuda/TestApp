@@ -20307,3 +20307,215 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-12-04 23:48:18.636 Test-App[80236:2154471] THREAD WARNING: ['File'] took '38.306396' ms. Plugin should use a background thread.
 2014-12-04 23:48:18.717 Test-App[80236:2154471] THREAD WARNING: ['File'] took '25.461914' ms. Plugin should use a background thread.
 2014-12-04 23:48:18.919 Test-App[80236:2154471] THREAD WARNING: ['File'] took '24.517090' ms. Plugin should use a background thread.
+2014-12-05 09:15:39.405 Test-App[81819:2174660] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/112DBA5C-93CF-4264-9AE8-D5FB26ACFB4A/Library/Cookies/Cookies.binarycookies
+2014-12-05 09:15:39.705 Test-App[81819:2174660] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-05 09:15:39.706 Test-App[81819:2174660] Multi-tasking -> Device: YES, App: YES
+2014-12-05 09:15:39.758 Test-App[81819:2174660] Unlimited access to network resources
+2014-12-05 09:15:39.783 Test-App[81819:2174660] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-05 09:15:40.722 Test-App[81819:2174660] [CDVTimer][file] 78.221023ms
+2014-12-05 09:15:40.722 Test-App[81819:2174660] [CDVTimer][TotalPluginStartup] 78.458011ms
+2014-12-05 09:15:41.693 Test-App[81819:2174660] Resetting plugins due to page load.
+2014-12-05 09:15:44.326 Test-App[81819:2174660] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/2B4326F3-1769-4994-AAC5-668C2C1EA3DF/Test-App.app/www/index.html
+2014-12-05 09:16:11.418 Test-App[81819:2174660] THREAD WARNING: ['File'] took '228.509033' ms. Plugin should use a background thread.
+2014-12-05 09:16:15.596 Test-App[81819:2174660] THREAD WARNING: ['File'] took '22.219727' ms. Plugin should use a background thread.
+2014-12-05 09:16:16.316 Test-App[81819:2174660] THREAD WARNING: ['File'] took '94.741943' ms. Plugin should use a background thread.
+2014-12-05 09:16:16.620 Test-App[81819:2174660] THREAD WARNING: ['File'] took '69.155029' ms. Plugin should use a background thread.
+2014-12-05 09:16:16.891 Test-App[81819:2174660] THREAD WARNING: ['File'] took '12.248047' ms. Plugin should use a background thread.
+2014-12-05 09:16:16.977 Test-App[81819:2174660] THREAD WARNING: ['File'] took '15.573975' ms. Plugin should use a background thread.
+2014-12-05 09:16:43.398 Test-App[81819:2174660] THREAD WARNING: ['File'] took '221.095947' ms. Plugin should use a background thread.
+2014-12-05 09:16:58.584 Test-App[81819:2174660] THREAD WARNING: ['File'] took '149.476807' ms. Plugin should use a background thread.
+2014-12-05 09:16:59.948 Test-App[81819:2174660] THREAD WARNING: ['File'] took '10.324951' ms. Plugin should use a background thread.
+2014-12-05 09:17:00.019 Test-App[81819:2174660] THREAD WARNING: ['File'] took '62.473145' ms. Plugin should use a background thread.
+2014-12-05 09:17:00.049 Test-App[81819:2174660] THREAD WARNING: ['File'] took '26.608154' ms. Plugin should use a background thread.
+2014-12-05 09:17:00.091 Test-App[81819:2174660] THREAD WARNING: ['File'] took '19.690918' ms. Plugin should use a background thread.
+2014-12-05 09:17:00.181 Test-App[81819:2174660] THREAD WARNING: ['File'] took '14.820068' ms. Plugin should use a background thread.
+2014-12-05 09:17:00.317 Test-App[81819:2174660] THREAD WARNING: ['File'] took '11.381104' ms. Plugin should use a background thread.
+2014-12-05 09:17:00.570 Test-App[81819:2174660] THREAD WARNING: ['File'] took '143.393066' ms. Plugin should use a background thread.
+2014-12-05 09:17:00.654 Test-App[81819:2174660] THREAD WARNING: ['File'] took '80.799805' ms. Plugin should use a background thread.
+2014-12-05 09:17:01.099 Test-App[81819:2174660] THREAD WARNING: ['File'] took '20.282959' ms. Plugin should use a background thread.
+2014-12-05 09:17:01.162 Test-App[81819:2174660] THREAD WARNING: ['File'] took '11.644043' ms. Plugin should use a background thread.
+2014-12-05 09:17:01.258 Test-App[81819:2174660] THREAD WARNING: ['File'] took '18.692139' ms. Plugin should use a background thread.
+2014-12-05 09:17:01.303 Test-App[81819:2174660] THREAD WARNING: ['File'] took '15.500977' ms. Plugin should use a background thread.
+2014-12-05 09:17:01.670 Test-App[81819:2174660] THREAD WARNING: ['File'] took '193.582031' ms. Plugin should use a background thread.
+2014-12-05 09:17:01.767 Test-App[81819:2174660] THREAD WARNING: ['File'] took '92.805908' ms. Plugin should use a background thread.
+2014-12-05 09:17:02.116 Test-App[81819:2174660] THREAD WARNING: ['File'] took '21.465088' ms. Plugin should use a background thread.
+2014-12-05 09:17:02.923 Test-App[81819:2174660] THREAD WARNING: ['File'] took '10.083008' ms. Plugin should use a background thread.
+2014-12-05 09:18:33.046 Test-App[81819:2174660] THREAD WARNING: ['File'] took '132.686035' ms. Plugin should use a background thread.
+2014-12-05 09:18:33.066 Test-App[81819:2174660] THREAD WARNING: ['File'] took '11.139893' ms. Plugin should use a background thread.
+2014-12-05 09:18:34.292 Test-App[81819:2174660] THREAD WARNING: ['File'] took '114.610107' ms. Plugin should use a background thread.
+2014-12-05 09:18:34.573 Test-App[81819:2174660] THREAD WARNING: ['File'] took '116.890137' ms. Plugin should use a background thread.
+2014-12-05 09:18:34.667 Test-App[81819:2174660] THREAD WARNING: ['File'] took '90.563965' ms. Plugin should use a background thread.
+2014-12-05 09:18:35.379 Test-App[81819:2174660] THREAD WARNING: ['File'] took '153.855957' ms. Plugin should use a background thread.
+2014-12-05 09:18:35.515 Test-App[81819:2174660] THREAD WARNING: ['File'] took '131.768066' ms. Plugin should use a background thread.
+2014-12-05 09:18:35.635 Test-App[81819:2174660] THREAD WARNING: ['File'] took '11.281006' ms. Plugin should use a background thread.
+2014-12-05 09:18:35.656 Test-App[81819:2174660] THREAD WARNING: ['File'] took '15.181152' ms. Plugin should use a background thread.
+2014-12-05 09:18:35.680 Test-App[81819:2174660] THREAD WARNING: ['File'] took '19.479980' ms. Plugin should use a background thread.
+2014-12-05 09:18:35.763 Test-App[81819:2174660] THREAD WARNING: ['File'] took '11.400146' ms. Plugin should use a background thread.
+2014-12-05 09:18:35.830 Test-App[81819:2174660] THREAD WARNING: ['File'] took '14.933838' ms. Plugin should use a background thread.
+2014-12-05 09:18:35.855 Test-App[81819:2174660] THREAD WARNING: ['File'] took '21.602783' ms. Plugin should use a background thread.
+2014-12-05 09:18:36.096 Test-App[81819:2174660] THREAD WARNING: ['File'] took '101.700928' ms. Plugin should use a background thread.
+2014-12-05 09:18:36.118 Test-App[81819:2174660] THREAD WARNING: ['File'] took '14.789062' ms. Plugin should use a background thread.
+2014-12-05 09:18:36.143 Test-App[81819:2174660] THREAD WARNING: ['File'] took '14.975098' ms. Plugin should use a background thread.
+2014-12-05 09:18:36.454 Test-App[81819:2174660] THREAD WARNING: ['File'] took '298.539062' ms. Plugin should use a background thread.
+2014-12-05 09:18:36.514 Test-App[81819:2174660] THREAD WARNING: ['File'] took '56.148926' ms. Plugin should use a background thread.
+2014-12-05 09:18:37.619 Test-App[81819:2174660] THREAD WARNING: ['File'] took '51.325195' ms. Plugin should use a background thread.
+2014-12-05 09:18:37.764 Test-App[81819:2174660] THREAD WARNING: ['File'] took '139.517822' ms. Plugin should use a background thread.
+2014-12-05 09:18:37.919 Test-App[81819:2174660] THREAD WARNING: ['File'] took '10.716797' ms. Plugin should use a background thread.
+2014-12-05 09:18:37.974 Test-App[81819:2174660] THREAD WARNING: ['File'] took '16.674072' ms. Plugin should use a background thread.
+2014-12-05 09:18:38.008 Test-App[81819:2174660] THREAD WARNING: ['File'] took '30.286133' ms. Plugin should use a background thread.
+2014-12-05 09:18:38.074 Test-App[81819:2174660] THREAD WARNING: ['File'] took '10.815674' ms. Plugin should use a background thread.
+2014-12-05 09:18:38.099 Test-App[81819:2174660] THREAD WARNING: ['File'] took '10.684814' ms. Plugin should use a background thread.
+2014-12-05 09:18:40.880 Test-App[81819:2174660] THREAD WARNING: ['File'] took '14.526123' ms. Plugin should use a background thread.
+2014-12-05 09:18:59.341 Test-App[81819:2174660] THREAD WARNING: ['File'] took '132.648926' ms. Plugin should use a background thread.
+2014-12-05 09:19:00.514 Test-App[81819:2174660] THREAD WARNING: ['File'] took '22.593018' ms. Plugin should use a background thread.
+2014-12-05 09:19:00.854 Test-App[81819:2174660] THREAD WARNING: ['File'] took '64.673828' ms. Plugin should use a background thread.
+2014-12-05 09:19:00.966 Test-App[81819:2174660] THREAD WARNING: ['File'] took '28.772949' ms. Plugin should use a background thread.
+2014-12-05 09:20:06.820 Test-App[82416:2178234] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/ED33FA90-A484-44BA-8061-D793322F94AB/Library/Cookies/Cookies.binarycookies
+2014-12-05 09:20:07.294 Test-App[82416:2178234] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-05 09:20:07.295 Test-App[82416:2178234] Multi-tasking -> Device: YES, App: YES
+2014-12-05 09:20:07.300 Test-App[82416:2178234] Unlimited access to network resources
+2014-12-05 09:20:07.317 Test-App[82416:2178234] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-05 09:20:07.506 Test-App[82416:2178234] [CDVTimer][file] 16.544044ms
+2014-12-05 09:20:07.507 Test-App[82416:2178234] [CDVTimer][TotalPluginStartup] 16.763031ms
+2014-12-05 09:20:07.898 Test-App[82416:2178234] Resetting plugins due to page load.
+2014-12-05 09:20:09.016 Test-App[82416:2178234] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/1C083843-8314-4814-8321-0D1F85C4E92D/Test-App.app/www/index.html
+2014-12-05 09:20:12.831 Test-App[82416:2178234] THREAD WARNING: ['File'] took '76.319092' ms. Plugin should use a background thread.
+2014-12-05 09:20:16.431 Test-App[82416:2178234] THREAD WARNING: ['File'] took '134.036133' ms. Plugin should use a background thread.
+2014-12-05 09:20:16.473 Test-App[82416:2178234] THREAD WARNING: ['File'] took '19.972900' ms. Plugin should use a background thread.
+2014-12-05 09:20:16.804 Test-App[82416:2178234] THREAD WARNING: ['File'] took '147.369873' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.137 Test-App[82416:2178234] THREAD WARNING: ['File'] took '89.035889' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.331 Test-App[82416:2178234] THREAD WARNING: ['File'] took '15.603027' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.349 Test-App[82416:2178234] THREAD WARNING: ['File'] took '12.194824' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.380 Test-App[82416:2178234] THREAD WARNING: ['File'] took '30.528076' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.393 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.119873' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.413 Test-App[82416:2178234] THREAD WARNING: ['File'] took '14.187744' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.428 Test-App[82416:2178234] THREAD WARNING: ['File'] took '14.988770' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.464 Test-App[82416:2178234] THREAD WARNING: ['File'] took '35.781006' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.488 Test-App[82416:2178234] THREAD WARNING: ['File'] took '16.139160' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.506 Test-App[82416:2178234] THREAD WARNING: ['File'] took '17.780273' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.518 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.371094' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.553 Test-App[82416:2178234] THREAD WARNING: ['File'] took '29.038086' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.587 Test-App[82416:2178234] THREAD WARNING: ['File'] took '10.246338' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.601 Test-App[82416:2178234] THREAD WARNING: ['File'] took '12.764893' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.613 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.085205' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.647 Test-App[82416:2178234] THREAD WARNING: ['File'] took '33.875977' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.662 Test-App[82416:2178234] THREAD WARNING: ['File'] took '13.510010' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.674 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.708008' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.703 Test-App[82416:2178234] THREAD WARNING: ['File'] took '19.578125' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.720 Test-App[82416:2178234] THREAD WARNING: ['File'] took '16.229980' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.751 Test-App[82416:2178234] THREAD WARNING: ['File'] took '18.454102' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.784 Test-App[82416:2178234] THREAD WARNING: ['File'] took '32.491211' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.795 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.126953' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.823 Test-App[82416:2178234] THREAD WARNING: ['File'] took '27.326172' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.863 Test-App[82416:2178234] THREAD WARNING: ['File'] took '39.743896' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.884 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.335205' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.916 Test-App[82416:2178234] THREAD WARNING: ['File'] took '12.704346' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.967 Test-App[82416:2178234] THREAD WARNING: ['File'] took '51.115967' ms. Plugin should use a background thread.
+2014-12-05 09:20:21.990 Test-App[82416:2178234] THREAD WARNING: ['File'] took '22.645020' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.006 Test-App[82416:2178234] THREAD WARNING: ['File'] took '15.654053' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.035 Test-App[82416:2178234] THREAD WARNING: ['File'] took '28.579834' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.063 Test-App[82416:2178234] THREAD WARNING: ['File'] took '15.241943' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.096 Test-App[82416:2178234] THREAD WARNING: ['File'] took '32.552002' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.119 Test-App[82416:2178234] THREAD WARNING: ['File'] took '17.544189' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.136 Test-App[82416:2178234] THREAD WARNING: ['File'] took '14.206787' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.151 Test-App[82416:2178234] THREAD WARNING: ['File'] took '10.378906' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.180 Test-App[82416:2178234] THREAD WARNING: ['File'] took '29.065918' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.206 Test-App[82416:2178234] THREAD WARNING: ['File'] took '25.774902' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.221 Test-App[82416:2178234] THREAD WARNING: ['File'] took '13.928711' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.244 Test-App[82416:2178234] THREAD WARNING: ['File'] took '23.038818' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.257 Test-App[82416:2178234] THREAD WARNING: ['File'] took '12.314941' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.289 Test-App[82416:2178234] THREAD WARNING: ['File'] took '31.069092' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.318 Test-App[82416:2178234] THREAD WARNING: ['File'] took '19.727783' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.335 Test-App[82416:2178234] THREAD WARNING: ['File'] took '10.541016' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.360 Test-App[82416:2178234] THREAD WARNING: ['File'] took '10.931152' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.396 Test-App[82416:2178234] THREAD WARNING: ['File'] took '35.049805' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.408 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.682129' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.454 Test-App[82416:2178234] THREAD WARNING: ['File'] took '17.541748' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.486 Test-App[82416:2178234] THREAD WARNING: ['File'] took '23.199219' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.505 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.091064' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.530 Test-App[82416:2178234] THREAD WARNING: ['File'] took '24.468018' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.572 Test-App[82416:2178234] THREAD WARNING: ['File'] took '42.162842' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.587 Test-App[82416:2178234] THREAD WARNING: ['File'] took '14.568115' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.602 Test-App[82416:2178234] THREAD WARNING: ['File'] took '14.681152' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.619 Test-App[82416:2178234] THREAD WARNING: ['File'] took '16.596924' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.662 Test-App[82416:2178234] THREAD WARNING: ['File'] took '40.542725' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.695 Test-App[82416:2178234] THREAD WARNING: ['File'] took '32.878906' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.708 Test-App[82416:2178234] THREAD WARNING: ['File'] took '12.662842' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.722 Test-App[82416:2178234] THREAD WARNING: ['File'] took '13.506836' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.766 Test-App[82416:2178234] THREAD WARNING: ['File'] took '29.412354' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.808 Test-App[82416:2178234] THREAD WARNING: ['File'] took '41.454102' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.851 Test-App[82416:2178234] THREAD WARNING: ['File'] took '16.041992' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.863 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.262939' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.880 Test-App[82416:2178234] THREAD WARNING: ['File'] took '15.857910' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.903 Test-App[82416:2178234] THREAD WARNING: ['File'] took '18.428223' ms. Plugin should use a background thread.
+2014-12-05 09:20:22.964 Test-App[82416:2178234] THREAD WARNING: ['File'] took '26.322998' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.007 Test-App[82416:2178234] THREAD WARNING: ['File'] took '24.803223' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.025 Test-App[82416:2178234] THREAD WARNING: ['File'] took '17.466797' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.076 Test-App[82416:2178234] THREAD WARNING: ['File'] took '43.347168' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.091 Test-App[82416:2178234] THREAD WARNING: ['File'] took '14.696289' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.116 Test-App[82416:2178234] THREAD WARNING: ['File'] took '16.854004' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.127 Test-App[82416:2178234] THREAD WARNING: ['File'] took '10.187012' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.150 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.987793' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.167 Test-App[82416:2178234] THREAD WARNING: ['File'] took '16.057129' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.186 Test-App[82416:2178234] THREAD WARNING: ['File'] took '18.276367' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.199 Test-App[82416:2178234] THREAD WARNING: ['File'] took '12.736084' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.223 Test-App[82416:2178234] THREAD WARNING: ['File'] took '21.465820' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.235 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.084961' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.250 Test-App[82416:2178234] THREAD WARNING: ['File'] took '12.269043' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.261 Test-App[82416:2178234] THREAD WARNING: ['File'] took '10.896973' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.290 Test-App[82416:2178234] THREAD WARNING: ['File'] took '27.765869' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.328 Test-App[82416:2178234] THREAD WARNING: ['File'] took '15.578125' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.351 Test-App[82416:2178234] THREAD WARNING: ['File'] took '21.851807' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.413 Test-App[82416:2178234] THREAD WARNING: ['File'] took '37.743896' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.437 Test-App[82416:2178234] THREAD WARNING: ['File'] took '13.667236' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.489 Test-App[82416:2178234] THREAD WARNING: ['File'] took '26.345703' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.501 Test-App[82416:2178234] THREAD WARNING: ['File'] took '12.181885' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.513 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.401855' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.547 Test-App[82416:2178234] THREAD WARNING: ['File'] took '33.559814' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.582 Test-App[82416:2178234] THREAD WARNING: ['File'] took '34.743164' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.610 Test-App[82416:2178234] THREAD WARNING: ['File'] took '19.522949' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.621 Test-App[82416:2178234] THREAD WARNING: ['File'] took '10.933105' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.680 Test-App[82416:2178234] THREAD WARNING: ['File'] took '36.978027' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.721 Test-App[82416:2178234] THREAD WARNING: ['File'] took '20.968750' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.739 Test-App[82416:2178234] THREAD WARNING: ['File'] took '18.116943' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.774 Test-App[82416:2178234] THREAD WARNING: ['File'] took '23.688965' ms. Plugin should use a background thread.
+2014-12-05 09:20:23.787 Test-App[82416:2178234] THREAD WARNING: ['File'] took '12.542236' ms. Plugin should use a background thread.
+2014-12-05 09:20:24.036 Test-App[82416:2178234] THREAD WARNING: ['File'] took '59.566162' ms. Plugin should use a background thread.
+2014-12-05 09:20:24.126 Test-App[82416:2178234] THREAD WARNING: ['File'] took '82.320312' ms. Plugin should use a background thread.
+2014-12-05 09:20:24.242 Test-App[82416:2178234] THREAD WARNING: ['File'] took '97.627930' ms. Plugin should use a background thread.
+2014-12-05 09:20:24.300 Test-App[82416:2178234] THREAD WARNING: ['File'] took '54.806885' ms. Plugin should use a background thread.
+2014-12-05 09:20:25.062 Test-App[82416:2178234] THREAD WARNING: ['File'] took '14.308838' ms. Plugin should use a background thread.
+2014-12-05 09:20:25.422 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.706787' ms. Plugin should use a background thread.
+2014-12-05 09:20:25.548 Test-App[82416:2178234] THREAD WARNING: ['File'] took '20.772949' ms. Plugin should use a background thread.
+2014-12-05 09:20:25.836 Test-App[82416:2178234] THREAD WARNING: ['File'] took '67.769043' ms. Plugin should use a background thread.
+2014-12-05 09:20:25.858 Test-App[82416:2178234] THREAD WARNING: ['File'] took '19.928955' ms. Plugin should use a background thread.
+2014-12-05 09:20:25.983 Test-App[82416:2178234] THREAD WARNING: ['File'] took '119.402100' ms. Plugin should use a background thread.
+2014-12-05 09:20:26.001 Test-App[82416:2178234] THREAD WARNING: ['File'] took '14.879883' ms. Plugin should use a background thread.
+2014-12-05 09:20:26.093 Test-App[82416:2178234] THREAD WARNING: ['File'] took '14.400146' ms. Plugin should use a background thread.
+2014-12-05 09:20:26.398 Test-App[82416:2178234] THREAD WARNING: ['File'] took '34.967773' ms. Plugin should use a background thread.
+2014-12-05 09:20:26.469 Test-App[82416:2178234] THREAD WARNING: ['File'] took '10.319824' ms. Plugin should use a background thread.
+2014-12-05 09:20:26.560 Test-App[82416:2178234] THREAD WARNING: ['File'] took '87.354980' ms. Plugin should use a background thread.
+2014-12-05 09:20:26.754 Test-App[82416:2178234] THREAD WARNING: ['File'] took '18.840088' ms. Plugin should use a background thread.
+2014-12-05 09:20:26.867 Test-App[82416:2178234] THREAD WARNING: ['File'] took '22.777832' ms. Plugin should use a background thread.
+2014-12-05 09:20:26.922 Test-App[82416:2178234] THREAD WARNING: ['File'] took '16.192139' ms. Plugin should use a background thread.
+2014-12-05 09:20:27.136 Test-App[82416:2178234] THREAD WARNING: ['File'] took '209.204102' ms. Plugin should use a background thread.
+2014-12-05 09:20:27.253 Test-App[82416:2178234] THREAD WARNING: ['File'] took '111.220947' ms. Plugin should use a background thread.
+2014-12-05 09:20:27.295 Test-App[82416:2178234] THREAD WARNING: ['File'] took '37.035156' ms. Plugin should use a background thread.
+2014-12-05 09:20:27.448 Test-App[82416:2178234] THREAD WARNING: ['File'] took '94.194824' ms. Plugin should use a background thread.
+2014-12-05 09:20:28.336 Test-App[82416:2178234] THREAD WARNING: ['File'] took '108.907959' ms. Plugin should use a background thread.
+2014-12-05 09:21:30.955 Test-App[82416:2178234] THREAD WARNING: ['File'] took '137.467041' ms. Plugin should use a background thread.
+2014-12-05 09:21:32.074 Test-App[82416:2178234] THREAD WARNING: ['File'] took '89.083008' ms. Plugin should use a background thread.
+2014-12-05 09:21:32.464 Test-App[82416:2178234] THREAD WARNING: ['File'] took '64.323975' ms. Plugin should use a background thread.
+2014-12-05 09:22:00.996 Test-App[82416:2178234] THREAD WARNING: ['File'] took '11.580078' ms. Plugin should use a background thread.
