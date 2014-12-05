@@ -98,7 +98,7 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
 
     function saveAddressData() {
         $scope.db.transaction(function (tx) {
-                for (var i = 0; i < amountOfData; i++) {
+                for (var i = 0; i < dataForPreparation.length; i++) {
 
                     //data[i][0] + '' because otherwise id's like 1.0, 2.0 are stored
                     tx.executeSql("INSERT INTO " + tableName + "(id, address) VALUES(?,?)", [dataForPreparation[i][0] + '', JSON.stringify(dataForPreparation[i])]);
@@ -145,13 +145,17 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
 
 
     $scope.prepare = function () {
-
+        $scope.prepareInProgress=true;
+        $scope.$apply();
         clearTable();
         loadDataForPreparation();
         console.dir(dataForPreparation);
         saveAddressData();
         loadDataForUpdate();
+        $scope.prepareInProgress=false;
         $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
     };
 
     function loadDataForPreparation() {

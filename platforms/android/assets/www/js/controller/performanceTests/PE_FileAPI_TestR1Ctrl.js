@@ -54,6 +54,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
             saveAddressData();
             $scope.isPrepared = true;
             $scope.prepareInProgress=false;
+            console.log('prepare function finished');
             $scope.$apply();
         });
 
@@ -84,7 +85,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                 //var callbackNumber = 0;
                 function loadAddress(i) {
 
-                    var filename = 'address_' + addressIdsToLoad[i] + '.txt';
+                    var filename = addressIdsToLoad[i] + '.txt';
                     console.log('trying to load ' + filename);
                     fs.root.getFile(filename, {}, function (fileEntry) {
 
@@ -97,6 +98,9 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
                                 //---Test-Output to check the returned values---
                                 //console.log(JSON.stringify(this.result));
+                                if (i == PE_TestR1_indexToCheck) {
+                                    console.log('check Test R1:' + JSON.stringify(this.result));
+                                }
 
                                 if (i == addressIdsToLoad.length-1) {
 
@@ -204,7 +208,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                         //if (i < amountOfData) {
                         if (i < dataForPreparation.length) {
                             var id = dataForPreparation[i][0];
-                            var filename = 'address_' + id + '.txt';
+                            var filename = id + '.txt';
                             fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
                                 fileEntry.createWriter(function (fileWriter) {

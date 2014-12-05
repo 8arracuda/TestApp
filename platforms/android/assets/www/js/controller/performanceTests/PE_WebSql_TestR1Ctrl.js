@@ -55,11 +55,16 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
     };
 
     $scope.prepare = function () {
-        console.log('prepare');
 
+        $scope.prepareInProgress=true;
+        $scope.$apply();
         clearTable();
         loadDataForPreparation();
         saveAddressData();
+        $scope.prepareInProgress=false;
+        $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
 
     };
 
@@ -148,7 +153,9 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
 
                     //---Test-Output to check the returned values---
-                    //console.log('loaded address: ' + JSON.stringify(results.rows.item(0)));
+                    if (i == PE_TestR1_indexToCheck) {
+                        console.log('check Test R1:' + JSON.stringify(results.rows.item(0)));
+                    }
 
                     onSuccessCounter = onSuccessCounter + 1;
 

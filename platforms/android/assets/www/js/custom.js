@@ -1,45 +1,29 @@
-console.log('--5--');
 var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "IndexedDBClearObjectStore", "FileApiDeleteAllFilesFactory", "testDataFactory", "PE_ParameterFactory", "ngAnimate"]);
-console.log('--6--');
 
-sdApp.factory('testDataFactory', function () {
-    return {
-        testData: function () {
-
-            console.log('testData1');
-            var filename = 'res/data/data01_tmp.json';
-            console.log('testData2');
-
-            //Filehelper function is defined in custom.js
-            var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
-            //var contentsOfFileAsString = 'foo';
-            console.log('testData3');
-
-            console.log(contentsOfFileAsString);
-            return JSON.parse(contentsOfFileAsString);
-        }
-    };
-});
-
-console.log('--7--');
+const PE_TestR1_indexToCheck = 100;
+const PE_TestR2_indexToCheck = 0;
+const PE_TestR3_indexToCheck = 0;
 
 //copied from
 // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
+//On Windows Phone this cannot be used to fetch files from the local file system.
+//It is used only for Android and iOS.
+//
 function FileHelper() {
 
 }
 {
     FileHelper.readStringFromFileAtPath = function (pathOfFileToReadFrom) {
         var request = new XMLHttpRequest();
+
+        //false = synchronous!
         request.open("GET", pathOfFileToReadFrom, false);
         request.send(null);
         var returnValue = request.responseText;
-
+        console.log('FileHelper read: ' + returnValue.substr(0,50) + ' .....');
         return returnValue;
     }
 }
-
-console.log('--8--');
 
 function highlightSourceTableTitle(scope) {
     scope.cssVarForSourceTable = 'sourceTableWasUpdated';

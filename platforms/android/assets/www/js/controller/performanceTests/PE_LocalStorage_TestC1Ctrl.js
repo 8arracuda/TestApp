@@ -92,6 +92,8 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
             clearLocalStorage();
             loadData();
             $scope.isPrepared = true;
+            console.log('prepare function finished');
+            $scope.$apply();
 
         };
 

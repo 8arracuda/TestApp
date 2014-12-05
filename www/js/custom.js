@@ -2,6 +2,7 @@ var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSuppor
 
 const PE_TestR1_indexToCheck = 100;
 const PE_TestR2_indexToCheck = 0;
+const PE_TestR3_indexToCheck = 0;
 
 //copied from
 // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/

@@ -326,6 +326,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01+02.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01.csv \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01.json \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01_2000.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01_first500.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01_first500_randomSelection.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data01_small.json \
@@ -353,6 +354,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data_5000_11.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data_5000_12.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/Indices_random_15000.json \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/Indices_random_2000.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/Indices_random_500.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/sorting.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/ZufallszahlenBis500.csv \

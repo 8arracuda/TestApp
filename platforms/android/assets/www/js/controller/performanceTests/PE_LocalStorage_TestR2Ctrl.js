@@ -59,7 +59,7 @@ sdApp.controller('PE_LocalStorage_TestR2Ctrl', function ($scope, $rootScope, tes
         }
 
         var timeStart = new Date().getTime();
-        for (var i = 0; i < addressIdsToLoad.length; i++) {
+        for (var i = 0; i < amountOfData; i++) {
 
             var addressId =  addressIdsToLoad[i];
             localStorage.getItem(addressId + '_id');
@@ -72,14 +72,11 @@ sdApp.controller('PE_LocalStorage_TestR2Ctrl', function ($scope, $rootScope, tes
             localStorage.getItem(addressId + '_randomNumber2');
 
             //---Test-Output to check the returned values---
-            //console.log(localStorage.getItem(addressId + '_id'));
-            //console.log(localStorage.getItem(addressId + '_firstname'));
-            //console.log(localStorage.getItem(addressId + '_lastname'));
-            //console.log(localStorage.getItem(addressId + '_zipcode'));
-            //console.log(localStorage.getItem(addressId + '_city'));
-            //console.log(localStorage.getItem(addressId + '_randomNumber1'));
-            //console.log(localStorage.getItem(addressId + '_randomNumber2'));
-
+            if (i == PE_TestR2_indexToCheck) {
+                console.log('check Test R2 [1/3]: ' + localStorage.getItem(addressId + '_id'));
+                console.log('check Test R2 [2/3]: ' + localStorage.getItem(addressId + '_firstname'));
+                console.log('check Test R2 [3/3]: ' + localStorage.getItem(addressId + '_lastname'));
+            }
         }
 
         var timeEnd = new Date().getTime();
@@ -115,7 +112,6 @@ sdApp.controller('PE_LocalStorage_TestR2Ctrl', function ($scope, $rootScope, tes
                 localStorage.setItem(currentAddress[0] + '_randomNumber2', currentAddress[8]);
 
             }
-
     };
 
     function clearLocalStorage() {
@@ -130,6 +126,8 @@ sdApp.controller('PE_LocalStorage_TestR2Ctrl', function ($scope, $rootScope, tes
         loadDataForPreparation();
         saveAddressData();
         $scope.isPrepared = true;
+        console.log('prepare function finished');
+        $scope.$apply();
 
     };
 
