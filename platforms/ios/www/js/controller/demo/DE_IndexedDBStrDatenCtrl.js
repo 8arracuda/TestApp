@@ -3,8 +3,8 @@ sdApp.controller('DE_IndexedDBStrDatenCtrl', function ($scope, $rootScope) {
         //bool value used for the status-light in the "open database" section
         $scope.databaseOpened = false;
 
-        const dbName = "StrDaten";
-        const objStoreName = "StrDaten";
+        var dbName = "StrDaten";
+        var objStoreName = "StrDaten";
 
         $scope.clearObjectStore = function () {
 

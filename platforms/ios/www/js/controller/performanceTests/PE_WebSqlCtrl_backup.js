@@ -2,8 +2,8 @@ sdApp.controller('PE_WebSqlCtrl', function ($scope, $rootScope) {
 
     $rootScope.section = 'PE';
 
-    const dbName = "performance_tests";
-    const dbVersion = "1.0";
+    var dbName = "performance_tests";
+    var dbVersion = "1.0";
 
     $scope.databaseOpened = false;
 

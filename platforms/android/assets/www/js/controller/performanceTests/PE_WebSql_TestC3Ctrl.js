@@ -1,9 +1,9 @@
 sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
     var iteration = 1;
 
-    const dbName = "PE_TestC3";
-    const tableName = "PE_TestC3";
-    const dbVersion = "1.0";
+    var dbName = "PE_TestC3";
+    var tableName = "PE_TestC3";
+    var dbVersion = "1.0";
 
     $scope.testInProgress = false;
 

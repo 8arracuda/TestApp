@@ -111,6 +111,14 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_localStorage_testU1.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_PG_SQLite.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_sessionStorage.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_sessionStorage_testC1.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_sessionStorage_testC2.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_sessionStorage_testC3.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_sessionStorage_testD1.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_sessionStorage_testR1.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_sessionStorage_testR2.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_sessionStorage_testR3.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_sessionStorage_testU1.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_webSql.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_webSql_backup.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PE_webSql_testC1.html \
@@ -157,6 +165,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/custom.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/custom_backup.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/customDirectives.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/index - Kopie.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/index.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/index_backup.js \
@@ -234,7 +243,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_IndexedDB_TestR1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_IndexedDB_TestR2Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_IndexedDB_TestR3Ctrl.js \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_indexedDB_TestU1Ctrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_IndexedDB_TestU1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_IndexedDBCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_LocalStorage_TestC1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_LocalStorage_TestC2Ctrl.js \
@@ -247,6 +256,14 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_LocalStorageCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_LocalStorageCtrl_backup.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_PGSQLiteCtrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_SessionStorage_TestC1Ctrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_SessionStorage_TestC2Ctrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_SessionStorage_TestC3Ctrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_SessionStorage_TestD1Ctrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_SessionStorage_TestR1Ctrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_SessionStorage_TestR2Ctrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_SessionStorage_TestR3Ctrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_SessionStorage_TestU1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_SessionStorageCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_WebSql_TestC1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_WebSql_TestC2Ctrl.js \

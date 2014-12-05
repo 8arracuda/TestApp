@@ -8,8 +8,8 @@ sdApp.controller('DE_WebSqlEinzelwerteCtrl', function ($scope) {
     $scope.valueToSave = "b";
     $scope.keyToRemove = "";
 
-    const dbName = "einzelwerte";
-    const dbVersion = "1.0";
+    var dbName = "einzelwerte";
+    var dbVersion = "1.0";
 
 
     $scope.saveEinzelwerte = function () {

@@ -1,8 +1,8 @@
 sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, IndexedDBClearObjectStore) {
     var iteration = 1;
 
-    const dbName = "PE_TestR3";
-    const objStoreName = "PE_TestR3";
+    var dbName = "PE_TestR3";
+    var objStoreName = "PE_TestR3";
 
     $scope.databaseOpened = false;
     $scope.testInProgress = false;

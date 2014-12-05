@@ -1,7 +1,7 @@
 sdApp.controller('DE_IndexedDBEinzelwerteCtrl', function ($scope) {
 
-    const dbName = "Einzelwerte";
-    const objStoreName = "Einzelwerte";
+    var dbName = "Einzelwerte";
+    var objStoreName = "Einzelwerte";
 
     //bool value used for the status-light in the "open database" section
     $scope.databaseOpened = false;
