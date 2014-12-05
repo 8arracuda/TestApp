@@ -98,6 +98,9 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
                                 //---Test-Output to check the returned values---
                                 //console.log(JSON.stringify(this.result));
+                                if (i == PE_TestR1_indexToCheck) {
+                                    console.log('check Test R1:' + JSON.stringify(this.result));
+                                }
 
                                 if (i == addressIdsToLoad.length-1) {
 

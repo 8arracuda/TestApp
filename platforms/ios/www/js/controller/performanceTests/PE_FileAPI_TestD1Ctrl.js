@@ -52,7 +52,6 @@ sdApp.controller('PE_FileAPI_TestD1Ctrl', function ($scope, $rootScope, testData
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
             for (var i = 0; i < amountOfData; i++) {
 
-                //var filename = 'address_' + i + '.txt';
                 var filename = addressIdsToDelete[i] + '.txt';
 
                 if (filename != '.DS_Store') {
