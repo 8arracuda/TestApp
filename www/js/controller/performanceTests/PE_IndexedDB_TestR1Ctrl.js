@@ -192,8 +192,6 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
             var request = objectStore.get(addressIdsToLoad[i]);
 
             request.onsuccess = function (event) {
-
-                console.log('onsuccess');
                 //---Test-Output to check the returned values---
                 if (i == PE_TestR1_indexToCheck) {
                     console.log('check Test R1:' + JSON.stringify(request.result));
