@@ -93,7 +93,7 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
 
                 //on update: when objectStore existed
                 //before it needs to be deleted, before it's created again with new keys.
-                $scope.db.deleteObjectStore(objStoreName);
+                //$scope.db.deleteObjectStore(objStoreName);
 
                 var objectStore = $scope.db.createObjectStore(objStoreName, {});
 
