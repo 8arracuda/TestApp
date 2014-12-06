@@ -31,6 +31,13 @@ sdApp.controller('SidebarController', function ($scope, techSupportFactory) {
             support: ts.indexedDB
         },
         {
+            labelText: 'SQLite Plugin',
+            linkURL: 'PE_SQLitePlugin',
+            support: ts.sqlitePlugin
+        },
+        //TODO check if sqlitePlugin is working...
+
+        {
             labelText: 'File API',
             linkURL: 'PE_fileAPI',
             support: ts.fileAPI_fullSupport

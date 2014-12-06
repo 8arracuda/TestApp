@@ -14,9 +14,9 @@ sdApp.controller('PE_SessionStorage_TestC1Ctrl', function ($scope, $rootScope, t
         $scope.selectedTestVariant = '';
         $scope.preparationText = 'Clears SessionStorage and fetches addressData to be written during the test.';
         $scope.mainTestDecription = 'In this test stores addresses to SessionStorage.';
-        $scope.testName1 = 'TestC1a';
+        $scope.testName1 = 'TestC1-500';
         $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
-        $scope.testName2 = 'TestC1b';
+        $scope.testName2 = 'TestC1-2000';
         $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
 
 

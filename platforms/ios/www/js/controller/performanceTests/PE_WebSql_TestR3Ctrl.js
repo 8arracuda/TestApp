@@ -139,7 +139,7 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
 
                     //---Test-Output to check the returned values---
-                    console.log('loaded address: ' + JSON.stringify(results.rows.item(0)));
+                    console.log('check Test R3:' + JSON.stringify(results.rows.item(0)).substr(1,100));
 
                     onSuccessCounter = onSuccessCounter + 1;
 

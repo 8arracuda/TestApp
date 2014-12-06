@@ -116,12 +116,12 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
         console.log('initWebSQL start');
         $scope.db = window.openDatabase(dbName, dbVersion, dbName, 10 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-        $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
+        $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
     };
 
-    $scope.createTableEinzelwerte = function (tx) {
+    $scope.createTable = function (tx) {
 
         //Define the structure of the database
         tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id TEXT PRIMARY KEY, address TEXT)');

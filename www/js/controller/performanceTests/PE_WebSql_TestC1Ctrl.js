@@ -15,9 +15,9 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestC1a';
+    $scope.testName1 = 'TestC1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
-    $scope.testName2 = 'TestC1b';
+    $scope.testName2 = 'TestC1-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
 
     $scope.results = [];
@@ -116,12 +116,12 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
         console.log('initWebSQL start');
         $scope.db = window.openDatabase(dbName, dbVersion, dbName, 10 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-        $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
+        $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
     };
 
-    $scope.createTableEinzelwerte = function (tx) {
+    $scope.createTable = function (tx) {
 
         //Define the structure of the database
         tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id TEXT PRIMARY KEY, address TEXT)');

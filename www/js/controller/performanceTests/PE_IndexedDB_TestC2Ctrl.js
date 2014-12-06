@@ -17,9 +17,9 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestC2a';
+    $scope.testName1 = 'TestC2-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC2a + ' items';
-    $scope.testName2 = 'TestC2b';
+    $scope.testName2 = 'TestC2-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testC2b + ' items';
 
     $scope.results = [];

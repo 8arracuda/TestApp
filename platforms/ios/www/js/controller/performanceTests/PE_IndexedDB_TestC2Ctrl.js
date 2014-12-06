@@ -128,7 +128,6 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
         var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
-        console.dir(data);
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {

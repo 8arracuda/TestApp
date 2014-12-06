@@ -154,9 +154,7 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
 
                     //---Test-Output to check the returned values---
-                    if (onSuccessCounter == PE_TestR2_indexToCheck) {
-                        console.log('check Test R2:' + JSON.stringify(results.rows.item(0)));
-                    }
+                    console.log('check Test R1:' + JSON.stringify(results.rows.item(0)));
 
                     onSuccessCounter = onSuccessCounter + 1;
 
