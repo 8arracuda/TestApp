@@ -1,4 +1,4 @@
-sdApp.controller('PE_PGSQLiteCtrl', function ($scope, $rootScope) {
+sdApp.controller('PE_SQLitePluginCtrl', function ($scope, $rootScope) {
 
     $rootScope.section = 'PE';
 
