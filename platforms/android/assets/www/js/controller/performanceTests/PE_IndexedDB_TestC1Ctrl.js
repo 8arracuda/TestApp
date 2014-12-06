@@ -11,8 +11,8 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
     $scope.isPrepared = false;
 
     var amountOfData;
-    var amountOfData_testC1a = 100;
-    var amountOfData_testC1b = 500;
+    var amountOfData_testC1a = PE_ParameterFactory.amountOfData_testC1a;
+    var amountOfData_testC1b = PE_ParameterFactory.amountOfData_testC1b;
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
@@ -127,7 +127,6 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
         var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
-        console.dir(data);
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
