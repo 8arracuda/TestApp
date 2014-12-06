@@ -49,9 +49,9 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'PE_fileAPI.html',
             controller: 'PE_FileAPICtrl'
         }).
-        when('/PE_PGSQLite', {
-            templateUrl: 'PE_PG_SQLite.html',
-            controller: 'PE_PGSQLiteCtrl'
+        when('/PE_SQLitePlugin', {
+            templateUrl: 'PE_SQLitePlugin.html',
+            controller: 'PE_SQLitePluginCtrl'
         }).
         when('/DE_localStorage', {
             templateUrl: 'DE_localStorage.html',
