@@ -358,6 +358,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data04.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data05.csv \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data05.json \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data_2000_forUpdate.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data_5000_01.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data_5000_02.json \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res/data/data_5000_03.json \

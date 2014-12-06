@@ -40,7 +40,7 @@ angular.module('testDataFactory', [])
             },
 
             testDataForUpdateTests: function () {
-                var filename = '/res/data/data_2000_forUpdate.json';
+                var filename = 'res/data/data_2000_forUpdate.json';
                 //var filename = 'res/data/data02_first500_idStartingAt0.json';
 
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);

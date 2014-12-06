@@ -131,7 +131,6 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            console.log('_' + data[i][0]);
             //var objectToStore = {id: data[i][0], value: data[i]};
             objectStore.add(data[i], data[i][0]);
 

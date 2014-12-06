@@ -132,7 +132,6 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            console.log('_' + data[i][0]);
             //localStorage.setItem(data[i][0], JSON.stringify(data[i]));
             //var keyValuePair = {key: i, value: i};
 
