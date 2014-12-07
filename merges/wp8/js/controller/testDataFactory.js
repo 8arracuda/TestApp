@@ -4028,11 +4028,17 @@ angular.module('testDataFactory', [])
                 //Example: When offset is set to 100, and dataCombined contains 4000 addresses
                 //The returned array will contain 4000 addresses starting from index 100.
                 //When the end of dataCombined is reached it starts from the beginning of the array.
-
-                var data1 = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
-                var data2 = JSON.parse(FileHelper.readStringFromFileAtPath(filenameForUpdateTests));
+                console.log('getDatasetWithOffset01');
+                //var data1 = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
+                var data1 = JSON.parse(testData);
+                console.log('getDatasetWithOffset02');
+                //var data2 = JSON.parse(FileHelper.readStringFromFileAtPath(filenameForUpdateTests));
+                var data2 = JSON.parse(testDataForUpdateTests);
+                console.log('getDatasetWithOffset03');
                 var dataCombined = data1.concat(data2);
+                console.log('getDatasetWithOffset04');
                 var offset = (100 * parseInt(factor))%dataCombined.length;
+                console.log('getDatasetWithOffset05');
                 data1 = null;
                 data2 = null;
 
