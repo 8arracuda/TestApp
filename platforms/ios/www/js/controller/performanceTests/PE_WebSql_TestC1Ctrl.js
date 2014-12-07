@@ -88,7 +88,7 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
 
-                    //data[i][0] + '' because otherwise id's like 1.0, 2.0 are stored
+                    //data[i][0] + '' converts the id to a string
                     tx.executeSql("INSERT INTO " + tableName + "(id, address) VALUES(?,?)", [data[i][0] + '', JSON.stringify(data[i])]);
 
                 }

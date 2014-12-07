@@ -114,8 +114,6 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
 
     $scope.startPerformanceTest = function () {
 
-        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
-
         var timeDiffSum = 0;
 
         $scope.testInProgress = true;
@@ -128,7 +126,7 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
 
         for (var i = 0; i < amountOfData; i++) {
 
-            var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+            var datasetString = testDataFactory.getDatasetWithOffset(i);
             var timeStart = new Date().getTime();
             objectStore.add(datasetString, 'dataset_' + i);
             timeDiffSum = +(new Date().getTime() - timeStart);

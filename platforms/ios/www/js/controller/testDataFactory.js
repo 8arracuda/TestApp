@@ -25,25 +25,6 @@ angular.module('testDataFactory', [])
 
             },
 
-            getArrayWithDatasetFilenames: function () {
-
-                return [
-                    'res/data/data_5000_01.json',
-                    'res/data/data_5000_02.json',
-                    'res/data/data_5000_03.json',
-                    'res/data/data_5000_04.json',
-                    'res/data/data_5000_05.json',
-                    'res/data/data_5000_06.json',
-                    'res/data/data_5000_07.json',
-                    'res/data/data_5000_08.json',
-                    'res/data/data_5000_09.json',
-                    'res/data/data_5000_10.json',
-                    'res/data/data_5000_11.json',
-                    'res/data/data_5000_12.json'
-                ];
-
-            },
-
             getDatasetWithOffset: function (factor) {
                 //This function uses the avaiable datasets to create new datasets
                 //Example: When offset is set to 100, and dataCombined contains 4000 addresses

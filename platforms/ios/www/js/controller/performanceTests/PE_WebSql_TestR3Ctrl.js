@@ -60,11 +60,9 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
     function saveAddressData() {
 
-        var datasetFiles =  testDataFactory.getArrayWithDatasetFilenames();
-
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-                    var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+                    var datasetString = testDataFactory.getDatasetWithOffset(i);
                     tx.executeSql("INSERT INTO " + tableName + "(id, dataset) VALUES(?,?)", ['dataset_' + i, datasetString]);
 
                 }

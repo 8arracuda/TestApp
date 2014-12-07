@@ -108,7 +108,7 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
         console.dir(dataForPreparation);
         var objectStore = transaction.objectStore(objStoreName);
 
-        for (var i = 0; i < amountOfData; i++) {
+        for (var i = 0; i < dataForPreparation.length; i++) {
 
             var addressToSave = dataForPreparation[i];
             objectStore.put(addressToSave, addressToSave[0]);
