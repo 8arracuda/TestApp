@@ -13,7 +13,7 @@ sdApp.controller('PE_SessionStorage_TestR3Ctrl', function ($scope, $rootScope, t
     var amountOfData_testR3a = PE_ParameterFactory.amountOfData_testR3a;
     var amountOfData_testR3b = PE_ParameterFactory.amountOfData_testR3b;
 
-    $scope.selectedTestVariant = '';
+    $scope.selectedTestVariant = 'TestR3a';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
     $scope.testName1 = 'TestR3a';
@@ -43,7 +43,6 @@ sdApp.controller('PE_SessionStorage_TestR3Ctrl', function ($scope, $rootScope, t
             iteration = 1;
             $scope.isPrepared = false;
             $scope.results = [];
-            $scope.selectedTestVariant = '';
         }
 
     };

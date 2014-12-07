@@ -15,7 +15,7 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestC3a';
+    $scope.testName1 = 'TestC3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' items';
     $scope.testName2 = 'TestC3b';
     $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' items';
@@ -134,10 +134,6 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
         }
 
         transaction.oncomplete = function (event) {
-            //var timeEnd = new Date().getTime();
-
-            //var timeDiff = timeEnd - timeStart;
-
             $scope.results.push({iteration:  iteration,  time: timeDiffSum});
             iteration++;
             $scope.testInProgress = false;
@@ -152,39 +148,5 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
         };
 
     };
-
-    //$scope.startPerformanceTest_save_onlyOne = function () {
-    //
-    //    $scope.testInProgress = true;
-    //
-    //    var timeStart = new Date().getTime();
-    //    var transaction = $scope.db.transaction([objStoreName], "readwrite");
-    //
-    //    var objectStore = transaction.objectStore(objStoreName);
-    //
-    //    for (var i = 0; i < amountOfData; i++) {
-    //        var keyValuePair = {key: i, value: i};
-    //        objectStore.add(keyValuePair);
-    //    }
-    //
-    //    transaction.oncomplete = function (event) {
-    //        var timeEnd = new Date().getTime();
-    //
-    //        var timeDiff = timeEnd - timeStart;
-    //
-    //        $scope.results.push('iteration ' + iteration + ': ' + timeDiff + ' ms');
-    //        iteration++;
-    //        $scope.testInProgress = false;
-    //        $scope.isPrepared = false;
-    //        $scope.$apply();
-    //
-    //    };
-    //
-    //    transaction.onerror = function (event) {
-    //        console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
-    //        $scope.testInProgress = false;
-    //    };
-    //};
-
 
 });

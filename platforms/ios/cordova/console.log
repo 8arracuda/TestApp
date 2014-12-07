@@ -22006,3 +22006,18 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-12-07 20:31:59.023 Test-App[61468:2826261] [CDVTimer][TotalPluginStartup] 120.142996ms
 2014-12-07 20:31:59.925 Test-App[61468:2826261] Resetting plugins due to page load.
 2014-12-07 20:32:01.203 Test-App[61468:2826261] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/9318BD74-20C1-40B8-A302-1C2908E46CA3/Test-App.app/www/index.html
+2014-12-07 20:54:39.609 Test-App[62937:2835543] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/06F362B0-4F65-45C1-9E64-EF5E9C2BB51B/Library/Cookies/Cookies.binarycookies
+2014-12-07 20:54:40.105 Test-App[62937:2835543] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-07 20:54:40.106 Test-App[62937:2835543] Multi-tasking -> Device: YES, App: YES
+2014-12-07 20:54:40.115 Test-App[62937:2835543] Unlimited access to network resources
+2014-12-07 20:54:40.118 Test-App[62937:2835543] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-07 20:54:40.331 Test-App[62937:2835543] [CDVTimer][file] 21.825016ms
+2014-12-07 20:54:40.331 Test-App[62937:2835543] [CDVTimer][TotalPluginStartup] 22.064984ms
+2014-12-07 20:54:40.801 Test-App[62937:2835543] Resetting plugins due to page load.
+2014-12-07 20:54:41.293 Test-App[62937:2835543] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/5FB049D2-BB07-45B7-AB12-6E407D23BB91/Test-App.app/www/index.html

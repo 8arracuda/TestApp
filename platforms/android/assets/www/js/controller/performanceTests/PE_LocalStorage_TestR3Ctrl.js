@@ -74,11 +74,9 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
 
     function saveAddressData() {
 
-        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
-
         for (var i = 0; i < amountOfData; i++) {
 
-            var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+            var datasetString = testDataFactory.getDatasetWithOffset(i);
 
             try {
                 localStorage.setItem('dataset_' + i, datasetString);

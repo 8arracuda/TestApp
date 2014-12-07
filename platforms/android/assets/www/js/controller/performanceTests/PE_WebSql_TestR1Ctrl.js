@@ -20,9 +20,9 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
-    $scope.testName1 = 'TestR1a';
+    $scope.testName1 = 'TestR1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';
-    $scope.testName2 = 'TestR1b';
+    $scope.testName2 = 'TestR1-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR1b + ' items';
 
     $scope.results = [];
@@ -75,7 +75,6 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
         $scope.db.transaction(function (tx) {
 
             for (var i = 0; i < dataForPreparation.length; i++) {
-                //tx.executeSql("INSERT INTO " + tableName + "(id, firstName, lastName, street, zipcode, city, email, randomNumber1, randomNumbeR1) VALUES(?,?,?,?,?,?,?,?,?)", [data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6], data[i][7], data[i][8]]);
                 tx.executeSql("INSERT INTO " + tableName + "(id, address) VALUES(?,?)", [dataForPreparation[i][0] + '', JSON.stringify(dataForPreparation[i])]);
             }
 
@@ -153,9 +152,7 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
 
                     //---Test-Output to check the returned values---
-                    if (i == PE_TestR1_indexToCheck) {
-                        console.log('check Test R1:' + JSON.stringify(results.rows.item(0)));
-                    }
+                    console.log('check Test R1:' + JSON.stringify(results.rows.item(0)));
 
                     onSuccessCounter = onSuccessCounter + 1;
 

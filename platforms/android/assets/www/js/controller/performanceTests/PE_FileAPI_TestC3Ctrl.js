@@ -16,9 +16,9 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestC3a';
+    $scope.testName1 = 'TestC3-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' items';
-    $scope.testName2 = 'TestC3b';
+    $scope.testName2 = 'TestC3-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' items';
 
     $scope.results = [];
@@ -74,9 +74,6 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
         $scope.inProgress = true;
 
-
-        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
-
         var timeStart = new Date().getTime();
         //TODO Try changing the size of it and see what happens...
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
@@ -92,7 +89,6 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
                 function writeFile() {
 
-                    //console.log('writeFile (k= ' + k + ')');
                     if (i < amountOfData) {
                         //address-id is filename
                         var filename = 'dataset_' + data[i][0] + '.txt';

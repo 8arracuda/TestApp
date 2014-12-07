@@ -78,12 +78,10 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
 
         $scope.testInProgress = true;
 
-        var datasetFiles =  testDataFactory.getArrayWithDatasetFilenames();
-
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-                    var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+                    var datasetString = testDataFactory.getDatasetWithOffset(i);
                     tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, datasetString]);
 
                 }

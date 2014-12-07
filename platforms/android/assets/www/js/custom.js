@@ -2,7 +2,6 @@ var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSuppor
 
 var PE_TestR1_indexToCheck = 100;
 var PE_TestR2_indexToCheck = 0;
-var PE_TestR3_indexToCheck = 0;
 
 //copied from
 // http://thiscouldbebetter.wordpress.com/2013/01/31/reading-a-string-from-a-file-in-javascript/
@@ -20,7 +19,7 @@ function FileHelper() {
         request.open("GET", pathOfFileToReadFrom, false);
         request.send(null);
         var returnValue = request.responseText;
-        console.log('FileHelper read: ' + returnValue.substr(0,50) + ' .....');
+        //console.log('FileHelper read: ' + returnValue.substr(0,50) + ' .....');
         return returnValue;
     }
 }

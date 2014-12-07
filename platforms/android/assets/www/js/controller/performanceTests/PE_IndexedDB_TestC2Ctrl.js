@@ -17,9 +17,9 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestC2a';
+    $scope.testName1 = 'TestC2-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC2a + ' items';
-    $scope.testName2 = 'TestC2b';
+    $scope.testName2 = 'TestC2-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testC2b + ' items';
 
     $scope.results = [];
@@ -131,12 +131,6 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            //localStorage.setItem(data[i][0], JSON.stringify(data[i]));
-            //var keyValuePair = {key: i, value: i};
-
-
-            //var objectToStore = {id: data[i][0], value: data[i]};
-
 
             var id = data[i][0];
             objectStore.add(data[i][0], id+'_id');

@@ -18,9 +18,9 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestU1a';
+    $scope.testName1 = 'TestU1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testU1a + ' items';
-    $scope.testName2 = 'TestU1b';
+    $scope.testName2 = 'TestU1-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testU1b + ' items';
 
     $scope.results = [];
@@ -105,15 +105,15 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
 
     function saveAddressData() {
 
-        $scope.testInProgress = true;
+        $scope.prepareInProgress = true;
+        $scope.$apply();
 
         var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
-        console.dir(dataForPreparation);
         var objectStore = transaction.objectStore(objStoreName);
 
-        for (var i = 0; i < amountOfData; i++) {
+        for (var i = 0; i < dataForPreparation.length; i++) {
 
             var addressToSave = dataForPreparation[i];
             objectStore.put(addressToSave, addressToSave[0]);
@@ -123,13 +123,13 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
         transaction.oncomplete = function (event) {
 
             $scope.isPrepared = true;
+            $scope.prepareInProgress = false;
             $scope.$apply();
 
         };
 
         transaction.onerror = function (event) {
             console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
-            $scope.testInProgress = false;
         };
     };
 

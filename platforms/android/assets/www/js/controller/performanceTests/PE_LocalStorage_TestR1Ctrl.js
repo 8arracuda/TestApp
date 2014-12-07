@@ -16,9 +16,9 @@ sdApp.controller('PE_LocalStorage_TestR1Ctrl', function ($scope, $rootScope, tes
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
-    $scope.testName1 = 'TestR1a';
+    $scope.testName1 = 'TestR1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';
-    $scope.testName2 = 'TestR1b';
+    $scope.testName2 = 'TestR1-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR1b + ' items';
 
 

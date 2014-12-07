@@ -60,11 +60,9 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
     function saveAddressData() {
 
-        var datasetFiles =  testDataFactory.getArrayWithDatasetFilenames();
-
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-                    var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+                    var datasetString = testDataFactory.getDatasetWithOffset(i);
                     tx.executeSql("INSERT INTO " + tableName + "(id, dataset) VALUES(?,?)", ['dataset_' + i, datasetString]);
 
                 }
@@ -139,7 +137,7 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
 
                     //---Test-Output to check the returned values---
-                    console.log('loaded address: ' + JSON.stringify(results.rows.item(0)));
+                    console.log('check Test R3:' + JSON.stringify(results.rows.item(0)).substr(1,100));
 
                     onSuccessCounter = onSuccessCounter + 1;
 
