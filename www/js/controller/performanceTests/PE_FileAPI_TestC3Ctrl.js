@@ -74,9 +74,6 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
         $scope.inProgress = true;
 
-
-        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
-
         var timeStart = new Date().getTime();
         //TODO Try changing the size of it and see what happens...
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,

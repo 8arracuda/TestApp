@@ -54,8 +54,6 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
 
     $scope.startPerformanceTest = function () {
 
-        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
-
         var timeDiffSum = 0;
 
         //The 7th dataset can't be saved on Safari (iOS 8) due to exceeded quota
@@ -63,13 +61,11 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
         //setItem@[native code]
         for (var i = 0; i < amountOfData; i++) {
 
-            //var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
             var datasetString = testDataFactory.getDatasetWithOffset(i);
 
             var timeStart = new Date().getTime();
             try {
                 localStorage.setItem('dataset_' + i, datasetString);
-
 
                 //The time taken is calculated step by step inside the loop
                 //because the fetching of the string from the files is also taking

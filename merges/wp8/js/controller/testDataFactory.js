@@ -2013,25 +2013,6 @@ angular.module('testDataFactory', [])
 
             },
 
-            //getArrayWithDatasetFilenames: function () {
-            //
-            //    return [
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_01.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_02.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_03.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_04.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_05.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_06.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_07.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_08.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_09.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_10.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_11.json',
-            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_12.json'
-            //    ];
-            //
-            //},
-
             getDatasetWithOffset: function (factor) {
                 //This function uses the avaiable datasets to create new datasets
                 //Example: When offset is set to 100, and dataCombined contains 4000 addresses
