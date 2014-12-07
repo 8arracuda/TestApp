@@ -59,3 +59,84 @@ Platform Tests:
 #Opening the database with 1*1024*1024
 #$scope.db = window.openDatabase(dbName, dbVersion, dbName, 1 * 1024 * 1024);
 #IOS8SIM - LimitTest1: Crash at 13.800.000
+
+
+
+
+
+
+
+
+
+plot(type='l', lty=2, Lumia620$LocalStorage_C1_500, ylim=c(0,1000))
+lines(IOSSim$LocalStorage_C1_500, lyt=3)
+lines(Nexus4$LocalStorage_C1_500, lyt=4)
+title(main="Autos", col.main="red", font.main=4)
+
+
+
+
+
+IOSSim_lapply <- lapply(IOSSim, mean)
+IOSSim_lapply$LocalStorage_C1_500;
+
+
+df<-data.frame(sapply(Nexus4, mean), sapply(IOSSim, mean), sapply(Lumia620, mean));
+colnames(df) <- c("Nexus4", "IOSSim", "Lumia620");
+
+
+#machen das gleiche
+#df[1,]
+#df["LocalStorage_C1_500",]
+
+#machen das gleiche
+#df[,"Nexus4"]
+#df[,1]
+
+
+IOSSim_lapply <- lapply(IOSSim, mean)
+Nexus4_lapply <- lapply(Nexus4, mean)
+Lumia620_lapply <- lapply(Lumia620, mean)
+
+
+
+values <-c(Nexus4_lapply$LocalStorage_C1_500, IOSSim_lapply$LocalStorage_C1_500, Lumia620_lapply$LocalStorage_C1_500)
+barplot(values, cex.names=0.9, las=1, horiz=TRUE, xlab='ms', xlim = c(0,1500), names.arg=c("Nexus 4", "Lumia 620", "IOSSIM"))
+
+
+#Testdata
+LocalStorage_C1_500<-c(145.5, 829.1, 3.6)
+LocalStorage_C1_2000<-c(493.0, 3505.1, 12)
+LocalStorage_C2_500<-c(600, 200, 100)
+LocalStorage_C2_2000<-c(1400, 400, 200)
+
+barplot(LocalStorage_C2_2000, cex.names=0.9, las=1, horiz=TRUE, xlab='ms', xlim = c(0,1500), names.arg=c("Nexus 4", "Lumia 620", "IOSSIM"))
+
+
+LS_C1_500 <-c(Nexus4_lapply$LocalStorage_C1_500, IOSSim_lapply$LocalStorage_C1_500, Lumia620_lapply$LocalStorage_C1_500)
+barplot(LS_C1_500, cex.names=0.9, las=1, horiz=TRUE, xlab='ms', xlim = c(0,1500), names.arg=c("Android", "iOS", "Windows Phone"))
+
+LS_C1_2000 <-c(Nexus4_lapply$LocalStorage_C1_2000, IOSSim_lapply$LocalStorage_C1_2000, Lumia620_lapply$LocalStorage_C1_2000)
+barplot(LS_C1_2000, cex.names=0.9, las=1, horiz=TRUE, xlab='ms', xlim = c(0,1500), names.arg=c("Android", "iOS", "Windows Phone"))
+
+
+
+#draws 3 graphs
+colors=c("darkblue","red", "green", "cyan");
+upperLimit=40000;
+par(mfrow=c(3,1));
+Nexus4_LS_C1C2 <-c(Nexus4_lapply$LocalStorage_C1_500, Nexus4_lapply$LocalStorage_C1_2000, Nexus4_lapply$LocalStorage_C2_500, Nexus4_lapply$LocalStorage_C2_2000);
+barplot(Nexus4_LS_C1C2, cex.names=0.9, las=1, horiz=TRUE, col=colors, xlab='ms', xlim = c(0,upperLimit))
+title(main="Nexus 4", font.main=4)
+
+Lumia620_LS_C1C2 <-c(Lumia620_lapply$LocalStorage_C1_500, Lumia620_lapply$LocalStorage_C1_2000, Lumia620_lapply$LocalStorage_C2_500, Lumia620_lapply$LocalStorage_C2_2000);
+barplot(Lumia620_LS_C1C2, cex.names=0.9, las=1, horiz=TRUE, col=colors, xlab='ms', xlim = c(0,upperLimit))
+title(main="Lumia 620", font.main=4)
+
+IOSSim_LS_C1C2 <-c(IOSSim_lapply$LocalStorage_C1_500, IOSSim_lapply$LocalStorage_C1_2000, IOSSim_lapply$LocalStorage_C2_500, IOSSim_lapply$LocalStorage_C2_2000);
+barplot(IOSSim_LS_C1C2, cex.names=0.9, las=1, horiz=TRUE, , col=colors, xlab='ms', xlim = c(0,upperLimit))
+title(main="iOS Simulator", font.main=4)
+
+legend("topright",
+       legend = c("C1-500", "C1-2000", "C2-500", "C2-2000"),
+       fill = colors)

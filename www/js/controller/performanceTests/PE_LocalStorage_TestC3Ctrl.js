@@ -14,9 +14,9 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     $scope.preparationText = 'Prepare clears all data in LocalStorage.';
     $scope.mainTestDecription = 'Saving long strings (dataset strings)';
     $scope.testName1 = 'TestC3a';
-    $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' times 5,000 addresses in a single key/value pair.';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' times 4,000 addresses in a single key/value pair.';
     $scope.testName2 = 'TestC3b';
-    $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' times 5,000 addresses in a single key/value pair.';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' times 4,000 addresses in a single key/value pair.';
 
 
     $scope.selectTestVariant = function (testVariant) {
@@ -45,6 +45,7 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     };
 
     $scope.prepare = function () {
+
         localStorage.clear();
         $scope.isPrepared = true;
         console.log('prepare function finished');
@@ -57,12 +58,13 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
 
         var timeDiffSum = 0;
 
-        //The 5th dataset can't be saved on Safari (iOS 8) due to exceeded quota
+        //The 7th dataset can't be saved on Safari (iOS 8) due to exceeded quota
         //Error: QuotaExceededError: DOM Exception 22
         //setItem@[native code]
         for (var i = 0; i < amountOfData; i++) {
 
-            var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+            //var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+            var datasetString = testDataFactory.getDatasetWithOffset(i);
 
             var timeStart = new Date().getTime();
             try {
@@ -83,7 +85,7 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
 
         }
 
-        $scope.results.push({iteration:  iteration,  time: timeDiff});
+        $scope.results.push({iteration:  iteration,  time: timeDiffSum});
         $scope.testInProgress = false;
         $scope.isPrepared = false;
         $scope.$apply();

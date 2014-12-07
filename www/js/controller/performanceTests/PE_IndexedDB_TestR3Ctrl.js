@@ -99,18 +99,15 @@ sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDa
         }
     };
 
-    //slightly modified code from DE_IndexedDB_strDaten
     function saveAddressData() {
         console.log('saveAddressData');
-
-        var datasetFiles = testDataFactory.getArrayWithDatasetFilenames();
 
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-            var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+            var datasetString = testDataFactory.getDatasetWithOffset(i);
             objectStore.add(datasetString, 'dataset_' + i);
         }
 

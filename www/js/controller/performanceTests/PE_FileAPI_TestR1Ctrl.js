@@ -205,7 +205,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                 function (fs) {
 
                     function writeAddress(i) {
-                        //if (i < amountOfData) {
                         if (i < dataForPreparation.length) {
                             var id = dataForPreparation[i][0];
                             var filename = id + '.txt';

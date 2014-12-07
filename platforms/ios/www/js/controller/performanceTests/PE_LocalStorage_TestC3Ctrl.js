@@ -45,6 +45,7 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     };
 
     $scope.prepare = function () {
+
         localStorage.clear();
         $scope.isPrepared = true;
         console.log('prepare function finished');
@@ -62,7 +63,8 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
         //setItem@[native code]
         for (var i = 0; i < amountOfData; i++) {
 
-            var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+            //var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+            var datasetString = testDataFactory.getDatasetWithOffset(i);
 
             var timeStart = new Date().getTime();
             try {
@@ -83,7 +85,7 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
 
         }
 
-        $scope.results.push({iteration:  iteration,  time: timeDiff});
+        $scope.results.push({iteration:  iteration,  time: timeDiffSum});
         $scope.testInProgress = false;
         $scope.isPrepared = false;
         $scope.$apply();

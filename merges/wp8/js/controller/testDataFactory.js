@@ -2013,24 +2013,43 @@ angular.module('testDataFactory', [])
 
             },
 
-            getArrayWithDatasetFilenames: function () {
+            //getArrayWithDatasetFilenames: function () {
+            //
+            //    return [
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_01.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_02.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_03.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_04.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_05.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_06.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_07.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_08.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_09.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_10.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_11.json',
+            //        'http://c.raceplanner.de/TestApp/res/data/data_5000_12.json'
+            //    ];
+            //
+            //},
 
-                return [
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_01.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_02.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_03.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_04.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_05.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_06.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_07.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_08.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_09.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_10.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_11.json',
-                    'http://c.raceplanner.de/TestApp/res/data/data_5000_12.json'
-                ];
+            getDatasetWithOffset: function (factor) {
+                //This function uses the avaiable datasets to create new datasets
+                //Example: When offset is set to 100, and dataCombined contains 4000 addresses
+                //The returned array will contain 4000 addresses starting from index 100.
+                //When the end of dataCombined is reached it starts from the beginning of the array.
+
+                var data1 = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
+                var data2 = JSON.parse(FileHelper.readStringFromFileAtPath(filenameForUpdateTests));
+                var dataCombined = data1.concat(data2);
+                var offset = (100 * parseInt(factor))%dataCombined.length;
+                data1 = null;
+                data2 = null;
+
+                var newData1 = dataCombined.slice(offset, 4000);
+                return newData1.concat(dataCombined.slice(0, offset));
 
             },
+
 
             testDataForUpdateTests: function () {
 
