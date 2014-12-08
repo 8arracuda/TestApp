@@ -54,7 +54,7 @@ sdApp.controller('PE_SessionStorage_TestC3Ctrl', function ($scope, $rootScope, t
                 //The time taken is calculated step by step inside the loop
                 //because the fetching of the string from the files is also taking
                 //a long time. This time is not relevant when looking at the storage-techniques!
-                timeDiffSum = +new Date().getTime() - timeStart;
+                timeDiffSum += new Date().getTime() - timeStart;
                 //console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {

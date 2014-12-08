@@ -119,6 +119,7 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
         $scope.testInProgress = true;
 
         var timeStart = new Date().getTime();
+
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
 
@@ -129,7 +130,7 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
             var datasetString = testDataFactory.getDatasetWithOffset(i);
             var timeStart = new Date().getTime();
             objectStore.add(datasetString, 'dataset_' + i);
-            timeDiffSum = +(new Date().getTime() - timeStart);
+            timeDiffSum += (new Date().getTime() - timeStart);
 
         }
 
