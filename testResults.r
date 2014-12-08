@@ -77,12 +77,14 @@ title(main="Autos", col.main="red", font.main=4)
 
 
 
-IOSSim_lapply <- lapply(IOSSim, mean)
-IOSSim_lapply$LocalStorage_C1_500;
+IOSSim_means <- lapply(IOSSim, mean)
+Nexus4_means <- lapply(Nexus4, mean)
+Nexus7_means <- lapply(Nexus7, mean)
+Lumia620_means <- lapply(Lumia620, mean)
 
 
-df<-data.frame(sapply(Nexus4, mean), sapply(IOSSim, mean), sapply(Lumia620, mean));
-colnames(df) <- c("Nexus4", "IOSSim", "Lumia620");
+df<-data.frame(sapply(Nexus7, mean), sapply(IOSSim, mean), sapply(Lumia620, mean));
+colnames(df) <- c("Nexus7", "IOSSim", "Lumia620");
 
 
 #machen das gleiche
@@ -121,6 +123,18 @@ barplot(LS_C1_2000, cex.names=0.9, las=1, horiz=TRUE, xlab='ms', xlim = c(0,1500
 
 
 
+
+
+
+
+IOSSim_means <- lapply(IOSSim, mean)
+Nexus4_means <- lapply(Nexus4, mean)
+Nexus7_means <- lapply(Nexus7, mean)
+Lumia620_means <- lapply(Lumia620, mean)
+
+#par(mfrow=c(2,1))
+#par(mar = rep(2, 4))
+
 #draws 3 graphs
 colors=c("darkblue","red", "green", "cyan");
 upperLimit=40000;
@@ -140,3 +154,45 @@ title(main="iOS Simulator", font.main=4)
 legend("topright",
        legend = c("C1-500", "C1-2000", "C2-500", "C2-2000"),
        fill = colors)
+
+
+
+
+LS_C1_500<-c(Nexus4_means$LocalStorage_C1_500, IOSSim_means$LocalStorage_C1_500, Lumia620_means$LocalStorage_C1_500);
+LS_C1_2000<-c(Nexus4_means$LocalStorage_C1_2000, IOSSim_means$LocalStorage_C1_2000, Lumia620_means$LocalStorage_C1_2000);
+LS_C2_500<-c(Nexus4_means$LocalStorage_C2_500, IOSSim_means$LocalStorage_C2_500, Lumia620_means$LocalStorage_C2_500);
+LS_C2_2000<-c(Nexus4_means$LocalStorage_C2_2000, IOSSim_means$LocalStorage_C2_2000, Lumia620_means$LocalStorage_C2_2000);
+LS_C3_6<-c(Nexus4_means$LocalStorage_C3_6, IOSSim_means$LocalStorage_C3_6, Lumia620_means$LocalStorage_C3_6);
+LS_R1_500<-c(Nexus4_means$LocalStorage_R1_500, IOSSim_means$LocalStorage_R1_500, Lumia620_means$LocalStorage_R1_500);
+LS_R1_2000<-c(Nexus4_means$LocalStorage_R1_2000, IOSSim_means$LocalStorage_R1_2000, Lumia620_means$LocalStorage_R1_2000);
+LS_R2_500<-c(Nexus4_means$LocalStorage_R2_500, IOSSim_means$LocalStorage_R2_500, Lumia620_means$LocalStorage_R2_500);
+LS_R2_2000<-c(Nexus4_means$LocalStorage_R2_2000, IOSSim_means$LocalStorage_R2_2000, Lumia620_means$LocalStorage_R2_2000);
+LS_R3_6<-c(Nexus4_means$LocalStorage_R3_6, IOSSim_means$LocalStorage_R3_6, Lumia620_means$LocalStorage_R3_6);
+LS_U1_500<-c(Nexus4_means$LocalStorage_U1_500, IOSSim_means$LocalStorage_U1_500, Lumia620_means$LocalStorage_U1_500);
+LS_U1_2000<-c(Nexus4_means$LocalStorage_U1_2000, IOSSim_means$LocalStorage_U1_2000, Lumia620_means$LocalStorage_U1_2000);
+LS_D1_500<-c(Nexus4_means$LocalStorage_D1_500, IOSSim_means$LocalStorage_D1_500, Lumia620_means$LocalStorage_D1_500);
+LS_D1_2000<-c(Nexus4_means$LocalStorage_D1_2000, IOSSim_means$LocalStorage_D1_2000, Lumia620_means$LocalStorage_D1_2000);
+
+SS_C1_500<-c(Nexus4_means$SessionStorage_C1_500, IOSSim_means$SessionStorage_C1_500, Lumia620_means$SessionStorage_C1_500);
+SS_C1_2000<-c(Nexus4_means$SessionStorage_C1_2000, IOSSim_means$SessionStorage_C1_2000, Lumia620_means$SessionStorage_C1_2000);
+SS_C2_500<-c(Nexus4_means$SessionStorage_C2_500, IOSSim_means$SessionStorage_C2_500, Lumia620_means$SessionStorage_C2_500);
+SS_C2_2000<-c(Nexus4_means$SessionStorage_C2_2000, IOSSim_means$SessionStorage_C2_2000, Lumia620_means$SessionStorage_C2_2000);
+SS_C3_6<-c(Nexus4_means$SessionStorage_C3_6, IOSSim_means$SessionStorage_C3_6, Lumia620_means$SessionStorage_C3_6);
+SS_R1_500<-c(Nexus4_means$SessionStorage_R1_500, IOSSim_means$SessionStorage_R1_500, Lumia620_means$SessionStorage_R1_500);
+SS_R1_2000<-c(Nexus4_means$SessionStorage_R1_2000, IOSSim_means$SessionStorage_R1_2000, Lumia620_means$SessionStorage_R1_2000);
+SS_R2_500<-c(Nexus4_means$SessionStorage_R2_500, IOSSim_means$SessionStorage_R2_500, Lumia620_means$SessionStorage_R2_500);
+SS_R2_2000<-c(Nexus4_means$SessionStorage_R2_2000, IOSSim_means$SessionStorage_R2_2000, Lumia620_means$SessionStorage_R2_2000);
+SS_R3_6<-c(Nexus4_means$SessionStorage_R3_6, IOSSim_means$SessionStorage_R3_6, Lumia620_means$SessionStorage_R3_6);
+SS_U1_500<-c(Nexus4_means$SessionStorage_U1_500, IOSSim_means$SessionStorage_U1_500, Lumia620_means$SessionStorage_U1_500);
+SS_U1_2000<-c(Nexus4_means$SessionStorage_U1_2000, IOSSim_means$SessionStorage_U1_2000, Lumia620_means$SessionStorage_U1_2000);
+SS_D1_500<-c(Nexus4_means$SessionStorage_D1_500, IOSSim_means$SessionStorage_D1_500, Lumia620_means$SessionStorage_D1_500);
+SS_D1_2000<-c(Nexus4_means$SessionStorage_D1_2000, IOSSim_means$SessionStorage_D1_2000, Lumia620_means$SessionStorage_D1_2000);
+
+LS_C1<-c(LS_C1_500, LS_C1_2000);
+SS_C1<-c(SS_C1_500, SS_C1_2000);
+
+par(mfrow=c(2,1));
+barplot(LS_C1, horiz=TRUE, xlim=c(0,3500))
+title(main="LocalStorage C1", font.main=4)
+barplot(SS_C1, horiz=TRUE, xlim=c(0,3500))
+title(main="SessionStorage C1", font.main=4)

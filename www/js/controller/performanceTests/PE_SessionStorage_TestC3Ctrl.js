@@ -6,30 +6,15 @@ sdApp.controller('PE_SessionStorage_TestC3Ctrl', function ($scope, $rootScope, t
 
     $scope.isPrepared = false;
 
-    var amountOfData;
     var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a;
-    var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b;
+    var amountOfData = amountOfData_testC3a;
 
     $scope.selectedTestVariant = 'TestC3a';
     $scope.preparationText = 'Prepare clears all data in SessionStorage.';
     $scope.mainTestDecription = 'Saving long strings (dataset strings)';
     $scope.testName1 = 'TestC3a';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' times 4,000 addresses in a single key/value pair.';
-    $scope.testName2 = 'TestC3b';
-    $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' times 4,000 addresses in a single key/value pair.';
 
-
-    $scope.selectTestVariant = function (testVariant) {
-        $scope.selectedTestVariant = testVariant;
-
-        if (testVariant == 'TestC3a') {
-            amountOfData = amountOfData_testC3a;
-        } else {
-            amountOfData = amountOfData_testC3b;
-        }
-        console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
-
-    };
 
     $scope.reset = function () {
 
@@ -70,7 +55,7 @@ sdApp.controller('PE_SessionStorage_TestC3Ctrl', function ($scope, $rootScope, t
                 //because the fetching of the string from the files is also taking
                 //a long time. This time is not relevant when looking at the storage-techniques!
                 timeDiffSum = +new Date().getTime() - timeStart;
-                console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
+                //console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {
                     alert('quota exceeded when writing dataset_' + i + '. The results for this test cannot be used!');

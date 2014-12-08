@@ -10,7 +10,7 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     var amountOfData_testC3a = PE_ParameterFactory.amountOfData_testC3a;
     var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b;
 
-    $scope.selectedTestVariant = '';
+    $scope.selectedTestVariant = 'TestC3a';
     $scope.preparationText = 'Prepare clears all data in LocalStorage.';
     $scope.mainTestDecription = 'Saving long strings (dataset strings)';
     $scope.testName1 = 'TestC3a';
@@ -39,7 +39,6 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
             iteration = 1;
             $scope.isPrepared = false;
             $scope.results = [];
-            $scope.selectedTestVariant = '';
         }
 
     };

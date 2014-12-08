@@ -9,31 +9,15 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
 
     $scope.isPrepared = false;
 
-    var amountOfData;
     var amountOfData_testR3a = PE_ParameterFactory.amountOfData_testR3a;
-    var amountOfData_testR3b = PE_ParameterFactory.amountOfData_testR3b;
+    var amountOfData = amountOfData_testR3a;
 
     $scope.selectedTestVariant = 'TestR3a';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
     $scope.testName1 = 'TestR3a';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR3a + ' items';
-    $scope.testName2 = 'TestR3b';
-    $scope.testDecription2 = 'Stores ' + amountOfData_testR3b + ' items';
 
-
-
-    $scope.selectTestVariant = function (testVariant) {
-        $scope.selectedTestVariant = testVariant;
-
-        if (testVariant == 'TestR3a') {
-            amountOfData = amountOfData_testR3a;
-        } else {
-            amountOfData = amountOfData_testR3b;
-        }
-        console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
-
-    };
 
     $scope.reset = function () {
 
@@ -63,7 +47,7 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
         var timeEnd = new Date().getTime();
 
         var timeDiff = timeEnd - timeStart;
-        $scope.results.push({iteration:  iteration,  time: timeDiff});
+        $scope.results.push({iteration: iteration, time: timeDiff});
         $scope.testInProgress = false;
         $scope.$apply();
 
@@ -74,12 +58,9 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
     function saveAddressData() {
 
         for (var i = 0; i < amountOfData; i++) {
-
             var datasetString = testDataFactory.getDatasetWithOffset(i);
-
             try {
                 localStorage.setItem('dataset_' + i, datasetString);
-                console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {
                     alert('quota exceeded when writing dataset_' + i + '. The results for this test cannot be used!');

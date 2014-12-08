@@ -9,31 +9,29 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
 
     $scope.isPrepared = false;
 
-    var amountOfData;
-    var amountOfData_testR3a = PE_ParameterFactory.amountOfData_testR3a;
-    var amountOfData_testR3b = PE_ParameterFactory.amountOfData_testR3b;
+    var amountOfData = PE_ParameterFactory.amountOfData_testR3a;
 
-    $scope.selectedTestVariant = '';
+
+    $scope.selectedTestVariant = 'TestR3a';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
     $scope.testName1 = 'TestR3a';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR3a + ' items';
-    $scope.testName2 = 'TestR3b';
-    $scope.testDecription2 = 'Stores ' + amountOfData_testR3b + ' items';
+    //$scope.testName2 = 'TestR3b';
+    //$scope.testDecription2 = 'Stores ' + amountOfData_testR3b + ' items';
 
 
-
-    $scope.selectTestVariant = function (testVariant) {
-        $scope.selectedTestVariant = testVariant;
-
-        if (testVariant == 'TestR3a') {
-            amountOfData = amountOfData_testR3a;
-        } else {
-            amountOfData = amountOfData_testR3b;
-        }
-        console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
-
-    };
+    //$scope.selectTestVariant = function (testVariant) {
+    //    $scope.selectedTestVariant = testVariant;
+    //
+    //    if (testVariant == 'TestR3a') {
+    //        amountOfData = amountOfData_testR3a;
+    //    } else {
+    //        amountOfData = amountOfData_testR3b;
+    //    }
+    //    console.log('selectedTestVariant= ' + $scope.selectedTestVariant + ' (amountOfData= ' + amountOfData + ')');
+    //
+    //};
 
     $scope.reset = function () {
 
@@ -43,7 +41,6 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
             iteration = 1;
             $scope.isPrepared = false;
             $scope.results = [];
-            $scope.selectedTestVariant = '';
         }
 
     };
@@ -57,14 +54,15 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
 
             localStorage.getItem('dataset_' + i);
             //---Test-Output to check the returned values---
-            //console.log(localStorage.getItem('dataset_' + i));
+            console.log(localStorage.getItem('dataset_' + i));
+            console.log(localStorage.getItem('dataset_' + i));
 
         }
 
         var timeEnd = new Date().getTime();
 
         var timeDiff = timeEnd - timeStart;
-        $scope.results.push({iteration:  iteration,  time: timeDiff});
+        $scope.results.push({iteration: iteration, time: timeDiff});
         $scope.testInProgress = false;
         $scope.$apply();
 
@@ -72,21 +70,26 @@ sdApp.controller('PE_LocalStorage_TestR3Ctrl', function ($scope, $rootScope, tes
 
     };
 
+    //TODO: Problem -> geht nur bis ...1
     function saveAddressData() {
+        console.log('in saveAddressData 1');
 
         for (var i = 0; i < amountOfData; i++) {
-
+            console.log('in saveAddressData 2');
+            //var datasetString = testDataFactory.getDatasetWithOffset(i);
             var datasetString = testDataFactory.getDatasetWithOffset(i);
-
+            console.log('in saveAddressData 3');
             try {
+                console.log('in saveAddressData 4');
                 localStorage.setItem('dataset_' + i, datasetString);
-                console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
+                console.log('in saveAddressData 5');
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {
                     alert('quota exceeded when writing dataset_' + i + '. The results for this test cannot be used!');
                     break;
                 }
             }
+            console.log('in saveAddressData 6');
         }
     };
 
