@@ -153,9 +153,9 @@ sdApp.controller('PE_SQLitePlugin_TestR1Ctrl', function ($scope, $rootScope, tes
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
 
                     //---Test-Output to check the returned values---
-                    console.log('check Test R1:' + JSON.stringify(results.rows.item(0)));
+                    //console.log('check Test R1:' + JSON.stringify(results.rows.item(0)));
 
-                    onSuccessCounter = onSuccessCounter + 1;
+                    onSuccessCounter += 1;
 
                     if (onSuccessCounter == amountOfData) {
                         var timeEnd = new Date().getTime();
@@ -166,7 +166,6 @@ sdApp.controller('PE_SQLitePlugin_TestR1Ctrl', function ($scope, $rootScope, tes
                         iteration++;
                         $scope.$apply();
                     }
-
 
                 }, function (t, e) {
                     alert("couldn't read database (" + e.message + ")");

@@ -135,7 +135,6 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", ['dataset_' + i], function (transaction, results) {
 
-
                     //---Test-Output to check the returned values---
                     console.log('check Test R3:' + JSON.stringify(results.rows.item(0)).substr(1,100));
 
