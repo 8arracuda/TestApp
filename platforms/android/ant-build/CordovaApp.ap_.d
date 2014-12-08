@@ -153,6 +153,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/MediendatenImageSelector.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/MediendatenVideoSelector.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/OpenDatabaseSection.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/OpenDatabaseSectionSqliteplugin.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/OpenDatabaseSectionWebsql.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/PrepareButton.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/PrepareSectionForTests.html \

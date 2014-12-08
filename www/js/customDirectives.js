@@ -145,6 +145,15 @@ sdApp.directive('ngOpenDatabaseSectionWebsql', function () {
 
 });
 
+sdApp.directive('ngOpenDatabaseSectionSqliteplugin', function () {
+
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/OpenDatabaseSectionSqliteplugin.html'
+    }
+
+});
+
 sdApp.directive('ngOpenDatabaseSection', function () {
 
     return {

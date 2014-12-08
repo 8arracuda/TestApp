@@ -101,7 +101,7 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
                                     //after one file has been successfully written the next file can be written
                                     i++;
-                                    timeDiffSum = +new Date().getTime() - timeStart;
+                                    timeDiffSum += new Date().getTime() - timeStart;
                                     writeFile();
                                 };
 

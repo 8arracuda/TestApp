@@ -120,19 +120,21 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
                 console.log("Error : " + error.message);
+            }, function() {
+                var timeEnd = new Date().getTime();
+
+                var timeDiff = timeEnd - timeStart;
+                $scope.results.push({iteration:  iteration,  time: timeDiff});
+                $scope.testInProgress = false;
+                $scope.isPrepared = false;
+                iteration++;
+                $scope.$apply();
+
+                console.log(amountOfData + ' items updated');
             }
         );
 
-        var timeEnd = new Date().getTime();
 
-        var timeDiff = timeEnd - timeStart;
-        $scope.results.push({iteration:  iteration,  time: timeDiff});
-        $scope.testInProgress = false;
-        $scope.isPrepared = false;
-        iteration++;
-        $scope.$apply();
-
-        console.log(amountOfData + ' items updated');
 
     };
 

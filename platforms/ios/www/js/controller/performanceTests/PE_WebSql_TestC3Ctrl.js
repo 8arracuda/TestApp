@@ -78,27 +78,37 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
 
         $scope.testInProgress = true;
 
+        var datasetArray = [];
+        for (var i=0; i<amountOfData; i++) {
+            datasetArray.push(testDataFactory.getDatasetWithOffset(i));
+        }
+
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-                    var datasetString = testDataFactory.getDatasetWithOffset(i);
-                    tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, datasetString]);
+                    //
+                    //var timeStart = new Date().getTime();
+                    //timeDiffSum += new Date().getTime() - timeStart;
+                    tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, datasetArray[i]]);
 
                 }
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
                 console.log("Error : " + error.message);
+            }, function () {
+                console.log('success callback');
+                //timeDiffSum += new Date().getTime() - timeStart;
+                var timeEnd = new Date().getTime();
+                var timeDiff = timeEnd - timeStart;
+                $scope.results.push({iteration:  iteration,  time: timeDiff });
+                $scope.testInProgress = false;
+                $scope.isPrepared = false;
+                iteration++;
+                $scope.$apply();
             }
         );
 
-        var timeEnd = new Date().getTime();
 
-        var timeDiff = timeEnd - timeStart;
-        $scope.results.push({iteration:  iteration,  time: timeDiff});
-        $scope.testInProgress = false;
-        $scope.isPrepared = false;
-        iteration++;
-        $scope.$apply();
 
     };
 

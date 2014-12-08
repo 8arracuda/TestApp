@@ -15,9 +15,9 @@ sdApp.controller('PE_SQLitePlugin_TestC1Ctrl', function ($scope, $rootScope, tes
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestC1a';
+    $scope.testName1 = 'TestC1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
-    $scope.testName2 = 'TestC1b';
+    $scope.testName2 = 'TestC1-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
 
     $scope.results = [];
@@ -52,7 +52,7 @@ sdApp.controller('PE_SQLitePlugin_TestC1Ctrl', function ($scope, $rootScope, tes
     function clearTable() {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
+            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerSQLitePlugin);
         });
 
         function clearedTableCallback(transaction, results) {
@@ -88,51 +88,53 @@ sdApp.controller('PE_SQLitePlugin_TestC1Ctrl', function ($scope, $rootScope, tes
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
 
-                    //data[i][0] + '' because otherwise id's like 1.0, 2.0 are stored
+                    //data[i][0] + '' converts the id to a string
                     tx.executeSql("INSERT INTO " + tableName + "(id, address) VALUES(?,?)", [data[i][0] + '', JSON.stringify(data[i])]);
 
                 }
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
                 console.log("Error : " + error.message);
+            }, function() {
+                var timeEnd = new Date().getTime();
+
+                var timeDiff = timeEnd - timeStart;
+                $scope.results.push({iteration:  iteration,  time: timeDiff});
+                $scope.testInProgress = false;
+                $scope.isPrepared = false;
+                iteration++;
+                $scope.$apply();
+
+                console.log(amountOfData + ' items added');
             }
         );
 
-        var timeEnd = new Date().getTime();
 
-        var timeDiff = timeEnd - timeStart;
-        $scope.results.push({iteration:  iteration,  time: timeDiff});
-        $scope.testInProgress = false;
-        $scope.isPrepared = false;
-        iteration++;
-        $scope.$apply();
-
-        console.log(amountOfData + ' items added');
 
 
     };
 
-    $scope.initWebSQL = function () {
-        console.log('initWebSQL start');
+    $scope.initSQLitePlugin = function () {
+        console.log('initSQLitePlugin start');
         $scope.db = sqlitePlugin.openDatabase(dbName, dbVersion, dbName, 10 * 1024 * 1024);
-        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-        $scope.db.transaction($scope.createTableEinzelwerte, $scope.errorHandlerWebSQL);
-        console.log('initWebSQL executed');
+        //$scope.db.transaction($scope.setupSQLitePlugin, $scope.errorHandlerSQLitePlugin, $scope.dbReadySQLitePlugin);
+        $scope.db.transaction($scope.createTable, $scope.errorHandlerSQLitePlugin);
+        console.log('initSQLitePlugin executed');
         $scope.databaseOpened = true;
     };
 
-    $scope.createTableEinzelwerte = function (tx) {
+    $scope.createTable = function (tx) {
 
         //Define the structure of the database
         tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id TEXT PRIMARY KEY, address TEXT)');
 
     };
 
-    $scope.errorHandlerWebSQL = function (e) {
-        console.log('errorHandlerWebSQL start');
+    $scope.errorHandlerSQLitePlugin = function (e) {
+        console.log('errorHandlerSQLitePlugin start');
         alert(e.message);
         console.log(e.message);
-        console.log('errorHandlerWebSQL executed');
+        console.log('errorHandlerSQLitePlugin executed');
     };
 
 });
