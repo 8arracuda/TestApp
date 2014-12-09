@@ -112,8 +112,7 @@ sdApp.controller('PE_SQLitePlugin_TestR2Ctrl', function ($scope, $rootScope, tes
 
     $scope.initSQLitePlugin = function () {
         console.log('initSQLitePlugin start');
-        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
-        //$scope.db.transaction($scope.setupSQLitePlugin, $scope.errorHandlerSQLitePlugin, $scope.dbReadySQLitePlugin);
+        $scope.db = sqlitePlugin.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
         $scope.db.transaction($scope.createTable, $scope.errorHandlerSQLitePlugin);
         console.log('initSQLitePlugin executed');
         $scope.databaseOpened = true;
@@ -153,7 +152,7 @@ sdApp.controller('PE_SQLitePlugin_TestR2Ctrl', function ($scope, $rootScope, tes
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
 
                     //---Test-Output to check the returned values---
-                    //console.log('check Test R1:' + JSON.stringify(results.rows.item(0)));
+                    //console.log('check Test R2:' + JSON.stringify(results.rows.item(0)));
 
                     onSuccessCounter = onSuccessCounter + 1;
 

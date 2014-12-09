@@ -70,7 +70,7 @@ sdApp.controller('PE_SQLitePlugin_TestR1Ctrl', function ($scope, $rootScope, tes
 
     function saveAddressData() {
 
-        console.log('saveTable1ToWebSQL start');
+        console.log('saveTable1ToSQLitePlugin start');
 
         $scope.db.transaction(function (tx) {
 
@@ -79,14 +79,14 @@ sdApp.controller('PE_SQLitePlugin_TestR1Ctrl', function ($scope, $rootScope, tes
                 tx.executeSql("INSERT INTO " + tableName + "(id, address) VALUES(?,?)", [dataForPreparation[i][0] + '', JSON.stringify(dataForPreparation[i])]);
             }
 
-            console.log(dataForPreparation.length + ' addresses saved in WebSQL database  -' + tableName + '-?');
+            console.log(dataForPreparation.length + ' addresses saved in SQLitePlugin database  -' + tableName + '-?');
 
         }, function errorHandler(transaction, error) {
             alert("Error : " + transaction.message);
             alert("Error : " + error.message);
         });
 
-        console.log('saveTable1ToWebSQL executed');
+        console.log('saveTable1ToSQLitePlugin executed');
 
     }
 
@@ -99,7 +99,7 @@ sdApp.controller('PE_SQLitePlugin_TestR1Ctrl', function ($scope, $rootScope, tes
     function clearTable() {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
+            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerSQLitePlugin);
         });
 
         function clearedTableCallback(transaction, results) {
@@ -111,11 +111,11 @@ sdApp.controller('PE_SQLitePlugin_TestR1Ctrl', function ($scope, $rootScope, tes
 
     };
 
-    $scope.initWebSQL = function () {
-        console.log('initWebSQL start');
+    $scope.initSQLitePlugin = function () {
+        console.log('initSQLitePlugin start');
         $scope.db = sqlitePlugin.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
-        $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
-        console.log('initWebSQL executed');
+        $scope.db.transaction($scope.createTable, $scope.errorHandlerSQLitePlugin);
+        console.log('initSQLitePlugin executed');
         $scope.databaseOpened = true;
     };
 
@@ -125,10 +125,10 @@ sdApp.controller('PE_SQLitePlugin_TestR1Ctrl', function ($scope, $rootScope, tes
         console.log('createTable executed');
     };
 
-    $scope.errorHandlerWebSQL = function (e) {
-        console.log('errorHandlerWebSQL start');
+    $scope.errorHandlerSQLitePlugin = function (e) {
+        console.log('errorHandlerSQLitePlugin start');
         console.log(e.message);
-        console.log('errorHandlerWebSQL executed');
+        console.log('errorHandlerSQLitePlugin executed');
     };
 
 

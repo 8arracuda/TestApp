@@ -100,12 +100,12 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
 
     function saveAddressData() {
 
-        $scope.testInProgress = true;
+        $scope.prepareInProgress = true;
+        $scope.$apply();
 
         var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
-        console.dir(dataForPreparation);
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < dataForPreparation.length; i++) {
@@ -118,13 +118,13 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
         transaction.oncomplete = function (event) {
 
             $scope.isPrepared = true;
+            $scope.prepareInProgress = false;
             $scope.$apply();
 
         };
 
         transaction.onerror = function (event) {
             console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
-            $scope.testInProgress = false;
         };
     };
 

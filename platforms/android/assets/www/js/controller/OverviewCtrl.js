@@ -36,6 +36,10 @@ sdApp.controller('OverviewCtrl', function ($scope, techSupportFactory) {
 
         };
 
+        $scope.getTime = function () {
+            alert(new Date().getTime());
+        };
+
         function checkArray(array) {
 
             console.log('max:' + Math.max.apply(Math, array));

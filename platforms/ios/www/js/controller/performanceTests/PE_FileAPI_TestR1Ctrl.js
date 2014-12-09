@@ -47,16 +47,28 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
     };
 
     $scope.prepare = function () {
-        $scope.prepareInProgress=true;
+        $scope.prepareInProgress = true;
         $scope.$apply();
-        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function() {
-            loadForPreparationData();
-            saveAddressData();
-            $scope.isPrepared = true;
-            $scope.prepareInProgress=false;
-            console.log('prepare function finished');
-            $scope.$apply();
-        });
+
+        //otherwise the -prepare in progress- is not shown correctly
+        setTimeout(function () {
+
+            deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
+                loadForPreparationData();
+                //saveAddressData();
+                //var answer = confirm('deleted - load data?');
+                //if (answer==true) {
+
+                saveAddressData(function () {
+                    alert('foo');
+                });
+                //}
+                $scope.isPrepared = true;
+                $scope.prepareInProgress = false;
+                console.log('prepare function finished');
+                $scope.$apply();
+            })
+                , 1000});
 
     };
 
@@ -73,7 +85,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         var addressIdsToLoad = testDataFactory.getRandomIndices();
 
 
-        if (addressIdsToLoad.length<amountOfData) {
+        if (addressIdsToLoad.length < amountOfData) {
             alert('Warning: Too few address Ids defined. The test will produce wrong results!');
         }
 
@@ -102,12 +114,12 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                                     console.log('check Test R1:' + JSON.stringify(this.result));
                                 }
 
-                                if (i == addressIdsToLoad.length-1) {
+                                if (i == addressIdsToLoad.length - 1) {
 
                                     var timeEnd = new Date().getTime();
 
                                     var timeDiff = timeEnd - timeStart;
-                                    $scope.results.push({iteration:  iteration,  time: timeDiff});
+                                    $scope.results.push({iteration: iteration, time: timeDiff});
                                     $scope.testInProgress = false;
                                     $scope.$apply();
 
@@ -194,7 +206,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
     };
 
-    function saveAddressData() {
+    function saveAddressData(callback) {
 
         if (dataForPreparation == null) {
             alert('error: no data loaded');
@@ -205,34 +217,43 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                 function (fs) {
 
                     function writeAddress(i) {
+                        //console.log('writeadress called with i= ' + i);
                         if (i < dataForPreparation.length) {
-                            var id = dataForPreparation[i][0];
-                            var filename = id + '.txt';
-                            fs.root.getFile(filename, {create: true}, function (fileEntry) {
+                        var id = dataForPreparation[i][0];
+                        var filename = id + '.txt';
+                        fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
-                                fileEntry.createWriter(function (fileWriter) {
+                            fileEntry.createWriter(function (fileWriter) {
 
-                                    fileWriter.onwriteend = function (e) {
-                                            //fileentry has been written successfully.');
+                                fileWriter.onwriteend = function (e) {
+                                    //fileentry has been written successfully.');
 
-                                        //calls the function again to write the next file
-                                        writeAddress(i + 1);
-                                    };
+                                    writeAddress(i + 1);
 
-                                    fileWriter.onerror = function (e) {
-                                        console.log('Write failed: ' + e.toString());
-                                        console.dir(e);
-                                    };
+                                    //calls the function again to write the next file
+                                    //if (i <= dataForPreparation.length) {
+                                    //    //console.log('calling writeAddress again');
+                                    //    writeAddress(i + 1);
+                                    //} else {
+                                    //    alert('lala');
+                                    //    callback();
+                                    //}
+                                };
 
-                                    //overwrites the file from the beginning
-                                    fileWriter.seek(0);
-                                    fileWriter.write(JSON.stringify(dataForPreparation[i]));
+                                fileWriter.onerror = function (e) {
+                                    console.log('Write failed: ' + e.toString());
+                                    console.dir(e);
+                                };
 
-                                }, errorHandler);
+                                //overwrites the file from the beginning
+                                fileWriter.seek(0);
+                                fileWriter.write(JSON.stringify(dataForPreparation[i]));
+
                             }, errorHandler);
+                        }, errorHandler);
 
                         } else {
-                            console.log(dataForPreparation.length + ' addressfiles has been written.');
+                            callback();
                         }
 
                     }

@@ -92,7 +92,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                                 fileEntry.createWriter(function (fileWriter) {
 
                                     fileWriter.onwriteend = function (e) {
-                                        console.log(fileEntry.name + ' written successfully.');
+                                        //console.log(fileEntry.name + ' written successfully.');
 
                                         //calls the function again to write the next file
                                         writeAddress(i + 1);
@@ -139,7 +139,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                             fileEntry.createWriter(function (fileWriter) {
 
                                 fileWriter.onwriteend = function (e) {
-                                    console.log(fileEntry.name + ' written successfully.');
+                                    //console.log(fileEntry.name + ' written successfully.');
 
                                     //calls the function again to write the next file
                                     if (i < amountOfData) {

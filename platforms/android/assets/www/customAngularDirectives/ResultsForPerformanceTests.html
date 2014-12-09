@@ -16,7 +16,7 @@
         <li ng-show="testInProgress==true" class="list-group-item list-group-item-warning">
             Test in progress <i class="fa fa-spinner fa-spin"></i>
         </li>
-        <div ng-repeat="r in results | orderBy:iteration:reverse ">
+        <div ng-repeat="r in results track by $index ">
 
             <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
                 Iteration {{ r.iteration }}: {{ r.time }}  ms
