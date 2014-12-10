@@ -18,9 +18,9 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
-    $scope.testName1 = 'TestR3a';
+    $scope.testName1 = 'TestR3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR3a + ' items';
-    $scope.testName2 = 'TestR3b';
+    $scope.testName2 = 'TestR3-24';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR3b + ' items';
 
     $scope.results = [];
@@ -119,13 +119,6 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
         $scope.testInProgress = true;
         $scope.$apply();
 
-        var addressIdsToLoad = testDataFactory.getRandomIndices();
-
-        if (addressIdsToLoad.length<amountOfData) {
-            alert('Warning: Too few address Ids defined. The test will produce wrong results!');
-        }
-
-
         var timeStart = new Date().getTime();
         var onSuccessCounter = 0;
 
@@ -136,7 +129,7 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", ['dataset_' + i], function (transaction, results) {
 
                     //---Test-Output to check the returned values---
-                    console.log('check Test R3:' + JSON.stringify(results.rows.item(0)).substr(1,100));
+                    //console.log('check Test R3:' + JSON.stringify(results.rows.item(0)).substr(1,100));
 
                     onSuccessCounter = onSuccessCounter + 1;
 

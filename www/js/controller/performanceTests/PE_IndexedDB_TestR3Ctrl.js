@@ -264,14 +264,14 @@ sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDa
 
     $scope.startPerformanceTest = function () {
 
-        var i = 0;
+
         function readNext() {
             var transaction = $scope.db.transaction([objStoreName], "readonly");
 
             var objectStore = transaction.objectStore(objStoreName);
 
             transaction.oncomplete = function (event) {
-                i++
+                i++;
                 if (i<amountOfData) {
                     readNext();
                 } else {
@@ -309,6 +309,7 @@ sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDa
         $scope.testInProgress = true;
         $scope.$apply();
 
+        var i = 0;
         var timeStart = new Date().getTime();
         readNext();
 

@@ -116,12 +116,25 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
 
         $scope.testInProgress = true;
 
-
+        onSuccessCounter = 0;
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
 
                     tx.executeSql("UPDATE " + tableName + " SET address = ? WHERE id = ?", [JSON.stringify(dataForUpdate[i]), dataForUpdate[i][0] + '']);
+
+                    onSuccessCounter = onSuccessCounter + 1;
+
+                    if (onSuccessCounter == amountOfData) {
+                        var timeEnd = new Date().getTime();
+
+                        var timeDiff = timeEnd - timeStart;
+                        $scope.results.push({iteration:  iteration,  time: timeDiff});
+                        $scope.testInProgress = false;
+                        $scope.isPrepared = false;
+                        iteration++;
+                        $scope.$apply();
+                    }
 
                 }
             }, function errorHandler(transaction, error) {
@@ -130,14 +143,7 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
             }
         );
 
-        var timeEnd = new Date().getTime();
 
-        var timeDiff = timeEnd - timeStart;
-        $scope.results.push({iteration:  iteration,  time: timeDiff});
-        $scope.testInProgress = false;
-        $scope.isPrepared = false;
-        iteration++;
-        $scope.$apply();
 
         console.log(amountOfData + ' items updated');
 

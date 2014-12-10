@@ -17,7 +17,7 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
     $scope.testName1 = 'TestC3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' items';
-    $scope.testName2 = 'TestC3b';
+    $scope.testName2 = 'TestC3-24';
     $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' items';
 
     $scope.results = [];

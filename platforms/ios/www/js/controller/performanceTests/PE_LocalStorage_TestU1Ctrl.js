@@ -74,8 +74,6 @@ sdApp.controller('PE_LocalStorage_TestU1Ctrl', function ($scope, $rootScope, tes
             console.error('no data loaded (in saveAddressData)');
         } else {
 
-            //Same logic as in DE_LocalStorage_strDaten Test-Method 2
-
             for (var i = 0; i < dataForPreparation.length; i++) {
 
                 //Set the Id as key

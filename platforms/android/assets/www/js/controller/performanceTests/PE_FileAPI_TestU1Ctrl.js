@@ -182,9 +182,10 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
 
     $scope.startPerformanceTest = function () {
 
+
+        var timeStart= new Date().getTime();
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
-
 
                 function writeAddress(i) {
                     var filename = i + '.txt';
@@ -224,8 +225,6 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
 
                 }
 
-                //test is started here
-                var timeStart= new Date().getTime();
                 writeAddress(0);
 
             },

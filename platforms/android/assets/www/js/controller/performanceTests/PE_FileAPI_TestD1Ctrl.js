@@ -49,6 +49,7 @@ sdApp.controller('PE_FileAPI_TestD1Ctrl', function ($scope, $rootScope, testData
         var addressIdsToDelete = testDataFactory.getRandomIndices();
 
         var deletedFilesCounter = 0;
+        var timeStart = new Date().getTime();
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024, function (fs) {
             for (var i = 0; i < amountOfData; i++) {
 
@@ -56,7 +57,6 @@ sdApp.controller('PE_FileAPI_TestD1Ctrl', function ($scope, $rootScope, testData
 
                 if (filename != '.DS_Store') {
 
-                    var timeStart = new Date().getTime();
                     fs.root.getFile(filename, {create: false}, function (fileEntry) {
 
                         fileEntry.remove(function () {

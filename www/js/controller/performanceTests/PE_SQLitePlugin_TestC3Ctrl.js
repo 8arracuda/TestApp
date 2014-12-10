@@ -15,9 +15,9 @@ sdApp.controller('PE_SQLitePlugin_TestC3Ctrl', function ($scope, $rootScope, tes
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
     $scope.testName1 = 'TestC3-6';
-    $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' times 5,000 addresses.';
+    $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' times 4,000 addresses.';
     $scope.testName2 = 'TestC3-24';
-    $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' times 5,000 addresses.';
+    $scope.testDecription2 = 'Stores ' + amountOfData_testC3b + ' times 4,000 addresses.';
 
     $scope.results = [];
 

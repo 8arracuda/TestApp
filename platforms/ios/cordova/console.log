@@ -25772,3 +25772,205 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-12-10 09:32:04.469 Test-App[55314:5107815] [CDVTimer][TotalPluginStartup] 2.777994ms
 2014-12-10 09:32:04.545 Test-App[55314:5107815] Resetting plugins due to page load.
 2014-12-10 09:32:04.914 Test-App[55314:5107815] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/F9BDAB2F-5025-4934-A5E0-E43EEBD06AAA/Test-App.app/www/index.html
+2014-12-10 09:45:01.079 Test-App[55314:5107815] Detected docs path: /Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/7C6EAD64-685F-42FB-9156-A6E34EBBCFA2/Documents
+2014-12-10 09:45:01.173 Test-App[55314:5107815] Good news: SQLite is thread safe!
+2014-12-10 09:45:01.174 Test-App[55314:5107815] THREAD WARNING: ['SQLitePlugin'] took '94.555176' ms. Plugin should use a background thread.
+2014-12-10 09:46:44.954 Test-App[55314:5107815] Good news: SQLite is thread safe!
+2014-12-10 09:46:48.420 Test-App[55314:5117376] -[__NSArrayM dataUsingEncoding:]: unrecognized selector sent to instance 0x7b655ad0
+2014-12-10 09:46:48.534 Test-App[55314:5117376] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[__NSArrayM dataUsingEncoding:]: unrecognized selector sent to instance 0x7b655ad0'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x002aa946 __exceptionPreprocess + 182
+	1   libobjc.A.dylib                     0x02a0ea97 objc_exception_throw + 44
+	2   CoreFoundation                      0x002b25c5 -[NSObject(NSObject) doesNotRecognizeSelector:] + 277
+	3   CoreFoundation                      0x001fb3e7 ___forwarding___ + 1047
+	4   CoreFoundation                      0x001fafae _CF_forwarding_prep_0 + 14
+	5   Test-App                            0x000977bc -[SQLitePlugin bindStatement:withArg:atIndex:] + 908
+	6   Test-App                            0x00096b81 -[SQLitePlugin executeSqlWithDict:andArgs:] + 1265
+	7   Test-App                            0x000959d2 -[SQLitePlugin executeSqlBatch:] + 658
+	8   Test-App                            0x00095663 __42-[SQLitePlugin backgroundExecuteSqlBatch:]_block_invoke + 51
+	9   libdispatch.dylib                   0x030a1a2a _dispatch_call_block_and_release + 15
+	10  libdispatch.dylib                   0x030be03f _dispatch_client_callout + 14
+	11  libdispatch.dylib                   0x030a8a4c _dispatch_root_queue_drain + 468
+	12  libdispatch.dylib                   0x030a9985 _dispatch_worker_thread3 + 108
+	13  libsystem_pthread.dylib             0x03414296 _pthread_wqthread + 724
+	14  libsystem_pthread.dylib             0x03411eea start_wqthread + 30
+)
+libc++abi.dylib: terminating with uncaught exception of type NSException
+2014-12-10 10:02:03.328 Test-App[56954:5124945] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/DE6E4AB5-E793-4BB1-AB74-05CB28438AAE/Library/Cookies/Cookies.binarycookies
+2014-12-10 10:02:03.807 Test-App[56954:5124945] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-10 10:02:03.808 Test-App[56954:5124945] Multi-tasking -> Device: YES, App: YES
+2014-12-10 10:02:03.830 Test-App[56954:5124945] Unlimited access to network resources
+2014-12-10 10:02:03.848 Test-App[56954:5124945] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-10 10:02:04.037 Test-App[56954:5124945] [CDVTimer][file] 22.316992ms
+2014-12-10 10:02:04.037 Test-App[56954:5124945] [CDVTimer][TotalPluginStartup] 22.574008ms
+2014-12-10 10:02:04.390 Test-App[56954:5124945] Resetting plugins due to page load.
+2014-12-10 10:02:04.957 Test-App[56954:5124945] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/E099AF04-03CB-42EC-8E37-BF9D95B9018E/Test-App.app/www/index.html
+2014-12-10 10:08:27.920 Test-App[57632:5128740] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/AFE9C616-717C-45AA-9703-21CCA046F9C4/Library/Cookies/Cookies.binarycookies
+2014-12-10 10:08:28.323 Test-App[57632:5128740] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-10 10:08:28.324 Test-App[57632:5128740] Multi-tasking -> Device: YES, App: YES
+2014-12-10 10:08:28.330 Test-App[57632:5128740] Unlimited access to network resources
+2014-12-10 10:08:28.333 Test-App[57632:5128740] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-10 10:08:28.500 Test-App[57632:5128740] [CDVTimer][file] 2.688944ms
+2014-12-10 10:08:28.500 Test-App[57632:5128740] [CDVTimer][TotalPluginStartup] 2.907991ms
+2014-12-10 10:08:28.615 Test-App[57632:5128740] Resetting plugins due to page load.
+2014-12-10 10:08:28.963 Test-App[57632:5128740] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/B64D4FFF-2D02-4135-9799-944A535E7253/Test-App.app/www/index.html
+2014-12-10 10:16:03.999 Test-App[58750:5134083] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/F5CE45C9-368C-4291-AE1B-B773DE4E903B/Library/Cookies/Cookies.binarycookies
+2014-12-10 10:16:05.169 Test-App[58750:5134083] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-10 10:16:05.170 Test-App[58750:5134083] Multi-tasking -> Device: YES, App: YES
+2014-12-10 10:16:05.176 Test-App[58750:5134083] Unlimited access to network resources
+2014-12-10 10:16:05.180 Test-App[58750:5134083] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-10 10:16:05.610 Test-App[58750:5134083] [CDVTimer][file] 30.452013ms
+2014-12-10 10:16:05.610 Test-App[58750:5134083] [CDVTimer][TotalPluginStartup] 30.682027ms
+2014-12-10 10:16:05.969 Test-App[58750:5134083] Resetting plugins due to page load.
+2014-12-10 10:16:06.466 Test-App[58750:5134083] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/17997BDF-75AD-4A34-9732-9632409A720D/Test-App.app/www/index.html
+2014-12-10 20:52:25.091 Test-App[77721:5329013] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/111237F4-41DD-4427-9B61-D2B83182E11C/Library/Cookies/Cookies.binarycookies
+2014-12-10 20:52:27.599 Test-App[77721:5329013] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-10 20:52:27.599 Test-App[77721:5329013] Multi-tasking -> Device: YES, App: YES
+2014-12-10 20:52:27.669 Test-App[77721:5329013] Unlimited access to network resources
+2014-12-10 20:52:27.738 Test-App[77721:5329013] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-10 20:52:29.360 Test-App[77721:5329013] [CDVTimer][file] 107.039988ms
+2014-12-10 20:52:29.360 Test-App[77721:5329013] [CDVTimer][TotalPluginStartup] 107.376993ms
+2014-12-10 20:52:31.203 Test-App[77721:5329013] Resetting plugins due to page load.
+2014-12-10 20:52:34.701 Test-App[77721:5329013] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/278119BB-44F9-4531-86DA-B4258C2D1245/Test-App.app/www/index.html
+2014-12-10 20:52:55.245 Test-App[77721:5329013] Detected docs path: /Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/111237F4-41DD-4427-9B61-D2B83182E11C/Documents
+2014-12-10 20:52:55.266 Test-App[77721:5329013] Good news: SQLite is thread safe!
+2014-12-10 20:52:55.267 Test-App[77721:5329013] THREAD WARNING: ['SQLitePlugin'] took '21.652100' ms. Plugin should use a background thread.
+2014-12-10 20:52:58.073 Test-App[77721:5329200] -[__NSArrayM dataUsingEncoding:]: unrecognized selector sent to instance 0x7c88b8a0
+2014-12-10 20:52:58.420 Test-App[77721:5329200] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[__NSArrayM dataUsingEncoding:]: unrecognized selector sent to instance 0x7c88b8a0'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x00241946 __exceptionPreprocess + 182
+	1   libobjc.A.dylib                     0x029a5a97 objc_exception_throw + 44
+	2   CoreFoundation                      0x002495c5 -[NSObject(NSObject) doesNotRecognizeSelector:] + 277
+	3   CoreFoundation                      0x001923e7 ___forwarding___ + 1047
+	4   CoreFoundation                      0x00191fae _CF_forwarding_prep_0 + 14
+	5   Test-App                            0x0002e7bc -[SQLitePlugin bindStatement:withArg:atIndex:] + 908
+	6   Test-App                            0x0002db81 -[SQLitePlugin executeSqlWithDict:andArgs:] + 1265
+	7   Test-App                            0x0002c9d2 -[SQLitePlugin executeSqlBatch:] + 658
+	8   Test-App                            0x0002c663 __42-[SQLitePlugin backgroundExecuteSqlBatch:]_block_invoke + 51
+	9   libdispatch.dylib                   0x03038a2a _dispatch_call_block_and_release + 15
+	10  libdispatch.dylib                   0x0305503f _dispatch_client_callout + 14
+	11  libdispatch.dylib                   0x0303fa4c _dispatch_root_queue_drain + 468
+	12  libdispatch.dylib                   0x03040985 _dispatch_worker_thread3 + 108
+	13  libsystem_pthread.dylib             0x033ab296 _pthread_wqthread + 724
+	14  libsystem_pthread.dylib             0x033a8eea start_wqthread + 30
+)
+libc++abi.dylib: terminating with uncaught exception of type NSException
+2014-12-10 20:56:10.315 Test-App[77907:5331621] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/30021C4B-3081-43A6-B940-9C6DAFDF82EB/Library/Cookies/Cookies.binarycookies
+2014-12-10 20:56:10.880 Test-App[77907:5331621] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-10 20:56:10.881 Test-App[77907:5331621] Multi-tasking -> Device: YES, App: YES
+2014-12-10 20:56:10.909 Test-App[77907:5331621] Unlimited access to network resources
+2014-12-10 20:56:10.923 Test-App[77907:5331621] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-10 20:56:11.148 Test-App[77907:5331621] [CDVTimer][file] 36.377013ms
+2014-12-10 20:56:11.148 Test-App[77907:5331621] [CDVTimer][TotalPluginStartup] 36.727965ms
+2014-12-10 20:56:11.651 Test-App[77907:5331621] Resetting plugins due to page load.
+2014-12-10 20:56:12.738 Test-App[77907:5331621] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/0A0D6F44-7C03-4048-9045-EEEA058D2038/Test-App.app/www/index.html
+2014-12-10 20:56:26.953 Test-App[77907:5331621] Detected docs path: /Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/30021C4B-3081-43A6-B940-9C6DAFDF82EB/Documents
+2014-12-10 20:56:26.997 Test-App[77907:5331621] Good news: SQLite is thread safe!
+2014-12-10 20:56:26.997 Test-App[77907:5331621] THREAD WARNING: ['SQLitePlugin'] took '43.825928' ms. Plugin should use a background thread.
+2014-12-10 20:56:29.353 Test-App[77907:5331774] -[__NSArrayM dataUsingEncoding:]: unrecognized selector sent to instance 0x7a64dd30
+2014-12-10 20:56:29.354 Test-App[77907:5331774] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[__NSArrayM dataUsingEncoding:]: unrecognized selector sent to instance 0x7a64dd30'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x0026f946 __exceptionPreprocess + 182
+	1   libobjc.A.dylib                     0x029d3a97 objc_exception_throw + 44
+	2   CoreFoundation                      0x002775c5 -[NSObject(NSObject) doesNotRecognizeSelector:] + 277
+	3   CoreFoundation                      0x001c03e7 ___forwarding___ + 1047
+	4   CoreFoundation                      0x001bffae _CF_forwarding_prep_0 + 14
+	5   Test-App                            0x0005c7bc -[SQLitePlugin bindStatement:withArg:atIndex:] + 908
+	6   Test-App                            0x0005bb81 -[SQLitePlugin executeSqlWithDict:andArgs:] + 1265
+	7   Test-App                            0x0005a9d2 -[SQLitePlugin executeSqlBatch:] + 658
+	8   Test-App                            0x0005a663 __42-[SQLitePlugin backgroundExecuteSqlBatch:]_block_invoke + 51
+	9   libdispatch.dylib                   0x03066a2a _dispatch_call_block_and_release + 15
+	10  libdispatch.dylib                   0x0308303f _dispatch_client_callout + 14
+	11  libdispatch.dylib                   0x0306da4c _dispatch_root_queue_drain + 468
+	12  libdispatch.dylib                   0x0306e985 _dispatch_worker_thread3 + 108
+	13  libsystem_pthread.dylib             0x033d9296 _pthread_wqthread + 724
+	14  libsystem_pthread.dylib             0x033d6eea start_wqthread + 30
+)
+libc++abi.dylib: terminating with uncaught exception of type NSException
+2014-12-10 20:56:55.995 Test-App[77940:5332443] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/01D731F3-BDD3-4578-B58B-4CA82B93D580/Library/Cookies/Cookies.binarycookies
+2014-12-10 20:56:56.502 Test-App[77940:5332443] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-10 20:56:56.503 Test-App[77940:5332443] Multi-tasking -> Device: YES, App: YES
+2014-12-10 20:56:56.522 Test-App[77940:5332443] Unlimited access to network resources
+2014-12-10 20:56:56.537 Test-App[77940:5332443] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-10 20:56:56.747 Test-App[77940:5332443] [CDVTimer][file] 31.454027ms
+2014-12-10 20:56:56.747 Test-App[77940:5332443] [CDVTimer][TotalPluginStartup] 31.717002ms
+2014-12-10 20:56:57.114 Test-App[77940:5332443] Resetting plugins due to page load.
+2014-12-10 20:56:57.863 Test-App[77940:5332443] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/1F2458DA-8DC8-4BE7-AB03-3064824F6992/Test-App.app/www/index.html
+2014-12-10 20:57:41.892 Test-App[77940:5332443] Detected docs path: /Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/01D731F3-BDD3-4578-B58B-4CA82B93D580/Documents
+2014-12-10 20:57:41.945 Test-App[77940:5332443] Good news: SQLite is thread safe!
+2014-12-10 20:57:41.946 Test-App[77940:5332443] THREAD WARNING: ['SQLitePlugin'] took '29.566162' ms. Plugin should use a background thread.
+2014-12-10 20:57:58.163 Test-App[77940:5333780] -[__NSArrayM dataUsingEncoding:]: unrecognized selector sent to instance 0x79ee8ab0
+2014-12-10 20:57:58.165 Test-App[77940:5333780] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[__NSArrayM dataUsingEncoding:]: unrecognized selector sent to instance 0x79ee8ab0'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x00290946 __exceptionPreprocess + 182
+	1   libobjc.A.dylib                     0x029f4a97 objc_exception_throw + 44
+	2   CoreFoundation                      0x002985c5 -[NSObject(NSObject) doesNotRecognizeSelector:] + 277
+	3   CoreFoundation                      0x001e13e7 ___forwarding___ + 1047
+	4   CoreFoundation                      0x001e0fae _CF_forwarding_prep_0 + 14
+	5   Test-App                            0x0007d7bc -[SQLitePlugin bindStatement:withArg:atIndex:] + 908
+	6   Test-App                            0x0007cb81 -[SQLitePlugin executeSqlWithDict:andArgs:] + 1265
+	7   Test-App                            0x0007b9d2 -[SQLitePlugin executeSqlBatch:] + 658
+	8   Test-App                            0x0007b663 __42-[SQLitePlugin backgroundExecuteSqlBatch:]_block_invoke + 51
+	9   libdispatch.dylib                   0x03087a2a _dispatch_call_block_and_release + 15
+	10  libdispatch.dylib                   0x030a403f _dispatch_client_callout + 14
+	11  libdispatch.dylib                   0x0308ea4c _dispatch_root_queue_drain + 468
+	12  libdispatch.dylib                   0x0308f985 _dispatch_worker_thread3 + 108
+	13  libsystem_pthread.dylib             0x033fa296 _pthread_wqthread + 724
+	14  libsystem_pthread.dylib             0x033f7eea start_wqthread + 30
+)
+libc++abi.dylib: terminating with uncaught exception of type NSException
+2014-12-10 21:55:08.506 Test-App[81244:5359880] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/34456B38-743F-4D88-88DD-AFD834F4D743/Library/Cookies/Cookies.binarycookies
+2014-12-10 21:55:09.827 Test-App[81244:5359880] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-10 21:55:09.828 Test-App[81244:5359880] Multi-tasking -> Device: YES, App: YES
+2014-12-10 21:55:09.834 Test-App[81244:5359880] Unlimited access to network resources
+2014-12-10 21:55:09.860 Test-App[81244:5359880] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-10 21:55:10.191 Test-App[81244:5359880] [CDVTimer][file] 85.976958ms
+2014-12-10 21:55:10.191 Test-App[81244:5359880] [CDVTimer][TotalPluginStartup] 86.240053ms
+2014-12-10 21:55:11.152 Test-App[81244:5359880] Resetting plugins due to page load.
+2014-12-10 21:55:12.206 Test-App[81244:5359880] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/8BEDAB33-DD90-4620-900D-595F594961D7/Test-App.app/www/index.html

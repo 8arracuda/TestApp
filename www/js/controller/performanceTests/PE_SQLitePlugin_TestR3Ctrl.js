@@ -119,13 +119,6 @@ sdApp.controller('PE_SQLitePlugin_TestR3Ctrl', function ($scope, $rootScope, tes
         $scope.testInProgress = true;
         $scope.$apply();
 
-        var addressIdsToLoad = testDataFactory.getRandomIndices();
-
-        if (addressIdsToLoad.length<amountOfData) {
-            alert('Warning: Too few address Ids defined. The test will produce wrong results!');
-        }
-
-
         var timeStart = new Date().getTime();
         var onSuccessCounter = 0;
 

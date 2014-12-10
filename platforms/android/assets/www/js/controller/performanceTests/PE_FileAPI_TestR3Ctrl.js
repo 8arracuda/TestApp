@@ -12,9 +12,9 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestR3a';
+    $scope.testName1 = 'TestR3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR3a + ' items';
-    $scope.testName2 = 'TestR3b';
+    $scope.testName2 = 'TestR3-24';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR3b + ' items';
 
     $scope.results = [];
@@ -88,6 +88,9 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
                             var reader = new FileReader();
 
                             reader.onloadend = function (e) {
+
+                                //---Test-Output to check the returned values---
+                                  console.log('check Test R1:' + JSON.stringify(this.result.substr(1,50)));
                                 //loadAddress(i++);
                                 if (i == amountOfData - 1) {
                                     var timeEnd = new Date().getTime();
@@ -162,6 +165,9 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
                             var reader = new FileReader();
 
                             reader.onloadend = function (e) {
+
+                                //---Test-Output to check the returned values---
+                                console.log('check Test R1:' + JSON.stringify(this.result.substr(1,50)));
                                 addResult();
                             };
 

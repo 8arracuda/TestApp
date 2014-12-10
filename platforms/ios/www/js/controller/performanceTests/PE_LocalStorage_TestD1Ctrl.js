@@ -20,7 +20,6 @@ sdApp.controller('PE_LocalStorage_TestD1Ctrl', function ($scope, $rootScope, tes
     $scope.testName2 = 'TestD1-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testD1b + ' items';
 
-
     $scope.reset = function () {
 
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
@@ -57,7 +56,7 @@ sdApp.controller('PE_LocalStorage_TestD1Ctrl', function ($scope, $rootScope, tes
         }
 
         var timeStart = new Date().getTime();
-        //for (var i = 0; i < addressIdsToLoad.length; i++) {
+
         for (var i = 0; i < amountOfData; i++) {
 
             localStorage.removeItem(addressIdsToDelete[i]);

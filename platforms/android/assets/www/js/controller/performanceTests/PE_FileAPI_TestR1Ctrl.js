@@ -79,16 +79,13 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         $scope.testInProgress = true;
         $scope.$apply();
 
-
         var addressIdsToLoad = testDataFactory.getRandomIndices();
-
 
         if (addressIdsToLoad.length < amountOfData) {
             alert('Warning: Too few address Ids defined. The test will produce wrong results!');
         }
 
         var timeStart = new Date().getTime();
-        console.log('before');
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
@@ -105,9 +102,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                             reader.onloadend = function (e) {
 
                                 //---Test-Output to check the returned values---
-                                //if (i == PE_TestR1_indexToCheck) {
-                                  //  console.log('check Test R1:' + JSON.stringify(this.result));
-                                //}
+                                //  console.log('check Test R1:' + JSON.stringify(this.result));
 
                                 if (i==amountOfData-1) {
 
@@ -136,7 +131,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         );
 
     };
-
 
     //Not working on Android -> NOT_FOUND_ERR(1)
     ////asynchronous requests for fetching the addresses

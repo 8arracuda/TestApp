@@ -92,6 +92,27 @@ colnames(df) <- c("Nexus7", "IOSSim", "Lumia620");
 #df[,"Nexus4"]
 #df[,1]
 
+rows_LS<-rownames(meansDf)[seq(1,14)] #LocalStorage
+rows_SS<-rownames(meansDf)[seq(15,28)] #SessionStorage
+rows_IDB<-rownames(meansDf)[seq(29,44)] #IndexedDB
+rows_WSQL<-rownames(meansDf)[seq(45,60)] #WebSQL
+rows-SQLite<-rownames(meansDf)[seq(61,76)] #SQLitePlugin
+rows_File<-rownames(meansDf)[seq(77,92)] #File API
+
+
+
+df_LocalStorage<-meansDf[rows_LS, ]
+row.names(df_SessionStorage)<-c("C1-500", "C1-2000", "C2-500", "C2-2000", "C3-6", "R1-500", "R1-2000", "R2-500", "R2-2000", "R3-6", "U1-500", "U1-2000", "D1-500", "D1-2000")
+
+df_SessionStorage<-meansDf[rows_SS, ]
+row.names(df_SessionStorage)<-c("C1-500", "C1-2000", "C2-500", "C2-2000", "C3-6", "R1-500", "R1-2000", "R2-500", "R2-2000", "R3-6", "U1-500", "U1-2000", "D1-500", "D1-2000")
+
+barplot(as.matrix(df_LocalStorage), beside=T, horiz=T, legend=T, main="LocalStorage")
+
+#Zugriff über
+meansDf[rows_LS, ]
+
+
 
 IOSSim_lapply <- lapply(IOSSim, mean)
 Nexus4_lapply <- lapply(Nexus4, mean)
@@ -269,6 +290,8 @@ barplot(t(as.matrix(fooDf)), beside=TRUE)
 
 
 meansDf = data.frame(sapply(IOSSim, mean), sapply(Lumia620, mean), sapply(Nexus7, mean))
+colnames(meansDf)<- c('IOSSim', 'Lumia620', 'Nexus7')
+
 barplot(t(as.matrix(meansDf)), beside = TRUE, horiz=TRUE, cex.axis=0.01, las=3)
 
 
@@ -282,3 +305,69 @@ v2 <- rbind(IOSSim_means, Nexus4_means)
 barplot(v2,beside=FALSE,legend=TRUE, horiz=TRUE)
 
 meansDf = data.frame(IOSSim_means, Nexus7_means, Lumia620_means)
+
+
+
+rows_LS<-rownames(meansDf)[seq(1:16)] #LocalStorage
+rows_LS
+rows_SS<-rownames(meansDf)[seq(17,32)] #SessionStorage
+rows_SS
+rows_IDB<-rownames(meansDf)[seq(33,48)] #IndexedDB
+rows_IDB
+rows_WSQL<-rownames(meansDf)[seq(49,64)] #WebSQL
+rows_WSQL
+rows_SQLite<-rownames(meansDf)[seq(65,80)] #SQLitePlugin
+rows_SQLite
+rows_File<-rownames(meansDf)[seq(77,96)] #File API
+rows_File
+
+
+factor_LS<-apply(meansDf[c(1,2),], 2, function(x) x / x[1])
+factor_SS<-apply(meansDf[c(15,16),], 2, function(x) x / x[1])
+factor_IDB<-apply(meansDf[c(29,30),], 2, function(x) x / x[1])
+
+factor_haha<-apply(meansDf[c(1,2,15,16),], 2, function(x, i) x / x[i%%2], row(meansMatrix))
+
+
+
+
+#Wie gut skalieren die Techniken bei der Speicherung von mehr...
+factor_LS<-apply(meansDf[c(1,2),], 2, function(x) x / x[1])
+factor_SS<-apply(meansDf[c(15,16),], 2, function(x) x / x[1])
+factor_IDB<-apply(meansDf[c(29,30),], 2, function(x) x / x[1])
+factor_WSQL<-apply(meansDf[c(45,46),], 2, function(x) x / x[1])
+factor_SQLite<-apply(meansDf[c(61,62),], 2, function(x) x / x[1])
+factor_File<-apply(meansDf[c(77,78),], 2, function(x) x / x[1])
+
+height <- rbind(factor_LS, factor_SS, factor_IDB, factor_WSQL, factor_SQLite, factor_File)
+mp <- barplot(height, beside = TRUE, names.arg = LETTERS[1:4])
+mp <- barplot(height, beside = TRUE)
+text(mp, height, labels = format(height, 1), pos = 3, cex = .75)
+
+
+
+#Schreibt in einer Schleife Dateien
+#Die Darstellten Werte entsprechen dem Unterschied zwischen dem großen und dem kleinen Test.
+Die Ergebnisse sind auf das Ergebnis des kleinen Tests normalisiert- Das Ergebnis des kleinen Tests entspricht immer 1.
+Wenn als Ergebnis eine 3 auftaucht, dass bedeutet das, dass der große Test 3 mal so lange gedauert hat als der kleine Test.
+
+for (i in seq(0,14, by=2) ) {
+  TestNames=c("C1","C2","C3","R1","R2","R3","U1","D1")
+  factor_LS<-apply(meansDf[c(1+i,2+i),], 2, function(x) x / x[1])
+  factor_LS
+  factor_SS<-apply(meansDf[c(17+i,18+i),], 2, function(x) x / x[1])
+  factor_SS
+  factor_IDB<-apply(meansDf[c(33+i,34+i),], 2, function(x) x / x[1])
+  factor_IDB
+  factor_WSQL<-apply(meansDf[c(49+i,50+i),], 2, function(x) x / x[1])
+  factor_WSQL
+  factor_SQLite<-apply(meansDf[c(65+i,66+i),], 2, function(x) x / x[1])
+  factor_SQLite
+  factor_File<-apply(meansDf[c(77+i,78+i),], 2, function(x) x / x[1])
+  factor_File
+  png(paste("/Users/michael/Downloads/results/",i,".png", sep=""))
+  height <- rbind(factor_LS[c(2),], factor_SS[c(2),], factor_IDB[c(2),], factor_WSQL[c(2),], factor_SQLite[c(2),], factor_File[c(2),])
+  colors<-c("green","red", "blue", "grey", "yellow", "cyan")
+  mp <- barplot(height, beside = T, col=colors, legend=F, main=TestNames[(i/2)+1])
+  dev.off();
+}

@@ -18,7 +18,6 @@ sdApp.controller('PE_SessionStorage_TestR3Ctrl', function ($scope, $rootScope, t
     $scope.testName1 = 'TestR3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR3a + ' items';
 
-
     $scope.reset = function () {
 
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
