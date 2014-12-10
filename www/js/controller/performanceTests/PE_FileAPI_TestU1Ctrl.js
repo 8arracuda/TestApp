@@ -63,17 +63,72 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
         $scope.$apply();
         deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function() {
             loadDataForPreparation();
-            saveAddressData();
-            loadDataForUpdate();
-            $scope.isPrepared = true;
-            $scope.prepareInProgress=false;
-            console.log('prepare function finished');
-            $scope.$apply();
+            saveAddressData(function() {
+                loadDataForUpdate();
+                $scope.isPrepared = true;
+                $scope.prepareInProgress=false;
+                console.log('prepare function finished');
+                $scope.$apply();
+            });
+
         });
 
     };
 
-    function saveAddressData() {
+    //function saveAddressData() {
+    //
+    //    if (dataForPreparation == null) {
+    //        alert('error: no data loaded');
+    //        console.error('no data loaded (in saveAddressData)');
+    //    } else {
+    //
+    //        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+    //            function (fs) {
+    //
+    //                function writeAddress(i) {
+    //                    if (i < dataForPreparation.length) {
+    //                        var id = dataForPreparation[i][0];
+    //                        var filename = id + '.txt';
+    //                        fs.root.getFile(filename, {create: true}, function (fileEntry) {
+    //
+    //                            fileEntry.createWriter(function (fileWriter) {
+    //
+    //                                fileWriter.onwriteend = function (e) {
+    //                                    //console.log(fileEntry.name + ' written successfully.');
+    //
+    //                                    //calls the function again to write the next file
+    //                                    writeAddress(i + 1);
+    //                                };
+    //
+    //                                fileWriter.onerror = function (e) {
+    //                                    console.log('Write failed: ' + e.toString());
+    //                                    console.dir(e);
+    //                                };
+    //
+    //                                //overwrites the file from the beginning
+    //                                fileWriter.seek(0);
+    //                                fileWriter.write(JSON.stringify(dataForPreparation[i]));
+    //
+    //                            }, errorHandler);
+    //                        }, errorHandler);
+    //
+    //                    } else {
+    //                        console.log(dataForPreparation.length + ' addressfiles has been written.');
+    //                    }
+    //
+    //                }
+    //
+    //                writeAddress(0);
+    //
+    //            },
+    //            errorHandler
+    //        );
+    //
+    //    }
+    //
+    //};
+
+    function saveAddressData(callback) {
 
         if (dataForPreparation == null) {
             alert('error: no data loaded');
@@ -84,6 +139,7 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                 function (fs) {
 
                     function writeAddress(i) {
+
                         if (i < dataForPreparation.length) {
                             var id = dataForPreparation[i][0];
                             var filename = id + '.txt';
@@ -92,10 +148,9 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                                 fileEntry.createWriter(function (fileWriter) {
 
                                     fileWriter.onwriteend = function (e) {
-                                        //console.log(fileEntry.name + ' written successfully.');
 
-                                        //calls the function again to write the next file
                                         writeAddress(i + 1);
+
                                     };
 
                                     fileWriter.onerror = function (e) {
@@ -111,9 +166,8 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
                             }, errorHandler);
 
                         } else {
-                            console.log(dataForPreparation.length + ' addressfiles has been written.');
+                            callback();
                         }
-
                     }
 
                     writeAddress(0);
@@ -128,9 +182,10 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
 
     $scope.startPerformanceTest = function () {
 
+
+        var timeStart= new Date().getTime();
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
-
 
                 function writeAddress(i) {
                     var filename = i + '.txt';
@@ -170,8 +225,6 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
 
                 }
 
-                //test is started here
-                var timeStart= new Date().getTime();
                 writeAddress(0);
 
             },

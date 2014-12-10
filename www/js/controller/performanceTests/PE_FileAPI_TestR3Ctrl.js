@@ -1,12 +1,9 @@
 sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory, FileApiDeleteAllFilesFactory) {
     var iteration = 1;
 
-    var data;
-
     $scope.testInProgress = false;
 
-    //TODO change to false
-    $scope.isPrepared = true;
+    $scope.isPrepared = false;
 
     var amountOfData;
     var amountOfData_testR3a = PE_ParameterFactory.amountOfData_testR3a;
@@ -15,9 +12,9 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestR3a';
+    $scope.testName1 = 'TestR3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR3a + ' items';
-    $scope.testName2 = 'TestR3b';
+    $scope.testName2 = 'TestR3-24';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR3b + ' items';
 
     $scope.results = [];
@@ -49,17 +46,17 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
 
     $scope.prepare = function () {
 
-        $scope.prepareInProgress=true;
+        $scope.prepareInProgress = true;
         $scope.$apply();
-        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function() {
-            loadData();
-            saveAddressData();
-            $scope.isPrepared = true;
-            $scope.prepareInProgress=false;
-            console.log('prepare function finished');
-            $scope.$apply();
-        });
+        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
+            saveAddressData(function () {
+                $scope.isPrepared = true;
+                $scope.prepareInProgress = false;
+                console.log('prepare function finished');
+                $scope.$apply();
+            });
 
+        });
 
     };
 
@@ -71,12 +68,6 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
         $scope.testInProgress = true;
         $scope.$apply();
 
-        var addressIdsToLoad = testDataFactory.getRandomIndices();
-
-        if (addressIdsToLoad.length<amountOfData) {
-            alert('Warning: Too few address Ids defined. The test will produce wrong results!');
-        }
-
         var timeStart = new Date().getTime();
         console.log('before');
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
@@ -87,7 +78,7 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
                     console.log('loadAddress start (' + i + ')');
                     //  if (i < addressIdsToLoad.length) {
 
-                    var filename = 'address_' + addressIdsToLoad[i] + '.txt';
+                    var filename = 'dataset_' + i + '.txt';
                     console.log('trying to load ' + filename);
                     fs.root.getFile(filename, {}, function (fileEntry) {
 
@@ -97,12 +88,15 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
                             var reader = new FileReader();
 
                             reader.onloadend = function (e) {
+
+                                //---Test-Output to check the returned values---
+                                  console.log('check Test R1:' + JSON.stringify(this.result.substr(1,50)));
                                 //loadAddress(i++);
-                                if (i == addressIdsToLoad.length-1) {
+                                if (i == amountOfData - 1) {
                                     var timeEnd = new Date().getTime();
 
                                     var timeDiff = timeEnd - timeStart;
-                                    $scope.results.push('Iteration ' + iteration + ': ' + timeDiff + ' ms');
+                                    $scope.results.push({iteration: iteration, time: timeDiff});
                                     $scope.testInProgress = false;
                                     $scope.$apply();
 
@@ -154,16 +148,14 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
         $scope.testInProgress = true;
         $scope.$apply();
 
-        var addressIdsToLoad = [13, 18, 21, 35, 44, 46, 48, 49, 54, 71, 72, 74, 76, 79, 83, 86, 90, 92, 94, 100, 102, 104, 105, 110, 113, 115, 116, 118, 119, 120, 129, 130, 131, 132, 141, 142, 152, 155, 156, 166, 168, 170, 175, 176, 179, 186, 197, 212, 216, 220, 224, 226, 227, 229, 235, 237, 247, 252, 258, 260, 262, 268, 270, 276, 280, 282, 294, 296, 298, 299, 302, 309, 313, 318, 319, 322, 324, 326, 336, 337, 338, 342, 344, 345, 347, 360, 368, 371, 377, 379, 383, 384, 393, 396, 398, 400, 401, 409, 415, 419, 423, 429, 437, 456, 463, 465, 468, 483, 489, 492, 499];
-
         var timeStart = new Date().getTime();
 
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
-                for (var i = 0; i < addressIdsToLoad.length; i++) {
+                for (var i = 0; i < amountOfData; i++) {
 
-                    var filename = 'address_' + addressIdsToLoad[i] + '.txt';
+                    var filename = 'dataset_' + i + '.txt';
                     console.log('trying to load ' + filename);
                     fs.root.getFile(filename, {}, function (fileEntry) {
 
@@ -173,8 +165,10 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
                             var reader = new FileReader();
 
                             reader.onloadend = function (e) {
-                                addOne();
 
+                                //---Test-Output to check the returned values---
+                                console.log('check Test R1:' + JSON.stringify(this.result.substr(1,50)));
+                                addResult();
                             };
 
                             reader.readAsText(file);
@@ -183,82 +177,66 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
                 }
             },
             errorHandler
-        )
-        ;
+        );
 
-        function addOne() {
+        function addResult() {
             callbackNumber++;
-            if (callbackNumber == addressIdsToLoad.length) {
+            if (callbackNumber == amountOfData) {
                 var timeEnd = new Date().getTime();
 
                 var timeDiff = timeEnd - timeStart;
-                $scope.results.push('Iteration ' + iteration + ': ' + timeDiff + ' ms');
+                $scope.results.push({iteration: iteration, time: timeDiff});
                 $scope.testInProgress = false;
                 $scope.$apply();
 
                 iteration++;
             }
-
-
         }
-
     };
 
-    function loadData() {
+    function saveAddressData(callback) {
 
-        data = testDataFactory.testData();
+        window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+            function (fs) {
 
-    };
+                function writeAddress(i) {
 
-    function saveAddressData() {
+                    if (i < amountOfData) {
+                        var filename = 'dataset_' + i + '.txt';
+                        fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
-        if (data == null) {
-            alert('error: no data loaded');
-            console.error('no data loaded (in saveAddressData)');
-        } else {
+                            fileEntry.createWriter(function (fileWriter) {
 
-            window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
-                function (fs) {
+                                fileWriter.onwriteend = function (e) {
 
-                    function writeAddress(i) {
-                        if (i < amountOfData) {
-                            var filename = 'address_' + i + '.txt';
-                            fs.root.getFile(filename, {create: true}, function (fileEntry) {
+                                    writeAddress(i + 1);
 
-                                fileEntry.createWriter(function (fileWriter) {
+                                };
 
-                                    fileWriter.onwriteend = function (e) {
-                                        console.log(fileEntry.name + ' written successfully.');
+                                fileWriter.onerror = function (e) {
+                                    console.log('Write failed: ' + e.toString());
+                                    console.dir(e);
+                                };
 
-                                        //calls the function again to write the next file
-                                        writeAddress(i + 1);
-                                    };
+                                //overwrites the file from the beginning
 
-                                    fileWriter.onerror = function (e) {
-                                        console.log('Write failed: ' + e.toString());
-                                        console.dir(e);
-                                    };
+                                var datasetString = testDataFactory.getDatasetWithOffset(i);
+                                fileWriter.seek(0);
+                                fileWriter.write(JSON.stringify(datasetString));
 
-                                    //overwrites the file from the beginning
-                                    fileWriter.seek(0);
-                                    fileWriter.write(JSON.stringify(data[i]));
-
-                                }, errorHandler);
                             }, errorHandler);
+                        }, errorHandler);
 
-                        } else {
-                            alert(amountOfData + ' addressfiles has been written.');
-                        }
-
+                    } else {
+                        callback();
                     }
+                }
 
-                    writeAddress(0);
+                writeAddress(0);
 
-                },
-                errorHandler
-            );
-
-        }
+            },
+            errorHandler
+        );
 
     };
 

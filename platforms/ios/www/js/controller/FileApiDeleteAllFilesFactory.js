@@ -144,7 +144,6 @@ angular.module('FileApiDeleteAllFilesFactory', [])
                                 fs.root.getFile(filename, {create: false}, function (fileEntry) {
 
                                     fileEntry.remove(function () {
-                                        console.log('i' + i);
                                         if (i==entries.length-1) {
                                             callback();
                                         }

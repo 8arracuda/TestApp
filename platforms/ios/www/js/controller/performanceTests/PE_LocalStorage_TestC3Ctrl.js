@@ -12,7 +12,7 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     $scope.selectedTestVariant = 'TestC3a';
     $scope.preparationText = 'Prepare clears all data in LocalStorage.';
     $scope.mainTestDecription = 'Saving long strings (dataset strings)';
-    $scope.testName1 = 'TestC3a';
+    $scope.testName1 = 'TestC3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' times 4,000 addresses in a single key/value pair.';
 
 

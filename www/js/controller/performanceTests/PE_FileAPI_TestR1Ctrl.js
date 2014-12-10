@@ -71,7 +71,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
     };
 
-
     //sequential requests for fetching the addresses
     //$scope.startPerformanceTest_sequential = function () {
     $scope.startPerformanceTest = function () {
@@ -80,16 +79,13 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         $scope.testInProgress = true;
         $scope.$apply();
 
-
         var addressIdsToLoad = testDataFactory.getRandomIndices();
-
 
         if (addressIdsToLoad.length < amountOfData) {
             alert('Warning: Too few address Ids defined. The test will produce wrong results!');
         }
 
         var timeStart = new Date().getTime();
-        console.log('before');
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
@@ -106,11 +102,9 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                             reader.onloadend = function (e) {
 
                                 //---Test-Output to check the returned values---
-                                if (i == PE_TestR1_indexToCheck) {
-                                    console.log('check Test R1:' + JSON.stringify(this.result));
-                                }
+                                //  console.log('check Test R1:' + JSON.stringify(this.result));
 
-                                if (i == addressIdsToLoad.length - 1) {
+                                if (i==amountOfData-1) {
 
                                     var timeEnd = new Date().getTime();
 
@@ -137,7 +131,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         );
 
     };
-
 
     //Not working on Android -> NOT_FOUND_ERR(1)
     ////asynchronous requests for fetching the addresses
@@ -229,7 +222,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
                                     fileWriter.onerror = function (e) {
                                         console.log('Write failed: ' + e.toString());
-                                        console.dir(e);
+                                        //console.dir(e);
                                     };
 
                                     //overwrites the file from the beginning

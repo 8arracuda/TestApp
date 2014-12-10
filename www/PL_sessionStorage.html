@@ -8,11 +8,59 @@
     </div>
 </div>
 
-<div class="list-group">
 
-    <div class="list-group">
-        <li class="list-group-item">
-            PL_SessionStorage
-        </li>
+<div class="panel">
+
+    <h2 class="panel-title">
+        Actions
+    </h2>
+
+    <div class="panel-body">
+        <button class="btn btn-primary" ng-click="saveAddresses1()">save addresses 1</button>
+        <button class="btn btn-primary" ng-click="saveAddresses2()">save addresses 2</button>
+        <button class="btn btn-primary" ng-click="loadAddresses()">load addresses</button>
+    </div>
+
+    <h2 class="panel-title">
+        Table with addresses
+    </h2>
+
+    <div class="panel-body">
+        <div toggleable active-class="in" default="active">
+            <div class="panel-body">
+                <table style="width:100%">
+                    <thead>
+                    <tr>
+                        <td>
+                            <b>First Name</b>
+                        </td>
+                        <td>
+                            <b>Last Name</b>
+                        </td>
+                        <td>
+                            <b>...</b>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in loadedAddresses">
+                        <td>
+                            {{ row[1] }}
+                        </td>
+                        <td>
+                            {{ row[2] }}
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+
+

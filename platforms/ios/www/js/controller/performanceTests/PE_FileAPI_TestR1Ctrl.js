@@ -54,24 +54,22 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         setTimeout(function () {
 
             deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
+                //continue when all files are deleted
                 loadForPreparationData();
-                //saveAddressData();
-                //var answer = confirm('deleted - load data?');
-                //if (answer==true) {
 
                 saveAddressData(function () {
-                    alert('foo');
+                    //continue when all files are written
+                    $scope.isPrepared = true;
+                    $scope.prepareInProgress = false;
+                    console.log('prepare function finished');
+                    $scope.$apply();
                 });
-                //}
-                $scope.isPrepared = true;
-                $scope.prepareInProgress = false;
-                console.log('prepare function finished');
-                $scope.$apply();
+
             })
-                , 1000});
+                , 1000
+        });
 
     };
-
 
     //sequential requests for fetching the addresses
     //$scope.startPerformanceTest_sequential = function () {
@@ -81,24 +79,19 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         $scope.testInProgress = true;
         $scope.$apply();
 
-
         var addressIdsToLoad = testDataFactory.getRandomIndices();
-
 
         if (addressIdsToLoad.length < amountOfData) {
             alert('Warning: Too few address Ids defined. The test will produce wrong results!');
         }
 
         var timeStart = new Date().getTime();
-        console.log('before');
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
-                //var callbackNumber = 0;
                 function loadAddress(i) {
 
                     var filename = addressIdsToLoad[i] + '.txt';
-                    console.log('trying to load ' + filename);
                     fs.root.getFile(filename, {}, function (fileEntry) {
 
                         // Get a File object representing the file,
@@ -109,12 +102,9 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                             reader.onloadend = function (e) {
 
                                 //---Test-Output to check the returned values---
-                                //console.log(JSON.stringify(this.result));
-                                if (i == PE_TestR1_indexToCheck) {
-                                    console.log('check Test R1:' + JSON.stringify(this.result));
-                                }
+                                //  console.log('check Test R1:' + JSON.stringify(this.result));
 
-                                if (i == addressIdsToLoad.length - 1) {
+                                if (i==amountOfData-1) {
 
                                     var timeEnd = new Date().getTime();
 
@@ -141,7 +131,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
         );
 
     };
-
 
     //Not working on Android -> NOT_FOUND_ERR(1)
     ////asynchronous requests for fetching the addresses
@@ -217,45 +206,35 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                 function (fs) {
 
                     function writeAddress(i) {
-                        //console.log('writeadress called with i= ' + i);
+
                         if (i < dataForPreparation.length) {
-                        var id = dataForPreparation[i][0];
-                        var filename = id + '.txt';
-                        fs.root.getFile(filename, {create: true}, function (fileEntry) {
+                            var id = dataForPreparation[i][0];
+                            var filename = id + '.txt';
+                            fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
-                            fileEntry.createWriter(function (fileWriter) {
+                                fileEntry.createWriter(function (fileWriter) {
 
-                                fileWriter.onwriteend = function (e) {
-                                    //fileentry has been written successfully.');
+                                    fileWriter.onwriteend = function (e) {
 
-                                    writeAddress(i + 1);
+                                        writeAddress(i + 1);
 
-                                    //calls the function again to write the next file
-                                    //if (i <= dataForPreparation.length) {
-                                    //    //console.log('calling writeAddress again');
-                                    //    writeAddress(i + 1);
-                                    //} else {
-                                    //    alert('lala');
-                                    //    callback();
-                                    //}
-                                };
+                                    };
 
-                                fileWriter.onerror = function (e) {
-                                    console.log('Write failed: ' + e.toString());
-                                    console.dir(e);
-                                };
+                                    fileWriter.onerror = function (e) {
+                                        console.log('Write failed: ' + e.toString());
+                                        //console.dir(e);
+                                    };
 
-                                //overwrites the file from the beginning
-                                fileWriter.seek(0);
-                                fileWriter.write(JSON.stringify(dataForPreparation[i]));
+                                    //overwrites the file from the beginning
+                                    fileWriter.seek(0);
+                                    fileWriter.write(JSON.stringify(dataForPreparation[i]));
 
+                                }, errorHandler);
                             }, errorHandler);
-                        }, errorHandler);
 
                         } else {
                             callback();
                         }
-
                     }
 
                     writeAddress(0);

@@ -47,15 +47,17 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
     };
 
     $scope.prepare = function () {
-        $scope.prepareInProgress=true;
+        $scope.prepareInProgress = true;
         $scope.$apply();
-        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function() {
+        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
             loadDataForPreparation();
-            saveAddressData();
-            $scope.isPrepared = true;
-            $scope.prepareInProgress=false;
-            console.log('prepare function finished');
-            $scope.$apply();
+            saveAddressData(function () {
+                $scope.isPrepared = true;
+                $scope.prepareInProgress = false;
+                console.log('prepare function finished');
+                $scope.$apply();
+            });
+
         });
 
 
@@ -243,16 +245,15 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
     //
     //};
 
-    function saveAddressData() {
+    function saveAddressData(callback) {
 
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
                 var filename;
                 var dataToWrite;
-                var i = 0;
 
-                function writeNextFile() {
+                function writeNextFile(i) {
 
                     var currentAddress = parseInt(i / 9);
                     var id = dataForPreparation[currentAddress][0];
@@ -300,13 +301,11 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
                         fileEntry.createWriter(function (fileWriter) {
 
                             fileWriter.onwriteend = function (e) {
-                                i++;
-
                                 if (i < dataForPreparation.length * 9) {
-                                    writeNextFile();
+                                    writeNextFile(i+1);
                                 } else {
-                                    $scope.isPrepared = true;
-
+                                    callback();
+                                    //$scope.isPrepared = true;
                                 }
                             };
 
@@ -323,12 +322,11 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
 
                 }
 
-                writeNextFile();
+                writeNextFile(0);
 
             });
 
     }
-
 
 
     function errorHandler(e) {
