@@ -131,7 +131,6 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
         console.log('errorHandlerWebSQL executed');
     };
 
-
     $scope.startPerformanceTest = function () {
 
         $scope.testInProgress = true;
@@ -144,7 +143,6 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
         }
 
         var timeStart = new Date().getTime();
-
 
         $scope.db.transaction(function (tx) {
 
@@ -168,7 +166,6 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
             $scope.testInProgress = false;
             iteration++;
             $scope.$apply();
-
 
         });
 

@@ -120,7 +120,6 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
         $scope.$apply();
 
         var timeStart = new Date().getTime();
-        var onSuccessCounter = 0;
 
         $scope.db.transaction(function (tx) {
 

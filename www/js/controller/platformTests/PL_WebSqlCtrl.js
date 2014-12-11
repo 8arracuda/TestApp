@@ -238,7 +238,6 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory)
                         nextTransactions();
                     }
                 });
-
         }
 
         nextTransactions();

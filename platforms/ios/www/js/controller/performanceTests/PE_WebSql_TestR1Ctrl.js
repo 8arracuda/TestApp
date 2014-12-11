@@ -56,12 +56,12 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
 
     $scope.prepare = function () {
 
-        $scope.prepareInProgress=true;
+        $scope.prepareInProgress = true;
         $scope.$apply();
         clearTable();
         loadDataForPreparation();
         saveAddressData();
-        $scope.prepareInProgress=false;
+        $scope.prepareInProgress = false;
         $scope.isPrepared = true;
         console.log('prepare function finished');
         $scope.$apply();
@@ -143,34 +143,29 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
         }
 
         var timeStart = new Date().getTime();
-        var onSuccessCounter = 0;
 
         $scope.db.transaction(function (tx) {
 
             for (var i = 0; i < amountOfData; i++) {
 
                 tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
-
                     //---Test-Output to check the returned values---
                     //console.log('check Test R1:' + JSON.stringify(results.rows.item(0)));
-
-                    onSuccessCounter = onSuccessCounter + 1;
-
-                    if (onSuccessCounter == amountOfData) {
-                        var timeEnd = new Date().getTime();
-
-                        var timeDiff = timeEnd - timeStart;
-                        $scope.testInProgress = false;
-                        $scope.results.push({iteration:  iteration,  time: timeDiff});
-                        iteration++;
-                        $scope.$apply();
-                    }
-
-
-                }, function (t, e) {
-                    alert("couldn't read database (" + e.message + ")");
                 });
+
             }
+
+        }, function errorHandler(transaction, error) {
+            console.log("Error : " + transaction.message);
+            console.log("Error : " + error.message);
+        }, function () {
+            var timeEnd = new Date().getTime();
+
+            var timeDiff = timeEnd - timeStart;
+            $scope.results.push({iteration: iteration, time: timeDiff});
+            $scope.testInProgress = false;
+            iteration++;
+            $scope.$apply();
 
         });
 
