@@ -345,7 +345,6 @@ mp <- barplot(height, beside = TRUE)
 text(mp, height, labels = format(height, 1), pos = 3, cex = .75)
 
 
-
 #Schreibt in einer Schleife Dateien
 #Die Darstellten Werte entsprechen dem Unterschied zwischen dem großen und dem kleinen Test.
 Die Ergebnisse sind auf das Ergebnis des kleinen Tests normalisiert- Das Ergebnis des kleinen Tests entspricht immer 1.

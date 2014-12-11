@@ -48,6 +48,18 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/org.apache.cordova.device/www/device.js",
+        "id": "org.apache.cordova.device.device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.device/src/browser/DeviceProxy.js",
+        "id": "org.apache.cordova.device.DeviceProxy",
+        "runs": true
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -172,18 +184,6 @@ module.exports = [
         "merges": [
             "window"
         ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.device/www/device.js",
-        "id": "org.apache.cordova.device.device",
-        "clobbers": [
-            "device"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.device/src/browser/DeviceProxy.js",
-        "id": "org.apache.cordova.device.DeviceProxy",
-        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -193,8 +193,8 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.hidden-statusbar-overlay": "1.2.0",
     "org.apache.cordova.camera": "0.3.2",
     "org.apache.cordova.device-motion": "0.2.10-dev",
-    "org.apache.cordova.file": "1.3.1",
-    "org.apache.cordova.device": "0.2.12"
+    "org.apache.cordova.device": "0.2.12",
+    "org.apache.cordova.file": "1.3.2"
 }
 // BOTTOM OF METADATA
 });

@@ -38,10 +38,10 @@
         "org.apache.cordova.device-motion": {
             "PACKAGE_NAME": "de.msteiner.TestApp"
         },
-        "org.apache.cordova.file": {
+        "org.apache.cordova.device": {
             "PACKAGE_NAME": "de.msteiner.TestApp"
         },
-        "org.apache.cordova.device": {
+        "org.apache.cordova.file": {
             "PACKAGE_NAME": "de.msteiner.TestApp"
         }
     },

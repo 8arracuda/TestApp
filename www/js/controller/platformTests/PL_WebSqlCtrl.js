@@ -1,4 +1,4 @@
-sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
+sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory) {
 
     $rootScope.section = 'PL';
 
@@ -158,89 +158,90 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
     //
     //};
 
+    //$scope.startPlatformTest = function () {
+    //
+    //    $scope.testInProgress = true;
+    //
+    //    var datasetArray = [];
+    //    for (var i=0; i<100; i++) {
+    //        datasetArray.push(testDataFactory.getDatasetWithOffset(i));
+    //    }
+    //
+    //    var timeStart = new Date().getTime();
+    //    $scope.db.transaction(function (tx) {
+    //            for (var i = 0; i < amountOfData; i++) {
+    //                //
+    //                //var timeStart = new Date().getTime();
+    //                //timeDiffSum += new Date().getTime() - timeStart;
+    //                tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, datasetArray[i]]);
+    //
+    //            }
+    //        }, function errorHandler(transaction, error) {
+    //            console.log("Error : " + transaction.message);
+    //            console.log("Error : " + error.message);
+    //        }, function () {
+    //            console.log('success callback');
+    //            //timeDiffSum += new Date().getTime() - timeStart;
+    //            var timeEnd = new Date().getTime();
+    //            var timeDiff = timeEnd - timeStart;
+    //            $scope.results.push({iteration:  iteration,  time: timeDiff });
+    //            $scope.testInProgress = false;
+    //            $scope.isPrepared = false;
+    //            iteration++;
+    //            $scope.$apply();
+    //        }
+    //    );
+    //
+    //};
+
+
     $scope.startPlatformTest = function () {
         console.log('startPlatformTest');
-        //localStorage.setItem(keyPrefix + '' + fillWithZeroes(10,i), value);
-        $scope.loop = 0;
 
-        var i = 0;
+        var errorAlreadyShown = false;
 
-        function nextLoop() {
-            var limit = 50000;
-            var i = $scope.currentIteration;
-            for (; i < ($scope.currentIteration + limit); i++) {
-                $scope.db.transaction(function (tx) {
-                        //var limit = 50000;
-                        i = $scope.currentIteration;
-                        //for (var i = 0; i < limit; i++) {
+        $scope.currentIteration = 0;
 
-                        tx.executeSql("INSERT INTO " + tableName + "(keyName, Value) VALUES(?,?)", [keyPrefix + '' + fillWithZeroes(10, i), value]);
+        var datasetStringToSave = testDataFactory.getDatasetWithOffset(0);
 
-                        //if (i > 1200000) {
-                        //    console.log(i);
-                        //}
+        function nextTransactions() {
 
-                        $scope.currentIteration = (parseInt($scope.currentIteration) + limit);
+            var onSuccessCounter = 0;
 
-                    },
-                    function errorHandler(transaction, error) {
+            $scope.db.transaction(function (tx) {
 
+                    for (var i = 0; i < 5; i++) {
 
-                        if (transaction.code == transaction.QUOTA_ERR) {
-                            alert('quota error at ' + i);
-                        }
-                        //alert('some error...');
-                        console.log('is there a .code that contains QUOTA_ERR?');
-                        console.dir(transaction);
-                        console.log(JSON.stringify(transaction));
-                        console.log("Error : " + transaction.message);
-                        //console.log("Error : " + error.message);
+                        tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + $scope.currentIteration, datasetStringToSave]);
+                        $scope.currentIteration += 1;
                     }
-                    , function onSuccessHandler() {
 
-                        //if (transaction) {
-                        //    if (transaction.code == transaction.QUOTA_ERR) {
-                        //        alert('quota error at ' + i);
-                        //    }
-                        //    alert(JSON.stringify(transaction));
-                        //}
-                        $scope.loop = $scope.loop + 1;
-                        //if ($scope.loop < 10) {
-                        //  nextLoop();
-                        //}
+                },
+                function errorHandler(transaction, error) {
 
-                        if (i % limit == 0) {
-                            console.log('i+' + i);
-                            setTimeout(
-                                function () {
-                                    //to update the UI - gives the user an update about the progress as the test progresses
-                                    $scope.$apply();
-                                    setTimeout(
-                                        nextLoop(parseInt($scope.currentIteration)), 500);
-                                }, 1000);
-                        } else {
-                            nextLoop();
+                    if (transaction.code == transaction.QUOTA_ERR) {
+                        if (errorAlreadyShown == false) {
+                            alert('quota error at iteration' + $scope.currentIteration);
+                            errorAlreadyShown = true;
                         }
-
-                        //setTimeout(
-                        //    function () {
-                        //        //to update the UI - gives the user an update about the progress as the test progresses
-                        //        $scope.$apply();
-                        //        setTimeout(
-                        //            nextLoop(parseInt($scope.currentIteration)), 500);
-                        //    }, 1000);
-
-                        console.log('added some more things - i:' + i);
                     }
-                );
-            }
+                    console.log("Error : " + transaction.message);
+                    console.log("Error : " + error.message);
+                }, function onSuccessHandler() {
+                    console.log('onSuccessCounter:' + onSuccessCounter);
+                    console.log('onSuccess ' + $scope.currentIteration);
+                    onSuccessCounter = 0;
+                    $scope.$apply();
+
+                    //continue if there was no error
+                    if (errorAlreadyShown == false) {
+                        nextTransactions();
+                    }
+                });
 
         }
 
-        //start the test
-        $scope.currentIteration = 0;
-        nextLoop();
-
+        nextTransactions();
 
     };
 
@@ -261,40 +262,18 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope) {
     };
 
     $scope.initWebSQL = function () {
-        console.log('initWebSQL start');
-        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 1 * 1024 * 1024);
+        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
-        console.log('initWebSQL executed');
         $scope.databaseOpened = true;
     };
 
     $scope.createTable = function (tx) {
-        console.log('createTable start');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(keyName TEXT PRIMARY KEY, value TEXT)');
-        console.log('createTable executed');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + '(id TEXT PRIMARY KEY, dataset TEXT)');
     };
 
     $scope.errorHandlerWebSQL = function (e) {
-        console.log('errorHandlerWebSQL start');
         console.log(e.message);
-        console.log('errorHandlerWebSQL executed');
-    };
-
-    function fillWithZeroes(fillToLength, number) {
-
-        var len = number.toString().length;
-
-        var number_new = '';
-        if (len < fillToLength) {
-            var zeroesToAdd = fillToLength - len;
-
-            for (var k = 0; k < zeroesToAdd; k++) {
-                number_new = '0' + number_new;
-            }
-        }
-        return number_new + "" + number;
-
     };
 
 });

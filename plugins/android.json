@@ -37,11 +37,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -72,10 +72,10 @@
         "org.apache.cordova.device-motion": {
             "PACKAGE_NAME": "de.msteiner.TestApp"
         },
-        "org.apache.cordova.file": {
+        "org.apache.cordova.device": {
             "PACKAGE_NAME": "de.msteiner.TestApp"
         },
-        "org.apache.cordova.device": {
+        "org.apache.cordova.file": {
             "PACKAGE_NAME": "de.msteiner.TestApp"
         }
     },

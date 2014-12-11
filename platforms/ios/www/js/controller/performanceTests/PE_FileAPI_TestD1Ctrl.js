@@ -92,15 +92,20 @@ sdApp.controller('PE_FileAPI_TestD1Ctrl', function ($scope, $rootScope, testData
 
         $scope.prepareInProgress = true;
         $scope.$apply();
-        deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
-            loadDataForPreparation();
-            saveAddressData(function () {
-                $scope.isPrepared = true;
-                $scope.prepareInProgress = false;
-                console.log('prepare function finished');
-                $scope.$apply();
+
+        //delays the execution to allow the UI to update
+        setTimeout(function () {
+            deleteAllFiles = FileApiDeleteAllFilesFactory.deleteAllFiles(function () {
+                loadDataForPreparation();
+                saveAddressData(function () {
+                    $scope.isPrepared = true;
+                    $scope.prepareInProgress = false;
+                    console.log('prepare function finished');
+                    $scope.$apply();
+                });
             });
-        });
+        }, 1000);
+
     };
 
     //function saveAddressData() {
