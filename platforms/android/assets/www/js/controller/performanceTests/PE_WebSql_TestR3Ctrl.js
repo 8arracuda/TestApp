@@ -120,7 +120,6 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
         $scope.$apply();
 
         var timeStart = new Date().getTime();
-        var onSuccessCounter = 0;
 
         $scope.db.transaction(function (tx) {
 
@@ -130,28 +129,25 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
                     //---Test-Output to check the returned values---
                     //console.log('check Test R3:' + JSON.stringify(results.rows.item(0)).substr(1,100));
-
-                    onSuccessCounter = onSuccessCounter + 1;
-
-                    //the last result is there....
-                    if (onSuccessCounter == amountOfData) {
-                        var timeEnd = new Date().getTime();
-
-                        var timeDiff = timeEnd - timeStart;
-                        $scope.testInProgress = false;
-                        $scope.results.push({iteration:  iteration,  time: timeDiff});
-                        iteration++;
-                        $scope.$apply();
-                    }
-
-                }, function (t, e) {
-                    // couldn't read database
-                    alert("couldn't read database (" + e.message + ")");
                 });
+
             }
+            onSuccessCounter = onSuccessCounter + 1;
+
+        }, function errorHandler(transaction, error) {
+            console.log("Error : " + transaction.message);
+            console.log("Error : " + error.message);
+        }, function () {
+            var timeEnd = new Date().getTime();
+
+            var timeDiff = timeEnd - timeStart;
+            $scope.results.push({iteration: iteration, time: timeDiff});
+            $scope.testInProgress = false;
+            iteration++;
+            $scope.$apply();
 
         });
 
-    }
+    };
 
 });

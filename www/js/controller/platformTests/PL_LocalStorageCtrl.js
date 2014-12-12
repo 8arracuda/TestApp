@@ -1,4 +1,4 @@
-sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
+sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope, TestHelperFactory) {
 
     $rootScope.section = 'PL';
 
@@ -107,18 +107,18 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
         function nextLoop() {
 
             console.log('called nextLoop(' + $scope.currentIteration + ')');
-            var limit = 100000;
+            var loopLength= 10000;
             try {
 
                 console.log('currentIteration (before loop):' + $scope.currentIteration);
                 var i = $scope.currentIteration;
-                for (; i < ($scope.currentIteration + limit); i++) {
+                for (; i < ($scope.currentIteration + loopLength); i++) {
 
-                    localStorage.setItem(keyPrefix + '' + fillWithZeroes(10, i), value);
+                    localStorage.setItem(keyPrefix + '' + TestHelperFactory.fillWithZeroes(10, i), value);
 
                 }
 
-                $scope.currentIteration = (parseInt($scope.currentIteration) + limit);
+                $scope.currentIteration = (parseInt($scope.currentIteration) + loopLength);
 
                 //without the timeouts the $apply function is not working for updating the UI
                 setTimeout(
@@ -148,23 +148,6 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope) {
         //start the test
         $scope.currentIteration = 0;
         nextLoop();
-
-    };
-
-    //TODO extract this to a factory or service
-    function fillWithZeroes(fillToLength, number) {
-
-        var len = number.toString().length;
-
-        var number_new = '';
-        if (len < fillToLength) {
-            var zeroesToAdd = fillToLength - len;
-
-            for (var k = 0; k < zeroesToAdd; k++) {
-                number_new = '0' + number_new;
-            }
-        }
-        return number_new + "" + number;
 
     };
 

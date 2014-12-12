@@ -79,11 +79,6 @@ sdApp.controller('SidebarController', function ($scope, techSupportFactory) {
 
     $scope.sidebar_plattformTests = [
         {
-            labelText: 'SessionStorage',
-            linkURL: 'PL_sessionStorage',
-            support: ts.sessionStorage
-        },
-        {
             labelText: 'LocalStorage',
             linkURL: 'PL_localStorage',
             support: ts.localStorage

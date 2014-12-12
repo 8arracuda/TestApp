@@ -1,4 +1,4 @@
-sdApp.controller('PL_FileAPICtrl', function ($scope, $rootScope, FileApiDeleteAllFilesFactory, testDataFactory) {
+sdApp.controller('PL_FileAPICtrl', function ($scope, $rootScope, FileApiDeleteAllFilesFactory, testDataFactory, TestHelperFactory) {
 
     $rootScope.section = 'PL';
 

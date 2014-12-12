@@ -292,6 +292,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_WebSql_TestU1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_WebSqlCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_WebSqlCtrl_backup.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_FileAPICtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_IndexedDBCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_LocalStorageCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_PGSQLiteCtrl.js \

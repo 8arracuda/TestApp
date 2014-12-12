@@ -127,7 +127,6 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
         }
 
         transaction.oncomplete = function (event) {
-            iteration++;
             $scope.isPrepared = true;
             $scope.$apply();
 
@@ -187,11 +186,8 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
                 if (i < amountOfData*9) {
                     readNext();
                 } else {
-
                     console.log('transaction.oncomplete');
-
                     var timeEnd = new Date().getTime();
-
                     var timeDiff = timeEnd - timeStart;
                     $scope.testInProgress = false;
                     $scope.results.push({iteration:  iteration,  time: timeDiff});

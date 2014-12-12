@@ -44,6 +44,8 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
     $scope.reset = function () {
 
+
+
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
 
         if (answer) {

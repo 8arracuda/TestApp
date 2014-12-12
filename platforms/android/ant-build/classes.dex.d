@@ -39,6 +39,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/file/FileUtils$23.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/file/FileUtils$24.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/file/FileUtils$25.class \
+/users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/file/FileUtils$26.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/file/FileUtils$3.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/file/FileUtils$4.class \
 /users/michael/AB-Code/TestApp/platforms/android/ant-build/classes/org/apache/cordova/file/FileUtils$5.class \

@@ -34,8 +34,6 @@ function highlightSourceTableTitle(scope) {
     }, 1500);
 }
 
-console.log('--9--');
-
 function highlightDestinationTableTitle(scope) {
     scope.cssVarForDestinationTable = 'destinationTableWasUpdated';
     scope.$apply();
@@ -45,9 +43,6 @@ function highlightDestinationTableTitle(scope) {
         scope.$apply();
     }, 1500);
 }
-
-console.log('--10--');
-
 
 //Code take from http://www.stephenpauladams.com/articles/angularjs-cordova-windows-phone-quirk/
 //it makes links work in Windows Phone

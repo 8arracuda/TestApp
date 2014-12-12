@@ -78,6 +78,9 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
 
         $scope.testInProgress = true;
 
+
+        //prepare the array that will be written
+        //doing this in the loop would have a negative effect on the duration/time of the test
         var datasetArray = [];
         for (var i=0; i<amountOfData; i++) {
             datasetArray.push(testDataFactory.getDatasetWithOffset(i));
@@ -97,7 +100,6 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
                 console.log("Error : " + error.message);
             }, function () {
                 console.log('success callback');
-                //timeDiffSum += new Date().getTime() - timeStart;
                 var timeEnd = new Date().getTime();
                 var timeDiff = timeEnd - timeStart;
                 $scope.results.push({iteration:  iteration,  time: timeDiff });
