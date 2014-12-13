@@ -1,4 +1,4 @@
-sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope, testDataFactory, IndexedDBClearObjectStore) {
+sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope, testDataFactory, IndexedDBClearObjectStore, TestHelperFactory) {
 
     $rootScope.section = 'PL';
 
@@ -261,11 +261,12 @@ sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope, testDataFacto
                 console.log('nextLoop-5');
                 transaction = null;
                 console.log('onComplete ' + $scope.currentIteration);
+
                 if (errorAlreadyShown == false) {
                     console.log('nextLoop-6');
                     console.log('calling nextLoop');
-                    $scope.$apply();
                     if ((parseInt($scope.currentIteration) % 10) == 0) {
+                        $scope.$apply();
                         setTimeout(function () {
                             writeNext();
                         }, 1000);

@@ -141,7 +141,6 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PL_indexedDB.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PL_localStorage.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PL_PG_SQLite.html \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/PL_sessionStorage.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/PL_webSQL.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/res \
@@ -210,6 +209,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/SidebarController.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/techSupportFactory.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/testDataFactory.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/TestHelperFactory.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/VidCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/WebSqlCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/demo/DE_IndexedDBCtrl.js \
@@ -242,7 +242,8 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestD1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR2Ctrl.js \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR3Ctrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR2Ctrl_backup.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR3Ctrl_backup.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestU1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPICtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_IndexedDB_TestC1Ctrl.js \
@@ -296,7 +297,6 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_IndexedDBCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_LocalStorageCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_PGSQLiteCtrl.js \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_SessionStorageCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_WebSqlCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/com.brodysoft.sqlitePlugin \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.camera \

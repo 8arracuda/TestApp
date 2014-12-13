@@ -5,10 +5,6 @@ sdApp.config(function ($routeProvider) {
             templateUrl: 'overview.html',
             controller: 'OverviewCtrl'
         }).
-        when('/PL_sessionStorage', {
-            templateUrl: 'PL_sessionStorage.html',
-            controller: 'PL_SessionStorageCtrl'
-        }).
         when('/PL_localStorage', {
             templateUrl: 'PL_localStorage.html',
             controller: 'PL_LocalStorageCtrl'

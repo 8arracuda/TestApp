@@ -64,10 +64,9 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                     console.log('prepare function finished');
                     $scope.$apply();
                 });
-
             })
-                , 1000
-        });
+        }, 1000);
+
 
     };
 
@@ -104,7 +103,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
                                 //---Test-Output to check the returned values---
                                 //  console.log('check Test R1:' + JSON.stringify(this.result));
 
-                                if (i==amountOfData-1) {
+                                if (i == amountOfData - 1) {
 
                                     var timeEnd = new Date().getTime();
 

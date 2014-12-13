@@ -96,42 +96,32 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
                         switch (i % 9) {
                             case 0:
                                 filename = +id + '_id.txt';
-                                //dataToWrite = dataForPreparation[currentAddress][0] + '';
                                 break;
                             case 1:
                                 filename = id + '_firstName.txt';
-                                //dataToWrite = dataForPreparation[currentAddress][1];
                                 break;
                             case 2:
                                 filename = id + '_lastName.txt';
-                                //dataToWrite = dataForPreparation[currentAddress][2];
                                 break;
                             case 3:
                                 filename = id + '_street.txt';
-                                //dataToWrite = dataForPreparation[currentAddress][3];
                                 break;
                             case 4:
                                 filename = id + '_zipcode.txt';
-                                //dataToWrite = dataForPreparation[currentAddress][4];
                                 break;
                             case 5:
                                 filename = id + '_city.txt';
-                                //dataToWrite = dataForPreparation[currentAddress][5];
                                 break;
                             case 6:
                                 filename = id + '_email.txt';
-                                //dataToWrite = dataForPreparation[currentAddress][6];
                                 break;
                             case 7:
                                 filename = id + '_randomNumber1.txt';
-                                //dataToWrite = dataForPreparation[currentAddress][7] + '';
                                 break;
                             default:
                                 filename = id + '_randomNumber2.txt';
-                                //dataToWrite = dataForPreparation[currentAddress][8] + '';
                         }
 
-                        //console.log('loading filename:' + filename);
                         fs.root.getFile(filename, {}, function (fileEntry) {
 
                             fileEntry.file(function (file) {
@@ -140,9 +130,9 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
                                 reader.onloadend = function (e) {
                                     i+=1;
                                     //---Test-Output to check the returned values---
-                                    if (id == PE_TestR2_indexToCheck) {
-                                        console.log('check Test R1:' + JSON.stringify(this.result));
-                                    }
+                                    //if (id == PE_TestR2_indexToCheck) {
+                                    //    console.log('check Test R1:' + JSON.stringify(this.result));
+                                    //}
 
                                     if (i == amountOfData*9) {
 
