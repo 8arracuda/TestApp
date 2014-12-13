@@ -2,7 +2,7 @@
 
     <div class="panel">
         <div class="panel-heading">
-            <h2>Performance-Test R3 (placeholder)</h2>
+            <h2>Performance-Test R3</h2>
             {{ mainTestDecription }}<br>
 
             <div ng-show="selectedTestVariant=='TestR3a' || selectedTestVariant=='' ">
@@ -39,13 +39,15 @@
 
             <div class="panel-body">
 
-                <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest_variant1()" class="btn btn-primary">
-                    startPerformanceTest_variant1 (parallel)
-                </button>
+                <!--<button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest_variant1()" class="btn btn-primary">-->
+                    <!--startPerformanceTest_variant1 (parallel)-->
+                <!--</button>-->
 
-                <button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest_variant2()" class="btn btn-primary">
-                    startPerformanceTest_variant2 (sequentiell)
-                </button>
+                <!--<button ng-class="{disabled: !isPrepared }" ng-click="startPerformanceTest_variant2()" class="btn btn-primary">-->
+                    <!--startPerformanceTest_variant2 (sequentiell)-->
+                <!--</button>-->
+
+                <div ng-start-performance-test-button-without-database></div>
 
             </div>
 

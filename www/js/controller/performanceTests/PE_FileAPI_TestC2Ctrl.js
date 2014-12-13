@@ -145,6 +145,7 @@ sdApp.controller('PE_FileAPI_TestC2Ctrl', function ($scope, $rootScope, testData
                             };
 
                             fileWriter.onerror = function (e) {
+                                console.log('onerror');
                                 console.dir(e);
                             };
 

@@ -1,4 +1,4 @@
-sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope, testDataFactory, IndexedDBClearObjectStore) {
+sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope, testDataFactory, IndexedDBClearObjectStore, TestHelperFactory) {
 
     $rootScope.section = 'PL';
 
@@ -242,10 +242,9 @@ sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope, testDataFacto
 
         var datasetStringToSave = testDataFactory.getDatasetWithOffset(0);
 
-var transaction;
+        var transaction;
 
         function writeNext() {
-
 
             console.log('nextLoop' + $scope.currentIteration);
             transaction = $scope.db.transaction([objStoreName], "readwrite");
@@ -260,13 +259,14 @@ var transaction;
 
             transaction.oncomplete = function (event) {
                 console.log('nextLoop-5');
+                transaction = null;
                 console.log('onComplete ' + $scope.currentIteration);
+
                 if (errorAlreadyShown == false) {
                     console.log('nextLoop-6');
-                    transaction = null;
                     console.log('calling nextLoop');
-                    $scope.$apply();
                     if ((parseInt($scope.currentIteration) % 10) == 0) {
+                        $scope.$apply();
                         setTimeout(function () {
                             writeNext();
                         }, 1000);

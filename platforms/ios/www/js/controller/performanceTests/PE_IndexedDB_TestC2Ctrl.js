@@ -143,8 +143,6 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
             objectStore.add(data[i][7], id+'_randomNumber1');
             objectStore.add(data[i][8], id+'_randomNumber2');
 
-
-
             //objectStore.add(data[i], data[i][0]);
         }
 

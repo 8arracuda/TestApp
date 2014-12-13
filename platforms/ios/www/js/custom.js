@@ -1,4 +1,4 @@
-var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "techSupportFactory", "IndexedDBClearObjectStore", "FileApiDeleteAllFilesFactory", "testDataFactory", "PE_ParameterFactory", "ngAnimate"]);
+var sdApp = angular.module('sdApp', ["ngRoute", "mobile-angular-ui", "TestHelperFactory", "techSupportFactory", "IndexedDBClearObjectStore", "FileApiDeleteAllFilesFactory", "testDataFactory", "PE_ParameterFactory", "ngAnimate"]);
 
 var PE_TestR1_indexToCheck = 100;
 var PE_TestR2_indexToCheck = 0;

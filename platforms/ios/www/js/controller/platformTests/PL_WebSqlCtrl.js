@@ -1,4 +1,4 @@
-sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory) {
+sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory, TestHelperFactory) {
 
     $rootScope.section = 'PL';
 
