@@ -38,6 +38,7 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
 
     $scope.startPerformanceTest = function () {
 
+        console.log('startPerformanceTest');
         var timeDiffSum = 0;
 
         //The 7th dataset can't be saved on Safari (iOS 8) due to exceeded quota

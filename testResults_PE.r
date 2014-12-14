@@ -102,10 +102,10 @@ rows_File<-rownames(meansDf)[seq(77,92)] #File API
 
 
 df_LocalStorage<-meansDf[rows_LS, ]
-row.names(df_SessionStorage)<-c("C1-500", "C1-2000", "C2-500", "C2-2000", "C3-6", "R1-500", "R1-2000", "R2-500", "R2-2000", "R3-6", "U1-500", "U1-2000", "D1-500", "D1-2000")
+row.names(df_SessionStorage)<-c("C1-500", "C1-2000", "C2-500", "C2-2000", "C3-6", "C3-24", "R1-500", "R1-2000", "R2-500", "R2-2000", "R3-6", "R3-24", "U1-500", "U1-2000", "D1-500", "D1-2000");
 
 df_SessionStorage<-meansDf[rows_SS, ]
-row.names(df_SessionStorage)<-c("C1-500", "C1-2000", "C2-500", "C2-2000", "C3-6", "R1-500", "R1-2000", "R2-500", "R2-2000", "R3-6", "U1-500", "U1-2000", "D1-500", "D1-2000")
+row.names(df_SessionStorage)<-c("C1-500", "C1-2000", "C2-500", "C2-2000", "C3-6", "C3-24", "R1-500", "R1-2000", "R2-500", "R2-2000", "R3-6", "R3-24", "U1-500", "U1-2000", "D1-500", "D1-2000");
 
 barplot(as.matrix(df_LocalStorage), beside=T, horiz=T, legend=T, main="LocalStorage")
 

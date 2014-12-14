@@ -109,9 +109,6 @@ sdApp.controller('PE_SQLitePlugin_TestC1Ctrl', function ($scope, $rootScope, tes
             }
         );
 
-
-
-
     };
 
     $scope.initSQLitePlugin = function () {
