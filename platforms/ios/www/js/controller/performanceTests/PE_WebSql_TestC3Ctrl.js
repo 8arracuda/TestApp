@@ -89,11 +89,7 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-                    //
-                    //var timeStart = new Date().getTime();
-                    //timeDiffSum += new Date().getTime() - timeStart;
-                    tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, datasetArray[i]]);
-
+                    tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, JSON.stringify(datasetArray[i])]);
                 }
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);

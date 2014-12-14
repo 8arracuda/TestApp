@@ -85,7 +85,7 @@ sdApp.controller('PE_SQLitePlugin_TestC3Ctrl', function ($scope, $rootScope, tes
         //for (var i=0; i<amountOfData; i++) {
         //    datasetArray.push(testDataFactory.getDatasetWithOffset(i));
         //}
-        var datasetToWrite = push(testDataFactory.getDatasetWithOffset(0));
+        var datasetToWrite = testDataFactory.getDatasetWithOffset(0);
 
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
