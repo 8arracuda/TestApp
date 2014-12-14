@@ -69,19 +69,108 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
     };
 
-    //TODO: Check if the timers are correct!
+    //$scope.startPerformanceTest = function () {
+    //
+    //    $scope.inProgress = true;
+    //
+    //    var timeStart = new Date().getTime();
+    //    //TODO Try changing the size of it check if there is an effect on performance
+    //    window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
+    //        function (fs) {
+    //
+    //            var i = 0;
+    //
+    //            $scope.testInProgress = true;
+    //            $scope.$apply();
+    //            writeNextFile();
+    //
+    //            function writeNextFile() {
+    //
+    //                if (i < amountOfData) {
+    //                    //address-id is filename
+    //                    //var filename = 'dataset_' + data[i][0] + '.txt';
+    //                    var filename = 'dataset_' + i + '.txt';
+    //                    console.log('fs.root in writeFile');
+    //                    fs.root.getFile(filename, {create: true}, function (fileEntry) {
+    //
+    //                        fileEntry.createWriter(function (fileWriter) {
+    //
+    //                            fileWriter.onwriteend = function (e) {
+    //
+    //                                i++;
+    //
+    //                                if (i < amountOfData) {
+    //                                    writeNextFile();
+    //                                } else {
+    //                                    console.error('end of loop');
+    //
+    //                                    var timeEnd = new Date().getTime();
+    //
+    //                                    var timeDiff = timeEnd - timeStart;
+    //
+    //                                    $scope.results.push({iteration:  iteration,  time: timeDiff});
+    //                                    $scope.testInProgress = false;
+    //                                    $scope.isPrepared = false;
+    //                                    $scope.$apply();
+    //                                    iteration++;
+    //                                }
+    //                                //after one file has been successfully written the next file can be written
+    //                                i++;
+    //                                //timeDiffSum += new Date().getTime() - timeStart;
+    //                                writeNextFile();
+    //                            };
+    //
+    //                            fileWriter.onerror = function (e) {
+    //                                console.log('Write failed: ' + e.toString());
+    //                                console.dir(e);
+    //                            };
+    //
+    //                            //overwrites the file from the beginning
+    //                            fileWriter.seek(0);
+    //
+    //                            var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
+    //                            fileWriter.write(datasetString);
+    //                            //fileWriter.write('' + k);
+    //
+    //                        }, errorHandler);
+    //
+    //                    }, errorHandler);
+    //                } else {
+    //                    //console.error('end of loop');
+    //                    //
+    //                    ////var timeEnd = new Date().getTime();
+    //                    //
+    //                    ////var timeDiff = timeEnd - timeStart;
+    //                    //
+    //                    //$scope.results.push({iteration:  iteration,  time: timeDiff});
+    //                    //$scope.testInProgress = false;
+    //                    //$scope.isPrepared = false;
+    //                    //$scope.$apply();
+    //                    //iteration++;
+    //                }
+    //
+    //            }
+    //
+    //        },
+    //        errorHandler
+    //    );
+    //
+    //};
+
     $scope.startPerformanceTest = function () {
 
         $scope.inProgress = true;
 
+        var datasetArray = [];
+        for (var i=0; i<amountOfData; i++) {
+            datasetArray.push(testDataFactory.getDatasetWithOffset(i));
+        }
+
         var timeStart = new Date().getTime();
-        //TODO Try changing the size of it and see what happens...
         window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
             function (fs) {
 
                 var i = 0;
-
-                var timeDiffSum = 0;
 
                 $scope.testInProgress = true;
                 $scope.$apply();
@@ -91,7 +180,7 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
                     if (i < amountOfData) {
                         //address-id is filename
-                        var filename = 'dataset_' + data[i][0] + '.txt';
+                        var filename = 'dataset_' + i +  '.txt';
                         console.log('fs.root in writeFile');
                         fs.root.getFile(filename, {create: true}, function (fileEntry) {
 
@@ -101,7 +190,6 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
                                     //after one file has been successfully written the next file can be written
                                     i++;
-                                    timeDiffSum += new Date().getTime() - timeStart;
                                     writeFile();
                                 };
 
@@ -112,10 +200,7 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
                                 //overwrites the file from the beginning
                                 fileWriter.seek(0);
-
-                                var datasetString = testDataFactory.getStringFromFile(datasetFiles[i]);
-                                fileWriter.write(datasetString);
-                                //fileWriter.write('' + k);
+                                fileWriter.write(JSON.stringify(datasetArray[i]));
 
                             }, errorHandler);
 
@@ -123,11 +208,11 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
                     } else {
                         console.error('end of loop');
 
-                        //var timeEnd = new Date().getTime();
+                        var timeEnd = new Date().getTime();
 
-                        //var timeDiff = timeEnd - timeStart;
+                        var timeDiff = timeEnd - timeStart;
 
-                        $scope.results.push({iteration:  iteration,  time: timeDiff});
+                        $scope.results.push({iteration: iteration, time: timeDiff});
                         $scope.testInProgress = false;
                         $scope.isPrepared = false;
                         $scope.$apply();
