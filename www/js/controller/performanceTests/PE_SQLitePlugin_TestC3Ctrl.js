@@ -81,15 +81,17 @@ sdApp.controller('PE_SQLitePlugin_TestC3Ctrl', function ($scope, $rootScope, tes
 
         //prepare the array that will be written
         //doing this in the loop would have a negative effect on the duration/time of the test
-        var datasetArray = [];
-        for (var i=0; i<amountOfData; i++) {
-            datasetArray.push(testDataFactory.getDatasetWithOffset(i));
-        }
+        //var datasetArray = [];
+        //for (var i=0; i<amountOfData; i++) {
+        //    datasetArray.push(testDataFactory.getDatasetWithOffset(i));
+        //}
+        var datasetToWrite = push(testDataFactory.getDatasetWithOffset(0));
 
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
-                    tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, JSON.stringify(datasetArray[i])]);
+                    //tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, JSON.stringify(datasetArray[i])]);
+                    tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, JSON.stringify(datasetToWrite)]);
                 }
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
