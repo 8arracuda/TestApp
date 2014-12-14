@@ -242,7 +242,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestD1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR2Ctrl.js \
-/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR2Ctrl_backup.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR3Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestR3Ctrl_backup.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPI_TestU1Ctrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/performanceTests/PE_FileAPICtrl.js \

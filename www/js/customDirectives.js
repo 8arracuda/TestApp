@@ -172,6 +172,15 @@ sdApp.directive('ngResultsForPerformanceTests', function () {
 
 });
 
+sdApp.directive('ngResultsForPlatformTests', function () {
+
+    return {
+        restrict: 'A',
+        templateUrl: 'customAngularDirectives/ResultsForPlatformTests.html'
+    }
+
+});
+
 sdApp.directive('ngMediendatenImageSelector', function () {
 
     return {
