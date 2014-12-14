@@ -34139,3 +34139,37 @@ https://developer.apple.com/icloud/documentation/data-storage/
 2014-12-14 13:47:40.307 Test-App[87097:6143191] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/94453439-2D21-456C-8161-211B570DE0E1/Test-App.app/www/index.html
 2014-12-14 13:47:58.826 Test-App[87097:6143191] Detected docs path: /Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/8B504BEE-95D8-4CA3-B11A-F073C9F5508E/Documents
 2014-12-14 13:47:58.827 Test-App[87097:6143191] Good news: SQLite is thread safe!
+2014-12-14 13:50:35.549 Test-App[87617:6144777] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/AD216C83-2B2C-4E66-885A-B317AAC73505/Library/Cookies/Cookies.binarycookies
+2014-12-14 13:50:36.124 Test-App[87617:6144777] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-14 13:50:36.125 Test-App[87617:6144777] Multi-tasking -> Device: YES, App: YES
+2014-12-14 13:50:36.130 Test-App[87617:6144777] Unlimited access to network resources
+2014-12-14 13:50:36.148 Test-App[87617:6144777] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-14 13:50:36.380 Test-App[87617:6144777] [CDVTimer][file] 25.434017ms
+2014-12-14 13:50:36.380 Test-App[87617:6144777] [CDVTimer][TotalPluginStartup] 25.690019ms
+2014-12-14 13:50:36.800 Test-App[87617:6144777] Resetting plugins due to page load.
+2014-12-14 13:50:37.370 Test-App[87617:6144777] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/1C7607E8-7644-4FAD-9D60-7F10F4DFEE5E/Test-App.app/www/index.html
+2014-12-14 13:51:12.475 Test-App[87617:6144777] Detected docs path: /Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/AD216C83-2B2C-4E66-885A-B317AAC73505/Documents
+2014-12-14 13:51:12.476 Test-App[87617:6144777] Good news: SQLite is thread safe!
+2014-12-14 14:43:53.701 Test-App[89354:6157806] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/3DA438D7-7CB2-4E38-A592-0679DCB26C32/Library/Cookies/Cookies.binarycookies
+2014-12-14 14:43:55.018 Test-App[89354:6157806] Apache Cordova native platform version 3.6.3 is starting.
+2014-12-14 14:43:55.019 Test-App[89354:6157806] Multi-tasking -> Device: YES, App: YES
+2014-12-14 14:43:55.024 Test-App[89354:6157806] Unlimited access to network resources
+2014-12-14 14:43:55.043 Test-App[89354:6157806] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+
+2014-12-14 14:43:55.458 Test-App[89354:6157806] [CDVTimer][file] 125.892997ms
+2014-12-14 14:43:55.458 Test-App[89354:6157806] [CDVTimer][TotalPluginStartup] 126.188993ms
+2014-12-14 14:43:56.305 Test-App[89354:6157806] Resetting plugins due to page load.
+2014-12-14 14:43:58.556 Test-App[89354:6157806] Finished load of: file:///Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Bundle/Application/7245F4DA-D600-49E9-B318-60CA6E04228D/Test-App.app/www/index.html
+2014-12-14 14:44:14.552 Test-App[89354:6157806] Detected docs path: /Users/michael/Library/Developer/CoreSimulator/Devices/B8FDD0BF-CEF6-44F3-A241-67614601A834/data/Containers/Data/Application/3DA438D7-7CB2-4E38-A592-0679DCB26C32/Documents
+2014-12-14 14:44:14.552 Test-App[89354:6157806] Good news: SQLite is thread safe!

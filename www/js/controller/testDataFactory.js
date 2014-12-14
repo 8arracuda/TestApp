@@ -42,37 +42,6 @@ angular.module('testDataFactory', [])
                 return newData1.concat(dataCombined.slice(0, offset));
 
             },
-            //getDatasetWithOffset: function (offsetFactor) {
-            //    //Version with only 2000 addresses
-            //
-            //    //This function uses the avaiable datasets to create new datasets
-            //    //Example: When offset is set to 100, and dataCombined contains 4000 addresses
-            //    //The returned array will contain 4000 addresses starting from index 100.
-            //    //When the end of dataCombined is reached it starts from the beginning of the array.
-            //
-            //    var data1 = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
-            //    var offset = (100 * parseInt(offsetFactor))%data1.length;
-            //    var newData1 = data1.slice(offset, data1.length);
-            //    console.dir(newData1.concat(newData1.slice(0, offset)));
-            //    return newData1.concat(newData1.slice(0, offset));
-            //
-            //},
-            //getDatasetWithOffset: function (offsetFactor) {
-            //    //Version with only 500 addresses
-            //
-            //    //This function uses the avaiable datasets to create new datasets
-            //    //Example: When offset is set to 100, and dataCombined contains 4000 addresses
-            //    //The returned array will contain 4000 addresses starting from index 100.
-            //    //When the end of dataCombined is reached it starts from the beginning of the array.
-            //
-            //    var data1 = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
-            //    //var offset = (100 * parseInt(offsetFactor))%data1.length;
-            //    //var newData1 = data1.slice(offset, data1.length);
-            //    //console.dir(newData1.concat(newData1.slice(0, offset)));
-            //    //console.dir(data1.slice(0, 1));
-            //    return (data1.slice(0, ));
-            //
-            //},
 
             testDataForUpdateTests: function () {
                 //var filename = 'res/data/data02_first500_idStartingAt0.json';
