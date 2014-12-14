@@ -51,7 +51,7 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
     function clearTable() {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM PE_TestC3", [], clearedTableCallback, $scope.errorHandlerWebSQL);
+            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
         });
 
         function clearedTableCallback(transaction, results) {
