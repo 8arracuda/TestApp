@@ -87,52 +87,26 @@ sdApp.controller('PE_SQLitePlugin_TestC3Ctrl', function ($scope, $rootScope, tes
 
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
-                amountOfData=1;
                 for (var i = 0; i < amountOfData; i++) {
-                    //
-                    //var timeStart = new Date().getTime();
-                    //timeDiffSum += new Date().getTime() - timeStart;
-
-                    //datasetToWrite = JSON.stringify(testDataFactory.getDatasetWithOffset(i));
-                    //datasetToWrite = "fdfdskfjslkfjdlkfjdslkfjdflkjdsflkjdflkdjflkdsjfoidsjfoiejiwefnewnfewirjewrkjfkjdlskfjsdlkfjdlkfjdslkfjoirjwefiwfjnsdlfjdkljrewifewlfweifiowfefnkdjfiewjewifjwefjlkw";
 
                     tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, datasetArray[i]]);
-                    //tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + i, datasetToWrite]);
 
                 }
-            //}, function errorHandler(transaction, error) {
-            //    console.log("Error : " + transaction.message);
-            //    console.log("Error : " + error.message);
-            //}, function () {
-            //    console.log('success callback');
-            //    //timeDiffSum += new Date().getTime() - timeStart;
-            //    var timeEnd = new Date().getTime();
-            //    var timeDiff = timeEnd - timeStart;
-            //    $scope.results.push({iteration:  iteration,  time: timeDiff });
-            //    $scope.testInProgress = false;
-            //    $scope.isPrepared = false;
-            //    iteration++;
-            //    $scope.$apply();
-            //}
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
                 console.log("Error : " + error.message);
-            }, function() {
+            }, function () {
+                console.log('success callback');
+                //timeDiffSum += new Date().getTime() - timeStart;
                 var timeEnd = new Date().getTime();
-
                 var timeDiff = timeEnd - timeStart;
-                $scope.results.push({iteration:  iteration,  time: timeDiff});
+                $scope.results.push({iteration:  iteration,  time: timeDiff });
                 $scope.testInProgress = false;
                 $scope.isPrepared = false;
                 iteration++;
                 $scope.$apply();
-
-                //console.log(amountOfData + ' items added');
             }
         );
-
-
-
     };
 
     $scope.initSQLitePlugin = function () {
