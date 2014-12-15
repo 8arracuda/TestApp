@@ -286,15 +286,17 @@ row.names(fooDf)<-c("Android", "iOS", "WP8");
 barplot(fooDf$LS_C1_500, horiz=TRUE)
 barplot(t(as.matrix(fooDf)), beside=TRUE)
 
+meansDf2 = data.frame(sapply(IOSSim, mean), sapply(Lumia620, mean), sapply(Nexus7, mean), sapply(Nexus4, mean))
+colnames(meansDf2)<- c('IOSSim', 'Lumia620', 'Nexus7', 'Nexus4')
+write.table(meansDf2, sep=",", file = "/Users/michael/Downloads/results/output.csv")
 
+sapply(Nexus7, mean)
 
 
 meansDf = data.frame(sapply(IOSSim, mean), sapply(Lumia620, mean), sapply(Nexus7, mean))
 colnames(meansDf)<- c('IOSSim', 'Lumia620', 'Nexus7')
 
 barplot(t(as.matrix(meansDf)), beside = TRUE, horiz=TRUE, cex.axis=0.01, las=3)
-
-
 
 
 
@@ -370,3 +372,10 @@ for (i in seq(0,14, by=2) ) {
   mp <- barplot(height, beside = T, col=colors, legend=F, main=TestNames[(i/2)+1])
   dev.off();
 }
+
+
+
+
+
+
+

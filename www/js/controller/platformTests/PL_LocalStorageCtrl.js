@@ -8,9 +8,6 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope, TestHelper
 
     $scope.localStorage = localStorage;
 
-    var keyPrefix;
-    var value;
-
     $scope.prepare = function () {
         localStorage.clear();
         $scope.isPrepared = true;
@@ -81,40 +78,29 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope, TestHelper
         //after that the function will continue
         //It will continue until it reaches max quota.
 
-
-
         function nextLoop() {
 
-            console.log('called nextLoop(' + $scope.currentIteration + ')');
-//            var loopLength= 1;
             try {
 
-                console.log('currentIteration (before loop):' + $scope.currentIteration);
-                var i = $scope.currentIteration;
+                localStorage.setItem($scope.currentIteration, datasetStringToSave);
 
-                localStorage.setItem(i, datasetStringToSave);
-
-                $scope.currentIteration = (parseInt($scope.currentIteration) + 1);
-
-                //without the timeouts the $apply function is not working for updating the UI
-                setTimeout(
-                    function () {
+                //timeout to allow the UI to update
+                //setTimeout(
+                  //  function () {
                         //to update the UI - gives the user an update about the progress as the test progresses
+                        $scope.currentIteration = (parseInt($scope.currentIteration) + 1);
                         $scope.$apply();
                         setTimeout(
-                            nextLoop(parseInt($scope.currentIteration)), 500);
-                    }, 500);
+                            nextLoop(), 500);
+                    //}, 500);
 
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {
-                    console.log('error is QuotaExceededError');
-
+                    //console.log('error is QuotaExceededError');
+                    $scope.result = { description: 'QuotaExceededError', exceptionInIteration: $scope.currentIteration};
+                    $scope.testInProgress = false;
+                    $scope.$apply();
                 }
-
-                $scope.result = { exceptionInIteration: i};
-                console.log('result:' + $scope.result);
-                $scope.testInProgress = false;
-                $scope.$apply();
 
             }
 
@@ -122,11 +108,11 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope, TestHelper
 
         //start the test
 
-        var datasetStringToSave = testDataFactory.getDatasetWithOffset(0);
+        var datasetStringToSave = JSON.stringify(testDataFactory.getDatasetWithOffset(0));
         $scope.testInProgress = false;
         $scope.$apply();
 
-        $scope.currentIteration = 0;
+        $scope.currentIteration = 1;
         nextLoop();
 
     };

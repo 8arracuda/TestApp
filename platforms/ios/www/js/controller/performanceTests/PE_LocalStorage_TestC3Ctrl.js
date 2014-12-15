@@ -46,7 +46,8 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
         //setItem@[native code]
         for (var i = 0; i < amountOfData; i++) {
 
-            var datasetString = testDataFactory.getDatasetWithOffset(i);
+            var datasetString = JSON.stringify(testDataFactory.getDatasetWithOffset(i));
+            console.log(datasetString.length);
 
             var timeStart = new Date().getTime();
             try {
