@@ -88,8 +88,9 @@ for (i in seq(0,3) ) {
       tmp = tmp_D1
     }
 
-  png(paste("/Users/michael/Downloads/results/1/",platformName,"_",testName,".png", sep=""))
-  mp<-barplot(main=paste(platformName,testName, sep=" "), as.matrix(tmp), horiz=T, beside = T, las=2, legend=T, col=colors, names.arg=rownames(tmp_C1))
+    png(paste("/Users/michael/Dropbox/_BachelorThesis/results/1/",platformName,"_",testName,".png", sep=""))
+  barplot(main=paste(platformName,testName, sep=" "), as.matrix(tmp), horiz=T, beside = T, las=1, legend=T, col=colors, xlab='time in ms')
+  
   dev.off();
 
   

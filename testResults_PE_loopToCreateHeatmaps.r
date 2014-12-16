@@ -64,6 +64,8 @@ for (i in seq(1,3) ) {
    longData <- melt(matrix_Lumia620_means)
    platformName = 'Windows Phone 8'
  }
+ 
+longData$Var1<-rep(c("C1","C2","C3","R1","R2","R3","U1","D1"),5)
 
 # Define palette
 #myPalette <- colorRampPalette(rev(brewer.pal(11, "Spectral")), space="Lab")
@@ -81,7 +83,7 @@ zp1 <- zp1 + labs(title=platformName)
 
 print(zp1)
 
-ggsave(file=paste("/Users/michael/Downloads/results/3_Heatmaps/heatmap_",i,".png", sep=""))
+ggsave(file=paste("/Users/michael/Dropbox/_BachelorThesis/results/3_Heatmaps/heatmap_",i,".png", sep=""))
 }
 
 

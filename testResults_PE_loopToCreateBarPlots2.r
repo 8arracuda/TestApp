@@ -88,26 +88,33 @@ for (i in seq(0,3) ) {
       tmp = tmp_D1
     }
   
-colors=c("red", "green", "blue", "yellow", "cyan");
+colors<-c("red", "green", "blue", "yellow", "cyan")
+
 
 
 imageName="C1_C2_C3"
 tmp<-c(tmp_C1, tmp_C2, tmp_C3)
-png(paste("/Users/michael/Downloads/results/2/",platformName,"_",imageName,".png", sep=""))
-mp<-barplot(tmp, main=paste(platformName,imageName, sep=" "), horiz=T, beside=T, las=2, legend=T, col=colors)
-dev.off();
+png(paste("/Users/michael/Dropbox/_BachelorThesis/results/2/",platformName,"_",imageName,".png", sep=""))
+barplot(tmp, main=paste(platformName,imageName, sep=" "), horiz=T, beside=T, las=2, legend=T, col=colors)
+dev.off()
 
 imageName="R1_R2_R3"
 tmp<-c(tmp_R1, tmp_R2, tmp_R3)
-png(paste("/Users/michael/Downloads/results/2/",platformName,"_",imageName,".png", sep=""))
-mp<-barplot(tmp, main=paste(platformName,imageName, sep=" "), horiz=T, beside=T, las=2, legend=T, col=colors)
+png(paste("/Users/michael/Dropbox/_BachelorThesis/results/2/",platformName,"_",imageName,".png", sep=""))
+barplot(tmp, main=paste(platformName,imageName, sep=" "), horiz=T, beside=T, las=2, legend=T, col=colors)
 dev.off();
 
 imageName="U1_D1"
 tmp<-c(tmp_U1, tmp_D1)
-png(paste("/Users/michael/Downloads/results/2/",platformName,"_",imageName,".png", sep=""))
-mp<-barplot(tmp, main=paste(platformName,imageName, sep=" "), horiz=T, beside=T, las=2, legend=T, col=colors)
+png(paste("/Users/michael/Dropbox/_BachelorThesis/results/2/",platformName,"_",imageName,".png", sep=""))
+barplot(tmp, main=paste(platformName,imageName, sep=" "), horiz=T, beside=T, las=2, legend=T, col=colors)
 dev.off();
+
+#imageName="legendOnly"
+#tmp<-c(tmp_R1, tmp_R2, tmp_R3)
+#png(paste("/Users/michael/Dropbox/_BachelorThesis/results/2/lengendOnly.png")
+#barplot(tmp, main=, horiz=T, beside=T, las=2, legend=T, col=colors)
+#dev.off();
 
 }
 }
