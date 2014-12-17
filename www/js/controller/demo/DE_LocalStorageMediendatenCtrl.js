@@ -35,12 +35,6 @@ sdApp.controller('DE_LocalStorageMediendatenCtrl', function ($scope, $rootScope)
 
     };
 
-    $scope.foo = function () {
-      alert('foo');
-      alert($rootScope.currentImage);
-      alert($rootScope.images[$rootScope.currentImage]);
-    };
-
     //Funktion übernommen von http://forums.mozillazine.org/viewtopic.php?f=19&t=856865
     function convertImageToBase64Format(imageURI, aType) {
         var canvas = document.createElementNS("http://www.w3.org/1999/xhtml", "html:canvas");
