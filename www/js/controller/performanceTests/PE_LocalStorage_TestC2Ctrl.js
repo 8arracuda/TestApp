@@ -14,9 +14,9 @@ sdApp.controller('PE_LocalStorage_TestC2Ctrl', function ($scope, $rootScope, tes
         $scope.selectedTestVariant = '';
         $scope.preparationText = 'Clears LocalStorage and fetches addressData to be written during the test.';
         $scope.mainTestDecription = 'In this test stores addresses to LocalStorage.';
-        $scope.testName1 = 'TestC2-500';
+        $scope.testName1 = 'Test C2-500';
         $scope.testDecription1 = 'StoresStores ' + amountOfData_testC2a + ' items';
-        $scope.testName2 = 'TestC2-2000';
+        $scope.testName2 = 'Test C2-2000';
         $scope.testDecription2 = 'Stores ' + amountOfData_testC2b + ' items';
 
 

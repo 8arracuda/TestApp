@@ -20,9 +20,9 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
-    $scope.testName1 = 'TestR1-500';
+    $scope.testName1 = 'Test R1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';
-    $scope.testName2 = 'TestR1-2000';
+    $scope.testName2 = 'Test R1-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR1b + ' items';
 
     $scope.results = [];

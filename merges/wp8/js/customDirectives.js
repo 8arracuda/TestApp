@@ -11,21 +11,8 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
         $rootScope.verifyTestsOutput = true;
 
         $scope.datasets = [
-            'data01_small.json',
-            'data01.json',
-            'data02.json',
-            'data03.json',
-            'data04.json',
-            'data05.json',
-            'data01+02.json'
-            //'data06.json',
-            //'data07.json',
-            //'data08.json',
-            //'data09.json',
-            //'data10.json',
-            //'data01-05.json',
-            //'data06-10.json',
-            //'data01-10.json'
+            'data01_2000.json',
+            'data_2000_forUpdate.json'
         ];
 
         //set the default value for numberOfRows

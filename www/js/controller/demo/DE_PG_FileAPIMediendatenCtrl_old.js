@@ -4,12 +4,12 @@ sdApp.controller('DE_PG_FileAPIMediendatenCtrl', function ($scope, $rootScope) {
 
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
-        //  img = $scope.images[$scope.currentImage];
+      //  img = $scope.images[$scope.currentImage];
         img = document.getElementById("sourceImage");
         ctx.drawImage(img,10,10,150,180);
         //var dataURL = canvas.toDataURL('image/jpeg;base64');
         var dataURL = canvas.toDataURL('image/jpeg');
-        //alert('dataURL' + dataURL);
+        alert('dataURL' + dataURL);
 
         var image64 = dataURL.replace(/data:image\/jpeg;base64,/, '');
 
@@ -19,7 +19,7 @@ sdApp.controller('DE_PG_FileAPIMediendatenCtrl', function ($scope, $rootScope) {
         //alert('myBlob.type ' + myBlob.type); // image/jpeg
         //alert('myBlob.length ' + myBlob.length); // undefinded
         //alert('myBlob.valueOf()' + myBlob.valueOf()); // [object Blob]
-        alert('myBlob.valueOf()' + JSON.stringify(myBlob.valueOf())); // {}
+        //alert('myBlob.valueOf()' + JSON.stringify(myBlob.valueOf())); // {}
 
         //var bb = new BlobBuilder();
         //bb.append(image64);
@@ -107,6 +107,7 @@ sdApp.controller('DE_PG_FileAPIMediendatenCtrl', function ($scope, $rootScope) {
 
         return filename;
     }
+
 
     function errorHandler(e) {
         var msg = '';

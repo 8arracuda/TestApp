@@ -38,7 +38,7 @@ sdApp.controller('DE_PG_FileAPICtrl', function ($scope, $rootScope) {
     //Functions for the Overlay
 
     //TODO For debugging in Chrome (remove at the end)
-    if (navigator.userAgent == userAgentForDesktopDevelopment1 || navigator.userAgent == userAgentForDesktopDevelopment2) {
+    if (!navigator.userAgent == userAgentForDesktopDevelopment1 || !navigator.userAgent == userAgentForDesktopDevelopment2) {
         $scope.documentsDirectory = cordova.file.documentsDirectory;
     }
 
