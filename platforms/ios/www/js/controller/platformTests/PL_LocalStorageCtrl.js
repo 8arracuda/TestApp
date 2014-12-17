@@ -96,12 +96,11 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope, TestHelper
 
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {
-                    console.log('error is QuotaExceededError');
+                    //console.log('error is QuotaExceededError');
+                    $scope.result = { description: 'QuotaExceededError', exceptionInIteration: $scope.currentIteration};
+                    $scope.testInProgress = false;
+                    $scope.$apply();
                 }
-
-                $scope.result = { exceptionInIteration: $scope.currentIteration};
-                $scope.testInProgress = false;
-                $scope.$apply();
 
             }
 
