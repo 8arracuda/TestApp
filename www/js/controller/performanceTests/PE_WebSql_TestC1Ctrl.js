@@ -3,7 +3,6 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
 
     var data;
 
-
     $scope.testInProgress = false;
 
     var amountOfData;

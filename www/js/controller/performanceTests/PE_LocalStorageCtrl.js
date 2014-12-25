@@ -5,7 +5,7 @@ sdApp.controller('PE_LocalStorageCtrl', function ($scope, $rootScope) {
     $scope.localStorage = localStorage;
 
     //<für alle Tabs>
-    $scope.stringForRightButton = 'show keys';
+    $scope.stringForRightButton = '';
     $scope.stringForTitle = 'LocalStorage';
     $scope.functionForRightButton = function () {
         $rootScope.toggle('myOverlay', 'on');

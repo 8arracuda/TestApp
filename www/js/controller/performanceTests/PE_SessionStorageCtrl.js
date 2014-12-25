@@ -5,7 +5,7 @@ sdApp.controller('PE_SessionStorageCtrl', function ($scope, $rootScope) {
     $scope.sessionStorage = sessionStorage;
 
     //<für alle Tabs>
-    $scope.stringForRightButton = 'show keys';
+    $scope.stringForRightButton = '';
     $scope.stringForTitle = 'SessionStorage';
     $scope.functionForRightButton = function () {
         $rootScope.toggle('myOverlay', 'on');
