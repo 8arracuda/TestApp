@@ -49,6 +49,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/DE_PG_fileAPI.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/DE_PG_fileAPI_einzelwerte.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/DE_PG_fileAPI_mediendaten.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/DE_PG_fileAPI_mediendaten_old.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/DE_PG_fileAPI_overlay.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/DE_PG_fileAPI_strDaten.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/DE_PG_SQLite.html \
@@ -157,6 +158,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/PrepareButton.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/PrepareSectionForTests.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/ResultsForPerformanceTests.html \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/ResultsForPlatformTests.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StartPerformanceTestButtonWithDatabase.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StartPerformanceTestButtonWithoutDatabase.html \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/customAngularDirectives/StrDatenDatasetLoader.html \
@@ -223,6 +225,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/demo/DE_PG_FileAPICtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/demo/DE_PG_FileAPIEinzelwerteCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/demo/DE_PG_FileAPIMediendatenCtrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/demo/DE_PG_FileAPIMediendatenCtrl_old.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/demo/DE_PG_FileAPIstrDatenCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/demo/DE_PGSQLiteCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/demo/DE_PGSQLiteEinzelwerteCtrl.js \

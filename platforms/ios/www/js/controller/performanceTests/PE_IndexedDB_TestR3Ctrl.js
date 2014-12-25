@@ -15,9 +15,9 @@ sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDa
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestR3-6';
+    $scope.testName1 = 'Test R3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR3a + ' items';
-    $scope.testName2 = 'TestR3-24';
+    $scope.testName2 = 'Test R3-24';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR3b + ' items';
 
     $scope.results = [];

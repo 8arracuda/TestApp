@@ -18,9 +18,9 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
-    $scope.testName1 = 'TestR3-6';
+    $scope.testName1 = 'Test R3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR3a + ' items';
-    $scope.testName2 = 'TestR3-24';
+    $scope.testName2 = 'Test R3-24';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR3b + ' items';
 
     $scope.results = [];

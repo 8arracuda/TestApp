@@ -14,9 +14,9 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
     $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
-    $scope.testName1 = 'TestR1-500';
+    $scope.testName1 = 'Test R1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';
-    $scope.testName2 = 'TestR1-2000';
+    $scope.testName2 = 'Test R1-2000';
     $scope.testDecription2 = 'Stores ' + amountOfData_testR1b + ' items';
 
     $scope.results = [];

@@ -16,8 +16,8 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
     var amountOfData_testU1b = PE_ParameterFactory.amountOfData_testU1b;
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Explain what the prepare function does...';
-    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.preparationText = 'Prepare will clear all data stored in objectStore ' + objStoreName + ". Then it will save the data needed for the test.";
+    $scope.mainTestDecription = 'The test replaces addresses by their key.';
     $scope.testName1 = 'TestU1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testU1a + ' items';
     $scope.testName2 = 'TestU1-2000';

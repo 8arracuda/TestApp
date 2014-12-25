@@ -4,7 +4,6 @@ angular.module('testDataFactory', [])
         var filename = 'res/data/data01_2000.json';
         var filenameForUpdateTests = 'res/data/data_2000_forUpdate.json';
 
-
         return {
             testData: function () {
 
@@ -51,7 +50,7 @@ angular.module('testDataFactory', [])
             },
 
             getDataFromFile: function (filename) {
-
+console.log('fn:' + filename);
                 //Filehelper function is defined in custom.js
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
 

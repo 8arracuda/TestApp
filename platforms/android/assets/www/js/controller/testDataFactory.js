@@ -4,7 +4,6 @@ angular.module('testDataFactory', [])
         var filename = 'res/data/data01_2000.json';
         var filenameForUpdateTests = 'res/data/data_2000_forUpdate.json';
 
-
         return {
             testData: function () {
 
@@ -34,7 +33,7 @@ angular.module('testDataFactory', [])
                 var data1 = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
                 var data2 = JSON.parse(FileHelper.readStringFromFileAtPath(filenameForUpdateTests));
                 var dataCombined = data1.concat(data2);
-                var offset = (100 * parseInt(factor))%dataCombined.length;
+                var offset = (100 * parseInt(factor)) % dataCombined.length;
                 data1 = null;
                 data2 = null;
 
@@ -51,7 +50,7 @@ angular.module('testDataFactory', [])
             },
 
             getDataFromFile: function (filename) {
-
+                console.log('fn:' + filename);
                 //Filehelper function is defined in custom.js
                 var contentsOfFileAsString = FileHelper.readStringFromFileAtPath(filename);
 
@@ -64,6 +63,16 @@ angular.module('testDataFactory', [])
                 //Filehelper function is defined in custom.js
                 return FileHelper.readStringFromFileAtPath(filename);
 
+            },
+
+            getDatasetForPlatformTest: function () {
+
+                var data = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
+                alert(data.length);
+
+                //returns the first 100 addresses
+                return data.slice(0, 100);
             }
-        };
+        }
+            ;
     });

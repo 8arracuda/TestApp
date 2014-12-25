@@ -13,8 +13,8 @@ sdApp.controller('PE_SessionStorage_TestD1Ctrl', function ($scope, $rootScope, t
     var amountOfData_testD1b = PE_ParameterFactory.amountOfData_testD1b;
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Clears SessionStorage and saves a predefined set of addresses.';
-    $scope.mainTestDecription = 'Tests the performance when deleting x items from SessionStorage';
+    $scope.preparationText = 'Prepare will clear all data stored in sessionStorage. After that it saves the data needed for the test.';
+    $scope.mainTestDecription = 'The test deletes addresses by their key.';
     $scope.testName1 = 'TestD1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testD1a + ' items';
     $scope.testName2 = 'TestD1-2000';

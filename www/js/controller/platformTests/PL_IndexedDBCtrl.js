@@ -162,7 +162,8 @@ sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope, testDataFacto
 
         var errorAlreadyShown = false;
 
-        var datasetStringToSave = testDataFactory.getDatasetWithOffset(0);
+        //var datasetStringToSave = testDataFactory.getDatasetWithOffset(0);
+        var datasetStringToSave = JSON.stringify(testDataFactory.getDatasetForPlatformTest());
 
         var transaction;
 

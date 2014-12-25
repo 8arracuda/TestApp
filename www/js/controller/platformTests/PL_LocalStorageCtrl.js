@@ -15,8 +15,6 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope, TestHelper
         $scope.$apply();
     };
 
-
-
     //$scope.startPlatformTest = function () {
     //
     //    //the function writes x-items to LocalStorage.
@@ -108,7 +106,7 @@ sdApp.controller('PL_LocalStorageCtrl', function ($scope, $rootScope, TestHelper
 
         //start the test
 
-        var datasetStringToSave = JSON.stringify(testDataFactory.getDatasetWithOffset(0));
+        var datasetStringToSave = JSON.stringify(testDataFactory.getDatasetForPlatformTest());
         $scope.testInProgress = false;
         $scope.$apply();
 

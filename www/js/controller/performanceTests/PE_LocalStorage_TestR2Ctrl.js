@@ -14,7 +14,7 @@ sdApp.controller('PE_LocalStorage_TestR2Ctrl', function ($scope, $rootScope, tes
     var amountOfData_testR2b = PE_ParameterFactory.amountOfData_testR2b;
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Explain what the prepare function does...';
+    $scope.preparationText = 'Prepare will clear all data stored in localStorage. After that it saves the data needed for the test.';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
     $scope.testName1 = 'Test R2-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR2a + ' items';

@@ -10,8 +10,8 @@ sdApp.controller('PE_SessionStorage_TestC3Ctrl', function ($scope, $rootScope, t
     var amountOfData = amountOfData_testC3a;
 
     $scope.selectedTestVariant = 'TestC3a';
-    $scope.preparationText = 'Prepare clears all data in SessionStorage.';
-    $scope.mainTestDecription = 'Saving long strings (dataset strings)';
+    $scope.preparationText = 'The prepare function will clear all data stored with sessionStorage';
+    $scope.mainTestDecription = 'The test stores datasets, with 4000 addresses each, into one key-value pair';
     $scope.testName1 = 'TestC3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' times 4,000 addresses in a single key/value pair.';
 

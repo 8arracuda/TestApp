@@ -42,36 +42,36 @@ sdApp.controller('SidebarController', function ($scope, techSupportFactory) {
             linkURL: 'PE_fileAPI',
             support: ts.fileAPI_fullSupport
         },
-        {
-            labelText: '(Acc)',
-            linkURL: 'acc',
-            support: ts.accelerometer
-        },
-        {
-            labelText: '(Cam)',
-            linkURL: 'cam',
-            support: ts.camera
-        },
-        {
-            labelText: '(directory variables)',
-            linkURL: 'directoryVariables',
-            support: true
-        },
-        {
-            labelText: '(device orientation)',
-            linkURL: 'devOrientation',
-            support: true
-        },
-        {
-            labelText: '(video)',
-            linkURL: 'vid',
-            support: true
-        },
-        {
-            labelText: '(loadImage)',
-            linkURL: 'loadImage',
-            support: true
-        }
+        //{
+        //    labelText: '(Acc)',
+        //    linkURL: 'acc',
+        //    support: ts.accelerometer
+        //},
+        //{
+        //    labelText: '(Cam)',
+        //    linkURL: 'cam',
+        //    support: ts.camera
+        //},
+        //{
+        //    labelText: '(directory variables)',
+        //    linkURL: 'directoryVariables',
+        //    support: true
+        //},
+        //{
+        //    labelText: '(device orientation)',
+        //    linkURL: 'devOrientation',
+        //    support: true
+        //},
+        //{
+        //    labelText: '(video)',
+        //    linkURL: 'vid',
+        //    support: true
+        //},
+        //{
+        //    labelText: '(loadImage)',
+        //    linkURL: 'loadImage',
+        //    support: true
+        //}
     ];
 
     //TODO bei FileAPI wird auf Chrome/Desktop angezeigt, dass es unterstützt wird, obwohl es nicht der Fall ist - Der Test in TechSupport muss verbessert werden
