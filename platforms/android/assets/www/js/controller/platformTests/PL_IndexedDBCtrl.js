@@ -163,22 +163,23 @@ sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope, testDataFacto
         var errorAlreadyShown = false;
 
         //var datasetStringToSave = testDataFactory.getDatasetWithOffset(0);
+        //var datasetStringToSave = JSON.stringify(testDataFactory.getDatasetForPlatformTest());
         var datasetStringToSave = JSON.stringify(testDataFactory.getDatasetForPlatformTest());
 
         var transaction;
 
         function writeNext() {
 
-            console.log('nextLoop' + $scope.currentIteration);
+            //console.log('nextLoop' + $scope.currentIteration);
             transaction = $scope.db.transaction([objStoreName], "readwrite");
-            console.log('nextLoop-1');
+            //console.log('nextLoop-1');
             var objectStore = transaction.objectStore(objStoreName);
-            console.log('nextLoop-2');
+            //console.log('nextLoop-2');
             objectStore.add(datasetStringToSave, 'dataset_' + $scope.currentIteration);
-            console.log('nextLoop-3');
+            //console.log('nextLoop-3');
             //$scope.currentIteration = $scope.currentIteration + 1;
             $scope.currentIteration += 1;
-            console.log('nextLoop-4');
+            //console.log('nextLoop-4');
 
             transaction.oncomplete = function (event) {
                 console.log('nextLoop-5');
@@ -188,7 +189,7 @@ sdApp.controller('PL_IndexedDBCtrl', function ($scope, $rootScope, testDataFacto
                 if (errorAlreadyShown == false) {
                     console.log('nextLoop-6');
                     console.log('calling nextLoop');
-                    if ((parseInt($scope.currentIteration) % 10) == 0) {
+                    if ((parseInt($scope.currentIteration) % 100) == 0) {
                         $scope.$apply();
                         setTimeout(function () {
                             writeNext();

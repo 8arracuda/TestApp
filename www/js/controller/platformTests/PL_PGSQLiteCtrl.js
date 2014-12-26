@@ -127,14 +127,16 @@ sdApp.controller('PL_PGSQLiteCtrl', function ($scope, $rootScope, testDataFactor
 
         function nextTransactions() {
 
-            var onSuccessCounter = 0;
 
             $scope.db.transaction(function (tx) {
 
                     for (var i = 0; i < 5; i++) {
 
-                        //tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + $scope.currentIteration, datasetStringToSave]);
-                        tx.executeSql("INSERT INTO " + tableName + "(id, dataset) VALUES(?,?)", ['dataset_' + $scope.currentIteration, datasetStringToSave]);
+
+                        var datasetName = 'dataset_' + $scope.currentIteration;
+
+                        tx.executeSql("INSERT INTO " + tableName + "(id, dataset) VALUES(?,?)", [datasetName, datasetStringToSave]);
+
                         $scope.currentIteration += 1;
                     }
 
@@ -150,11 +152,8 @@ sdApp.controller('PL_PGSQLiteCtrl', function ($scope, $rootScope, testDataFactor
                     console.log("Error : " + transaction.message);
                     console.log("Error : " + error.message);
                 }, function onSuccessHandler() {
-                    console.log('onSuccessCounter:' + onSuccessCounter);
                     console.log('onSuccess ' + $scope.currentIteration);
-                    onSuccessCounter = 0;
                     $scope.$apply();
-
                     //continue if there was no error
                     if (errorAlreadyShown == false) {
                         nextTransactions();

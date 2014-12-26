@@ -301,6 +301,7 @@
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_LocalStorageCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_PGSQLiteCtrl.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_WebSqlCtrl.js \
+/users/michael/AB-Code/TestApp/platforms/android/assets/www/js/controller/platformTests/PL_WebSqlCtrl_old.js \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/com.brodysoft.sqlitePlugin \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.camera \
 /users/michael/AB-Code/TestApp/platforms/android/assets/www/plugins/org.apache.cordova.device \
