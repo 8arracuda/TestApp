@@ -1,6 +1,11 @@
 sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
     var iteration = 1;
 
+    var dataForPreparation;
+    var dbName = "PE_TestC1";
+    var tableName = "PE_TestC1";
+    var dbVersion = "1.0";
+
     var data;
 
     $scope.testInProgress = false;
@@ -112,7 +117,6 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
         $scope.db = window.openDatabase(dbName, dbVersion, dbName, 1024 * 1024);
-        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
         $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
