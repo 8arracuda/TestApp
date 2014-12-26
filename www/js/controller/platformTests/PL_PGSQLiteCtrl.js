@@ -181,7 +181,8 @@ sdApp.controller('PL_PGSQLiteCtrl', function ($scope, $rootScope, testDataFactor
 
     };
 
-    $scope.initWebSQL = function () {
+    $scope.initSQLitePlugin= function () {
+        console.log('initSQLitePlugin');
         //$scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
         $scope.db = sqlitePlugin.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
