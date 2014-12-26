@@ -4056,6 +4056,16 @@ angular.module('testDataFactory', [])
                 //Filehelper function is defined in custom.js
                 return FileHelper.readStringFromFileAtPath(filename);
 
+            },
+
+            getDatasetForPlatformTest: function () {
+
+                //var data = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
+                //alert(data.length);
+
+                //returns the first 100 addresses
+                //return data.slice(0, 100);
+                return testData.slice(0,100);
             }
         };
     });
