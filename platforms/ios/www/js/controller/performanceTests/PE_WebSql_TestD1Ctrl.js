@@ -15,8 +15,8 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
     var amountOfData_testD1b = PE_ParameterFactory.amountOfData_testD1b;
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Explain what the prepare function does...';
-    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.preparationText = 'The prepare function will clear the table ' + tableName + '. After that it saves the files needed for the test';
+    $scope.mainTestDecription = 'The test deletes addresses by their ids.';
     $scope.testName1 = 'Test D1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testD1a + ' items';
     $scope.testName2 = 'Test D1-2000';

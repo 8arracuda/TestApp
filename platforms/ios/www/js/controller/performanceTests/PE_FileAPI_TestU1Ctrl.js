@@ -14,8 +14,8 @@ sdApp.controller('PE_FileAPI_TestU1Ctrl', function ($scope, $rootScope, testData
     var amountOfData_testU1b = PE_ParameterFactory.amountOfData_testU1b;
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Explain what the prepare function does...';
-    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.preparationText = 'The prepare function will delete all files. After that it saves the files needed for the test';
+    $scope.mainTestDecription = 'The test replaces addresses by their key.';
     $scope.testName1 = 'Test U1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testU1a + ' items';
     $scope.testName2 = 'Test U1-2000';

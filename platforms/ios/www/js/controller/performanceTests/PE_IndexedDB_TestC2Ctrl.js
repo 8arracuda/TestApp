@@ -15,8 +15,8 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
     var amountOfData_testC2b = PE_ParameterFactory.amountOfData_testC2b;
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Explain what the prepare function does...';
-    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.preparationText = 'The prepare function will delete all data in the objectStore ' + objStoreName;
+    $scope.mainTestDecription = 'The test stores every address-field in a single key-value pair.';
     $scope.testName1 = 'Test C2-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC2a + ' items';
     $scope.testName2 = 'Test C2-2000';

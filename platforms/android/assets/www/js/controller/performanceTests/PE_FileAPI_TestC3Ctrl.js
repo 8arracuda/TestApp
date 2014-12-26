@@ -15,7 +15,7 @@ sdApp.controller('PE_FileAPI_TestC3Ctrl', function ($scope, $rootScope, testData
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
-    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.mainTestDecription = 'The test stores datasets, with 4000 addresses each, into one file';
     $scope.testName1 = 'Test C3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' items';
     $scope.testName2 = 'Test C3-24';

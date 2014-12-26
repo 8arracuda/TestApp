@@ -1,10 +1,12 @@
 sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataFactory, PE_ParameterFactory) {
     var iteration = 1;
 
-    var data;
+    var dataForPreparation;
     var dbName = "PE_TestC1";
     var tableName = "PE_TestC1";
     var dbVersion = "1.0";
+
+    var data;
 
     $scope.testInProgress = false;
 
@@ -13,8 +15,8 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
     var amountOfData_testC1b = PE_ParameterFactory.amountOfData_testC1b;
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Explain what the prepare function does...';
-    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.preparationText = 'The prepare function will clear all data stored in the table ' + tableName;
+    $scope.mainTestDecription = 'The test stores each address into a table with two columns - id and address.';
     $scope.testName1 = 'Test C1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
     $scope.testName2 = 'Test C1-2000';
@@ -69,11 +71,11 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
     }
 
     $scope.prepare = function () {
-        $scope.prepareInProgress=true;
+        $scope.prepareInProgress = true;
         $scope.$apply();
         loadData();
         clearTable();
-        $scope.prepareInProgress=false;
+        $scope.prepareInProgress = false;
         $scope.isPrepared = true;
         console.log('prepare function finished');
         $scope.$apply();
@@ -95,11 +97,11 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
                 console.log("Error : " + error.message);
-            }, function() {
+            }, function () {
                 var timeEnd = new Date().getTime();
 
                 var timeDiff = timeEnd - timeStart;
-                $scope.results.push({iteration:  iteration,  time: timeDiff});
+                $scope.results.push({iteration: iteration, time: timeDiff});
                 $scope.testInProgress = false;
                 $scope.isPrepared = false;
                 iteration++;
@@ -110,14 +112,11 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
         );
 
 
-
-
     };
 
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
-        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 10 * 1024 * 1024);
-        //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
+        $scope.db = window.openDatabase(dbName, dbVersion, dbName, 1024 * 1024);
         $scope.db.transaction($scope.createTable, $scope.errorHandlerWebSQL);
         console.log('initWebSQL executed');
         $scope.databaseOpened = true;
@@ -138,3 +137,5 @@ sdApp.controller('PE_WebSql_TestC1Ctrl', function ($scope, $rootScope, testDataF
     };
 
 });
+
+

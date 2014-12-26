@@ -12,8 +12,8 @@ sdApp.controller('PE_WebSql_TestC3Ctrl', function ($scope, $rootScope, testDataF
     var amountOfData_testC3b = PE_ParameterFactory.amountOfData_testC3b;
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Explain what the prepare function does...';
-    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.preparationText = 'The prepare function will clear all data stored in the table ' + tableName;
+    $scope.mainTestDecription = 'The test stores datasets, with 4000 addresses each, in a table with two columns: keyName and value';
     $scope.testName1 = 'Test C3-6';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC3a + ' times 4,000 addresses.';
     $scope.testName2 = 'Test C3-24';

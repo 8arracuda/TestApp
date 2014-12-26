@@ -16,7 +16,7 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
-    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.preparationText = 'The prepare function will delete all data in the objectStore ' + objStoreName;
     $scope.testName1 = 'Test C1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
     $scope.testName2 = 'Test C1-2000';
@@ -156,3 +156,4 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
 
 
 });
+

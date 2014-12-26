@@ -18,7 +18,7 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
     var amountOfData_testR1b = PE_ParameterFactory.amountOfData_testR1b;
 
     $scope.selectedTestVariant = '';
-    $scope.preparationText = 'Explain what the prepare function does...';
+    $scope.preparationText = 'The prepare function will clear the table ' + tableName + '. After that it saves the files needed for the test';
     $scope.mainTestDecription = 'Read test - random addresses will be loaded';
     $scope.testName1 = 'Test R1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';

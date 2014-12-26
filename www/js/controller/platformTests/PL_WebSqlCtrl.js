@@ -21,7 +21,6 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory,
     };
 
 
-
     //$scope.startPlatformTest = function () {
     //    console.log('startPlatformTest');
     //    //localStorage.setItem(keyPrefix + '' + fillWithZeroes(10,i), value);

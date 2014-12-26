@@ -13,7 +13,7 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
     $scope.selectedTestVariant = '';
     $scope.preparationText = 'Explain what the prepare function does...';
-    $scope.mainTestDecription = 'In this test x simple key-value pairs are saved.';
+    $scope.preparationText = 'The prepare function will delete all files. After that it saves the files needed for the test';
     $scope.testName1 = 'Test R1-500';
     $scope.testDecription1 = 'Stores ' + amountOfData_testR1a + ' items';
     $scope.testName2 = 'Test R1-2000';

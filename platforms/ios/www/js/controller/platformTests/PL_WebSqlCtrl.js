@@ -21,7 +21,6 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory,
     };
 
 
-
     //$scope.startPlatformTest = function () {
     //    console.log('startPlatformTest');
     //    //localStorage.setItem(keyPrefix + '' + fillWithZeroes(10,i), value);
@@ -116,7 +115,6 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory,
     //
     //};
 
-
     $scope.startPlatformTest = function () {
         console.log('startPlatformTest');
 
@@ -124,7 +122,8 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory,
 
         $scope.currentIteration = 0;
 
-        var datasetStringToSave = testDataFactory.getDatasetWithOffset(0);
+        //var datasetStringToSave = testDataFactory.getDatasetWithOffset(0);
+        var datasetStringToSave = JSON.stringify(testDataFactory.getDatasetForPlatformTest());
 
         function nextTransactions() {
 
