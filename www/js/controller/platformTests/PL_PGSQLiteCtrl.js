@@ -133,7 +133,8 @@ sdApp.controller('PL_PGSQLiteCtrl', function ($scope, $rootScope, testDataFactor
 
                     for (var i = 0; i < 5; i++) {
 
-                        tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + $scope.currentIteration, datasetStringToSave]);
+                        //tx.executeSql("INSERT INTO " + tableName + "(keyName, value) VALUES(?,?)", ['dataset_' + $scope.currentIteration, datasetStringToSave]);
+                        tx.executeSql("INSERT INTO " + tableName + "(id, dataset) VALUES(?,?)", ['dataset_' + $scope.currentIteration, datasetStringToSave]);
                         $scope.currentIteration += 1;
                     }
 
@@ -142,7 +143,7 @@ sdApp.controller('PL_PGSQLiteCtrl', function ($scope, $rootScope, testDataFactor
 
                     if (transaction.code == transaction.QUOTA_ERR) {
                         if (errorAlreadyShown == false) {
-                            alert('quota error at iteration' + $scope.currentIteration);
+                            alert('quota error at iteration ' + $scope.currentIteration);
                             errorAlreadyShown = true;
                         }
                     }

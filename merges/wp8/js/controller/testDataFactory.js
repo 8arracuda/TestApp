@@ -4065,7 +4065,8 @@ angular.module('testDataFactory', [])
 
                 //returns the first 100 addresses
                 //return data.slice(0, 100);
-                return testData.slice(0,100);
+                //return testData.slice(0,100);
+                return testData[0];
             }
         };
     });
