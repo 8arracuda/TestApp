@@ -4,7 +4,7 @@
 
 <div content-for="navbarAction">
     <div class="btn btn-navbar">
-        <i class="fa fa-plus"></i>LS
+
     </div>
 </div>
 
@@ -31,26 +31,6 @@
 
     </div>
 
-    <h2 class="panel-title">
-        Results
-    </h2>
+    <div ng-results-for-platform-tests></div>
 
-    <div class="panel-body">
-
-        <div class="list-group">
-            <div ng-repeat="result in results track by $index">
-
-                <li ng-class="{'list-group-item-success': result!=-1}" class="list-group-item">
-                    {{ result }}
-                </li>
-
-            </div>
-        </div>
-
-    </div>
 </div>
-
-
-
-
-
