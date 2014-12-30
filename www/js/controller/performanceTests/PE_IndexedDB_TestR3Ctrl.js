@@ -139,7 +139,6 @@ sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDa
 
     };
 
-
     $scope.prepare = function () {
         $scope.prepareInProgress = true;
         $scope.$apply();
@@ -153,117 +152,7 @@ sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDa
         });
     };
 
-    //$scope.startPerformanceTest = function () {
-    //    $scope.testInProgress = true;
-    //    $scope.$apply();
-    //
-    //    var timeStart = new Date().getTime();
-    //
-    //    var onSuccessCounter = 0;
-    //
-    //    for (var i = 0; i < amountOfData; i++) {
-    //        var transaction = $scope.db.transaction([objStoreName], "readonly");
-    //
-    //        var objectStore = transaction.objectStore(objStoreName);
-    //        var request = objectStore.get(i);
-    //        transaction.oncomplete = function (event) {
-    //            console.log('transaction.oncomplete');
-    //
-    //          //  $scope.keyToLoad = $scope.keyLoaded;
-    //        };
-    //
-    //        transaction.onerror = function (event) {
-    //            console.error('transaction.onerror');
-    //        };
-    //
-    //        request.onsuccess = function (event) {
-    //            console.log('request.onsuccess');
-    //            console.log('loaded data: ' + request.result.value.substring(1,10));
-    //
-    //
-    //            onSuccessCounter = onSuccessCounter + 1;
-    //
-    //            if (onSuccessCounter == amountOfData) {
-    //                var timeEnd = new Date().getTime();
-    //
-    //                var timeDiff = timeEnd - timeStart;
-    //                $scope.testInProgress = false;
-    //                $scope.results.push('Iteration ' + iteration + ': ' + timeDiff + ' ms');
-    //                iteration++;
-    //                $scope.$apply();
-    //            }
-    //
-    //            //if there was a result
-    //            //if (request.result) {
-    //            //    $scope.valueLoadedFromIndexedDB = 'has value "' + request.result.value + '"';
-    //            //
-    //            //} else {
-    //            //    $scope.valueLoadedFromIndexedDB = 'does not exist';
-    //            //}
-    //            //
-    //            //$scope.$apply();
-    //        };
-    //    }
-    //
-    //
-    //};
-
-    //$scope.startPerformanceTest = function () {
-    //    //amountOfData=1;
-    //    $scope.testInProgress = true;
-    //    $scope.$apply();
-    //
-    //    var timeStart = new Date().getTime();
-    //
-    //    var transaction = $scope.db.transaction([objStoreName], "readonly");
-    //
-    //    var objectStore = transaction.objectStore(objStoreName);
-    //
-    //    transaction.oncomplete = function (event) {
-    //        console.log('transaction.oncomplete');
-    //
-    //        var timeEnd = new Date().getTime();
-    //
-    //        var timeDiff = timeEnd - timeStart;
-    //        $scope.testInProgress = false;
-    //        $scope.results.push('Iteration ' + iteration + ': ' + timeDiff + ' ms');
-    //        iteration++;
-    //        $scope.$apply();
-    //
-    //    };
-    //
-    //    transaction.onerror = function (event) {
-    //        console.error('transaction.onerror');
-    //    };
-    //
-    //    for (var i = 0; i < amountOfData; i++) {
-    //        var request = objectStore.get('dataset_' + i);
-    //
-    //        request.onsuccess = function (event) {
-    //            console.log('request.onsuccess');
-    //
-    //
-    //            //---Test-Output to check the returned values---
-    //            //if (request.result) {
-    //                console.log('Has value "' + request.result.substring(1,100) + '"');
-    //            //} else {
-    //              //  console.log('does not exist');
-    //            //}
-    //
-    //            // console.log('loaded data: ' + request.result.value.substring(1,10));
-    //
-    //
-    //        };
-    //
-    //
-    //
-    //    }
-    //
-    //
-    //};
-
     $scope.startPerformanceTest = function () {
-
 
         function readNext() {
             var transaction = $scope.db.transaction([objStoreName], "readonly");
@@ -276,11 +165,9 @@ sdApp.controller('PE_IndexedDB_TestR3Ctrl', function ($scope, $rootScope, testDa
                     readNext();
                 } else {
 
-
                     console.log('transaction.oncomplete');
 
                     var timeEnd = new Date().getTime();
-
                     var timeDiff = timeEnd - timeStart;
                     $scope.testInProgress = false;
                     $scope.results.push({iteration:  iteration,  time: timeDiff});

@@ -141,16 +141,20 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory,
                     }
 
                 },
-                function errorHandler(transaction, error) {
+                function errorHandler(transaction) {
 
-                    if (transaction.code == transaction.QUOTA_ERR) {
+                    //if (transaction.code == transaction.QUOTA_ERR) {
+                    if (transaction.code == "4") { //Quota Error
                         if (errorAlreadyShown == false) {
-                            alert('quota error at iteration ' + $scope.currentIteration);
+                                $scope.result = { description: 'QuotaExceededError', exceptionInIteration: $scope.currentIteration};
+                                $scope.testInProgress = false;
+                                $scope.$apply();
                             errorAlreadyShown = true;
                         }
                     }
+
                     console.log("Error : " + transaction.message);
-                    console.log("Error : " + error.message);
+                    console.log("Error : " + transaction.code);
                 }, function onSuccessHandler() {
                     console.log('onSuccess ' + $scope.currentIteration);
                     $scope.$apply();
@@ -160,8 +164,17 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory,
                     }
                 });
         }
+        errorAlreadyShown = false;
+        $scope.testInProgress = true;
+        $scope.$apply();
 
-        nextTransactions();
+        //start the test a bit later, to allow the UI to update
+        setTimeout(function () {
+            nextTransactions();
+        }, 500);
+
+
+
 
     };
 
@@ -182,7 +195,7 @@ sdApp.controller('PL_WebSqlCtrl', function ($scope, $rootScope, testDataFactory,
     };
 
     $scope.initWebSQL= function () {
-        console.log('initSQLitePlugin');
+        console.log('initWebSQL');
         $scope.db = window.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
         //$scope.db = sqlitePlugin.openDatabase(dbName, dbVersion, dbName, 2 * 1024 * 1024);
         //$scope.db.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);

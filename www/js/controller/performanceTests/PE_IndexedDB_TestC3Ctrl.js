@@ -91,10 +91,8 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
 
                 //create a new objectStore
                 //var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "key"});
-                var objectStore = $scope.db.createObjectStore(objStoreName, {});
+                $scope.db.createObjectStore(objStoreName, {});
 
-                //Column key is defined as index for the objectStore "einzelwerte"
-                //objectStore.createIndex("key", "key", {unique: true});
 
             }
         }
@@ -108,34 +106,34 @@ sdApp.controller('PE_IndexedDB_TestC3Ctrl', function ($scope, $rootScope, testDa
             $scope.prepareInProgress = false;
             $scope.isPrepared = true;
             $scope.$apply();
+
         });
+
     };
 
 
     $scope.startPerformanceTest = function () {
 
-        var timeDiffSum = 0;
-
         $scope.testInProgress = true;
-
+        var datasetString = JSON.stringify(testDataFactory.getBigDataset());
         var timeStart = new Date().getTime();
 
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
-
 
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
 
-            var datasetString = testDataFactory.getDatasetWithOffset(i);
-            var timeStart = new Date().getTime();
             objectStore.add(datasetString, 'dataset_' + i);
-            timeDiffSum += (new Date().getTime() - timeStart);
 
         }
 
         transaction.oncomplete = function (event) {
-            $scope.results.push({iteration:  iteration,  time: timeDiffSum});
+
+            var timeEnd = new Date().getTime();
+            var timeDiff = timeEnd - timeStart;
+
+            $scope.results.push({iteration:  iteration,  time: timeDiff});
             iteration++;
             $scope.testInProgress = false;
             $scope.isPrepared = false;

@@ -157,7 +157,6 @@ sdApp.controller('PE_WebSql_TestR1Ctrl', function ($scope, $rootScope, testDataF
 
         }, function errorHandler(transaction, error) {
             console.log("Error : " + transaction.message);
-            console.log("Error : " + error.message);
         }, function () {
             var timeEnd = new Date().getTime();
 

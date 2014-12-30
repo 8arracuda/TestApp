@@ -103,7 +103,6 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
         $scope.prepareInProgress = true;
         $scope.$apply();
 
-        var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
         var objectStore = transaction.objectStore(objStoreName);
@@ -159,8 +158,6 @@ sdApp.controller('PE_IndexedDB_TestD1Ctrl', function ($scope, $rootScope, testDa
 
             objectStore.delete(addressIdsToDelete[i]);
 
-            //var addressToSave = dataForUpdate[i];
-            //objectStore.put(addressToSave, addressToSave[0]);
         }
 
         transaction.oncomplete = function (event) {

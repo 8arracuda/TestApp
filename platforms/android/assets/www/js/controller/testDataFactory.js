@@ -14,6 +14,15 @@ angular.module('testDataFactory', [])
                 return JSON.parse(contentsOfFileAsString);
             },
 
+            getBigDataset: function() {
+                var data1 = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
+                var data2 = JSON.parse(FileHelper.readStringFromFileAtPath(filenameForUpdateTests));
+                var dataCombined = data1.concat(data2);
+
+                return dataCombined;
+
+            },
+
             getRandomIndices: function () {
 
                 var filename = 'res/data/Indices_random_2000.json';

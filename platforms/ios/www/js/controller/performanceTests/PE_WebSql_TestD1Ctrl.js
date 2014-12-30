@@ -99,7 +99,6 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
                 }
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
-                //console.log("Error : " + error.message);
             }
         );
 
@@ -113,8 +112,7 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
 
-                    //tx.executeSql("DELETE FROM " + tableName + " WHERE id = ?", [dataForUpdate[i][0] + '']);
-                    tx.executeSql("DELETE FROM " + tableName + " WHERE id = ?", [i+'']);
+                    tx.executeSql("DELETE FROM " + tableName + " WHERE id = ?", [i + '']);
 
                 }
             }, function errorHandler(transaction, error) {
@@ -135,14 +133,12 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
 
     };
 
-
     $scope.prepare = function () {
         $scope.prepareInProgress=true;
         $scope.$apply();
         clearTable();
         loadDataForPreparation();
         saveAddressData();
-        loadDataForUpdate();
         $scope.prepareInProgress=false;
         $scope.isPrepared = true;
         console.log('prepare function finished');
@@ -154,10 +150,5 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
         dataForPreparation = testDataFactory.testData();
 
     }
-
-    function loadDataForUpdate() {
-        dataForUpdate = testDataFactory.testDataForUpdateTests();
-    }
-
 
 });

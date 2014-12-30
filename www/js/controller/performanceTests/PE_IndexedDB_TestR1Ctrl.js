@@ -44,8 +44,6 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
     $scope.reset = function () {
 
-
-
         var answer = confirm('Do you really want to reset this page. All test results will be removed!');
 
         if (answer) {
@@ -153,62 +151,103 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         });
     };
 
+
     $scope.startPerformanceTest = function () {
 
-        var i = 0;
+        $scope.testInProgress = true;
+
 
         var addressIdsToLoad = testDataFactory.getRandomIndices();
 
-        console.log(addressIdsToLoad[100]);
+        var timeStart = new Date().getTime();
+        var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
-        if (addressIdsToLoad.length < amountOfData) {
-            alert('Warning: Too few address Ids defined. The test will produce wrong results!');
+        var objectStore = transaction.objectStore(objStoreName);
+
+        for (var i = 0; i < amountOfData; i++) {
+
+            //objectStore.add(data[i], data[i][0]);
+            var request = objectStore.get(addressIdsToLoad[i]);
+            console.log('load ' + i < amountOfData[i]);
+
         }
 
-        function readNext() {
-            var transaction = $scope.db.transaction([objStoreName], "readonly");
+        transaction.oncomplete = function (event) {
+            var timeEnd = new Date().getTime();
 
-            var objectStore = transaction.objectStore(objStoreName);
+            var timeDiff = timeEnd - timeStart;
 
-            transaction.oncomplete = function (event) {
-                i++;
-                if (i < amountOfData) {
-                    readNext();
-                } else {
-                    console.log('transaction.oncomplete');
-                    var timeEnd = new Date().getTime();
-
-                    var timeDiff = timeEnd - timeStart;
-                    $scope.testInProgress = false;
-                    $scope.results.push({iteration:  iteration,  time: timeDiff});
-                    iteration++;
-                    $scope.$apply();
-                }
-
-            };
-
-            transaction.onerror = function (event) {
-                console.error('transaction.onerror');
-            };
-
-            var request = objectStore.get(addressIdsToLoad[i]);
-
-            request.onsuccess = function (event) {
-                //---Test-Output to check the returned values---
-                if (i == PE_TestR1_indexToCheck) {
-                    console.log('check Test R1:' + JSON.stringify(request.result));
-                }
-
-            };
+            $scope.results.push({iteration: iteration, time: timeDiff});
+            iteration++;
+            $scope.testInProgress = false;
+            $scope.isPrepared = false;
+            $scope.$apply();
 
         };
 
-        $scope.testInProgress = true;
-        $scope.$apply();
-
-        var timeStart = new Date().getTime();
-        readNext();
-
+        transaction.onerror = function (event) {
+            console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
+            $scope.testInProgress = false;
+        };
     };
+
+    //I USED THIS CODE IN TESTS!!!!!!
+    //$scope.startPerformanceTest = function () {
+    //
+    //    var i = 0;
+    //
+    //    var addressIdsToLoad = testDataFactory.getRandomIndices();
+    //
+    //    console.log(addressIdsToLoad[100]);
+    //
+    //    if (addressIdsToLoad.length < amountOfData) {
+    //        alert('Warning: Too few address Ids defined. The test will produce wrong results!');
+    //    }
+    //
+    //    function readNext() {
+    //        var transaction = $scope.db.transaction([objStoreName], "readonly");
+    //
+    //        var objectStore = transaction.objectStore(objStoreName);
+    //
+    //        transaction.oncomplete = function (event) {
+    //            i++;
+    //            if (i < amountOfData) {
+    //                readNext();
+    //            } else {
+    //                console.log('transaction.oncomplete');
+    //                var timeEnd = new Date().getTime();
+    //
+    //                var timeDiff = timeEnd - timeStart;
+    //                $scope.testInProgress = false;
+    //                $scope.results.push({iteration:  iteration,  time: timeDiff});
+    //                iteration++;
+    //                $scope.$apply();
+    //            }
+    //
+    //        };
+    //
+    //        transaction.onerror = function (event) {
+    //            console.error('transaction.onerror');
+    //        };
+    //
+    //        var request = objectStore.get(addressIdsToLoad[i]);
+    //
+    //        request.onsuccess = function (event) {
+    //            //---Test-Output to check the returned values---
+    //            if (i == PE_TestR1_indexToCheck) {
+    //                console.log('check Test R1:' + JSON.stringify(request.result));
+    //            }
+    //
+    //        };
+    //
+    //    };
+    //
+    //    $scope.testInProgress = true;
+    //    $scope.$apply();
+    //
+    //    var timeStart = new Date().getTime();
+    //    readNext();
+    //
+    //};
 
 });

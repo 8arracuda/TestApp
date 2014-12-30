@@ -39,25 +39,19 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
     $scope.startPerformanceTest = function () {
 
         console.log('startPerformanceTest');
-        var timeDiffSum = 0;
 
         //The 7th dataset can't be saved on Safari (iOS 8) due to exceeded quota
         //Error: QuotaExceededError: DOM Exception 22
-        //setItem@[native code]
+
         for (var i = 0; i < amountOfData; i++) {
 
-            var datasetString = JSON.stringify(testDataFactory.getDatasetWithOffset(i));
+            var datasetString = JSON.stringify(testDataFactory.getBigDataset());
             console.log(datasetString.length);
 
             var timeStart = new Date().getTime();
             try {
                 localStorage.setItem('dataset_' + i, datasetString);
 
-                //The time taken is calculated step by step inside the loop
-                //because the fetching of the string from the files is also taking
-                //a long time. This time is not relevant when looking at the storage-techniques!
-                timeDiffSum += new Date().getTime() - timeStart;
-                //console.log('saved dataset ' + datasetFiles[i] + ' to localstorage');
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {
                     alert('quota exceeded when writing dataset_' + i + '. The results for this test cannot be used!');
@@ -67,7 +61,10 @@ sdApp.controller('PE_LocalStorage_TestC3Ctrl', function ($scope, $rootScope, tes
 
         }
 
-        $scope.results.push({iteration:  iteration,  time: timeDiffSum});
+        var timeEnd = new Date().getTime();
+        var timeDiff = timeEnd - timeStart;
+
+        $scope.results.push({iteration:  iteration,  time: timeDiff});
         $scope.testInProgress = false;
         $scope.isPrepared = false;
         $scope.$apply();

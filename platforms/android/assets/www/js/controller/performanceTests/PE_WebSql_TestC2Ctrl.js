@@ -86,7 +86,6 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataF
 
         $scope.testInProgress = true;
 
-
         var timeStart = new Date().getTime();
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
@@ -111,8 +110,6 @@ sdApp.controller('PE_WebSql_TestC2Ctrl', function ($scope, $rootScope, testDataF
                 console.log(amountOfData + ' items added');
             }
         );
-
-
 
     };
 

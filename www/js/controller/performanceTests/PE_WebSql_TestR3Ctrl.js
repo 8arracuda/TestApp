@@ -114,41 +114,6 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
         console.log('errorHandlerWebSQL executed');
     };
 
-    //$scope.startPerformanceTest = function () {
-    //
-    //    $scope.testInProgress = true;
-    //    $scope.$apply();
-    //
-    //    var timeStart = new Date().getTime();
-    //
-    //    $scope.db.transaction(function (tx) {
-    //
-    //        for (var i = 0; i < amountOfData; i++) {
-    //
-    //            tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", ['dataset_' + i], function (transaction, results) {
-    //
-    //                //---Test-Output to check the returned values---
-    //                //console.log('check Test R3:' + JSON.stringify(results.rows.item(0)).substr(1,100));
-    //            });
-    //
-    //        }
-    //        onSuccessCounter = onSuccessCounter + 1;
-    //
-    //    }, function errorHandler(transaction, error) {
-    //        console.log("Error : " + transaction.message);
-    //        console.log("Error : " + error.message);
-    //    }, function () {
-    //        var timeEnd = new Date().getTime();
-    //
-    //        var timeDiff = timeEnd - timeStart;
-    //        $scope.results.push({iteration: iteration, time: timeDiff});
-    //        $scope.testInProgress = false;
-    //        iteration++;
-    //        $scope.$apply();
-    //
-    //    });
-    //
-    //};
 
     $scope.startPerformanceTest = function () {
 

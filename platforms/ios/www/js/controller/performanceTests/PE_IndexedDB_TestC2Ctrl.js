@@ -147,8 +147,8 @@ sdApp.controller('PE_IndexedDB_TestC2Ctrl', function ($scope, $rootScope, testDa
         }
 
         transaction.oncomplete = function (event) {
-            var timeEnd = new Date().getTime();
 
+            var timeEnd = new Date().getTime();
             var timeDiff = timeEnd - timeStart;
 
             $scope.results.push({iteration:  iteration,  time: timeDiff});

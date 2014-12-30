@@ -95,10 +95,8 @@ sdApp.controller('PE_IndexedDB_TestR2Ctrl', function ($scope, $rootScope, testDa
                 //before it needs to be deleted, before it's created again with new keys.
                 //$scope.db.deleteObjectStore(objStoreName);
 
-                var objectStore = $scope.db.createObjectStore(objStoreName, {});
+                $scope.db.createObjectStore(objStoreName, {});
 
-                //var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "id"});
-                //objectStore.createIndex("id", "id", {unique: true});
 
             }
         }
