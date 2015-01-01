@@ -28,11 +28,10 @@ sdApp.controller('PL_FileAPICtrl', function ($scope, $rootScope, FileApiDeleteAl
                 $scope.testInProgress = true;
                 $scope.$apply();
                 writeFile();
-                var datasetStringToSave = testDataFactory.getDatasetWithOffset(0);
+                var datasetStringToSave = testDataFactory.getDatasetForPlatformTest();
                 function writeFile() {
 
                     //if (i < amountOfData) {
-                        //address-id is filename
                         var filename = i + '.txt';
                         console.log('fs.root in writeFile');
                         fs.root.getFile(filename, {create: true}, function (fileEntry) {
@@ -53,17 +52,12 @@ sdApp.controller('PL_FileAPICtrl', function ($scope, $rootScope, FileApiDeleteAl
 
                                 //overwrites the file from the beginning
                                 fileWriter.seek(0);
-                                //fileWriter.write(JSON.stringify(data[i]));
+
                                 fileWriter.write(JSON.stringify(datasetStringToSave));
 
                             }, errorHandler);
 
                         }, errorHandler);
-                    //} else {
-                    //    console.error('end of loop');
-                    //
-                    //    alert('end of loop - quota exceeded?!');
-                    //}
 
                 }
 

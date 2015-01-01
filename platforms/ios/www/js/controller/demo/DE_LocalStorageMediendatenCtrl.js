@@ -1,27 +1,5 @@
 sdApp.controller('DE_LocalStorageMediendatenCtrl', function ($scope, $rootScope) {
 
-    //$scope.images = [
-    //    'res/logo_brs.jpg', 'res/logo_angularJS.jpg', 'res/logo_cordova.jpg'
-    //];
-    //
-    //$scope.currentImage = 0;
-    //
-    //$scope.image_next = function () {
-    //    if ($scope.currentImage == $scope.images.length - 1) {
-    //        $scope.currentImage = 0;
-    //    } else {
-    //        $scope.currentImage++;
-    //    }
-    //};
-    //
-    //$scope.image_prev = function () {
-    //    if ($scope.currentImage == 0) {
-    //        $scope.currentImage = $scope.images.length - 1;
-    //    } else {
-    //        $scope.currentImage--;
-    //    }
-    //};
-
     $scope.saveImageToLocalStorage = function () {
         imageFilename = $scope.images[$scope.currentImage];
         imageData = convertImageToBase64Format(imageFilename, "image/jpeg");

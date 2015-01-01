@@ -151,35 +151,28 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         });
     };
 
-
     $scope.startPerformanceTest = function () {
 
         $scope.testInProgress = true;
 
-
         var addressIdsToLoad = testDataFactory.getRandomIndices();
 
         var timeStart = new Date().getTime();
-        var transaction = $scope.db.transaction([objStoreName], "read");
-
+        var transaction = $scope.db.transaction([objStoreName], "readonly");
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
-
-            var request = objectStore.get(addressIdsToLoad[i]);
-            console.log('load ' + i < amountOfData[i]);
-
+            objectStore.get(addressIdsToLoad[i]);
         }
 
         transaction.oncomplete = function (event) {
-            var timeEnd = new Date().getTime();
 
+            var timeEnd = new Date().getTime();
             var timeDiff = timeEnd - timeStart;
 
             $scope.results.push({iteration: iteration, time: timeDiff});
             iteration++;
             $scope.testInProgress = false;
-            $scope.isPrepared = false;
             $scope.$apply();
 
         };
@@ -190,7 +183,7 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         };
     };
 
-    //I USED THIS CODE IN TESTS!!!!!!
+    //THIS CODE WAS USED FOR PREVIOUS TESTS
     //$scope.startPerformanceTest = function () {
     //
     //    var i = 0;
