@@ -71,9 +71,6 @@ sdApp.controller('DE_PG_FileAPIMediendatenCtrl', function ($scope, $rootScope) {
         if (!window.lookupTable)
             window.lookupTable = {};
 
-        // BlobBuilder shim
-        // var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
-
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
         // xhr.responseType = 'blob';

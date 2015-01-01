@@ -160,13 +160,12 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         var addressIdsToLoad = testDataFactory.getRandomIndices();
 
         var timeStart = new Date().getTime();
-        var transaction = $scope.db.transaction([objStoreName], "readwrite");
+        var transaction = $scope.db.transaction([objStoreName], "read");
 
         var objectStore = transaction.objectStore(objStoreName);
 
         for (var i = 0; i < amountOfData; i++) {
 
-            //objectStore.add(data[i], data[i][0]);
             var request = objectStore.get(addressIdsToLoad[i]);
             console.log('load ' + i < amountOfData[i]);
 
