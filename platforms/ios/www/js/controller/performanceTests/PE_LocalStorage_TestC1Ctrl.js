@@ -15,9 +15,9 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
         $scope.preparationText = 'The prepare function will clear all data stored with localStorage';
         $scope.mainTestDecription = 'The test stores each address in a single key-value pair.';
         $scope.testName1 = 'Test C1-500';
-        $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' items';
+        $scope.testDecription1 = 'Stores ' + amountOfData_testC1a + ' addesses';
         $scope.testName2 = 'Test C1-2000';
-        $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' items';
+        $scope.testDecription2 = 'Stores ' + amountOfData_testC1b + ' addesses';
 
 
         $scope.selectTestVariant = function (testVariant) {
