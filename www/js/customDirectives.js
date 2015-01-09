@@ -1,12 +1,12 @@
-sdApp.directive('ngStrDatenDatasetLoader', function () {
+sdApp.directive('ngStrDataDatasetLoader', function () {
 
     return {
         restrict: 'A',
-        templateUrl: 'customAngularDirectives/StrDatenDatasetLoader.html'
+        templateUrl: 'customAngularDirectives/StrDataDatasetLoader.html'
     }
 
 })
-    .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope, testDataFactory) {
+    .controller('strDataDatasetLoaderCtrl', function ($scope, $rootScope, testDataFactory) {
 
         $rootScope.verifyTestsOutput = true;
 
@@ -168,16 +168,16 @@ sdApp.directive('ngResultsForPlatformTests', function () {
 
 });
 
-sdApp.directive('ngMediendatenImageSelector', function () {
+sdApp.directive('ngMediadataImageSelector', function () {
 
     return {
         restrict: 'A',
-        templateUrl: 'customAngularDirectives/MediendatenImageSelector.html'
+        templateUrl: 'customAngularDirectives/MediadataImageSelector.html'
     }
 
 
 })
-    .controller('MediendatenImageSelectorCtrl', function ($scope, $rootScope) {
+    .controller('MediadataImageSelectorCtrl', function ($scope, $rootScope) {
 
 
         $rootScope.images = [
@@ -205,15 +205,15 @@ sdApp.directive('ngMediendatenImageSelector', function () {
 
     });
 
-sdApp.directive('ngMediendatenVideoSelector', function () {
+sdApp.directive('ngMediadataVideoSelector', function () {
 
     return {
         restrict: 'A',
-        templateUrl: 'customAngularDirectives/MediendatenVideoSelector.html'
+        templateUrl: 'customAngularDirectives/MediadataVideoSelector.html'
     }
 
 })
-    .controller('MediendatenVideoSelectorCtrl', function ($scope, $rootScope) {
+    .controller('MediadataVideoSelectorCtrl', function ($scope, $rootScope) {
 
         $rootScope.videos = [
             'res/H264_test4_Talkingheadclipped_mp4_480x320.mp4', 'res/H264_test1_Talkinghead_mp4_480x360.mp4', 'res/mov_bbb.mp4'
