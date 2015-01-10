@@ -128,13 +128,13 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
                                 var reader = new FileReader();
 
                                 reader.onloadend = function (e) {
-                                    i+=1;
+                                    i += 1;
                                     //---Test-Output to check the returned values---
-                                    //if (id == PE_TestR2_indexToCheck) {
-                                    //    console.log('check Test R1:' + JSON.stringify(this.result));
-                                    //}
+                                    /*
+                                     console.log('check Test R1:' + JSON.stringify(this.result));
+                                     */
 
-                                    if (i == amountOfData*9) {
+                                    if (i == amountOfData * 9) {
 
                                         var timeEnd = new Date().getTime();
 

@@ -72,11 +72,11 @@ sdApp.controller('PE_LocalStorage_TestR2Ctrl', function ($scope, $rootScope, tes
             localStorage.getItem(addressId + '_randomNumber2');
 
             //---Test-Output to check the returned values---
-            if (i == PE_TestR2_indexToCheck) {
+            /*
                 console.log('check Test R2 [1/3]: ' + localStorage.getItem(addressId + '_id'));
                 console.log('check Test R2 [2/3]: ' + localStorage.getItem(addressId + '_firstname'));
                 console.log('check Test R2 [3/3]: ' + localStorage.getItem(addressId + '_lastname'));
-            }
+            */
         }
 
         var timeEnd = new Date().getTime();

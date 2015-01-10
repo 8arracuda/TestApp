@@ -192,7 +192,7 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         }
     };
 
-    function saveAddressData() {
+    function saveAddressData(callback) {
 
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
@@ -215,9 +215,7 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         }
 
         transaction.oncomplete = function (event) {
-            console.log('transaction.oncomplete (in saveAddressData)');
-            $scope.isPrepared = true;
-            $scope.$apply();
+            callback();
         };
 
         transaction.onerror = function (event) {
@@ -231,14 +229,15 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         $scope.$apply();
         IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
             loadDataForPreparation();
-            saveAddressData();
-            $scope.prepareInProgress = false;
-            $scope.isPrepared = true;
-            console.log('prepare function finished');
-            $scope.$apply();
+            saveAddressData(function() {
+                $scope.prepareInProgress = false;
+                $scope.isPrepared = true;
+                console.log('prepare function finished');
+                $scope.$apply();
+            });
+
         });
     };
-
 
     //get addresses in a loop
     $scope.startPerformanceTest1 = function () {
@@ -253,6 +252,13 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
         for (var i = 0; i < amountOfData; i++) {
             objectStore.get(addressIdsToLoad[i]);
+
+            /*
+            var idbRequest = objectStore.get(addressIdsToLoad[i]);
+            idbRequest.onsuccess = function (event) {
+                console.dir(event.target.result);
+            };
+            */
         }
 
         transaction.oncomplete = function (event) {
@@ -278,46 +284,24 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
         $scope.testInProgress = true;
 
-        var addressIdsToLoad = testDataFactory.getRandomIndices();
+        //var addressIdsToLoad = testDataFactory.getRandomIndices();
 
         var timeStart = new Date().getTime();
         var transaction = $scope.db.transaction([objStoreName], "readonly");
         var objectStore = transaction.objectStore(objStoreName);
-        //var index = objectStore.index("id");
-        //var index = objectStore.index("id");
-        //index.get("Donna").onsuccess = function (event) {
-        //alert("Donna's SSN is " + event.target.result.ssn);
-        //};
-
-
-        //for (var i = 0; i < amountOfData; i++) {
-        //   objectStore.get(addressIdsToLoad[i]);
-        //}
 
         objectStore.openCursor().onsuccess = function(event) {
 
             var cursor = event.target.result;
             if(cursor) {
-
-                //customers.push(cursor.value);
                 console.log(JSON.stringify(cursor.key));
                 console.log(JSON.stringify(cursor.value));
                 cursor.continue();
             }
-            else {
-                var timeEnd = new Date().getTime();
-                var timeDiff = timeEnd - timeStart;
 
-                $scope.results.push({iteration: iteration, time: timeDiff});
-                iteration++;
-                $scope.testInProgress = false;
-                $scope.$apply();
-                alert("Got all data");
-
-            }
         };
 
-    /*    transaction.oncomplete = function (event) {
+        transaction.oncomplete = function (event) {
             var timeEnd = new Date().getTime();
             var timeDiff = timeEnd - timeStart;
 
@@ -326,71 +310,12 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
             $scope.testInProgress = false;
             $scope.$apply();
 
-        };*/
+        };
 
         transaction.onerror = function (event) {
             console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
             $scope.testInProgress = false;
         };
     };
-
-    //THIS CODE WAS USED FOR PREVIOUS TESTS
-    //$scope.startPerformanceTest = function () {
-    //
-    //    var i = 0;
-    //
-    //    var addressIdsToLoad = testDataFactory.getRandomIndices();
-    //
-    //    console.log(addressIdsToLoad[100]);
-    //
-    //    if (addressIdsToLoad.length < amountOfData) {
-    //        alert('Warning: Too few address Ids defined. The test will produce wrong results!');
-    //    }
-    //
-    //    function readNext() {
-    //        var transaction = $scope.db.transaction([objStoreName], "readonly");
-    //
-    //        var objectStore = transaction.objectStore(objStoreName);
-    //
-    //        transaction.oncomplete = function (event) {
-    //            i++;
-    //            if (i < amountOfData) {
-    //                readNext();
-    //            } else {
-    //                console.log('transaction.oncomplete');
-    //                var timeEnd = new Date().getTime();
-    //
-    //                var timeDiff = timeEnd - timeStart;
-    //                $scope.testInProgress = false;
-    //                $scope.results.push({iteration:  iteration,  time: timeDiff});
-    //                iteration++;
-    //                $scope.$apply();
-    //            }
-    //
-    //        };
-    //
-    //        transaction.onerror = function (event) {
-    //            console.error('transaction.onerror');
-    //        };
-    //
-    //        var request = objectStore.get(addressIdsToLoad[i]);
-    //
-    //        request.onsuccess = function (event) {
-    //            //---Test-Output to check the returned values---
-    //            if (i == PE_TestR1_indexToCheck) {
-    //                console.log('check Test R1:' + JSON.stringify(request.result));
-    //            }
-    //
-    //        };
-    //
-    //    };
-    //
-    //    $scope.testInProgress = true;
-    //    $scope.$apply();
-    //
-    //    var timeStart = new Date().getTime();
-    //    readNext();
-    //
-    //};
 
 });

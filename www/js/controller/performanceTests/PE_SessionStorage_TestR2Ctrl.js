@@ -72,11 +72,11 @@ sdApp.controller('PE_SessionStorage_TestR2Ctrl', function ($scope, $rootScope, t
             sessionStorage.getItem(addressId + '_randomNumber2');
 
             //---Test-Output to check the returned values---
-            if (i == PE_TestR2_indexToCheck) {
+            /*
                 console.log('check Test R2 [1/3]: ' + sessionStorage.getItem(addressId + '_id'));
                 console.log('check Test R2 [2/3]: ' + sessionStorage.getItem(addressId + '_firstname'));
                 console.log('check Test R2 [3/3]: ' + sessionStorage.getItem(addressId + '_lastname'));
-            }
+            */
         }
 
         var timeEnd = new Date().getTime();

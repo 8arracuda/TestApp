@@ -64,9 +64,9 @@ sdApp.controller('PE_SessionStorage_TestR1Ctrl', function ($scope, $rootScope, t
 
 
             //---Test-Output to check the returned values---
-            if (i == PE_TestR1_indexToCheck) {
+            /*
                 console.log('check Test R1:' + sessionStorage.getItem(addressIdsToLoad[i]));
-            }
+            */
 
         }
 
