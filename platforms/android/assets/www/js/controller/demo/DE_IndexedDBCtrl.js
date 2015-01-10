@@ -2,7 +2,6 @@ sdApp.controller('DE_IndexedDBCtrl', function ($scope, $rootScope) {
 
     $rootScope.section = 'DE';
 
-
     //<für alle Tabs>
     $scope.stringForRightButton = 'show keys';
     $scope.stringForTitle = 'IndexedDB';
@@ -11,30 +10,24 @@ sdApp.controller('DE_IndexedDBCtrl', function ($scope, $rootScope) {
     };
     //</für alle Tabs>
 
-    $scope.enableTab_einzelwerte = function () {
+    $scope.enableTab_singleValues = function () {
         $scope.tab = 1;
-        //$scope.stringForTitle = 'IDB - Einzelwerte';
-        //$scope.stringForRightButton = 'EZW';
     };
 
-    $scope.enableTab_strDaten = function () {
+    $scope.enableTab_strData = function () {
         $scope.tab = 2;
-        //$scope.stringForTitle = 'IDB - strDaten';
-        //$scope.stringForRightButton = 'STR';
     };
 
-    $scope.enableTab_mediendaten = function () {
+    $scope.enableTab_mediaData = function () {
         $scope.tab = 3;
-        //$scope.stringForTitle = 'IDB - Mediendaten';
-        //$scope.stringForRightButton = 'MED';
     };
 
-    $scope.enableTab_einzelwerte();
+    $scope.enableTab_singleValues();
 
     //Functions for the Overlay
 
-    $scope.dbName = "PG12xp";
-    $scope.dbVersion = "2";
+    //$scope.dbName = "PG12xp";
+    //$scope.dbVersion = "2";
 
     $scope.dbName = "TestAppDatabase";
     $scope.dbVersion = "1";
@@ -47,7 +40,7 @@ sdApp.controller('DE_IndexedDBCtrl', function ($scope, $rootScope) {
         request.onerror = function (event) {
             console.error('request.onerror');
             alert("Database error: " + event.target.errorCode);
-            // Machen Sie etwas mit request.errorCode!
+
         };
         request.onsuccess = function (event) {
             console.log('request.onsuccess');

@@ -20,24 +20,24 @@
 
         <div class="btn-group justified nav-tabs">
             <a class="btn btn-default"
-               target="indexedDB_einzelwerte"
+               target="indexedDB_singleValues"
                toggle="on"
-               ng-click="enableTab_einzelwerte()"
-               active-class="active">Einzelwerte
+               ng-click="enableTab_singleValues()"
+               active-class="active">single values
             </a>
 
             <a class="btn btn-default"
-               target="indexedDB_strDaten"
+               target="indexedDB_strData"
                toggle="on"
-               ng-click="enableTab_strDaten()"
-               active-class="active">str Daten
+               ng-click="enableTab_strData()"
+               active-class="active">str. data
             </a>
 
             <a class="btn btn-default"
-               target="indexedDB_mediendaten"
+               target="indexedDB_mediaData"
                toggle="on"
-               ng-click="enableTab_mediendaten()"
-               active-class="active">Mediendaten
+               ng-click="enableTab_mediaData()"
+               active-class="active">media data
             </a>
 
         </div>
@@ -49,30 +49,30 @@
                  toggleable
                  ng-class="{active: tab == 1}"
                  default="active"
-                 id="indexedDB_einzelwerte"
+                 id="indexedDB_singleValues"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_indexedDB_einzelwerte.html"'></div>
+                <div ng-include src='"DE_indexedDB_singleValues.html"'></div>
 
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 2}"
-                 id="indexedDB_strDaten"
+                 id="indexedDB_strData"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_indexedDB_strDaten.html"'></div>
+                <div ng-include src='"DE_indexedDB_strData.html"'></div>
 
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 3}"
-                 id="indexedDB_mediendaten"
+                 id="indexedDB_mediaData"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_indexedDB_mediendaten.html"'></div>
+                <div ng-include src='"DE_indexedDB_mediaData.html"'></div>
             </div>
 
         </div>

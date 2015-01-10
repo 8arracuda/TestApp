@@ -102,7 +102,6 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
                 }
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
-                //console.log("Error : " + error.message);
             }
         );
 

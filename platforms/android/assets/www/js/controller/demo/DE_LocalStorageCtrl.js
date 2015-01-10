@@ -12,26 +12,20 @@ sdApp.controller('DE_LocalStorageCtrl', function ($scope, $rootScope) {
     };
     //</für alle Tabs>
 
-    $scope.enableTab_einzelwerte = function () {
+    $scope.enableTab_singleValues = function () {
         $scope.tab = 1;
-        //$scope.stringForTitle = 'LocalStorage';
-        //$scope.stringForRightButton = 'EZW';
     };
 
-    $scope.enableTab_strDaten = function () {
+    $scope.enableTab_strData = function () {
         $scope.tab = 2;
-        //$scope.stringForTitle = 'LS - strDaten';
-        //$scope.stringForRightButton = 'STR';
     };
 
-    $scope.enableTab_mediendaten = function () {
+    $scope.enableTab_mediaData = function () {
         $scope.tab = 3;
-        //$scope.stringForTitle = 'LS Mediendaten';
-        //$scope.stringForRightButton = 'MED';
     };
 
 
-    $scope.enableTab_einzelwerte();
+    $scope.enableTab_singleValues();
 
     //Functions for the Overlay
 
