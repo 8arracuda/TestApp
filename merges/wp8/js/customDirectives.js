@@ -5,6 +5,7 @@ sdApp.directive('ngStrDatenDatasetLoader', function () {
         templateUrl: '/www/customAngularDirectives/StrDatenDatasetLoader.html'
     }
 
+
 })
     .controller('strDatenDatasetLoaderCtrl', function ($scope, $rootScope, testDataFactory) {
 
