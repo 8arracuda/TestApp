@@ -51,18 +51,12 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
 
     };
 
-    function clearTable() {
+    function clearTable(callback) {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
-        });
+            tx.executeSql("DELETE FROM " + tableName, [], $scope.errorHandlerWebSQL);
+        }, $scope.errorHandlerWebSQL, callback);
 
-        function clearedTableCallback(transaction, results) {
-            console.log('Table ' + tableName + ' has been cleared');
-            $scope.isPrepared = true;
-            $scope.$apply();
-
-        }
     };
 
     $scope.initWebSQL = function () {
@@ -89,7 +83,7 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
         console.log('errorHandlerWebSQL executed');
     };
 
-    function saveAddressData() {
+    function saveAddressData(callback) {
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < dataForPreparation.length; i++) {
 
@@ -99,7 +93,7 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
                 }
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
-            }
+            }, callback
         );
 
     }
@@ -112,17 +106,17 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
 
-                    tx.executeSql("DELETE FROM " + tableName + " WHERE id = ?", [i + '']);
+                    tx.executeSql("DELETE FROM PE_TestD1 WHERE id = ?", [i + '']);
 
                 }
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
                 console.log("Error : " + error.message);
-            }, function() {
+            }, function () {
                 var timeEnd = new Date().getTime();
 
                 var timeDiff = timeEnd - timeStart;
-                $scope.results.push({iteration:  iteration,  time: timeDiff});
+                $scope.results.push({iteration: iteration, time: timeDiff});
                 $scope.testInProgress = false;
                 $scope.isPrepared = false;
                 iteration++;
@@ -134,15 +128,22 @@ sdApp.controller('PE_WebSql_TestD1Ctrl', function ($scope, $rootScope, testDataF
     };
 
     $scope.prepare = function () {
-        $scope.prepareInProgress=true;
+        $scope.prepareInProgress = true;
         $scope.$apply();
-        clearTable();
-        loadDataForPreparation();
-        saveAddressData();
-        $scope.prepareInProgress=false;
-        $scope.isPrepared = true;
-        console.log('prepare function finished');
-        $scope.$apply();
+        setTimeout(function () {
+            clearTable(function () {
+                loadDataForPreparation();
+                saveAddressData(function () {
+                    $scope.prepareInProgress = false;
+                    $scope.isPrepared = true;
+                    $scope.$apply();
+                });
+
+            });
+
+
+        }, 1000);
+
     };
 
     function loadDataForPreparation() {

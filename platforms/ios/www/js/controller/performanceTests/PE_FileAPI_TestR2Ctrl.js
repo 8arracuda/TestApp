@@ -92,7 +92,9 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
                     function readNextFile() {
 
                         var currentAddress = parseInt(i / 9);
-                        var id = dataForPreparation[currentAddress][0];
+                        //var id = dataForPreparation[currentAddress][0];
+                        var id = addressIdsToLoad[currentAddress][0];
+                        console.log(id);
                         switch (i % 9) {
                             case 0:
                                 filename = +id + '_id.txt';
@@ -128,13 +130,13 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
                                 var reader = new FileReader();
 
                                 reader.onloadend = function (e) {
-                                    i+=1;
+                                    i += 1;
                                     //---Test-Output to check the returned values---
-                                    //if (id == PE_TestR2_indexToCheck) {
-                                    //    console.log('check Test R1:' + JSON.stringify(this.result));
-                                    //}
+                                    /*
+                                     console.log('check Test R1:' + JSON.stringify(this.result));
+                                     */
 
-                                    if (i == amountOfData*9) {
+                                    if (i == amountOfData * 9) {
 
                                         var timeEnd = new Date().getTime();
 
@@ -163,109 +165,6 @@ sdApp.controller('PE_FileAPI_TestR2Ctrl', function ($scope, $rootScope, testData
 
 
         };
-
-        //var timeStart = new Date().getTime();
-        //window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
-        //    function (fs) {
-        //
-        //        function loadAddress(i) {
-        //
-        //            var filename = addressIdsToLoad[i] + '.txt';
-        //            fs.root.getFile(filename, {}, function (fileEntry) {
-        //
-        //                // Get a File object representing the file,
-        //                // then use FileReader to read its contents.
-        //                fileEntry.file(function (file) {
-        //                    var reader = new FileReader();
-        //
-        //                    reader.onloadend = function (e) {
-        //
-        //                        //---Test-Output to check the returned values---
-        //                        //  console.log('check Test R2:' + JSON.stringify(this.result));
-        //
-        //                        if (i == amountOfData - 1) {
-        //
-        //                            var timeEnd = new Date().getTime();
-        //
-        //                            var timeDiff = timeEnd - timeStart;
-        //                            $scope.results.push({iteration: iteration, time: timeDiff});
-        //                            $scope.testInProgress = false;
-        //                            $scope.$apply();
-        //
-        //                            iteration++;
-        //                        } else {
-        //                            loadAddress(i + 1);
-        //                        }
-        //                    };
-        //
-        //                    reader.readAsText(file);
-        //                }, errorHandler);
-        //            }, errorHandler);
-        //        }
-        //
-        //        loadAddress(0);
-        //
-        //    },
-        //    errorHandler
-        //);
-
-
-        //Not working on Android -> NOT_FOUND_ERR(1)
-        ////asynchronous requests for fetching the addresses
-        //$scope.startPerformanceTest_parallel = function () {
-        //    var callbackNumber = 0;
-        //    $scope.testInProgress = true;
-        //    $scope.$apply();
-        //
-        //    var addressIdsToLoad = testDataFactory.getRandomIndices();
-        //
-        //    var timeStart = new Date().getTime();
-        //
-        //    window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
-        //        function (fs) {
-        //
-        //            for (var i = 0; i < addressIdsToLoad.length; i++) {
-        //
-        //                var filename = 'address_' + addressIdsToLoad[i] + '.txt';
-        //
-        //                fs.root.getFile(filename, {}, function (fileEntry) {
-        //
-        //                    // Get a File object representing the file,
-        //                    // then use FileReader to read its contents.
-        //                    fileEntry.file(function (file) {
-        //                        var reader = new FileReader();
-        //
-        //                        reader.onloadend = function (e) {
-        //
-        //                            //---Test-Output to check the returned values---
-        //                            //console.log(JSON.stringify(this.result));
-        //
-        //                            callbackNumber++;
-        //                            if (callbackNumber == amountOfData) {
-        //                                var timeEnd = new Date().getTime();
-        //
-        //                                var timeDiff = timeEnd - timeStart;
-        //                                $scope.results.push({iteration:  iteration,  time: timeDiff});
-        //                                $scope.testInProgress = false;
-        //                                $scope.$apply();
-        //
-        //                                iteration++;
-        //                            }
-        //
-        //                        };
-        //
-        //                        reader.readAsText(file);
-        //                    }, errorHandler);
-        //                }, errorHandler);
-        //            }
-        //        },
-        //        errorHandler
-        //    )
-        //    ;
-        //
-        //
-        //
-        //};
 
         function loadForPreparationData() {
 

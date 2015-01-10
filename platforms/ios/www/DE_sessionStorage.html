@@ -18,24 +18,24 @@
 
         <div class="btn-group justified nav-tabs">
             <a class="btn btn-default"
-               target="sessionStorage_einzelwerte"
+               target="sessionStorage_singleValues"
                toggle="on"
-               ng-click="enableTab_einzelwerte()"
-               active-class="active">Einzelwerte
+               ng-click="enableTab_singleValues()"
+               active-class="active">single values
             </a>
 
             <a class="btn btn-default"
-               target="sessionStorage_strDaten"
+               target="sessionStorage_strData"
                toggle="on"
-               ng-click="enableTab_strDaten()"
-               active-class="active">str Daten
+               ng-click="enableTab_strData()"
+               active-class="active">str. data
             </a>
 
             <a class="btn btn-default"
-               target="sessionStorage_mediendaten"
+               target="sessionStorage_mediaData"
                toggle="on"
-               ng-click="enableTab_mediendaten()"
-               active-class="active">Mediendaten
+               ng-click="enableTab_mediaData()"
+               active-class="active">media data
             </a>
 
         </div>
@@ -46,30 +46,30 @@
                  toggleable
                  ng-class="{active: tab == 1}"
                  default="active"
-                 id="sessionStorage_einzelwerte"
+                 id="sessionStorage_singleValues"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_sessionStorage_einzelwerte.html"'></div>
+                <div ng-include src='"DE_sessionStorage_singleValues.html"'></div>
 
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 2}"
-                 id="sessionStorage_strDaten"
+                 id="sessionStorage_strData"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_sessionStorage_strDaten.html"'></div>
+                <div ng-include src='"DE_sessionStorage_strData.html"'></div>
 
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 3}"
-                 id="sessionStorage_mediendaten"
+                 id="sessionStorage_mediaData"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_sessionStorage_mediendaten.html"'></div>
+                <div ng-include src='"DE_sessionStorage_mediaData.html"'></div>
             </div>
 
         </div>

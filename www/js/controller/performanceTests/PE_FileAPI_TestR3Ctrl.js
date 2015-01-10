@@ -61,8 +61,6 @@ sdApp.controller('PE_FileAPI_TestR3Ctrl', function ($scope, $rootScope, testData
     };
 
 
-
-
     $scope.startPerformanceTest = function () {
         console.log('startPerformanceTest_variant2');
         //var callbackNumber = 0;

@@ -56,19 +56,22 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
     };
 
     $scope.prepare = function () {
-        $scope.prepareInProgress = false;
+        $scope.prepareInProgress = true;
         $scope.$apply();
-        clearTable();
-        loadDataForPreparation();
-        saveAddressData();
-        $scope.prepareInProgress = false;
-        $scope.isPrepared = true;
-        console.log('prepare function finished');
-        $scope.$apply();
+        clearTable(function() {
+            loadDataForPreparation();
+            saveAddressData(function () {
+                $scope.prepareInProgress = false;
+                $scope.isPrepared = true;
+                console.log('prepare function finished');
+                $scope.$apply();
+            });
+
+        });
 
     };
 
-    function saveAddressData() {
+    function saveAddressData(callback) {
 
         console.log('saveTable1ToWebSQL start');
 
@@ -83,7 +86,7 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
         }, function errorHandler(transaction, error) {
             alert("Error : " + transaction.message);
             alert("Error : " + error.message);
-        });
+        }, callback);
 
         console.log('saveTable1ToWebSQL executed');
 
@@ -95,18 +98,11 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
 
     };
 
-    function clearTable() {
+    function clearTable(callback) {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
-        });
-
-        function clearedTableCallback(transaction, results) {
-            console.log('Table ' + tableName + ' has been cleared');
-            $scope.isPrepared = true;
-            $scope.$apply();
-
-        }
+            tx.executeSql("DELETE FROM " + tableName, [], $scope.errorHandlerWebSQL);
+        }, $scope.errorHandlerWebSQL, callback);
 
     };
 
@@ -148,7 +144,7 @@ sdApp.controller('PE_WebSql_TestR2Ctrl', function ($scope, $rootScope, testDataF
 
             for (var i = 0; i < amountOfData; i++) {
 
-                tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
+                tx.executeSql("SELECT * FROM PE_TestR2 WHERE id = ?", [addressIdsToLoad[i]], function (transaction, results) {
                     //---Test-Output to check the returned values---
                     //console.log('check Test R1:' + JSON.stringify(results.rows.item(0)));
                 });

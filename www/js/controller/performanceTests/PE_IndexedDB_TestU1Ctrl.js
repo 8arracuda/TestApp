@@ -103,7 +103,7 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
         }
     };
 
-    function saveAddressData() {
+    function saveAddressData(callback) {
 
         $scope.prepareInProgress = true;
         $scope.$apply();
@@ -121,9 +121,7 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
 
         transaction.oncomplete = function (event) {
 
-            $scope.isPrepared = true;
-            $scope.prepareInProgress = false;
-            $scope.$apply();
+            callback();
 
         };
 
@@ -138,11 +136,13 @@ sdApp.controller('PE_IndexedDB_TestU1Ctrl', function ($scope, $rootScope, testDa
         $scope.prepareInProgress = true;
         $scope.$apply();
         IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
-            saveAddressData();
-            $scope.prepareInProgress = false;
-            $scope.isPrepared = true;
-            console.log('prepare function finished');
-            $scope.$apply();
+            saveAddressData(function() {
+                $scope.prepareInProgress = false;
+                $scope.isPrepared = true;
+                console.log('prepare function finished');
+                $scope.$apply();
+            });
+
         });
     };
 

@@ -63,7 +63,9 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         $scope.$apply();
     };
 
-    $scope.openDatabase = function () {
+
+    //no index
+    $scope.openDatabaseAlternative1 = function () {
         console.log('openDatabase start');
 
         //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
@@ -71,6 +73,50 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
+            dbName = "PE_TestR1_Alt1";
+            var request = window.indexedDB.open(dbName, 1);
+
+            request.onerror = function (event) {
+                console.error('request.onerror');
+                alert("Database error: " + event.target.errorCode);
+
+            };
+            request.onsuccess = function (event) {
+                console.log('request.onsuccess (in openDatabase)');
+                $scope.db = request.result;
+
+                //for updating the "status-light" on the openDatabase button
+                $scope.databaseOpened = true;
+                $scope.$apply();
+            };
+
+            request.onupgradeneeded = function (event) {
+
+                $scope.db = event.target.result;
+
+                //on update: when objectStore existed
+                //before it needs to be deleted, before it's created again with new keys.
+                //$scope.db.deleteObjectStore(objStoreName);
+
+                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "id"});
+
+                //objectStore.createIndex("id", "id", {unique: true});
+
+            }
+        }
+    };
+
+
+    //index -id- unique: true
+    $scope.openDatabaseAlternative2 = function () {
+        console.log('openDatabase start');
+
+        //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
+        if (!window.indexedDB) {
+            window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
+        } else {
+
+            dbName = "PE_TestR1_Alt2";
             var request = window.indexedDB.open(dbName, 1);
 
             request.onerror = function (event) {
@@ -103,8 +149,50 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         }
     };
 
-    function saveAddressData() {
-        console.log('saveAddressData');
+
+    //Index -id- unique: false
+    $scope.openDatabaseAlternative3 = function () {
+        console.log('openDatabase start');
+
+        //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
+        if (!window.indexedDB) {
+            window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
+        } else {
+
+            dbName = "PE_TestR1_Alt3";
+            var request = window.indexedDB.open(dbName, 1);
+
+            request.onerror = function (event) {
+                console.error('request.onerror');
+                alert("Database error: " + event.target.errorCode);
+
+            };
+            request.onsuccess = function (event) {
+                console.log('request.onsuccess (in openDatabase)');
+                $scope.db = request.result;
+
+                //for updating the "status-light" on the openDatabase button
+                $scope.databaseOpened = true;
+                $scope.$apply();
+            };
+
+            request.onupgradeneeded = function (event) {
+
+                $scope.db = event.target.result;
+
+                //on update: when objectStore existed
+                //before it needs to be deleted, before it's created again with new keys.
+                //$scope.db.deleteObjectStore(objStoreName);
+
+                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "id"});
+
+                objectStore.createIndex("id", "id", {unique: false});
+
+            }
+        }
+    };
+
+    function saveAddressData(callback) {
 
         var transaction = $scope.db.transaction([objStoreName], "readwrite");
 
@@ -127,9 +215,7 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         }
 
         transaction.oncomplete = function (event) {
-            console.log('transaction.oncomplete (in saveAddressData)');
-            $scope.isPrepared = true;
-            $scope.$apply();
+            callback();
         };
 
         transaction.onerror = function (event) {
@@ -143,15 +229,18 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         $scope.$apply();
         IndexedDBClearObjectStore.clearObjectStore($scope.db, objStoreName, function () {
             loadDataForPreparation();
-            saveAddressData();
-            $scope.prepareInProgress = false;
-            $scope.isPrepared = true;
-            console.log('prepare function finished');
-            $scope.$apply();
+            saveAddressData(function() {
+                $scope.prepareInProgress = false;
+                $scope.isPrepared = true;
+                console.log('prepare function finished');
+                $scope.$apply();
+            });
+
         });
     };
 
-    $scope.startPerformanceTest = function () {
+    //get addresses in a loop
+    $scope.startPerformanceTest1 = function () {
 
         $scope.testInProgress = true;
 
@@ -163,6 +252,13 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
 
         for (var i = 0; i < amountOfData; i++) {
             objectStore.get(addressIdsToLoad[i]);
+
+            /*
+            var idbRequest = objectStore.get(addressIdsToLoad[i]);
+            idbRequest.onsuccess = function (event) {
+                console.dir(event.target.result);
+            };
+            */
         }
 
         transaction.oncomplete = function (event) {
@@ -183,63 +279,43 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         };
     };
 
-    //THIS CODE WAS USED FOR PREVIOUS TESTS
-    //$scope.startPerformanceTest = function () {
-    //
-    //    var i = 0;
-    //
-    //    var addressIdsToLoad = testDataFactory.getRandomIndices();
-    //
-    //    console.log(addressIdsToLoad[100]);
-    //
-    //    if (addressIdsToLoad.length < amountOfData) {
-    //        alert('Warning: Too few address Ids defined. The test will produce wrong results!');
-    //    }
-    //
-    //    function readNext() {
-    //        var transaction = $scope.db.transaction([objStoreName], "readonly");
-    //
-    //        var objectStore = transaction.objectStore(objStoreName);
-    //
-    //        transaction.oncomplete = function (event) {
-    //            i++;
-    //            if (i < amountOfData) {
-    //                readNext();
-    //            } else {
-    //                console.log('transaction.oncomplete');
-    //                var timeEnd = new Date().getTime();
-    //
-    //                var timeDiff = timeEnd - timeStart;
-    //                $scope.testInProgress = false;
-    //                $scope.results.push({iteration:  iteration,  time: timeDiff});
-    //                iteration++;
-    //                $scope.$apply();
-    //            }
-    //
-    //        };
-    //
-    //        transaction.onerror = function (event) {
-    //            console.error('transaction.onerror');
-    //        };
-    //
-    //        var request = objectStore.get(addressIdsToLoad[i]);
-    //
-    //        request.onsuccess = function (event) {
-    //            //---Test-Output to check the returned values---
-    //            if (i == PE_TestR1_indexToCheck) {
-    //                console.log('check Test R1:' + JSON.stringify(request.result));
-    //            }
-    //
-    //        };
-    //
-    //    };
-    //
-    //    $scope.testInProgress = true;
-    //    $scope.$apply();
-    //
-    //    var timeStart = new Date().getTime();
-    //    readNext();
-    //
-    //};
+    //get via an cursor
+    $scope.startPerformanceTest2 = function () {
+
+        $scope.testInProgress = true;
+
+        //var addressIdsToLoad = testDataFactory.getRandomIndices();
+
+        var timeStart = new Date().getTime();
+        var transaction = $scope.db.transaction([objStoreName], "readonly");
+        var objectStore = transaction.objectStore(objStoreName);
+
+        objectStore.openCursor().onsuccess = function(event) {
+
+            var cursor = event.target.result;
+            if(cursor) {
+                console.log(JSON.stringify(cursor.key));
+                console.log(JSON.stringify(cursor.value));
+                cursor.continue();
+            }
+
+        };
+
+        transaction.oncomplete = function (event) {
+            var timeEnd = new Date().getTime();
+            var timeDiff = timeEnd - timeStart;
+
+            $scope.results.push({iteration: iteration, time: timeDiff});
+            iteration++;
+            $scope.testInProgress = false;
+            $scope.$apply();
+
+        };
+
+        transaction.onerror = function (event) {
+            console.error('transaction.onerror (in startPerformanceTest_onlyOne)');
+            $scope.testInProgress = false;
+        };
+    };
 
 });

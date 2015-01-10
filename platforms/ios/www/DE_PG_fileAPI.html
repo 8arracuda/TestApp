@@ -16,21 +16,21 @@
                target="PG_FileAPI_einzelwerte"
                toggle="on"
                ng-click="enableTab_einzelwerte()"
-               active-class="active">Einzelwerte
+               active-class="active">single values
             </a>
 
             <a class="btn btn-default"
-               target="PG_FileAPI_strDaten"
+               target="PG_FileAPI_strData"
                toggle="on"
-               ng-click="enableTab_strDaten()"
-               active-class="active">str Daten
+               ng-click="enableTab_strData()"
+               active-class="active">str. data
             </a>
 
             <a class="btn btn-default"
-               target="PG_FileAPI_mediendaten"
+               target="PG_FileAPI_mediaData"
                toggle="on"
-               ng-click="enableTab_mediendaten()"
-               active-class="active">Mediendaten
+               ng-click="enableTab_mediaData()"
+               active-class="active">media data
             </a>
 
         </div>
@@ -44,27 +44,27 @@
                  id="PG_FileAPI_einzelwerte"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_PG_fileAPI_einzelwerte.html"'></div>
+                <div ng-include src='"DE_PG_fileAPI_singleValues.html"'></div>
 
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 2}"
-                 id="PG_FileAPI_strDaten"
+                 id="PG_FileAPI_strData"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_PG_fileAPI_strDaten.html"'></div>
+                <div ng-include src='"DE_PG_fileAPI_strData.html"'></div>
 
             </div>
 
             <div class="tab-pane"
                  toggleable
                  ng-class="{active: tab == 3}"
-                 id="PG_FileAPI_mediendaten"
+                 id="PG_FileAPI_mediaData"
                  exclusion-group="myTabs">
 
-                <div ng-include src='"DE_PG_fileAPI_mediendaten.html"'></div>
+                <div ng-include src='"DE_PG_fileAPI_mediaData.html"'></div>
             </div>
 
         </div>

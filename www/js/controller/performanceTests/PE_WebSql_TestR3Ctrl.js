@@ -53,12 +53,19 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
     };
 
     $scope.prepare = function () {
-        clearTable();
-        saveAddressData();
+        $scope.prepareInProgress = true;
+        $scope.$apply();
+        clearTable(function () {
+            saveAddressData(function () {
+                $scope.prepareInProgress = false;
+                $scope.isPrepared = true;
+                $scope.$apply();
+            });
+        });
 
     };
 
-    function saveAddressData() {
+    function saveAddressData(callback) {
 
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
@@ -69,27 +76,18 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
                 console.log("Error : " + error.message);
-            }
+            }, callback
         );
-
         $scope.isPrepared = false;
         $scope.$apply();
 
     }
 
-
-    function clearTable() {
+    function clearTable(callback) {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
-        });
-
-        function clearedTableCallback(transaction, results) {
-            console.log('Table ' + tableName + ' has been cleared');
-            $scope.isPrepared = true;
-            $scope.$apply();
-
-        }
+            tx.executeSql("DELETE FROM " + tableName, [], $scope.errorHandlerWebSQL);
+        }, $scope.errorHandlerWebSQL, callback);
 
     };
 
@@ -126,14 +124,13 @@ sdApp.controller('PE_WebSql_TestR3Ctrl', function ($scope, $rootScope, testDataF
 
             for (var i = 0; i < amountOfData; i++) {
 
-                tx.executeSql("SELECT * FROM " + tableName + " WHERE id = ?", ['dataset_' + i], function (transaction, results) {
+                tx.executeSql("SELECT * FROM PE_TestR3 WHERE id = ?", ['dataset_' + i], function (transaction, results) {
 
                     //---Test-Output to check the returned values---
-                    console.log('check Test R3:' + JSON.stringify(results.rows.item(0)).substr(1,100));
+                    //console.log('check Test R3:' + JSON.stringify(results.rows.item(0)).substr(1, 100));
                 });
 
             }
-
 
         }, function errorHandler(transaction, error) {
             console.log("Error : " + transaction.message);

@@ -118,6 +118,7 @@ sdApp.config(function ($routeProvider) {
             controller: 'DirectoryVariablesCtrl'
         }).
         otherwise({
-            redirectTo: '/PE_localStorage'
+            //redirectTo: '/PE_localStorage'
+            redirectTo: '/PE_fileAPI'
         });
 });

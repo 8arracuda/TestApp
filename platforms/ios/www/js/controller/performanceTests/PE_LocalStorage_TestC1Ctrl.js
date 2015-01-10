@@ -72,7 +72,6 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
                 iteration++;
             }, 2000);
 
-
         };
 
         function clearLocalStorage() {
@@ -98,5 +97,4 @@ sdApp.controller('PE_LocalStorage_TestC1Ctrl', function ($scope, $rootScope, tes
         };
 
     }
-)
-;
+);

@@ -52,18 +52,12 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
 
     };
 
-    function clearTable() {
+    function clearTable(callback) {
 
         $scope.db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM " + tableName, [], clearedTableCallback, $scope.errorHandlerWebSQL);
-        });
+            tx.executeSql("DELETE FROM " + tableName, [], $scope.errorHandlerWebSQL);
+        }, $scope.errorHandlerWebSQL, callback);
 
-        function clearedTableCallback(transaction, results) {
-            console.log('Table ' + tableName + ' has been cleared');
-            $scope.isPrepared = true;
-            $scope.$apply();
-
-        }
     };
 
     $scope.initWebSQL = function () {
@@ -91,8 +85,7 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
         console.log('errorHandlerWebSQL executed');
     };
 
-
-    function saveAddressData() {
+    function saveAddressData(callback) {
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < dataForPreparation.length; i++) {
 
@@ -102,9 +95,8 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
                 }
             }, function errorHandler(transaction, error) {
                 console.log("Error : " + transaction.message);
-            }
+            }, callback
         );
-
     }
 
     $scope.startPerformanceTest = function () {
@@ -115,8 +107,7 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
         $scope.db.transaction(function (tx) {
                 for (var i = 0; i < amountOfData; i++) {
 
-                    //tx.executeSql("DELETE FROM " + tableName + " WHERE id = ?", [i + '']);
-                    tx.executeSql("UPDATE " + tableName + " SET address = ? WHERE id = ?", [JSON.stringify(dataForUpdate[i]), dataForUpdate[i][0] + '']);
+                    tx.executeSql("UPDATE PE_TestU1 SET address = ? WHERE id = ?", [JSON.stringify(dataForUpdate[i]), dataForUpdate[i][0] + '']);
 
                 }
             }, function errorHandler(transaction, error) {
@@ -137,57 +128,21 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
 
     };
 
-    //THIS IMPLEMENTATION HAS BEEN USED FOR THE TESTS!!!
-    //$scope.startPerformanceTest = function () {
-    //
-    //    $scope.testInProgress = true;
-    //
-    //    onSuccessCounter = 0;
-    //    var timeStart = new Date().getTime();
-    //    $scope.db.transaction(function (tx) {
-    //            for (var i = 0; i < amountOfData; i++) {
-    //
-    //                tx.executeSql("UPDATE " + tableName + " SET address = ? WHERE id = ?", [JSON.stringify(dataForUpdate[i]), dataForUpdate[i][0] + '']);
-    //
-    //                onSuccessCounter = onSuccessCounter + 1;
-    //
-    //                if (onSuccessCounter == amountOfData) {
-    //                    var timeEnd = new Date().getTime();
-    //
-    //                    var timeDiff = timeEnd - timeStart;
-    //                    $scope.results.push({iteration:  iteration,  time: timeDiff});
-    //                    $scope.testInProgress = false;
-    //                    $scope.isPrepared = false;
-    //                    iteration++;
-    //                    $scope.$apply();
-    //                }
-    //
-    //            }
-    //        }, function errorHandler(transaction, error) {
-    //            console.log("Error : " + transaction.message);
-    //            console.log("Error : " + error.message);
-    //        }
-    //    );
-    //
-    //
-    //
-    //    console.log(amountOfData + ' items updated');
-    //
-    //};
-
-
     $scope.prepare = function () {
         $scope.prepareInProgress=true;
         $scope.$apply();
-        clearTable();
-        loadDataForPreparation();
-        console.dir(dataForPreparation);
-        saveAddressData();
-        loadDataForUpdate();
-        $scope.prepareInProgress=false;
-        $scope.isPrepared = true;
-        console.log('prepare function finished');
-        $scope.$apply();
+        clearTable(function() {
+            loadDataForPreparation();
+            saveAddressData(function() {
+                loadDataForUpdate();
+                $scope.prepareInProgress=false;
+                $scope.isPrepared = true;
+                console.log('prepare function finished');
+                $scope.$apply();
+            });
+
+        });
+
     };
 
     function loadDataForPreparation() {
@@ -199,6 +154,5 @@ sdApp.controller('PE_WebSql_TestU1Ctrl', function ($scope, $rootScope, testDataF
     function loadDataForUpdate() {
         dataForUpdate = testDataFactory.testDataForUpdateTests();
     }
-
 
 });

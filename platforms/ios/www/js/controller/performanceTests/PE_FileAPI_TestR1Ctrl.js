@@ -70,11 +70,9 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
     };
 
-    //sequential requests for fetching the addresses
-    //$scope.startPerformanceTest_sequential = function () {
     $scope.startPerformanceTest = function () {
         console.log('startPerformanceTest_variant2');
-        //var callbackNumber = 0;
+
         $scope.testInProgress = true;
         $scope.$apply();
 
@@ -131,63 +129,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
     };
 
-    //Not working on Android -> NOT_FOUND_ERR(1)
-    ////asynchronous requests for fetching the addresses
-    //$scope.startPerformanceTest_parallel = function () {
-    //    var callbackNumber = 0;
-    //    $scope.testInProgress = true;
-    //    $scope.$apply();
-    //
-    //    var addressIdsToLoad = testDataFactory.getRandomIndices();
-    //
-    //    var timeStart = new Date().getTime();
-    //
-    //    window.requestFileSystem(window.PERSISTENT, 1024 * 1024,
-    //        function (fs) {
-    //
-    //            for (var i = 0; i < addressIdsToLoad.length; i++) {
-    //
-    //                var filename = 'address_' + addressIdsToLoad[i] + '.txt';
-    //
-    //                fs.root.getFile(filename, {}, function (fileEntry) {
-    //
-    //                    // Get a File object representing the file,
-    //                    // then use FileReader to read its contents.
-    //                    fileEntry.file(function (file) {
-    //                        var reader = new FileReader();
-    //
-    //                        reader.onloadend = function (e) {
-    //
-    //                            //---Test-Output to check the returned values---
-    //                            //console.log(JSON.stringify(this.result));
-    //
-    //                            callbackNumber++;
-    //                            if (callbackNumber == amountOfData) {
-    //                                var timeEnd = new Date().getTime();
-    //
-    //                                var timeDiff = timeEnd - timeStart;
-    //                                $scope.results.push({iteration:  iteration,  time: timeDiff});
-    //                                $scope.testInProgress = false;
-    //                                $scope.$apply();
-    //
-    //                                iteration++;
-    //                            }
-    //
-    //                        };
-    //
-    //                        reader.readAsText(file);
-    //                    }, errorHandler);
-    //                }, errorHandler);
-    //            }
-    //        },
-    //        errorHandler
-    //    )
-    //    ;
-    //
-    //
-    //
-    //};
-
     function loadForPreparationData() {
 
         dataForPreparation = testDataFactory.testData();
@@ -221,7 +162,6 @@ sdApp.controller('PE_FileAPI_TestR1Ctrl', function ($scope, $rootScope, testData
 
                                     fileWriter.onerror = function (e) {
                                         console.log('Write failed: ' + e.toString());
-                                        //console.dir(e);
                                     };
 
                                     //overwrites the file from the beginning

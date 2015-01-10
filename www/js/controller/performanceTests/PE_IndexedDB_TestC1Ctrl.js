@@ -132,7 +132,6 @@ sdApp.controller('PE_IndexedDB_TestC1Ctrl', function ($scope, $rootScope, testDa
         for (var i = 0; i < amountOfData; i++) {
             //var objectToStore = {id: data[i][0], value: data[i]};
             objectStore.add(data[i], data[i][0]);
-
         }
 
         transaction.oncomplete = function (event) {
