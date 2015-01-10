@@ -1,66 +1,37 @@
-//sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
-//
-//    $rootScope.section = 'DE';
-//
-//});
-
 sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
 
     $rootScope.section = 'DE';
 
-    //<für alle Tabs>
     $scope.stringForRightButton = 'show keys';
     //$scope.functionForRightButton = function () {
     //    $rootScope.toggle('myOverlay', 'on');
     //};
     $scope.stringForTitle = 'SQLite Plugin';
-    //</für alle Tabs>
 
-    $scope.enableTab_einzelwerte = function () {
+    $scope.enableTab_singleValues = function () {
         $scope.tab = 1;
-        //$scope.stringForTitle = 'WS - Einzelwerte';
-        //$scope.stringForRightButton = 'EZW';
         $scope.functionForRightButton = function () {
-            $rootScope.toggle('Overlay_PG_SQLite_Einzelwerte', 'on');
+            $rootScope.toggle('Overlay_PG_SQLite_singleValues', 'on');
         };
     };
 
-    $scope.enableTab_strDaten = function () {
+    $scope.enableTab_strData = function () {
         $scope.tab = 2;
-        //$scope.stringForTitle = 'WS - strDaten';
-        //$scope.stringForRightButton = 'STR';
         $scope.functionForRightButton = function () {
-            $rootScope.toggle('Overlay_PG_SQLite_strDaten', 'on');
+            $rootScope.toggle('Overlay_PG_SQLite_strData', 'on');
         };
     };
 
-    $scope.enableTab_mediendaten = function () {
+    $scope.enableTab_mediaData = function () {
         $scope.tab = 3;
-        //$scope.stringForTitle = 'WS Mediendaten';
-        //$scope.stringForRightButton = 'MED';
         $scope.functionForRightButton = function () {
-            $rootScope.toggle('Overlay_PG_SQLite_Mediendaten', 'on');
+            $rootScope.toggle('Overlay_PG_SQLite_mediaData ', 'on');
         };
     };
 
-    //$scope.databases = [];
-    //$scope.initWebSQL();
-    //
-    //
-    //
-    //
-    //$scope.initWebSQL = function () {
-    //    console.log('initWebSQL start');
-    //    dbWebSQL = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
-    //    //dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL, $scope.dbReadyWebSQL);
-    //    dbWebSQL.transaction($scope.setupWebSQL, $scope.errorHandlerWebSQL);
-    //    console.log('initWebSQL executed');
-    //}
-
-    $scope.enableTab_einzelwerte();
+    $scope.enableTab_singleValues();
 
     //Functions for the Overlay
-
     $scope.initWebSQL = function () {
         console.log('initWebSQL start');
         //dbWebSQL = window.openDatabase("test", "1.0", "test", 2 * 1024 * 1024);
@@ -144,7 +115,7 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
     };
 
     //for StrDaten
-    $scope.showContentOfTableStrDaten = function () {
+    $scope.showContentOfTableStrData = function () {
 
         console.log('showContentOfTableStrDaten start');
         $scope.data = [];
@@ -154,10 +125,10 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
 
             tx.executeSql('SELECT * FROM strDaten', [], function (transaction, results) {
 
-                $scope.dataForOverlayStrDaten = [];
+                $scope.dataForOverlayStrData = [];
                 for (var j = 0; j < results.rows.length; j++) {
                     var row = results.rows.item(j);
-                    $scope.dataForOverlayStrDaten.push(row);
+                    $scope.dataForOverlayStrData.push(row);
                 }
 
                 //alert(JSON.stringify($scope.dataForOverlayStrDaten));
@@ -174,7 +145,7 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
 
     };
 
-    $scope.deleteContentOfTableStrDaten = function () {
+    $scope.deleteContentOfTableStrData = function () {
 
         dbWebSQL.transaction(function (tx) {
 
@@ -203,7 +174,7 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
 
 
     //for Mediendaten
-    $scope.showContentOfTableMediendaten = function () {
+    $scope.showContentOfTableMediendata = function () {
 
         console.log('showContentOfTableMediendaten start');
         $scope.data = [];
@@ -211,12 +182,12 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
 
         dbWebSQL.transaction(function (tx) {
 
-            tx.executeSql('SELECT * FROM mediendaten', [], function (transaction, results) {
+            tx.executeSql('SELECT * FROM mediadata', [], function (transaction, results) {
 
-                $scope.dataForOverlayMediendaten = [];
+                $scope.dataForOverlayMediendata = [];
                 for (var j = 0; j < results.rows.length; j++) {
                     var row = results.rows.item(j);
-                    $scope.dataForOverlayMediendaten.push(row);
+                    $scope.dataForOverlayMediendata.push(row);
                 }
 
                 //alert(JSON.stringify($scope.dataForOverlay));
@@ -233,11 +204,11 @@ sdApp.controller('DE_PGSQLiteCtrl', function ($scope, $rootScope) {
 
     };
 
-    $scope.deleteContentOfTableMediendaten = function () {
+    $scope.deleteContentOfTableMediendata = function () {
 
         dbWebSQL.transaction(function (tx) {
 
-            tx.executeSql('DELETE FROM mediendaten', [], function (transaction, results) {
+            tx.executeSql('DELETE FROM mediadata', [], function (transaction, results) {
 
                 //$scope.dataForOverlay = [];
                 //for (var j = 0; j < results.rows.length; j++) {
