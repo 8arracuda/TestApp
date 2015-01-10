@@ -128,6 +128,7 @@ sdApp.controller('PL_PGSQLiteCtrl', function ($scope, $rootScope, testDataFactor
         function nextTransactions() {
 
 
+
             $scope.db.transaction(function (tx) {
 
                     for (var i = 0; i < 5; i++) {

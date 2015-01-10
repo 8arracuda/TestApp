@@ -77,10 +77,9 @@ angular.module('testDataFactory', [])
             getDatasetForPlatformTest: function () {
 
                 var data = JSON.parse(FileHelper.readStringFromFileAtPath(filename));
-                //alert(data.length);
 
-                //returns the first 100 addresses
                 return data.slice(0, 100);
+
             }
         };
     });

@@ -63,7 +63,9 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
         $scope.$apply();
     };
 
-    $scope.openDatabase = function () {
+
+    //no index
+    $scope.openDatabaseAlternative1 = function () {
         console.log('openDatabase start');
 
         //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
@@ -71,6 +73,50 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
             window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
         } else {
 
+            dbName="PE_TestR1_Alt1";
+            var request = window.indexedDB.open(dbName, 1);
+
+            request.onerror = function (event) {
+                console.error('request.onerror');
+                alert("Database error: " + event.target.errorCode);
+
+            };
+            request.onsuccess = function (event) {
+                console.log('request.onsuccess (in openDatabase)');
+                $scope.db = request.result;
+
+                //for updating the "status-light" on the openDatabase button
+                $scope.databaseOpened = true;
+                $scope.$apply();
+            };
+
+            request.onupgradeneeded = function (event) {
+
+                $scope.db = event.target.result;
+
+                //on update: when objectStore existed
+                //before it needs to be deleted, before it's created again with new keys.
+                //$scope.db.deleteObjectStore(objStoreName);
+
+                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "id"});
+
+                //objectStore.createIndex("id", "id", {unique: true});
+
+            }
+        }
+    };
+
+
+    //index -id- unique: true
+    $scope.openDatabaseAlternative2 = function () {
+        console.log('openDatabase start');
+
+        //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
+        if (!window.indexedDB) {
+            window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
+        } else {
+
+            dbName="PE_TestR1_Alt2";
             var request = window.indexedDB.open(dbName, 1);
 
             request.onerror = function (event) {
@@ -98,6 +144,49 @@ sdApp.controller('PE_IndexedDB_TestR1Ctrl', function ($scope, $rootScope, testDa
                 var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "id"});
 
                 objectStore.createIndex("id", "id", {unique: true});
+
+            }
+        }
+    };
+
+
+    //Index -id- unique: false
+    $scope.openDatabaseAlternative3 = function () {
+        console.log('openDatabase start');
+
+        //Quelle: https://developer.mozilla.org/de/docs/IndexedDB/IndexedDB_verwenden
+        if (!window.indexedDB) {
+            window.alert("Ihr Browser unterstützt keine stabile Version von IndexedDB. Dieses und jenes Feature wird Ihnen nicht zur Verfügung stehen.");
+        } else {
+
+            dbName="PE_TestR1_Alt3";
+            var request = window.indexedDB.open(dbName, 1);
+
+            request.onerror = function (event) {
+                console.error('request.onerror');
+                alert("Database error: " + event.target.errorCode);
+
+            };
+            request.onsuccess = function (event) {
+                console.log('request.onsuccess (in openDatabase)');
+                $scope.db = request.result;
+
+                //for updating the "status-light" on the openDatabase button
+                $scope.databaseOpened = true;
+                $scope.$apply();
+            };
+
+            request.onupgradeneeded = function (event) {
+
+                $scope.db = event.target.result;
+
+                //on update: when objectStore existed
+                //before it needs to be deleted, before it's created again with new keys.
+                //$scope.db.deleteObjectStore(objStoreName);
+
+                var objectStore = $scope.db.createObjectStore(objStoreName, {keyPath: "id"});
+
+                objectStore.createIndex("id", "id", {unique: false});
 
             }
         }

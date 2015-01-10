@@ -118,10 +118,6 @@ sdApp.config(function ($routeProvider) {
             controller: 'DirectoryVariablesCtrl'
         }).
         otherwise({
-            //redirectTo: '/overview'
-            //redirectTo: '/DE_indexedDB'
-            //redirectTo: '/DE_PG_fileAPI'
-            redirectTo: '/PE_fileAPI'
-            //redirectTo: '/PE_localStorage'
+            redirectTo: '/PE_localStorage'
         });
 });
